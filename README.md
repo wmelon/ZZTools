@@ -3,9 +3,17 @@
 
 # 使用方法
 
+## 导入
 1.可直接下载demo, 将ZZLyout文件夹下的ZZLyout.h&ZZLyout.m拖入工程中使用.
 
-2.cocoapods集成可使用: pod 'ZZLyout'
+2.cocoapods集成可使用: pod 'ZZTools' ,若搜索不到可尝试先使用pod setup更新.
+
+## 引用
+```
+
+#import "ZZTools.h"
+
+```
 
 # 效果展示
 
@@ -19,6 +27,8 @@
 ![浮动](https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif)
 
 # 用法简介
+
+## ZZLyout使用方法
 
 ### 建议使用以下方法初始化layou
 

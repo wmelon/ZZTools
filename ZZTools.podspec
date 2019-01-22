@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name				= "ZZTools"
-s.version			= "0.0.1"
+s.version			= "1.0.1"
 s.summary			= "first version"
 s.description			= "first version for public"
 s.author			= { "ZZ" => "1156858877@qq.com" }

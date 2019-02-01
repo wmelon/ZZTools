@@ -23,8 +23,8 @@
     self.title = @"星星评价";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] selectImage:[UIImage imageNamed:@"didStar"] starWidth:40 starHeight:40 starMargin:10 starCount:5 callBack:^(CGFloat grade) {
-        NSLog(@"grad === %.2f", grade);
+    self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] selectImage:[UIImage imageNamed:@"didStar"] starWidth:40 starHeight:40 starMargin:10 starCount:7 callBack:^(CGFloat userGrade, CGFloat finalGrade) {
+        NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     
     [self.view addSubview:self.starView];

@@ -34,11 +34,12 @@
 
 - (instancetype)initWithImage:(UIImage *)image selectImage:(UIImage *)selectImage starWidth:(CGFloat)starWidth starHeight:(CGFloat)starHeight starMargin:(CGFloat)starMargin starCount:(int)starCount callBack:(ZZStarViewCallBack)callBack {
     if (self == [super init]) {
-        
+        self.miniGrade = 0.5;
         self.starWidth = starWidth;
         self.starHeight = starHeight;
         self.starCount = starCount;
         self.starMargin = starMargin;
+        self.callBack = callBack;
         
         //0.临时的东西
         self.frame = CGRectMake(50, 150, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), starHeight);
@@ -67,7 +68,13 @@
             imageView.image = selectImage;
         }
         
-        
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self == [super init]) {
+        self.miniGrade = 0.5;
     }
     return self;
 }
@@ -85,7 +92,11 @@
         CGPoint pt = [[touches anyObject] locationInView:view];
         if (pt.x >= 0 && pt.x < self.starWidth + self.starMargin) {//定位具体在哪个星星的范围
             CGFloat value = pt.x > self.starWidth ? self.starWidth : pt.x;
-            self.grade = i + value / self.starWidth;
+            CGFloat grade = i + value / self.starWidth;
+            self.grade = grade;
+            if (self.callBack) {
+                self.callBack(grade, self.grade);
+            }
         }
     }
     //CGPoint pt = [[touches anyObject] locationInView:self];
@@ -96,12 +107,17 @@
 -(void)setGrade:(CGFloat)grade {
     
     _grade = grade > self.starCount ? self.starCount : grade;//最高分为星星的个数.
-    int g = (int)grade;
-    CGFloat width = self.starWidth * g + self.starMargin * g + (grade - g) * self.starWidth;
+    _grade = grade > self.miniGrade ? grade : self.miniGrade;//最低值
+    
+    int g = (int)_grade;
+    CGFloat width = self.starWidth * g + self.starMargin * g + (_grade - g) * self.starWidth;
     //1.修改选中的宽度.
     CGRect rect = self.selectView.frame;
     rect.size.width = width;
-    self.selectView.frame = rect;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.selectView.frame = rect;
+    });
     
 }
 

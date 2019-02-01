@@ -84,13 +84,9 @@
         UIView *view = self.normalView.subviews[i];
         CGPoint pt = [[touches anyObject] locationInView:view];
         if (pt.x >= 0 && pt.x < self.starWidth + self.starMargin) {//定位具体在哪个星星的范围
-            
             CGFloat value = pt.x > self.starWidth ? self.starWidth : pt.x;
-            NSLog(@"ratio === %.2f",value / self.starWidth);
             self.grade = i + value / self.starWidth;
-            
         }
-        
     }
     //CGPoint pt = [[touches anyObject] locationInView:self];
     //NSLog(@"pt.x === %.2f",pt.x);
@@ -100,10 +96,8 @@
 -(void)setGrade:(CGFloat)grade {
     
     _grade = grade > self.starCount ? self.starCount : grade;//最高分为星星的个数.
-    
     int g = (int)grade;
-    CGFloat width = self.starWidth * g + self.starMargin * (g > 1 ? g - 1 : g) + (grade - g) * self.starWidth;
-    
+    CGFloat width = self.starWidth * g + self.starMargin * g + (grade - g) * self.starWidth;
     //1.修改选中的宽度.
     CGRect rect = self.selectView.frame;
     rect.size.width = width;

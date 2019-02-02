@@ -10,5 +10,6 @@
 #define ZZTools_h
 
 #import "ZZLayout.h"
+#import "ZZStarView.h"
 
 #endif /* ZZTools_h */

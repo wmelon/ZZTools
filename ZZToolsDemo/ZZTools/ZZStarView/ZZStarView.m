@@ -28,6 +28,9 @@
 /**星星的高度*/
 @property (nonatomic , assign) CGFloat  starHeight;
 
+/**用户所选的分值*/
+@property (nonatomic , assign) CGFloat  userGrade;
+
 @end
 
 @implementation ZZStarView
@@ -40,14 +43,15 @@
         self.starCount = starCount;
         self.starMargin = starMargin;
         self.callBack = callBack;
+        self.sublevel = 0.5;
         
         //0.临时的东西
-        self.frame = CGRectMake(50, 150, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), starHeight);
+        self.bounds = CGRectMake(0, 0, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), starHeight);
         
         //1.普通的view
         self.normalView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), self.starHeight)];
         [self addSubview:self.normalView];
-        self.normalView.backgroundColor = [UIColor yellowColor];
+        //self.normalView.backgroundColor = [UIColor yellowColor];
         
         for (int i = 0 ; i < starCount; i ++ ) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.starWidth + starMargin) * i, 0, self.starWidth, self.starHeight)];
@@ -56,7 +60,7 @@
         }
         
         //2.选中的view
-        self.selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), self.starHeight)];
+        self.selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, self.starHeight)];
         self.selectView.clipsToBounds = YES;
         self.selectView.userInteractionEnabled = NO;
         [self addSubview:self.selectView];
@@ -75,6 +79,7 @@
 - (instancetype)init {
     if (self == [super init]) {
         self.miniGrade = 0.5;
+        self.sublevel = 0.5;
     }
     return self;
 }
@@ -92,32 +97,56 @@
         CGPoint pt = [[touches anyObject] locationInView:view];
         if (pt.x >= 0 && pt.x < self.starWidth + self.starMargin) {//定位具体在哪个星星的范围
             CGFloat value = pt.x > self.starWidth ? self.starWidth : pt.x;
-            CGFloat grade = i + value / self.starWidth;
-            self.grade = grade;
-            if (self.callBack) {
-                self.callBack(grade, self.grade);
-            }
+            self.userGrade = i + value / self.starWidth;
+            self.grade = self.userGrade;
         }
     }
     //CGPoint pt = [[touches anyObject] locationInView:self];
     //NSLog(@"pt.x === %.2f",pt.x);
 }
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (self.callBack) {
+        self.callBack(self.userGrade, self.grade);
+    }
+}
+
 # pragma mark- 设置分值
 -(void)setGrade:(CGFloat)grade {
     
+    //1.取最大值和最小值
     _grade = grade > self.starCount ? self.starCount : grade;//最高分为星星的个数.
     _grade = grade > self.miniGrade ? grade : self.miniGrade;//最低值
     
-    int g = (int)_grade;
-    CGFloat width = self.starWidth * g + self.starMargin * g + (_grade - g) * self.starWidth;
-    //1.修改选中的宽度.
+    //2.取分阶分值
+    int i = (int)_grade;//分值的整数部分
+    CGFloat f = _grade - i;//分值的小数部分
+    int intF = (int)(f * 1000);
+    int factor = intF / ((int)(self.sublevel * 1000));
+    CGFloat remainder = (intF % (int)(self.sublevel * 1000)) * 0.001;
+    _grade = i + factor * self.sublevel + (remainder > self.sublevel * 0.5 ? self.sublevel : 0);
+    
+    //3.计算并修改星星的显示
+    CGFloat width = self.starWidth * i + self.starMargin * i + (_grade - i) * self.starWidth;
     CGRect rect = self.selectView.frame;
     rect.size.width = width;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.selectView.frame = rect;
     });
+    
+}
+
+- (void)setSublevel:(CGFloat)sublevel {
+    
+    if (sublevel < 0.01) {
+        _sublevel = 0.01;
+    } else if (sublevel > 1) {
+        _sublevel = 1.0;
+    } else {
+        _sublevel = sublevel;
+    }
+    
+    [self setGrade:self.grade];
     
 }
 

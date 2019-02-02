@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**用户修改了分值的回调(传入后, 用户也将可以修改分值, 可以通过userInteractionEnabledv关闭)*/
 @property (nonatomic ,   copy) ZZStarViewCallBack   callBack;
 
+/**分阶, 默认为0.5, 即为最终分永远是0.5的倍数, 如果为1则永远为1的倍数(即为整数), 取值在0.01~1.0之间, 若需自定义, 建议在设置grade(分值)之前确定此值*/
+@property (nonatomic , assign) CGFloat              sublevel;
+
 /**当前分值, 每个星一分, 支持小数点, 进度自适应*/
 @property (nonatomic , assign) CGFloat              grade;
 

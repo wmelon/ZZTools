@@ -37,6 +37,8 @@
 
 - (instancetype)initWithImage:(UIImage *)image selectImage:(UIImage *)selectImage starWidth:(CGFloat)starWidth starHeight:(CGFloat)starHeight starMargin:(CGFloat)starMargin starCount:(int)starCount callBack:(ZZStarViewCallBack)callBack {
     if (self == [super init]) {
+        //1.基础的东西
+        self.userInteractionEnabled = NO;
         self.miniGrade = 0.5;
         self.starWidth = starWidth;
         self.starHeight = starHeight;
@@ -44,22 +46,18 @@
         self.starMargin = starMargin;
         self.callBack = callBack;
         self.sublevel = 0.5;
-        
-        //0.临时的东西
         self.bounds = CGRectMake(0, 0, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), starHeight);
         
-        //1.普通的view
+        //2.普通的view
         self.normalView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.starWidth * starCount + starMargin * (starCount > 1 ? starCount - 1 : starCount), self.starHeight)];
         [self addSubview:self.normalView];
-        //self.normalView.backgroundColor = [UIColor yellowColor];
-        
         for (int i = 0 ; i < starCount; i ++ ) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.starWidth + starMargin) * i, 0, self.starWidth, self.starHeight)];
             [self.normalView addSubview:imageView];
             imageView.image = image;
         }
         
-        //2.选中的view
+        //3.选中的view
         self.selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, self.starHeight)];
         self.selectView.clipsToBounds = YES;
         self.selectView.userInteractionEnabled = NO;
@@ -80,6 +78,7 @@
     if (self == [super init]) {
         self.miniGrade = 0.5;
         self.sublevel = 0.5;
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -148,6 +147,11 @@
     
     [self setGrade:self.grade];
     
+}
+
+- (void)setCallBack:(ZZStarViewCallBack)callBack {
+    _callBack = callBack;
+    if (callBack) {self.userInteractionEnabled = YES;}
 }
 
 @end

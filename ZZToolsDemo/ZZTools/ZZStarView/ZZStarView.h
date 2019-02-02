@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  * callBack:        如果传入nil, 则用户不可以修改分值
  * 注:               此view宽高自适应, 设置frame时, 只需考虑q起点xy坐标.
  */
-- (instancetype)initWithImage:(UIImage *)image selectImage:(UIImage *)selectImage starWidth:(CGFloat)starWidth starHeight:(CGFloat)starHeight starMargin:(CGFloat)starMargin starCount:(int)starCount callBack:(ZZStarViewCallBack)callBack;
+- (instancetype)initWithImage:(UIImage *)image selectImage:(UIImage *)selectImage starWidth:(CGFloat)starWidth starHeight:(CGFloat)starHeight starMargin:(CGFloat)starMargin starCount:(int)starCount callBack:(nullable ZZStarViewCallBack)callBack;
 
 @end
 

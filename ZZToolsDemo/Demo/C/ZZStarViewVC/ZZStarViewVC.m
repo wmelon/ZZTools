@@ -6,7 +6,7 @@
 //  Copyright © 2019年 刘猛. All rights reserved.
 //
 
-#import "ZZStarView.h"
+#import "ZZTools.h"
 #import "ZZStarViewVC.h"
 
 @interface ZZStarViewVC ()

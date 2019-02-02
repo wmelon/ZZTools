@@ -23,4 +23,9 @@ s.public_header_files		= "ZZToolsDemo/ZZTools/ZZTools.h"
     ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZLayout/ZZLayout.h'
   end
 
+  s.subspec 'ZZStarView' do |ss|
+    ss.source_files 		= 'ZZToolsDemo/ZZTools/ZZStarView/ZZStarView.{h,m}'
+    ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZStarView/ZZStarView'
+  end
+
 end

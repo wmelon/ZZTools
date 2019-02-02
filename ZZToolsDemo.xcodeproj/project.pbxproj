@@ -19,8 +19,8 @@
 		3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BAC621F6C71700833ECA /* ZZHorizontalVC.m */; };
 		3AA1BAD021F6C71700833ECA /* ZZAutomateFloatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BAC821F6C71700833ECA /* ZZAutomateFloatVC.m */; };
 		3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BACC21F6C71700833ECA /* ZZCollectionHeaderView.m */; };
-		3AD20663220483FE0056D3F2 /* ZZStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470602204581B001584C6 /* ZZStarView.m */; };
 		3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470642204587A001584C6 /* ZZStarViewVC.m */; };
+		E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470602204581B001584C6 /* ZZStarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -341,8 +341,8 @@
 			files = (
 				3AA1BAA921F6C61400833ECA /* ViewController.m in Sources */,
 				3AA1BAD021F6C71700833ECA /* ZZAutomateFloatVC.m in Sources */,
+				E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */,
 				3AA1BAB421F6C61500833ECA /* main.m in Sources */,
-				3AD20663220483FE0056D3F2 /* ZZStarView.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,
 				3AA1BAA621F6C61400833ECA /* AppDelegate.m in Sources */,

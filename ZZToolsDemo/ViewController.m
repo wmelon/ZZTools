@@ -29,8 +29,8 @@
     self.title = @"ZZToolsDemo";
     self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
     [self.view addSubview:self.tableView];
-//    ZZStarViewVC *vc = [[ZZStarViewVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:NO];
+    ZZVerticalVC *vc = [[ZZVerticalVC alloc] init];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark- 协议方法

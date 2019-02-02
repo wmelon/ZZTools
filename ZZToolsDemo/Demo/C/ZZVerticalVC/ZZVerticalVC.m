@@ -32,14 +32,14 @@
 #pragma mark- 协议方法
 //collectionView的协议方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 10;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (section == 0) {return 2;}
+    if (section == 0) {return 5;}
     
-    return random() % 1000 + 3 * section;
+    return random() % 30 + 3 * section;
     
     //return self.models.count;
     
@@ -79,17 +79,18 @@
 
 //ZZLyout的流协议方法
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
-    return random() % 40 + 100;
+    //return random() % 80 + 80;
+    return 150 - 5 * indexPath.row;
 }
 
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列
-    return section + 1;
+    return 2;
 }
 
 - (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
     
     if (section < 3) {
-        return UIEdgeInsetsMake(10, 20, 10, 20);
+        return UIEdgeInsetsMake(0, 20, 10, 20);
     }
     
     return UIEdgeInsetsMake(10, 0, 0, 0);
@@ -100,12 +101,12 @@
     return 5;
 }
 
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的列间距
-    return 30;
+- (CGFloat)layout:(ZZLayout*)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
 }
 
 - (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {//设置区头的高度
-    return CGSizeMake(self.view.bounds.size.width, 44);
+    return CGSizeMake(self.view.bounds.size.width, 0);
 }
 
 #pragma mark- 懒加载

@@ -45,13 +45,19 @@ static const NSInteger DefaultColumnCpunt = 3;
 //存放attribute的数组
 @property (nonatomic , strong) NSMutableArray   *attributesArray;
 
+/**刷新的次数*/
+@property (nonatomic , assign) NSInteger        reloadTime;
+
+/**计算最大值的次数*/
+@property (nonatomic , assign) int              calculateTime;
+
 @end
 
 @implementation ZZLayout
 
 - (instancetype)init {
     if (self == [super init]) {
-        //默认滚动方向为u垂直
+        //默认滚动方向为垂直
         self.scrollDirection = ZZLayoutFlowTypeVertical;
     }
     return self;
@@ -70,10 +76,13 @@ static const NSInteger DefaultColumnCpunt = 3;
 - (void)prepareLayout {
     [super prepareLayout];
     
-    //1.清空数据
+    //1.整理数据
+    self.reloadTime ++;
     self.lineSpacing = 0;
+    self.calculateTime = 0;
     self.contentDistance = 0;
     self.lastContentHeight = 0;
+    self.columnDistances[0] = @(0);
     self.spacingWithLastSection = 0;
     self.sectionInsets = UIEdgeInsetsZero;
     self.headerReferenceSize = CGSizeZero;
@@ -116,6 +125,7 @@ static const NSInteger DefaultColumnCpunt = 3;
         //3.每个区中有多少 item(布局每个区的每个cell)
         for (NSInteger j = 0; j < itemCountOfSection; j ++) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            [self.collectionView.dataSource collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             [self.attributesArray addObject:attributes];
         }
@@ -165,12 +175,11 @@ static const NSInteger DefaultColumnCpunt = 3;
 - (UICollectionViewLayoutAttributes *)setupAttributesWithVertical:(NSIndexPath *)indexPath {
     
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    
     CGFloat collectionViewWeight = self.collectionView.frame.size.width;
     CGFloat cellWeight = (collectionViewWeight - self.sectionInsets.left - self.sectionInsets.right - (self.columnCount - 1) * self.interitemSpacing) / self.columnCount;
     CGFloat cellHeight = 50;
     if ([self.delegate respondsToSelector:@selector(layout:heightForRowAtIndexPath:)]) {
-         cellHeight = [self.delegate layout:self heightForRowAtIndexPath:indexPath];
+        cellHeight = [self.delegate layout:self heightForRowAtIndexPath:indexPath];
     }
     
     NSInteger tempMinColumn = 0;//默认第 0 列最小
@@ -196,9 +205,19 @@ static const NSInteger DefaultColumnCpunt = 3;
     }
     
     attributes.frame = CGRectMake(cellX, cellY, cellWeight, cellHeight);
+    //计算高度.
+    if (self.reloadTime > 0 && self.calculateTime % 2 == 0) {
+        self.calculateTime --;
+        self.columnDistances[tempMinColumn] = @(CGRectGetMaxY(attributes.frame) - cellHeight);
+    } else {
+        self.calculateTime ++;
+        self.columnDistances[tempMinColumn] = @(CGRectGetMaxY(attributes.frame));
+    }
+    //self.columnDistances[tempMinColumn] = @(CGRectGetMaxY(attributes.frame));
     
-    self.columnDistances[tempMinColumn] = @(CGRectGetMaxY(attributes.frame));
-    // 取出最大的
+    NSLog(@"row === %ld, minColumnHeight === %.2f, maxY === %.2f",indexPath.row, minColumnHeight, CGRectGetMaxY(attributes.frame));
+    
+    //取出最大的
     for (NSInteger i = 0; i < self.columnDistances.count; i++ ) {
         if (self.contentDistance < [self.columnDistances[i] doubleValue]) {
             self.contentDistance = [self.columnDistances[i] doubleValue];
@@ -219,7 +238,7 @@ static const NSInteger DefaultColumnCpunt = 3;
     if ([self.delegate respondsToSelector:@selector(layout:widthForRowAtIndexPath:)]) {
         cellWeight = [self.delegate layout:self widthForRowAtIndexPath:indexPath];
     }
-
+    
     NSInteger tempMinColumn = 0;//默认第 0 列最小
     CGFloat minColumnWidth = [self.columnDistances[0] doubleValue];// 取出最小的那一列的宽度
     for (NSInteger i = 0; i < self.columnCount; i ++) {
@@ -229,21 +248,28 @@ static const NSInteger DefaultColumnCpunt = 3;
             tempMinColumn = i;
         }
     }
-
+    
     CGFloat cellX = MAX(minColumnWidth, 0);
     CGFloat cellY = self.sectionInsets.top + tempMinColumn * (cellHeight + self.interitemSpacing);
-
+    
     //如果cell的y值不等于上个区的最高的高度 即不是此区的第一列 要加上此区的每个cell的上下间距
     if (cellX != self.lastContentHeight) {
         cellX += self.lineSpacing;
     }
-
+    
     if (self.contentDistance < minColumnWidth) {
         self.contentDistance = minColumnWidth;
     }
     
-    
     attributes.frame = CGRectMake(cellX, cellY, cellWeight, cellHeight);
+    //    //计算高度.
+    //    if (self.reloadTime > 1 && self.calculateTime % 2 == 0) {
+    //        self.calculateTime --;
+    //        self.columnDistances[tempMinColumn] = @(CGRectGetMaxX(attributes.frame) - cellWeight);
+    //    } else {
+    //        self.calculateTime ++;
+    //        self.columnDistances[tempMinColumn] = @(CGRectGetMaxX(attributes.frame));
+    //    }
     self.columnDistances[tempMinColumn] = @(CGRectGetMaxX(attributes.frame));
     // 取出最大的
     for (NSInteger i = 0; i < self.columnDistances.count; i++ ) {
@@ -299,7 +325,14 @@ static const NSInteger DefaultColumnCpunt = 3;
         attributes.frame = currentFrame;
         
     }
-    
+    //    //计算高度.
+    //    if (self.reloadTime > 1 && self.calculateTime % 2 == 0) {
+    //        self.calculateTime --;
+    //        self.contentDistance = CGRectGetMaxY(attributes.frame) - cellWidth;
+    //    } else {
+    //        self.calculateTime ++;
+    //        self.contentDistance = CGRectGetMaxY(attributes.frame);
+    //    }
     self.contentDistance = CGRectGetMaxY(attributes.frame);
     return attributes;
 }

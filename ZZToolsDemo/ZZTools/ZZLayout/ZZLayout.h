@@ -8,7 +8,7 @@
 //  瀑布流通用的Layout, 部分思路来自其他开源库, 侵删, 联系qq:1156858877
 //
 //  特别鸣谢以下开源作者/开源工具
-//  竖向瀑布流:https://github.com/JiWuChao/CustomLayout
+//  垂直瀑布流:https://github.com/JiWuChao/CustomLayout
 //  横向瀑布流:https://github.com/ZhouZhengzz/ZZCollectionViewLayout
 //
 

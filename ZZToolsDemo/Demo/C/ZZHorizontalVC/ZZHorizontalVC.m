@@ -9,6 +9,7 @@
 #import "ZZTools.h"
 #import "ZZHorizontalVC.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ZZCollectionViewCell.h"
 #import "ZZCollectionHeaderView.h"
 
 @interface ZZHorizontalVC ()<UICollectionViewDelegate, UICollectionViewDataSource, ZZLayoutDelegate>
@@ -47,7 +48,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    ZZCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZZCollectionViewCell" forIndexPath:indexPath];
+    
+    cell.title = [NSString stringWithFormat:@"第%ld个", indexPath.row];
     int r = rand() % 255;
     int g = rand() % 255;
     int b = rand() % 255;
@@ -122,7 +125,7 @@
 //        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
         
         //注册cell
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];
         [_collectionView registerClass:[ZZCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZZCollectionHeaderView"];
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionElementKindSectionFooter"];
         

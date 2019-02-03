@@ -9,6 +9,7 @@
 #import "ZZTools.h"
 #import "ZZAutomateFloatVC.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ZZCollectionViewCell.h"
 #import "ZZCollectionHeaderView.h"
 
 @interface ZZAutomateFloatVC ()<UICollectionViewDelegate, UICollectionViewDataSource, ZZLayoutDelegate>
@@ -37,11 +38,14 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    ZZCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZZCollectionViewCell" forIndexPath:indexPath];
+    
+    cell.title = [NSString stringWithFormat:@"第%ld个", indexPath.row];
     int r = rand() % 255;
     int g = rand() % 255;
     int b = rand() % 255;
     cell.backgroundColor = [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1];
+    
     return cell;
     
 }
@@ -79,7 +83,7 @@
 }
 
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的宽
-    return random() % 120 + 30;//这里可以根据内容传入任意宽度
+    return random() % 120 + 60;//这里可以根据内容传入任意宽度
 }
 
 - (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
@@ -113,6 +117,7 @@
         headerView.backgroundColor = [UIColor whiteColor];
         headerView.text = @"实现类似tableView的头视图效果.";
         headerView.textColor = [UIColor blackColor];
+        headerView.backgroundColor = [UIColor redColor];
         headerView.textAlignment = NSTextAlignmentCenter;
         [_collectionView addSubview:headerView];
         _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
@@ -128,7 +133,7 @@
         _collectionView.mj_header = header;
         
         //注册cell
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];
         [_collectionView registerClass:[ZZCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZZCollectionHeaderView"];
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionElementKindSectionFooter"];
         

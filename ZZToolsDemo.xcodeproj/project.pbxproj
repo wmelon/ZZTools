@@ -24,6 +24,7 @@
 		E42827DD2206BD2900BF7657 /* ZZModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DC2206BD2900BF7657 /* ZZModel.m */; };
 		E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DF2206D61D00BF7657 /* ZZCollectionFooterView.m */; };
 		E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470602204581B001584C6 /* ZZStarView.m */; };
+		E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED2D922115F92009D9A8C /* ZZRouter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		E43470602204581B001584C6 /* ZZStarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZStarView.m; sourceTree = "<group>"; };
 		E43470632204587A001584C6 /* ZZStarViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZStarViewVC.h; sourceTree = "<group>"; };
 		E43470642204587A001584C6 /* ZZStarViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZStarViewVC.m; sourceTree = "<group>"; };
+		E45ED2D822115F92009D9A8C /* ZZRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZRouter.h; sourceTree = "<group>"; };
+		E45ED2D922115F92009D9A8C /* ZZRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZRouter.m; sourceTree = "<group>"; };
 		E616FE70C432DF5DFDB1D042 /* Pods-ZZToolsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZToolsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZZToolsDemo/Pods-ZZToolsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,8 +120,6 @@
 			children = (
 				3AA1BAA421F6C61400833ECA /* AppDelegate.h */,
 				3AA1BAA521F6C61400833ECA /* AppDelegate.m */,
-				3AA1BAA721F6C61400833ECA /* ViewController.h */,
-				3AA1BAA821F6C61400833ECA /* ViewController.m */,
 				3AA1BAAA21F6C61400833ECA /* Main.storyboard */,
 				3AA1BAAD21F6C61500833ECA /* Assets.xcassets */,
 				3AA1BAAF21F6C61500833ECA /* LaunchScreen.storyboard */,
@@ -132,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA1BAD321F6C94700833ECA /* ZZTools.h */,
+				E45ED2D722115EB4009D9A8C /* ZZRouter */,
 				E434705E2204580D001584C6 /* ZZStarView */,
 				3AA1BAD221F6C85200833ECA /* ZZLayout */,
 			);
@@ -141,6 +143,8 @@
 		3AA1BABF21F6C71700833ECA /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				3AA1BAA721F6C61400833ECA /* ViewController.h */,
+				3AA1BAA821F6C61400833ECA /* ViewController.m */,
 				3AA1BAC021F6C71700833ECA /* C */,
 				3AA1BACA21F6C71700833ECA /* V */,
 				E42827DA2206BD1C00BF7657 /* M */,
@@ -241,6 +245,15 @@
 				E43470642204587A001584C6 /* ZZStarViewVC.m */,
 			);
 			path = ZZStarViewVC;
+			sourceTree = "<group>";
+		};
+		E45ED2D722115EB4009D9A8C /* ZZRouter */ = {
+			isa = PBXGroup;
+			children = (
+				E45ED2D822115F92009D9A8C /* ZZRouter.h */,
+				E45ED2D922115F92009D9A8C /* ZZRouter.m */,
+			);
+			path = ZZRouter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +381,7 @@
 				E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */,
 				3AA1BAB421F6C61500833ECA /* main.m in Sources */,
 				E42827DD2206BD2900BF7657 /* ZZModel.m in Sources */,
+				E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,

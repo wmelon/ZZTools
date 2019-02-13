@@ -10,6 +10,7 @@
 #define ZZTools_h
 
 #import "ZZLayout.h"
+#import "ZZRouter.h"
 #import "ZZStarView.h"
 
 #endif /* ZZTools_h */

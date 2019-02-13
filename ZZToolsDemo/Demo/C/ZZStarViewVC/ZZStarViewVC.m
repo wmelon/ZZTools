@@ -28,7 +28,7 @@
         NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     self.starView.sublevel = 0.5;//默认值, 可以不写, 用户可选分值范围是0.5的倍数.(建议在设置分值之前确定此值)
-    self.starView.grade = 1.5;//设置分值, 可以不写, 默认显示0分.
+    self.starView.grade = [self.params[@"grade1"] floatValue];//设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)
     self.starView.miniGrade = 0.5;//默认值, 可以不写 ,用户可以设置的最低分值.
     [self.view addSubview:self.starView];
     self.starView.frame = CGRectMake(50, 150, self.starView.bounds.size.width, self.starView.bounds.size.height);
@@ -38,7 +38,7 @@
         NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     starView1.sublevel = 1;//用户可选分值范围是1的倍数(即为整数).(建议在设置分值之前确定此值)
-    starView1.grade = 1;//设置分值, 可以不写, 默认显示0分.
+    starView1.grade = [self.params[@"grade2"] floatValue];//设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)
     starView1.miniGrade = 0;//用户可以设置的最低分值.
     
     [self.view addSubview:starView1];
@@ -49,7 +49,7 @@
         NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     starView2.sublevel = 0.01;//用户可选分值范围是0.01的倍数.(建议在设置分值之前确定此值)
-    starView2.grade = 1.3;//设置分值, 可以不写, 默认显示0分.
+    starView2.grade = [self.params[@"grade3"] floatValue];//设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)
     starView2.miniGrade = 0.5;//用户可以设置的最低分值.
     [self.view addSubview:starView2];
     starView2.frame = CGRectMake(50, 270, starView2.bounds.size.width, starView2.bounds.size.height);

@@ -140,7 +140,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"垂直瀑布流dealloc");
+    NSLog(@"水平瀑布流dealloc");
 }
 
 @end

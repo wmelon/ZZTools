@@ -53,7 +53,9 @@
         vc = [[ZZRouter shared] matchController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
     } else if (indexPath.row == 3) {
         //星星评价, 传参实例, 类似get请求.
-        vc = [[ZZRouter shared] matchController:[NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"]];
+        NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
+        //NSLog(@"url === %@",url);
+        vc = [[ZZRouter shared] matchController:url];
     }
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

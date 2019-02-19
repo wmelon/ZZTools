@@ -11,20 +11,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef id (^ZZRouterBlock)(NSDictionary *params);
+typedef id (^ZZRouterBlock)(NSDictionary *result);
 
 # pragma mark- ZZRouter
 @interface ZZRouter : NSObject
 
 + (instancetype)shared;
 
+/**
+ * 注册路由, 传入路由以及
+ */
 - (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
-- (UIViewController *)match:(NSString *)route __attribute__((deprecated));
-- (UIViewController *)matchController:(NSString *)route;
 
-- (void)map:(NSString *)route toBlock:(ZZRouterBlock)block;
-- (ZZRouterBlock)matchBlock:(NSString *)route;
-- (id)callBlock:(NSString *)route;
+/**
+ * 根据路由, 获取控制器对象, 可传入参数
+ * 
+ */
+- (UIViewController *)matchController:(NSString *)route;
 
 @end
 
@@ -34,6 +37,5 @@ typedef id (^ZZRouterBlock)(NSDictionary *params);
 @property (nonatomic, strong) NSDictionary *params;
 
 @end
-
 
 NS_ASSUME_NONNULL_END

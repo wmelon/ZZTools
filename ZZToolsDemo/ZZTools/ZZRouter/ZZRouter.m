@@ -22,49 +22,27 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        if (!router) {
-            router = [[self alloc] init];
-        }
+        if (!router) {router = [[self alloc] init];}
     });
     return router;
 }
 
-- (void)map:(NSString *)route toBlock:(ZZRouterBlock)block {
-    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
-    
-    subRoutes[@"_"] = [block copy];
-}
-
 - (UIViewController *)matchController:(NSString *)route {
+    
     NSDictionary *params = [self paramsInRoute:route];
     Class controllerClass = params[@"controller_class"];
-    
     UIViewController *viewController = [[controllerClass alloc] init];
     
     if ([viewController respondsToSelector:@selector(setParams:)]) {
-        [viewController performSelector:@selector(setParams:)
-                             withObject:[params copy]];
+        [viewController performSelector:@selector(setParams:) withObject:[params copy]];
     }
     return viewController;
-}
-
-- (UIViewController *)match:(NSString *)route {
-    return [self matchController:route];
-}
-
-- (ZZRouterBlock)matchBlock:(NSString *)route {
-    NSDictionary *params = [self paramsInRoute:route];
-    ZZRouterBlock routerBlock = [params[@"block"] copy];
-    ZZRouterBlock returnBlock = ^id(NSDictionary *aParams) {
-        if (routerBlock) {
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:params];
-            [dic addEntriesFromDictionary:aParams];
-            return routerBlock([NSDictionary dictionaryWithDictionary:dic].copy);
-        }
-        return nil;
-    };
     
-    return [returnBlock copy];
+}
+
+- (void)map:(NSString *)route toControllerClass:(Class)controllerClass {
+    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
+    subRoutes[@"_"] = controllerClass;
 }
 
 - (id)callBlock:(NSString *)route {
@@ -77,6 +55,7 @@
     return nil;
 }
 
+#pragma mark - 私有方法
 // extract params in a route
 - (NSDictionary *)paramsInRoute:(NSString *)route {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -135,8 +114,6 @@
     
     return [NSDictionary dictionaryWithDictionary:params];
 }
-
-#pragma mark - Private
 
 - (NSMutableDictionary *)routes {
     if (!_routes) {
@@ -199,12 +176,13 @@
     return subRoutes;
 }
 
-- (void)map:(NSString *)route toControllerClass:(Class)controllerClass {
-    NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
-    subRoutes[@"_"] = controllerClass;
-}
+
 
 @end
+
+
+
+
 
 
 # pragma mark- UIViewController
@@ -221,3 +199,12 @@ static char kAssociatedParamsObjectKey;
 }
 
 @end
+
+
+
+
+
+
+
+
+

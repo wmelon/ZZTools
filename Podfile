@@ -6,6 +6,5 @@ target 'ZZToolsDemo' do
 
 pod 'MJRefresh'
 pod 'MBProgressHUD'
-pod 'HHRouter', '~> 0.1.8'
 
 end

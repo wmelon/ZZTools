@@ -111,7 +111,7 @@
 }
 
 # pragma mark- 设置分值
--(void)setGrade:(CGFloat)grade {
+- (void)setGrade:(CGFloat)grade {
     
     //1.取最大值和最小值
     _grade = grade > self.starCount ? self.starCount : grade;//最高分为星星的个数.

@@ -125,10 +125,12 @@
 
 - (NSArray *)pathComponentsFromRoute:(NSString *)route {
     NSMutableArray *pathComponents = [NSMutableArray array];
-    for (NSString *pathComponent in route.pathComponents) {
+    NSURL *url = [NSURL URLWithString:[route stringByRemovingPercentEncoding]];
+    
+    for (NSString *pathComponent in url.path.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
-        [pathComponents addObject:pathComponent];
+        [pathComponents addObject:[pathComponent stringByRemovingPercentEncoding]];
     }
     
     return [pathComponents copy];
@@ -176,26 +178,28 @@
     return subRoutes;
 }
 
-
-
 @end
-
-
-
-
-
 
 # pragma mark- UIViewController
 @implementation UIViewController (ZZRouter)
 
-static char kAssociatedParamsObjectKey;
+static char PARAMS;
+static char CALLBACK;
 
-- (void)setParams:(NSDictionary *)paramsDictionary {
-    objc_setAssociatedObject(self, &kAssociatedParamsObjectKey, paramsDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setParams:(NSDictionary *)params {
+    objc_setAssociatedObject(self, &PARAMS, params, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSDictionary *)params {
-    return objc_getAssociatedObject(self, &kAssociatedParamsObjectKey);
+    return objc_getAssociatedObject(self, &PARAMS);
+}
+
+- (void)setRouterCallBack:(ZZRouterBlock)routerCallBack {
+    objc_setAssociatedObject(self, &CALLBACK, routerCallBack, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (ZZRouterBlock)routerCallBack {
+    return objc_getAssociatedObject(self, &CALLBACK);
 }
 
 @end

@@ -6,11 +6,8 @@
 //  Copyright © 2019 刘猛. All rights reserved.
 //
 
-#import "ZZStarViewVC.h"
-#import "ZZVerticalVC.h"
-#import "ZZHorizontalVC.h"
+#import "ZZTools.h"
 #import "ViewController.h"
-#import "ZZAutomateFloatVC.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -24,13 +21,20 @@
 
 @implementation ViewController
 
++ (void)load {
+    
+    [[ZZRouter shared] mapRoute:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];//星星评价
+    [[ZZRouter shared] mapRoute:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
+    [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
+    [[ZZRouter shared] mapRoute:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ZZToolsDemo";
     self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
     [self.view addSubview:self.tableView];
-//    ZZVerticalVC *vc = [[ZZVerticalVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark- 协议方法
@@ -39,21 +43,26 @@
     //1.取消选中
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //2.跳转到对应的控制器(有简单的写法, 把控制器类名字符串放在数组中, 通过字符串获取类名然后实例化对象, 有兴趣的可以自己研究一下)
+    //2.通过路由获取要跳转的控制器对象, 并跳转.页面路由可打断模块之间的耦合, 实现组件化.
+    UIViewController *vc = nil;
     if (indexPath.row == 0) {
-        ZZVerticalVC *vc = [[ZZVerticalVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/vertical"]];
     } else if (indexPath.row == 1) {
-        ZZHorizontalVC *vc = [[ZZHorizontalVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/horizontal"]];
     } else if (indexPath.row == 2) {
-        ZZAutomateFloatVC *vc = [[ZZAutomateFloatVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
     } else if (indexPath.row == 3) {
-        ZZStarViewVC *vc = [[ZZStarViewVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        //星星评价, 传参实例, 类似get请求.
+        NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
+        vc = [[ZZRouter shared] getController:url];
+        vc.routerCallBack = ^(NSDictionary * _Nonnull result) {
+            //这里是次级控制器反向传值
+            NSLog(@"result === %@",result);
+        };
+        
     }
-    
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

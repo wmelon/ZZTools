@@ -39,7 +39,7 @@
     if (self == [super init]) {
         //1.基础的东西
         self.userInteractionEnabled = NO;
-        self.miniGrade = 0.5;
+        self.miniGrade = 0.0;
         self.starWidth = starWidth;
         self.starHeight = starHeight;
         self.starCount = starCount;
@@ -76,7 +76,7 @@
 
 - (instancetype)init {
     if (self == [super init]) {
-        self.miniGrade = 0.5;
+        self.miniGrade = 0.0;
         self.sublevel = 0.5;
         self.userInteractionEnabled = NO;
     }
@@ -111,7 +111,7 @@
 }
 
 # pragma mark- 设置分值
--(void)setGrade:(CGFloat)grade {
+- (void)setGrade:(CGFloat)grade {
     
     //1.取最大值和最小值
     _grade = grade > self.starCount ? self.starCount : grade;//最高分为星星的个数.

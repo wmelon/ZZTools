@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**当前分值, 每个星一分, 支持小数点, 进度自适应*/
 @property (nonatomic , assign) CGFloat              grade;
 
-/**最低分值, 用户无法设置低于此值的分支, 默认为0.5*/
+/**最低分值, 用户无法设置低于此值的分值, 默认为0.5*/
 @property (nonatomic , assign) CGFloat              miniGrade;
 
 /**

@@ -11,8 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^ZZRouterBlock)(NSDictionary *result);
-
 # pragma mark- ZZRouter
 @interface ZZRouter : NSObject
 
@@ -23,19 +21,19 @@ typedef void(^ZZRouterBlock)(NSDictionary *result);
  * 参数传入形式类似get请求, 如: https://xxx/app/goods/detail?goodsId=10, 其中"?"前面是路由, "?"后面是参数, 多个参数用&连接
  * 所有参数都在当前控制器的params属性中(类别中已添加该字典属性), 此时, 传说参数后, params对应@{ @"goodsId": @"10"}
  */
-- (UIViewController *)matchController:(NSString *)route;
+- (UIViewController *)getController:(NSString *)route;
 
 /**
  * 注册路由, 传入路由以及参数
  */
-- (void)map:(NSString *)route toControllerClass:(Class)controllerClass;
+- (void)mapRoute:(NSString *)route toControllerClass:(Class)controllerClass;
 
 @end
 
 # pragma mark- UIViewController
+typedef void(^ZZRouterBlock)(NSDictionary *result);
+
 @interface UIViewController (ZZRouter)
-
-
 
 /**
  * 路由传参, "?"后面所有的参数都将包含在此

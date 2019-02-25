@@ -23,10 +23,10 @@
 
 + (void)load {
     
-    [[ZZRouter shared] map:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];//星星评价
-    [[ZZRouter shared] map:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
-    [[ZZRouter shared] map:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
-    [[ZZRouter shared] map:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
+    [[ZZRouter shared] mapRoute:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];//星星评价
+    [[ZZRouter shared] mapRoute:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
+    [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
+    [[ZZRouter shared] mapRoute:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
     
 }
 
@@ -46,15 +46,15 @@
     //2.通过路由获取要跳转的控制器对象, 并跳转.页面路由可打断模块之间的耦合, 实现组件化.
     UIViewController *vc = nil;
     if (indexPath.row == 0) {
-        vc = [[ZZRouter shared] matchController:[NSString stringWithFormat:@"app/demo/vertical"]];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/vertical"]];
     } else if (indexPath.row == 1) {
-        vc = [[ZZRouter shared] matchController:[NSString stringWithFormat:@"app/demo/horizontal"]];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/horizontal"]];
     } else if (indexPath.row == 2) {
-        vc = [[ZZRouter shared] matchController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
     } else if (indexPath.row == 3) {
         //星星评价, 传参实例, 类似get请求.
         NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
-        vc = [[ZZRouter shared] matchController:url];
+        vc = [[ZZRouter shared] getController:url];
         vc.routerCallBack = ^(NSDictionary * _Nonnull result) {
             //这里是次级控制器反向传值
             NSLog(@"result === %@",result);

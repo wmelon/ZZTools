@@ -27,7 +27,7 @@
     return router;
 }
 
-- (UIViewController *)matchController:(NSString *)route {
+- (UIViewController *)getController:(NSString *)route {
     
     NSDictionary *params = [self paramsInRoute:route];
     Class controllerClass = params[@"controller_class"];
@@ -40,7 +40,7 @@
     
 }
 
-- (void)map:(NSString *)route toControllerClass:(Class)controllerClass {
+- (void)mapRoute:(NSString *)route toControllerClass:(Class)controllerClass {
     NSMutableDictionary *subRoutes = [self subRoutesToRoute:route];
     subRoutes[@"_"] = controllerClass;
 }

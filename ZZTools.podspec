@@ -25,12 +25,12 @@ s.public_header_files		= "ZZToolsDemo/ZZTools/ZZTools.h"
 
   s.subspec 'ZZStarView' do |ss|
     ss.source_files 		= 'ZZToolsDemo/ZZTools/ZZStarView/ZZStarView.{h,m}'
-    ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZStarView/ZZStarView'
+    ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZStarView/ZZStarView.h'
   end
 
   s.subspec 'ZZRouter' do |ss|
     ss.source_files 		= 'ZZToolsDemo/ZZTools/ZZRouter/ZZRouter.{h,m}'
-    ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZRouter/ZZRouter'
+    ss.public_header_files 	= 'ZZToolsDemo/ZZTools/ZZRouter/ZZRouter.h'
   end
 
 end

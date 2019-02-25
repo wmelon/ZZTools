@@ -7,7 +7,6 @@
 //
 
 #import "ZZTools.h"
-#import <HHRouter.h>
 #import "ViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -28,8 +27,6 @@
     [[ZZRouter shared] map:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
     [[ZZRouter shared] map:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
     [[ZZRouter shared] map:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
-    
-    [[HHRouter shared] map:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];
     
 }
 
@@ -57,11 +54,11 @@
     } else if (indexPath.row == 3) {
         //星星评价, 传参实例, 类似get请求.
         NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
-        NSLog(@"url === %@",url);
         vc = [[ZZRouter shared] matchController:url];
-        //vc = [[HHRouter shared] matchController:url];
-        
-        
+        vc.routerCallBack = ^(NSDictionary * _Nonnull result) {
+            //这里是次级控制器反向传值
+            NSLog(@"result === %@",result);
+        };
         
     }
     vc.hidesBottomBarWhenPushed = YES;

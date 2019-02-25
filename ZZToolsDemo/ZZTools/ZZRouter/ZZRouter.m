@@ -45,16 +45,6 @@
     subRoutes[@"_"] = controllerClass;
 }
 
-- (id)callBlock:(NSString *)route {
-    NSDictionary *params = [self paramsInRoute:route];
-    ZZRouterBlock routerBlock = [params[@"block"] copy];
-    
-    if (routerBlock) {
-        return routerBlock([params copy]);
-    }
-    return nil;
-}
-
 #pragma mark - 私有方法
 // extract params in a route
 - (NSDictionary *)paramsInRoute:(NSString *)route {

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef id (^ZZRouterBlock)(NSDictionary *result);
+typedef void(^ZZRouterBlock)(NSDictionary *result);
 
 # pragma mark- ZZRouter
 @interface ZZRouter : NSObject
@@ -38,7 +38,7 @@ typedef id (^ZZRouterBlock)(NSDictionary *result);
 
 
 /**
- * 路由传参?后面所有的参数都将包含在此
+ * 路由传参, "?"后面所有的参数都将包含在此
  * 参数中的key对应字典中的key, 参数中的value就是key对应的value
  */
 @property (nonatomic , strong) NSDictionary     *params;

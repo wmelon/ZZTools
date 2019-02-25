@@ -56,6 +56,10 @@
    
 }
 
-
+- (void)dealloc {
+    if (self.routerCallBack) {
+        self.routerCallBack(@{ @"code": @"1", @"data": @"jsonString" });
+    }
+}
 
 @end

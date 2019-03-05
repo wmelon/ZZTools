@@ -12,7 +12,7 @@
 #import "IJSConst.h"
 #import "IJSPreviewImageCell.h"
 #import "IJSImageManager.h"
-#import "IJSMapViewModel.h"
+#import "ZZPhotoPickerMapViewModel.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPohotPickerChooseElementVC.h"
 #import "IJSSelectedCell.h"
@@ -110,7 +110,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         }
 
         [IJSFFilesManager ergodicFilesFromFolderPath:filePath completeHandler:^(NSInteger fileCount, NSInteger fileSzie, NSMutableArray *filePath) {
-            IJSMapViewModel *model = [[IJSMapViewModel alloc] initWithImageDataModel:filePath];
+            ZZPhotoPickerMapViewModel *model = [[ZZPhotoPickerMapViewModel alloc] initWithImageDataModel:filePath];
             [self.mapDataArr addObject:model];
             vc.mapImageArr = self.mapDataArr;
         }];

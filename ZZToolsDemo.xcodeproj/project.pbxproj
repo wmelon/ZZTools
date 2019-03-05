@@ -53,7 +53,7 @@
 		E49CEBBF222E569E00AC812D /* IJSPreviewGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB8222E569E00AC812D /* IJSPreviewGifView.m */; };
 		E49CEBC0222E569E00AC812D /* IJSPreviewLivePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */; };
 		E49CEBC1222E569E00AC812D /* IJSPreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */; };
-		E49CEBC5222E56F600AC812D /* IJSMapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */; };
+		E49CEBC5222E56F600AC812D /* ZZPhotoPickerMapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBC3222E56F600AC812D /* ZZPhotoPickerMapViewModel.m */; };
 		E49CEBCE222E5BE300AC812D /* JSPhotoSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */; };
 /* End PBXBuildFile section */
 
@@ -152,8 +152,8 @@
 		E49CEBB8222E569E00AC812D /* IJSPreviewGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewGifView.m; sourceTree = "<group>"; };
 		E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewLivePhotoView.m; sourceTree = "<group>"; };
 		E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewVideoView.m; sourceTree = "<group>"; };
-		E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSMapViewModel.m; sourceTree = "<group>"; };
-		E49CEBC4222E56F600AC812D /* IJSMapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSMapViewModel.h; sourceTree = "<group>"; };
+		E49CEBC3222E56F600AC812D /* ZZPhotoPickerMapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerMapViewModel.m; sourceTree = "<group>"; };
+		E49CEBC4222E56F600AC812D /* ZZPhotoPickerMapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerMapViewModel.h; sourceTree = "<group>"; };
 		E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSPhotoSDK.bundle; sourceTree = "<group>"; };
 		E616FE70C432DF5DFDB1D042 /* Pods-ZZToolsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZToolsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZZToolsDemo/Pods-ZZToolsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -477,8 +477,8 @@
 		E49CEBC2222E56DF00AC812D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E49CEBC4222E56F600AC812D /* IJSMapViewModel.h */,
-				E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */,
+				E49CEBC4222E56F600AC812D /* ZZPhotoPickerMapViewModel.h */,
+				E49CEBC3222E56F600AC812D /* ZZPhotoPickerMapViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -622,7 +622,7 @@
 				E42827D92206BB7200BF7657 /* ZZCollectionViewCell.m in Sources */,
 				E49CEB88222E533200AC812D /* UIView+IJSUUIView.m in Sources */,
 				3AA1BAA921F6C61400833ECA /* ViewController.m in Sources */,
-				E49CEBC5222E56F600AC812D /* IJSMapViewModel.m in Sources */,
+				E49CEBC5222E56F600AC812D /* ZZPhotoPickerMapViewModel.m in Sources */,
 				E49CEB83222E533200AC812D /* CALayer+IJSULayer.m in Sources */,
 				E49CEB5C222E523000AC812D /* IJSAlbumModel.m in Sources */,
 				E49CEBA0222E55C900AC812D /* ZZPohotPickerChooseElementVC.m in Sources */,

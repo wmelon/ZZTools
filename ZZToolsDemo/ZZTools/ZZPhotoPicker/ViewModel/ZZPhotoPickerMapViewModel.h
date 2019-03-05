@@ -1,5 +1,5 @@
 //
-//  IJSMapViewModel.h
+//  ZZPhotoPickerMapViewModel.h
 //  IJSMapView
 //
 //  Created by shange on 2017/9/10.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IJSMapViewModel : NSObject
+@interface ZZPhotoPickerMapViewModel : NSObject
 
 @property (nonatomic , strong) NSMutableArray<NSString *> *imageDataArr; // 模型数据
 

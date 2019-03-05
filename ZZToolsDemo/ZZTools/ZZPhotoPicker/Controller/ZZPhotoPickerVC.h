@@ -13,7 +13,7 @@
 #import "ZZPrivateHeader.h"
 
 @class IJSAssetModel;
-@class IJSMapViewModel; //贴图数据模型
+@class ZZPhotoPickerMapViewModel; //贴图数据模型
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -127,7 +127,7 @@ typedef enum : NSUInteger {
 
 
 /*-----------------------------------编辑使用的贴图数组-------------------------------------------------------*/
-@property (nonatomic , strong) NSMutableArray<IJSMapViewModel *> *mapImageArr; // 贴图数据
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerMapViewModel *> *mapImageArr; // 贴图数据
 
 
 @end

@@ -231,7 +231,7 @@
     _hiddenOriginalButton = hiddenOriginalButton;
 }
 /// 贴图数组
-- (void)setMapImageArr:(NSMutableArray<IJSMapViewModel *> *)mapImageArr {
+- (void)setMapImageArr:(NSMutableArray<ZZPhotoPickerMapViewModel *> *)mapImageArr {
     _mapImageArr = mapImageArr;
 }
 

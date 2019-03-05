@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 
 @interface IJSPreviewLivePhotoView : UIView
 
 /**数据模型*/
-@property (nonatomic ,   weak) IJSAssetModel *assetModel;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
 
 /**
  *  播放

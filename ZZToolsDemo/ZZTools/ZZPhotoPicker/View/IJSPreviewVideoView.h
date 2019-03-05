@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 
 @interface IJSPreviewVideoView : UIView
 
 /**数据模型*/
-@property (nonatomic ,   weak) IJSAssetModel *assetModel;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
 
 @property (nonatomic , strong) AVPlayer *player;         /**视频播放器*/
 @property (nonatomic ,   weak) UIButton *playButton;       /**中间播放的按钮,按钮不可以点击当做一个UIView*/

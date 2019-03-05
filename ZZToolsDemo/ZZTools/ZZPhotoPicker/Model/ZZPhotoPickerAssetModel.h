@@ -1,5 +1,5 @@
 //
-//  IJSAssetModel.h
+//  ZZPhotoPickerAssetModel.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/2.
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, JSAssetModelSourceType) {
     JSAssetModelMediaTypeAudio
 };
 
-@interface IJSAssetModel : NSObject
+@interface ZZPhotoPickerAssetModel : NSObject
 
 @property (nonatomic , strong) PHAsset *asset;                    /*PHAsset*/
 @property (nonatomic , assign) JSAssetModelSourceType type; /*资源类型*/

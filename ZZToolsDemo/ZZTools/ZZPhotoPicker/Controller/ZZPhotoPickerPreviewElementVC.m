@@ -139,7 +139,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     if (collectionView == self.showCollectioView)
     {
         IJSPreviewImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSShowCellID forIndexPath:indexPath];
-        IJSAssetModel *assetModel;
+        ZZPhotoPickerAssetModel *assetModel;
         if (self.isPreviewButton)
         {
             assetModel = self.previewAssetModelArr[indexPath.row];
@@ -156,7 +156,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     else
     { //选中的cell
         IJSSelectedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSSelectedCellID forIndexPath:indexPath];
-        IJSAssetModel *model = self.selectedModels[indexPath.row];
+        ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
         cell.pushSelectedIndex = self.pushSelectedIndex; //首次进来的坐标
         model.isFirstAppear = _isFirstAppear;
         if (self.isPreviewButton)
@@ -247,7 +247,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     {
         // 计算当前的下标值
         NSInteger index = targetContentOffset->x / JSScreenWidth;
-        IJSAssetModel *model = self.allAssetModelArr[index];
+        ZZPhotoPickerAssetModel *model = self.allAssetModelArr[index];
         if (model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio)
         {
             self.rightButton.hidden = YES;
@@ -285,7 +285,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         else
         { //正常点击进来
             
-            for (IJSAssetModel *selectModel in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
             {
                 if (selectModel.onlyOneTag == index) //对应
                 {
@@ -330,7 +330,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         }
         else
         {
-            for (IJSAssetModel *selectModel in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
             {
                 if (selectModel.onlyOneTag == index) //对应
                 {
@@ -374,7 +374,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         }
         else
         {
-            for (IJSAssetModel *selectModel in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
             {
                 if (selectModel.onlyOneTag == index) //对应
                 {
@@ -513,7 +513,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     originalButton.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     if (!self.isPreviewButton)
     {
-        IJSAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
+        ZZPhotoPickerAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
         if (model.type == JSAssetModelMediaTypeVideo || model.type== JSAssetModelMediaTypeAudio)
         {
             originalButton.hidden = YES;
@@ -557,7 +557,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         if (self.selectedModels.count > 0)
         {
             [rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"photo_def_previewVc@2x" imageType:@"png"] forState:UIControlStateNormal];
-            for (IJSAssetModel *model in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
                 if (model.onlyOneTag == self.pushSelectedIndex)
                 {
@@ -572,7 +572,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [rightView addSubview:rightButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];
-    IJSAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
+    ZZPhotoPickerAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
     if (model.type == JSAssetModelMediaTypeVideo)
     {
         self.rightButton.hidden = YES;
@@ -614,7 +614,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 - (void)_editPhotoAction:(UIButton *)button
 {
     __weak typeof(self) weakSelf = self;
-    __block IJSAssetModel *model;
+    __block ZZPhotoPickerAssetModel *model;
     __block NSUInteger index = 0;
     model = [self _selectedCurrentModel:model]; //判断选中当前的模型数据
     // 先处理不支持的类型
@@ -640,7 +640,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
             [self _selectImageButtonAction:nil]; // 选择添加
         }
         [self _selectedCurrentModel:model]; //判断选中当前的模型数据
-        [self.selectedModels enumerateObjectsUsingBlock:^(IJSAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [self.selectedModels enumerateObjectsUsingBlock:^(ZZPhotoPickerAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if (obj.onlyOneTag == model.onlyOneTag)
             {
                 model = obj; // 统一内存地址
@@ -813,7 +813,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     }
 }
 /// 跳转的私有方法
-- (void)_pushImageControllerFromModel:( IJSAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex
+- (void)_pushImageControllerFromModel:( ZZPhotoPickerAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex
 {
     //__weak typeof (self) weakSelf = self;
     if (isDegraded)
@@ -853,7 +853,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     }
     self.didClinkIndex = indexPath;
     IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
-    IJSAssetModel *model = self.selectedModels[indexPath.row];
+    ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
     if (self.isPreviewButton)
     {
         for (int i = 0; i < self.previewAssetModelArr.count; i++)
@@ -873,7 +873,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     [self _resetRightButtonStatus:model.cellButtonNnumber]; // 刷新导航条
 }
 /// 选则需要的模型
-- (IJSAssetModel *)_selectedCurrentModel:(IJSAssetModel *)model
+- (ZZPhotoPickerAssetModel *)_selectedCurrentModel:(ZZPhotoPickerAssetModel *)model
 {
     NSIndexPath *firstIndexPath = [[self.showCollectioView indexPathsForVisibleItems] firstObject];
     if (self.isPreviewButton) //预览模式下
@@ -921,7 +921,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         [avPlayers addObject:@1];
         
         NSIndexPath *firstIndexPath = [[self.showCollectioView indexPathsForVisibleItems] firstObject];
-        IJSAssetModel *model = self.allAssetModelArr[firstIndexPath.row];
+        ZZPhotoPickerAssetModel *model = self.allAssetModelArr[firstIndexPath.row];
         JSAssetModelSourceType type = model.type;
         // 先处理不支持的类型
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
@@ -975,7 +975,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         {
             for (int i = 0; i < vc.selectedModels.count; i++)
             {
-                IJSAssetModel *model = vc.selectedModels[i];
+                ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
                 [self _getBackOriginalDataPhotos:photos assets:assets infoArr:infoArr avPlayers:nil model:model index:i];
             }
         }
@@ -983,7 +983,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         { //缩略图,默认是828
             for (int i = 0; i < vc.selectedModels.count; i++)
             {
-                IJSAssetModel *model = vc.selectedModels[i];
+                ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
                 [self _getBackThumbnailDataPhotos:photos assets:assets infoArr:infoArr avPlayers:avPlayers model:model index:i networkAccessAllowed:YES noAlert:noShowAlert vc:vc];
             }
         }
@@ -994,7 +994,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                              assets:(NSMutableArray *)assets
                             infoArr:(NSMutableArray *)infoArr
                           avPlayers:(NSMutableArray *)avPlayers
-                              model:(IJSAssetModel *)model
+                              model:(ZZPhotoPickerAssetModel *)model
                               index:(NSInteger)index
                networkAccessAllowed:(BOOL)networkAccessAllowed
                             noAlert:(BOOL)noAlert
@@ -1117,7 +1117,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                             assets:(NSMutableArray *)assets
                            infoArr:(NSMutableArray *)infoArr
                          avPlayers:(NSMutableArray *)avPlayers
-                             model:(IJSAssetModel *)model
+                             model:(ZZPhotoPickerAssetModel *)model
                              index:(NSInteger)index
 {
     if (model.outputPath) //裁剪过了
@@ -1190,7 +1190,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     {                                                //1, 处理预览模式下的逻辑
         if (self.rightButton.titleLabel.text == nil) //增加
         {
-            IJSAssetModel *model = self.previewAssetModelArr[index];
+            ZZPhotoPickerAssetModel *model = self.previewAssetModelArr[index];
             [self.selectedModels addObject:model];
             [self.selectedCollection reloadData];
 
@@ -1212,7 +1212,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         else
         { //删除
             self.rightButton.titleLabel.text = nil;
-            for (IJSAssetModel *model in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
                 if (model == self.previewAssetModelArr[index])
                 {
@@ -1233,7 +1233,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
             // 重新赋值
             for (int i = 0; i < self.selectedModels.count; i++)
             {
-                IJSAssetModel *tempModel = self.selectedModels[i];
+                ZZPhotoPickerAssetModel *tempModel = self.selectedModels[i];
                 tempModel.cellButtonNnumber = i + 1;
             }
         }
@@ -1244,7 +1244,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         {
             if (self.selectedModels.count < ((ZZPhotoPickerVC *) self.navigationController).maxImagesCount) //还没有超标
             {
-                IJSAssetModel *model = self.allAssetModelArr[index];
+                ZZPhotoPickerAssetModel *model = self.allAssetModelArr[index];
                 [self.selectedModels addObject:model];
                 [self.selectedCollection reloadData];
                 // 增加属性并替换掉
@@ -1270,7 +1270,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         else
         { //删除
             self.rightButton.titleLabel.text = nil;
-            for (IJSAssetModel *model in self.selectedModels)
+            for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
                 if (model.onlyOneTag == index)
                 {
@@ -1288,7 +1288,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
             }
             for (int i = 0; i < self.selectedModels.count; i++)
             {
-                IJSAssetModel *tempModel = self.selectedModels[i];
+                ZZPhotoPickerAssetModel *tempModel = self.selectedModels[i];
                 tempModel.cellButtonNnumber = i + 1;
             }
         }

@@ -13,7 +13,7 @@
 /*
  *  图片选择控制器,默认是4列显示
 */
-@class IJSAlbumModel;
+@class ZZPhotoPickerAlbumModel;
 
 typedef void (^callBackReload)(NSMutableArray *selectedModel, NSMutableArray *allAssetModel);
 
@@ -24,7 +24,7 @@ typedef void (^callBackReload)(NSMutableArray *selectedModel, NSMutableArray *al
 /**显示的列数*/
 @property (nonatomic , assign) NSInteger columnNumber;
 /**数据模型*/
-@property (nonatomic , strong) IJSAlbumModel *albumModel;
+@property (nonatomic , strong) ZZPhotoPickerAlbumModel *albumModel;
 
 /**数据回调刷新表格*/
 @property (nonatomic , copy) callBackReload callBack;

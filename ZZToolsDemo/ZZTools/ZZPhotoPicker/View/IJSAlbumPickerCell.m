@@ -77,7 +77,7 @@
 
 #pragma mark se方法数据
 // 设置参数
-- (void)setModels:(IJSAlbumModel *)models
+- (void)setModels:(ZZPhotoPickerAlbumModel *)models
 {
     _models = models;
     _titleLable.text = models.name;

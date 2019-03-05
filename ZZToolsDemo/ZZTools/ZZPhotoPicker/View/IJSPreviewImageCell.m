@@ -107,7 +107,7 @@
     return _scrollView;
 }
 
-- (void)setAssetModel:(IJSAssetModel *)assetModel
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
 {
     _assetModel = assetModel;
     __weak typeof(self) weakSelf = self;

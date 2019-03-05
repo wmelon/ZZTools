@@ -1,6 +1,6 @@
 
 //
-//  IJSAssetModel.m
+//  ZZPhotoPickerAssetModel.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/2.
@@ -9,23 +9,23 @@
 
 #import "IJSConst.h"
 #import "IJSExtension.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 
-@implementation IJSAssetModel
+@implementation ZZPhotoPickerAssetModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{};
 
 + (instancetype)setAssetModelAsset:(id)asset type:(JSAssetModelSourceType)type timeLength:(NSString *)timeLength
 {
-    IJSAssetModel *model = [self setAssetModelAsset:asset type:type];
+    ZZPhotoPickerAssetModel *model = [self setAssetModelAsset:asset type:type];
     model.timeLength = timeLength;
     return model;
 }
 
 + (instancetype)setAssetModelAsset:(id)asset type:(JSAssetModelSourceType)type
 {
-    IJSAssetModel *model = [[IJSAssetModel alloc] init];
+    ZZPhotoPickerAssetModel *model = [[ZZPhotoPickerAssetModel alloc] init];
     model.asset = asset;
     model.type = type;
     return model;

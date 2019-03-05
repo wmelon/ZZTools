@@ -10,16 +10,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ZZPhotoPickerVC.h"
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 
 @interface ZZPhotoPickerPreviewElementVC : UIViewController
 //不管有没有值都需要传递----否则导致无数据崩溃
 /**接受用户选中的相册*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *> *selectedModels;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *> *selectedModels;
 /**所有的数据*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *> *allAssetModelArr;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *> *allAssetModelArr;
 /**预览模式传递一个当前控制器不可改变的数组,大图展示的数据,预览模式进来和selectedModels相同,内部不能增删*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *> *previewAssetModelArr;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *> *previewAssetModelArr;
 
 /**当前选中的坐标*/
 @property (nonatomic , assign) NSInteger pushSelectedIndex;

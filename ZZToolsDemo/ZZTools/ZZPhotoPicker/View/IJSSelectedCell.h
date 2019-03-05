@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 
 @interface IJSSelectedCell : UICollectionViewCell
 
 /**选中的数据*/
-@property (nonatomic ,   weak) IJSAssetModel *selectedModel;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *selectedModel;
 /**刷新UI的block*/
 @property (nonatomic , copy) void (^didClickButton)(BOOL isSelected);
 /**记录一下第一次进来的时候的index*/

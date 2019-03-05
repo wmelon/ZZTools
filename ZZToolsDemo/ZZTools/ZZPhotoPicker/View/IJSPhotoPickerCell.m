@@ -9,7 +9,7 @@
 #import "IJSConst.h"
 #import "IJSExtension.h"
 #import "IJSExtension.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 #import "IJSPhotoPickerCell.h"
 #import "ZZPhotoPickerVC.h"
@@ -35,7 +35,7 @@
 @implementation IJSPhotoPickerCell
 
 #pragma mark set方法
-- (void)setModel:(IJSAssetModel *)model {
+- (void)setModel:(ZZPhotoPickerAssetModel *)model {
     if (model == nil) {return;}
     
     _model = model;
@@ -84,7 +84,7 @@
     // 蒙版
     if (model.didMask && !_selectButton.selected) {
         self.maskView.hidden = NO;
-        for (IJSAssetModel *temp in model.didClickModelArr) {
+        for (ZZPhotoPickerAssetModel *temp in model.didClickModelArr) {
             if (temp.onlyOneTag == model.onlyOneTag) {
                 self.maskView.hidden = YES;
             }

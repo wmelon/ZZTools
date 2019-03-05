@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IJSAlbumModel.h"
+#import "ZZPhotoPickerAlbumModel.h"
 /*
  * 相册列表的cell
 */
@@ -15,6 +15,6 @@
 @interface IJSAlbumPickerCell : UITableViewCell
 
 /**展示数据*/
-@property (nonatomic ,   weak) IJSAlbumModel *models;
+@property (nonatomic ,   weak) ZZPhotoPickerAlbumModel *models;
 
 @end

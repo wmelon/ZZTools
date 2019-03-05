@@ -9,7 +9,7 @@
 #import "IJSPreviewLivePhotoView.h"
 #import <PhotosUI/PhotosUI.h>
 #import "IJSImageManager.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSConst.h"
 
 API_AVAILABLE(ios(9.1))
@@ -59,7 +59,7 @@ API_AVAILABLE(ios(9.1))
     self.backImageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
-- (void)setAssetModel:(IJSAssetModel *)assetModel
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
 {
     _assetModel = assetModel;
     self.backImageView.image = nil;

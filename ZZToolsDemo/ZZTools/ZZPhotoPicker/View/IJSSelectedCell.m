@@ -7,7 +7,7 @@
 //
 
 #import "IJSSelectedCell.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 
 @interface IJSSelectedCell()
@@ -32,7 +32,7 @@
     return self;
 }
 
-- (void)setSelectedModel:(IJSAssetModel *)selectedModel
+- (void)setSelectedModel:(ZZPhotoPickerAssetModel *)selectedModel
 {
     _selectedModel = selectedModel;
     if (selectedModel.outputPath)

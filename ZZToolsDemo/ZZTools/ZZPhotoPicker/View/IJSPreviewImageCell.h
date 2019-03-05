@@ -10,7 +10,7 @@
 /**
  * 展示图片视频预览的大cell
 */
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSPreviewVideoView.h"
 // 展示用的cell
 @protocol IJSPreviewImageCellDelegate;
@@ -18,7 +18,7 @@
 @interface IJSPreviewImageCell : UICollectionViewCell
 
 /**所有的数据*/
-@property (nonatomic ,   weak) IJSAssetModel *assetModel;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
 /**视频界面*/
 @property (nonatomic ,   weak) IJSPreviewVideoView *videoView;
 /**缩放用的scrollview*/

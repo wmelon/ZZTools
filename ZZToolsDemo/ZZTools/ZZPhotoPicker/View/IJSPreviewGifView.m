@@ -8,7 +8,7 @@
 
 #import "IJSPreviewGifView.h"
 #import "IJSImageManager.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 
 #import <objc/runtime.h>
 
@@ -42,7 +42,7 @@
     
 }
 
-- (void)setAssetModel:(IJSAssetModel *)assetModel
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
 {
     _assetModel = assetModel;
     

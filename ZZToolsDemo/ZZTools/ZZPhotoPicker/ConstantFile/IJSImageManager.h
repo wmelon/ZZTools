@@ -11,8 +11,8 @@
 #import <Photos/Photos.h>
 
 
-@class IJSAlbumModel;
-@class IJSAssetModel;
+@class ZZPhotoPickerAlbumModel;
+@class ZZPhotoPickerAssetModel;
 /*
  *  照片管理类
 */
@@ -53,25 +53,25 @@ typedef void (^completionHandler)(id assetCollection, NSError *error, BOOL isExi
 + (NSInteger)authorizationStatus;
 /*-----------------------------------获取相册,将相册数据当做 model返回-------------------------------------------------------*/
 /**
- *  获取相机胶卷的相册得到PHAsset对象放到IJSAlbumModel中
+ *  获取相机胶卷的相册得到PHAsset对象放到ZZPhotoPickerAlbumModel中
 */
-- (void)getCameraRollAlbumContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(IJSAlbumModel *model))completion;
+- (void)getCameraRollAlbumContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(ZZPhotoPickerAlbumModel *model))completion;
 /**
- *  所有的相册,包括用户创建,系统创建等,得到PHAsset对象放到IJSAlbumModel中
+ *  所有的相册,包括用户创建,系统创建等,得到PHAsset对象放到ZZPhotoPickerAlbumModel中
 */
-- (void)getAllAlbumsContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(NSArray<IJSAlbumModel *> *models))completion;
+- (void)getAllAlbumsContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(NSArray<ZZPhotoPickerAlbumModel *> *models))completion;
 
-/*-----------------------------------通过 IJSAlbumModel 获取 PHAsset资源模型-------------------------------------------------------*/
+/*-----------------------------------通过 ZZPhotoPickerAlbumModel 获取 PHAsset资源模型-------------------------------------------------------*/
 /**
  *  将相册的数据解析成 PHAsset数组
 */
-- (void)getAssetsFromFetchResult:(PHFetchResult *)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<IJSAssetModel *> *models))completion;
+- (void)getAssetsFromFetchResult:(PHFetchResult *)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<ZZPhotoPickerAssetModel *> *models))completion;
 // 获得下标为index的单个照片 如果索引越界, 在回调中返回 nil
-- (void)getAssetFromFetchResult:(PHFetchResult *)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(IJSAssetModel *model))completion;
+- (void)getAssetFromFetchResult:(PHFetchResult *)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(ZZPhotoPickerAssetModel *model))completion;
 
 /*-----------------------------------解析PHAsset返回为具体的图片数据缩-- 略图-------------------------------------------------------*/
 // 通过模型解析相册资源获取封面照片
-- (PHImageRequestID)getPostImageWithAlbumModel:(IJSAlbumModel *)model completion:(void (^)(UIImage *postImage))completion;
+- (PHImageRequestID)getPostImageWithAlbumModel:(ZZPhotoPickerAlbumModel *)model completion:(void (^)(UIImage *postImage))completion;
 /**
  *  将PHAsset数据解析成能够看见的参数
 */

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #define MarginTop 2
 #define ButtonHeight 30
 /**
@@ -19,7 +19,7 @@
 @interface IJSPhotoPickerCell : UICollectionViewCell
 
 /**数据模型*/
-@property (nonatomic ,   weak) IJSAssetModel *model;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *model;
 
 /**type 用于显示控件*/
 @property (nonatomic , assign) JSAssetModelSourceType type;

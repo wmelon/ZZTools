@@ -8,7 +8,7 @@
 
 #import "IJSConst.h"
 #import "IJSExtension.h"
-#import "IJSAlbumModel.h"
+#import "ZZPhotoPickerAlbumModel.h"
 #import "IJSImageManager.h"
 #import "IJSPhotoPickerCell.h"
 #import "ZZPohotPickerChooseElementVC.h"
@@ -26,9 +26,9 @@ static NSString *const CellID = @"pickerID";
 /**collection*/
 @property (nonatomic ,   weak) UICollectionView                 *showCollectioView;
 /**解析出来的照片的个数*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *>  *assetModelArr;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *>  *assetModelArr;
 /**存储被点击的modle*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *>  *selectedModels;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *>  *selectedModels;
 /**被选中的cell*/
 @property (nonatomic , strong) NSMutableArray<IJSPhotoPickerCell *> *hasSelectedCell;
 /**加载界面*/
@@ -60,7 +60,7 @@ static NSString *const CellID = @"pickerID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IJSPhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
-    IJSAssetModel *model = self.assetModelArr[indexPath.row];
+    ZZPhotoPickerAssetModel *model = self.assetModelArr[indexPath.row];
     model.indexPath = indexPath;
     cell.type = model.type;
     
@@ -86,7 +86,7 @@ static NSString *const CellID = @"pickerID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     ZZPhotoPickerPreviewElementVC *preViewVc = [[ZZPhotoPickerPreviewElementVC alloc] init];
-    IJSAssetModel *tempModel = self.assetModelArr[indexPath.row];
+    ZZPhotoPickerAssetModel *tempModel = self.assetModelArr[indexPath.row];
     if ((tempModel.type == JSAssetModelMediaTypeVideo || tempModel.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo) {
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
         [vc showAlertWithTitle:title];
@@ -102,7 +102,7 @@ static NSString *const CellID = @"pickerID";
     preViewVc.cancelHandler = self.cancelHandler;
     preViewVc.isPreviewButton = NO;                     // 正常点进去
     if (self.selectedModels.count >= vc.maxImagesCount) {// 选中的个数超标)
-        for (IJSAssetModel *model in self.selectedModels) {//选中的model
+        for (ZZPhotoPickerAssetModel *model in self.selectedModels) {//选中的model
             if (model.onlyOneTag == indexPath.row) {//点击被选中的)
                 preViewVc.allAssetModelArr = _assetModelArr;
                 preViewVc.selectedModels = self.selectedModels;
@@ -121,7 +121,7 @@ static NSString *const CellID = @"pickerID";
             [self.navigationController pushViewController:preViewVc animated:YES];
             return;
         } else {
-            IJSAssetModel *tempModel = self.assetModelArr[indexPath.row];
+            ZZPhotoPickerAssetModel *tempModel = self.assetModelArr[indexPath.row];
             if (tempModel.type == JSAssetModelMediaTypeVideo || tempModel.type == JSAssetModelMediaTypeAudio) {
                 NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Video cannot be selected"]];
                 [vc showAlertWithTitle:title];
@@ -139,7 +139,7 @@ static NSString *const CellID = @"pickerID";
 
 - (void)didClickCellButtonWithButton:(UIButton *)button  ButtonState:(BOOL)state buttonIndex:(NSInteger)currentIndex {
     __weak typeof (self) weakSelf = self;
-    IJSAssetModel *currentModel = self.assetModelArr[currentIndex];
+    ZZPhotoPickerAssetModel *currentModel = self.assetModelArr[currentIndex];
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     if (state) { // 被选中
         currentModel.isSelectedModel = YES;
@@ -164,7 +164,7 @@ static NSString *const CellID = @"pickerID";
         });
         
         NSArray *selectedModels = [NSArray arrayWithArray:vc.selectedModels]; // 处理用户回调数据
-        for (IJSAssetModel *newModel in selectedModels) {
+        for (ZZPhotoPickerAssetModel *newModel in selectedModels) {
             if ([[[IJSImageManager shareManager] getAssetIdentifier:currentModel.asset] isEqualToString:[[IJSImageManager shareManager] getAssetIdentifier:newModel.asset]]) {
                 [vc.selectedModels removeObject:newModel];
                 break;
@@ -173,7 +173,7 @@ static NSString *const CellID = @"pickerID";
         currentModel.didClickModelArr = self.selectedModels;
         currentModel.cellButtonNnumber = 0;
         for (int i = 0; i < currentModel.didClickModelArr.count; i++) {
-            IJSAssetModel *tempModel = currentModel.didClickModelArr[i];
+            ZZPhotoPickerAssetModel *tempModel = currentModel.didClickModelArr[i];
             tempModel.cellButtonNnumber = i + 1;
         }
         // 刷新返回之前的没有蒙版的状态
@@ -194,14 +194,14 @@ static NSString *const CellID = @"pickerID";
 }
 ///视频蒙版
 - (void)maskVideoType {
-    [self.assetModelArr enumerateObjectsUsingBlock:^(IJSAssetModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.assetModelArr enumerateObjectsUsingBlock:^(ZZPhotoPickerAssetModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.type == JSAssetModelMediaTypeVideo || obj.type == JSAssetModelMediaTypeAudio) {
             [self reloadCellNoAniomation:obj];
         }
     }];
 }
 ///无动画的刷新
-- (void)reloadCellNoAniomation:(IJSAssetModel *)model {
+- (void)reloadCellNoAniomation:(ZZPhotoPickerAssetModel *)model {
     [UIView animateWithDuration:0 animations:^{
         [self.showCollectioView performBatchUpdates:^{
             [self.showCollectioView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:model.onlyOneTag inSection:0]]];
@@ -267,7 +267,7 @@ static NSString *const CellID = @"pickerID";
     __weak typeof(self) weakSelf = self;
     if (vc.allowPickingOriginalPhoto) { // 获取本地原图
         for (int i = 0; i < vc.selectedModels.count; i++) {
-            IJSAssetModel *model = vc.selectedModels[i];
+            ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
             
             if (model.outputPath) { //裁剪过了)
                 UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
@@ -306,7 +306,7 @@ static NSString *const CellID = @"pickerID";
         }
     } else { //缩略图,默认是828
         for (int i = 0; i < vc.selectedModels.count; i++) {
-            IJSAssetModel *model = vc.selectedModels[i];
+            ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
             if (model.outputPath) {
                 UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
                 [photos replaceObjectAtIndex:i withObject:image];
@@ -465,10 +465,10 @@ static NSString *const CellID = @"pickerID";
 // 数据解析
 - (void)createrData {
     UIView *loadView =  [IJSLodingView showLodingViewAddedTo:self.view title:[NSBundle localizedStringForKey:@"Processing..."]];
-    [[IJSImageManager shareManager] getAssetsFromFetchResult:self.albumModel.result allowPickingVideo:YES allowPickingImage:YES completion:^(NSArray<IJSAssetModel *> *models) {
+    [[IJSImageManager shareManager] getAssetsFromFetchResult:self.albumModel.result allowPickingVideo:YES allowPickingImage:YES completion:^(NSArray<ZZPhotoPickerAssetModel *> *models) {
         [loadView removeFromSuperview];
         self.assetModelArr = [NSMutableArray arrayWithArray:models];
-        [self.assetModelArr enumerateObjectsUsingBlock:^(IJSAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [self.assetModelArr enumerateObjectsUsingBlock:^(ZZPhotoPickerAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             obj.onlyOneTag = idx;
         }];
         [self.showCollectioView reloadData];

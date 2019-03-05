@@ -11,7 +11,7 @@
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 #import "IJSImageManager.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 
 @interface IJSPreviewVideoView ()
 
@@ -51,7 +51,7 @@
     self.playButton.userInteractionEnabled = NO;
 }
 // 正常加载
-- (void)setAssetModel:(IJSAssetModel *)assetModel
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
 {
     _assetModel = assetModel;
     [self.playerLayer removeFromSuperlayer];

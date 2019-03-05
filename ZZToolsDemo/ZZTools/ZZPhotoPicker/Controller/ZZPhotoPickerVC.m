@@ -165,7 +165,7 @@
         vc.columnNumber = self.columnNumber; //列数
         __weak typeof(self) weakSelf = self;
         __weak typeof(vc) weakVc = vc;
-        [[IJSImageManager shareManager] getCameraRollAlbumContentImage:_allowPickingImage contentVideo:_allowPickingVideo completion:^(IJSAlbumModel *model) {
+        [[IJSImageManager shareManager] getCameraRollAlbumContentImage:_allowPickingImage contentVideo:_allowPickingVideo completion:^(ZZPhotoPickerAlbumModel *model) {
             weakVc.albumModel = model;
             [weakSelf pushViewController:vc animated:NO];
             self->_didPushPhotoPickerVc = YES;

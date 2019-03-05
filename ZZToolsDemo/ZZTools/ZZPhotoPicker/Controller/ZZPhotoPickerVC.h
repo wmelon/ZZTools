@@ -12,7 +12,7 @@
 #import <Photos/Photos.h>
 #import "ZZPrivateHeader.h"
 
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 @class ZZPhotoPickerMapViewModel; //贴图数据模型
 
 NS_ASSUME_NONNULL_BEGIN
@@ -109,7 +109,7 @@ typedef enum : NSUInteger {
 @property (nonatomic , assign) BOOL isSelectOriginalPhoto;
 
 /**用户选取并且需要返回的数据*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel * > * _Nullable selectedModels;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel * > * _Nullable selectedModels;
 /**
  最小裁剪尺寸
  */

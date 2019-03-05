@@ -101,7 +101,7 @@ static NSString *const cellID = @"cellID";
 {
     ZZPohotPickerChooseElementVC *vc = [[ZZPohotPickerChooseElementVC alloc] init];
     vc.columnNumber = self.columnNumber; // 传递列数计算展示图的大小
-    IJSAlbumModel *model = self.albumListArr[indexPath.row];
+    ZZPhotoPickerAlbumModel *model = self.albumListArr[indexPath.row];
     vc.albumModel = model;
     vc.selectedHandler = self.selectedHandler;
     vc.cancelHandler = self.cancelHandler;
@@ -117,7 +117,7 @@ static NSString *const cellID = @"cellID";
         
         UIView *loadView =  [IJSLodingView showLodingViewAddedTo:self.view title:[NSBundle localizedStringForKey:@"Processing..."]];
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-        [[IJSImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<IJSAlbumModel *> *models) {
+        [[IJSImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<ZZPhotoPickerAlbumModel *> *models) {
             weakSelf.albumListArr = models;
             [loadView removeFromSuperview];
             if (!weakSelf.tableView)
@@ -218,7 +218,7 @@ static NSString *const cellID = @"cellID";
     //    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:[NSBundle localizedStringForKey:@"Delete"] handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
     //        if (iOS8Later)
     //        {
-    //            IJSAlbumModel *model = self.albumListArr[indexPath.row];
+    //            ZZPhotoPickerAlbumModel *model = self.albumListArr[indexPath.row];
     //            [[IJSImageManager shareManager]deleteAlbum:model.name completion:^(id assetCollection, NSError *error, BOOL isExistedOrIsSuccess) {
     //                if (!error)
     //                {

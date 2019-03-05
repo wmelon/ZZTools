@@ -8,8 +8,8 @@
 
 #import "IJSConst.h"
 #import "IJSExtension.h"
-#import "IJSAlbumModel.h"
-#import "IJSAssetModel.h"
+#import "ZZPhotoPickerAlbumModel.h"
+#import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerVC.h"
 #import "IJSAlbumPickerCell.h"
@@ -78,8 +78,8 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
 }
 
 #pragma mark 获取相册
-// 获取相机胶卷的相册得到PHAsset对象放到IJSAlbumModel中
-- (void)getCameraRollAlbumContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(IJSAlbumModel *model))completion
+// 获取相机胶卷的相册得到PHAsset对象放到ZZPhotoPickerAlbumModel中
+- (void)getCameraRollAlbumContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(ZZPhotoPickerAlbumModel *model))completion
 {
     PHFetchOptions *option = [[PHFetchOptions alloc] init];
     if (!contentVideo)
@@ -105,7 +105,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
         if ([self isCameraRollAlbum:collection.localizedTitle])
         {
             PHFetchResult<PHAsset *> *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-            IJSAlbumModel *model = [self modelWithResult:fetchResult name:collection.localizedTitle];
+            ZZPhotoPickerAlbumModel *model = [self modelWithResult:fetchResult name:collection.localizedTitle];
             if (completion)
             {
                 completion(model);
@@ -115,7 +115,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     }
 }
 // 获取所有的照片信息
-- (void)getAllAlbumsContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(NSArray<IJSAlbumModel *> *models))completion
+- (void)getAllAlbumsContentImage:(BOOL)contentImage contentVideo:(BOOL)contentVideo completion:(void (^)(NSArray<ZZPhotoPickerAlbumModel *> *models))completion
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableArray *albumArr = [NSMutableArray array];
@@ -178,14 +178,14 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     });
 }
 #pragma mark 解析相册资源为 PHAsset 对象
-- (void)getAssetsFromFetchResult:(PHFetchResult *)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<IJSAssetModel *> *models))completion
+- (void)getAssetsFromFetchResult:(PHFetchResult *)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<ZZPhotoPickerAssetModel *> *models))completion
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableArray *photoArr = [NSMutableArray array];
         PHFetchResult *fetResult = (PHFetchResult *) result;
         for (int i = (int)fetResult.count - 1; i > -1; i --) {
             PHAsset *set = fetResult[i];
-            IJSAssetModel *model = [self _setModelWithAsset:set allowPickingVideo:allowPickingVideo allowPickingImage:allowPickingImage];
+            ZZPhotoPickerAssetModel *model = [self _setModelWithAsset:set allowPickingVideo:allowPickingVideo allowPickingImage:allowPickingImage];
             if (model) {
                 [photoArr addObject:model];
             }
@@ -200,7 +200,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     });
 }
 
-- (void)getAssetFromFetchResult:(id)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(IJSAssetModel *model))completion
+- (void)getAssetFromFetchResult:(id)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(ZZPhotoPickerAssetModel *model))completion
 {
     if ([result isKindOfClass:[PHFetchResult class]])
     {
@@ -222,7 +222,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
         {
             NSLog(@"获取的下标数组越界了");
         }
-        IJSAssetModel *model = [self _setModelWithAsset:result allowPickingVideo:allowPickingVideo allowPickingImage:allowPickingImage];
+        ZZPhotoPickerAssetModel *model = [self _setModelWithAsset:result allowPickingVideo:allowPickingVideo allowPickingImage:allowPickingImage];
         if (completion)
         {
             completion(model);
@@ -232,7 +232,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
 
 /*-----------------------------------获取封面-------------------------------------------------------*/
 #pragma mark 通过模型解析相册资源获取封面照片
-- (PHImageRequestID)getPostImageWithAlbumModel:(IJSAlbumModel *)model completion:(void (^)(UIImage *postImage))completion
+- (PHImageRequestID)getPostImageWithAlbumModel:(ZZPhotoPickerAlbumModel *)model completion:(void (^)(UIImage *postImage))completion
 {
     id asset = [model.result lastObject];
     if (!self.sortAscendingByModificationDate) //非时间排序
@@ -923,9 +923,9 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     }
 }
 // 设置相册目录model参数
-- (IJSAlbumModel *)modelWithResult:(id)result name:(NSString *)name
+- (ZZPhotoPickerAlbumModel *)modelWithResult:(id)result name:(NSString *)name
 {
-    IJSAlbumModel *model = [[IJSAlbumModel alloc] init];
+    ZZPhotoPickerAlbumModel *model = [[ZZPhotoPickerAlbumModel alloc] init];
     model.result = result; // 结果数据
     model.name = name;     // 名字
     if ([result isKindOfClass:[PHFetchResult class]])
@@ -952,9 +952,9 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     }
 }
 /// 设置图片的model
-- (IJSAssetModel *)_setModelWithAsset:(PHAsset *)asset allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage
+- (ZZPhotoPickerAssetModel *)_setModelWithAsset:(PHAsset *)asset allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage
 {
-    IJSAssetModel *model;
+    ZZPhotoPickerAssetModel *model;
     JSAssetModelSourceType type = JSAssetModelMediaTypePhoto;
     if ([asset isKindOfClass:[PHAsset class]]) // PHAsset类型
     {
@@ -1013,7 +1013,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
         }
         NSString *timeLength = type == JSAssetModelMediaTypeVideo ? [NSString stringWithFormat:@"%0.0f", phAsset.duration] : @"";
         timeLength = [self getNewTimeFromDurationSecond:timeLength.integerValue]; //需要的格式显示
-        model = [IJSAssetModel setAssetModelAsset:asset type:type timeLength:timeLength];
+        model = [ZZPhotoPickerAssetModel setAssetModelAsset:asset type:type timeLength:timeLength];
     }
     return model;
 }

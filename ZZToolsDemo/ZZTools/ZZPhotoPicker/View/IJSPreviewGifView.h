@@ -10,11 +10,11 @@
 /**
  * 展示gif类
 */
-@class IJSAssetModel;
+@class ZZPhotoPickerAssetModel;
 
 @interface IJSPreviewGifView : UIView
 
 /**数据模型*/
-@property (nonatomic ,   weak) IJSAssetModel *assetModel;
+@property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
 
 @end

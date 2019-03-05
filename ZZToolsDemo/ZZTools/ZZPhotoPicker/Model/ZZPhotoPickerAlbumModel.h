@@ -1,5 +1,5 @@
 //
-//  IJSAlbumModel.h
+//  ZZPhotoPickerAlbumModel.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 
-@interface IJSAlbumModel : NSObject
+@interface ZZPhotoPickerAlbumModel : NSObject
 
 @property (nonatomic , strong) NSString *name;  /// 相册的名字
 @property (nonatomic , assign) NSInteger count; ///<  相册的个数 / 或者相机胶卷资源的个数

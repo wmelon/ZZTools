@@ -11,7 +11,7 @@
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerVC.h"
 #import "IJSConst.h"
-#import "IJSImagePickerController.h"
+#import "ZZPhotoPickerVC.h"
 #import "IJSPhotoPreviewController.h"
 #import "IJSPhotoPickerController.h"
 #import <IJSFoundation/IJSFoundation.h>
@@ -116,7 +116,7 @@ static NSString *const cellID = @"cellID";
         __weak typeof(self) weakSelf = self;
         
         UIView *loadView =  [IJSLodingView showLodingViewAddedTo:self.view title:[NSBundle localizedStringForKey:@"Processing..."]];
-        IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+        ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
         [[IJSImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<IJSAlbumModel *> *models) {
             weakSelf.albumListArr = models;
             [loadView removeFromSuperview];
@@ -151,7 +151,7 @@ static NSString *const cellID = @"cellID";
 {
     if (![[IJSImageManager shareManager] authorizationStatusAuthorized])
     {
-        [(IJSImagePickerController *) self.navigationController showAlertWithTitle:@"您没有授权访问相册的权限,请您点击设置"];
+        [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您没有授权访问相册的权限,请您点击设置"];
         return;
     }
  
@@ -168,11 +168,11 @@ static NSString *const cellID = @"cellID";
         [[IJSImageManager shareManager] createdAlbumName:weakAlert.textFields.firstObject.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
             if (error)
             {
-                [(IJSImagePickerController *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
+                [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
             }
             else
             {
-                [(IJSImagePickerController *) self.navigationController showAlertWithTitle:@"创建成功,保存图片到自定义相册可以进行浏览"];
+                [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"创建成功,保存图片到自定义相册可以进行浏览"];
             }
         }];
     }];
@@ -191,11 +191,11 @@ static NSString *const cellID = @"cellID";
     [[IJSImageManager shareManager] createdAlbumName:textField.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
         if (error)
         {
-            [(IJSImagePickerController *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
+            [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
         }
         else
         {
-            [(IJSImagePickerController *) self.navigationController showAlertWithTitle:@"创建成功,保存图片到自定义相册可以进行浏览"];
+            [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"创建成功,保存图片到自定义相册可以进行浏览"];
         }
     }];
 };
@@ -222,9 +222,9 @@ static NSString *const cellID = @"cellID";
     //            [[IJSImageManager shareManager]deleteAlbum:model.name completion:^(id assetCollection, NSError *error, BOOL isExistedOrIsSuccess) {
     //                if (!error)
     //                {
-    //                     [(IJSImagePickerController *)self.navigationController showAlertWithTitle:@"功能搁置"];
+    //                     [(ZZPhotoPickerVC *)self.navigationController showAlertWithTitle:@"功能搁置"];
     //                }else{
-    //                     [(IJSImagePickerController *)self.navigationController showAlertWithTitle:@"功能搁置"];
+    //                     [(ZZPhotoPickerVC *)self.navigationController showAlertWithTitle:@"功能搁置"];
     //                }
     //            }];
     //        }else{

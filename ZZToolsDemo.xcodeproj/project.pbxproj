@@ -44,7 +44,6 @@
 		E49CEB8C222E533200AC812D /* UINavigationController+IJSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB7C222E533200AC812D /* UINavigationController+IJSNavigationController.m */; };
 		E49CEB93222E540400AC812D /* IJSFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49CEB92222E540400AC812D /* IJSFoundation.framework */; };
 		E49CEB97222E553500AC812D /* IJSAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */; };
-		E49CEB9A222E555800AC812D /* IJSImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB98222E555800AC812D /* IJSImagePickerController.m */; };
 		E49CEB9D222E559700AC812D /* IJSPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */; };
 		E49CEBA0222E55C900AC812D /* IJSPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB9F222E55C900AC812D /* IJSPhotoPickerController.m */; };
 		E49CEBBB222E569E00AC812D /* IJSPhotoPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBAD222E569E00AC812D /* IJSPhotoPickerCell.m */; };
@@ -136,8 +135,6 @@
 		E49CEB92222E540400AC812D /* IJSFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJSFoundation.framework; sourceTree = "<group>"; };
 		E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAlbumPickerController.m; sourceTree = "<group>"; };
 		E49CEB96222E553500AC812D /* IJSAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAlbumPickerController.h; sourceTree = "<group>"; };
-		E49CEB98222E555800AC812D /* IJSImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSImagePickerController.m; sourceTree = "<group>"; };
-		E49CEB99222E555800AC812D /* IJSImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSImagePickerController.h; sourceTree = "<group>"; };
 		E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPhotoPreviewController.m; sourceTree = "<group>"; };
 		E49CEB9C222E559700AC812D /* IJSPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPhotoPreviewController.h; sourceTree = "<group>"; };
 		E49CEB9E222E55C900AC812D /* IJSPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPhotoPickerController.h; sourceTree = "<group>"; };
@@ -472,8 +469,6 @@
 				E49CEB55222E4FA900AC812D /* ZZPhotoPickerVC.m */,
 				E49CEB96222E553500AC812D /* IJSAlbumPickerController.h */,
 				E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */,
-				E49CEB99222E555800AC812D /* IJSImagePickerController.h */,
-				E49CEB98222E555800AC812D /* IJSImagePickerController.m */,
 				E49CEB9C222E559700AC812D /* IJSPhotoPreviewController.h */,
 				E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */,
 				E49CEB9E222E55C900AC812D /* IJSPhotoPickerController.h */,
@@ -659,7 +654,6 @@
 				E49CEB62222E530C00AC812D /* IJSImageManager.m in Sources */,
 				3AA1BACD21F6C71700833ECA /* ZZLayout.m in Sources */,
 				3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */,
-				E49CEB9A222E555800AC812D /* IJSImagePickerController.m in Sources */,
 				E49CEB85222E533200AC812D /* IJSNotificationCenterString.m in Sources */,
 				E49CEBBD222E569E00AC812D /* IJSSelectedCell.m in Sources */,
 				E49CEB56222E4FA900AC812D /* ZZPhotoPickerVC.m in Sources */,

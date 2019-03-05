@@ -52,7 +52,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
--(void)loadTheSelectedData:(void(^)(NSArray<UIImage *> * _Nullable photos, NSArray<NSURL *> *_Nullable avPlayers, NSArray<PHAsset *> *_Nullable assets, NSArray<NSDictionary *> *_Nullable infos, IJSPExportSourceType sourceType,NSError *_Nullableerror))selectedHandler {
+- (void)loadTheSelectedData:(void(^)(NSArray<UIImage *> * _Nullable photos, NSArray<NSURL *> *_Nullable avPlayers, NSArray<PHAsset *> *_Nullable assets, NSArray<NSDictionary *> *_Nullable infos, ZZPhotoPickerSourceType sourceType,NSError *_Nullableerror))selectedHandler {
     self.albumVc.selectedHandler = selectedHandler;
     self.photoVc.selectedHandler = selectedHandler;
 }
@@ -329,17 +329,15 @@
     if (iOS9Later)
     {
         if (@available(iOS 9.0, *)) {
-            barItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[IJSImagePickerController class]]];
+            barItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[ZZPhotoPickerVC class]]];
         } else {
             // Fallback on earlier versions
         }
-    }
-    else
-    {
-        barItem = [UIBarButtonItem appearanceWhenContainedIn:[IJSImagePickerController class], nil];
+    } else {
+        barItem = [UIBarButtonItem appearanceWhenContainedIn:[ZZPhotoPickerVC class], nil];
     }
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    textAttrs[NSForegroundColorAttributeName] = ZZCOLOR(33, 33, 33, 1);
     textAttrs[NSFontAttributeName] =[UIFont systemFontOfSize:17];
     [barItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
 }
@@ -355,6 +353,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    NSLog(@"相片选择器被释放了!");
 }
 
 @end

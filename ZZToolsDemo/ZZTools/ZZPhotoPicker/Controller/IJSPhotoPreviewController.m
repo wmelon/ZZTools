@@ -13,7 +13,7 @@
 #import "IJSPreviewImageCell.h"
 #import "IJSImageManager.h"
 #import "IJSMapViewModel.h"
-#import "IJSImagePickerController.h"
+#import "ZZPhotoPickerVC.h"
 #import "IJSPhotoPickerController.h"
 
 #import "IJSImageManagerController.h"
@@ -98,7 +98,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 #pragma mark - 设置map数据
 - (void)_setupMapData
 {
-    IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     if (vc.mapImageArr == nil)
     {
         NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"JSPhotoSDK" ofType:@"bundle"];
@@ -150,7 +150,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         {
             assetModel = self.allAssetModelArr[indexPath.row];
         }
-        assetModel.networkAccessAllowed = ((IJSImagePickerController *) self.navigationController).networkAccessAllowed;
+        assetModel.networkAccessAllowed = ((ZZPhotoPickerVC *) self.navigationController).networkAccessAllowed;
         cell.assetModel = assetModel;
         cell.cellDelegate = self;
         return cell;
@@ -480,7 +480,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     [editButton addTarget:self action:@selector(_editPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
     [toolBarView addSubview:editButton];
     self.editButton = editButton;
-    IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     if (vc.isHiddenEdit)
     {
         self.editButton.hidden = YES;
@@ -620,7 +620,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     __block NSUInteger index = 0;
     model = [self _selectedCurrentModel:model]; //判断选中当前的模型数据
     // 先处理不支持的类型
-    IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo)
     {
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
@@ -677,7 +677,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     AVAsset *asset = [AVAsset assetWithURL:outputPath];
                     Float64 duration = CMTimeGetSeconds([asset duration]);
-                    IJSImagePickerController *vc = (IJSImagePickerController *) weakSelf.navigationController;
+                    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) weakSelf.navigationController;
                     CGFloat minCut = vc.minVideoCut ?: 4;
                     CGFloat maxCut = vc.maxVideoCut ?: 10;
                     
@@ -716,7 +716,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 //                                weakSelf.cancelHandler();
 //                            }
 //                        }];
-//                        videoEditVc.mapImageArr = [(IJSImagePickerController *) weakSelf.navigationController mapImageArr]; //贴图数据
+//                        videoEditVc.mapImageArr = [(ZZPhotoPickerVC *) weakSelf.navigationController mapImageArr]; //贴图数据
 //                        [vc pushViewController:videoEditVc animated:YES];
                     }
                     else
@@ -755,7 +755,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 //                            }
 //                        }];
 //                        videoCutVc.canEdit = YES;  // 可以进入编辑界面
-//                        videoCutVc.mapImageArr = [(IJSImagePickerController *) weakSelf.navigationController mapImageArr]; //贴图数据
+//                        videoCutVc.mapImageArr = [(ZZPhotoPickerVC *) weakSelf.navigationController mapImageArr]; //贴图数据
 //                        [vc pushViewController:videoCutVc animated:YES];
                     }
                 });
@@ -792,12 +792,12 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 //                }
 //            }];
 //
-//            managerVc.mapImageArr = [(IJSImagePickerController *) weakSelf.navigationController mapImageArr];
+//            managerVc.mapImageArr = [(ZZPhotoPickerVC *) weakSelf.navigationController mapImageArr];
 //            [weakSelf presentViewController:managerVc animated:YES completion:nil];
         }
         else
         {
-            IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+            ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
             if (vc.allowPickingOriginalPhoto)  // 允许原图
             {
                 [[IJSImageManager shareManager]getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
@@ -820,7 +820,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     //__weak typeof (self) weakSelf = self;
     if (isDegraded)
     {
-        IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+        ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not get a high definition diagram"]];
         [vc showAlertWithTitle:title];
         return; // 获取不到高清图
@@ -837,7 +837,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 //                    [weakSelf _resetUpSelectedDidClick:currentIndex];
 //                });
 //            }];
-//            managerVc.mapImageArr = [(IJSImagePickerController *) weakSelf.navigationController mapImageArr];
+//            managerVc.mapImageArr = [(ZZPhotoPickerVC *) weakSelf.navigationController mapImageArr];
 //            [weakSelf presentViewController:managerVc animated:YES completion:nil];
 //        });
     }
@@ -891,14 +891,14 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 #pragma mark -----------------------允许选择原图------------------------------
 -(void)_selectedOriginImage:(UIButton *)button
 {
-   IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+   ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     vc.allowPickingOriginalPhoto = !button.selected;
     button.selected = !button.selected;
 }
 #pragma mark 完成选择
 - (void)_finishSelectImageDisMiss
 {
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     vc.selectedModels = self.selectedModels;
     
     NSMutableArray *photos = [NSMutableArray array];
@@ -926,7 +926,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         IJSAssetModel *model = self.allAssetModelArr[firstIndexPath.row];
         JSAssetModelSourceType type = model.type;
         // 先处理不支持的类型
-        IJSImagePickerController *vc = (IJSImagePickerController *)self.navigationController;
+        ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
         if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo)
         {
             NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
@@ -1000,7 +1000,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                               index:(NSInteger)index
                networkAccessAllowed:(BOOL)networkAccessAllowed
                             noAlert:(BOOL)noAlert
-                                 vc:(IJSImagePickerController *)vc
+                                 vc:(ZZPhotoPickerVC *)vc
 {
     __block BOOL noShowAlert = noAlert;
     
@@ -1013,7 +1013,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         _isDoing = YES;
         __weak typeof (self) weakSelf = self;
         [[IJSImageManager shareManager] getAVAssetWithPHAsset:model.asset completion:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
-            IJSImagePickerController *imagePick = (IJSImagePickerController *) weakSelf.navigationController;
+            ZZPhotoPickerVC *imagePick = (ZZPhotoPickerVC *) weakSelf.navigationController;
             Float64 duration = CMTimeGetSeconds([asset duration]);
             NSInteger maxTime = 10;
             
@@ -1072,7 +1072,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                     return;
                 }
             }
-            [self _didGetAllPhotos:photos asset:assets infos:nil isSelectOriginalPhoto:NO avPlayers:nil sourceType:IJSPImageType];
+            [self _didGetAllPhotos:photos asset:assets infos:nil isSelectOriginalPhoto:NO avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
         }
         else
         { // 没有裁剪过
@@ -1099,7 +1099,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 
                 if (noShowAlert)
                 {
-                    [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:NO avPlayers:nil sourceType:IJSPImageType];
+                    [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:NO avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
                 }
                 
             } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
@@ -1134,7 +1134,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 return;
             }
         }
-        [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES avPlayers:nil sourceType:IJSPImageType];
+        [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
     }
     else
     {
@@ -1162,13 +1162,13 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 }
             }
             
-            [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES avPlayers:nil sourceType:IJSPImageType];
+            [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
         }];
     }
 }
 
 //设置返回的数据
-- (void)_didGetAllPhotos:(NSArray *)photos asset:(NSArray *)asset infos:(NSArray *)infos isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto avPlayers:(NSArray *)avPlayers sourceType:(IJSPExportSourceType)sourceType
+- (void)_didGetAllPhotos:(NSArray *)photos asset:(NSArray *)asset infos:(NSArray *)infos isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto avPlayers:(NSArray *)avPlayers sourceType:(ZZPhotoPickerSourceType)sourceType
 {
     _isDoing = NO;
     __weak typeof (self) weakSelf = self;
@@ -1244,7 +1244,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     {
         if (_rightButton.titleLabel.text == nil) //没有选中 选中添加
         {
-            if (self.selectedModels.count < ((IJSImagePickerController *) self.navigationController).maxImagesCount) //还没有超标
+            if (self.selectedModels.count < ((ZZPhotoPickerVC *) self.navigationController).maxImagesCount) //还没有超标
             {
                 IJSAssetModel *model = self.allAssetModelArr[index];
                 [self.selectedModels addObject:model];
@@ -1264,9 +1264,9 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
             else
             { //超标了
                 NSString *editTitle = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Please edit the selected picture"]];
-                NSString *countTitle = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Select a maximum of %zd photos"], ((IJSImagePickerController *) self.navigationController).maxImagesCount];
+                NSString *countTitle = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Select a maximum of %zd photos"], ((ZZPhotoPickerVC *) self.navigationController).maxImagesCount];
                 NSString *alertTitle = [NSString stringWithFormat:@"%@,%@", countTitle, editTitle];
-                [((IJSImagePickerController *) self.navigationController) showAlertWithTitle:alertTitle];
+                [((ZZPhotoPickerVC *) self.navigationController) showAlertWithTitle:alertTitle];
             }
         }
         else
@@ -1311,7 +1311,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 // 根据cell选中的数量重置toorbar的状态
 - (void)_resetToorBarStatus
 {
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     vc.selectedModels = self.selectedModels;
     if (vc.selectedModels.count > 0) // 有数据
     {

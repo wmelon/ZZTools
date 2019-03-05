@@ -59,7 +59,7 @@ static NSString *const CellID = @"pickerID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IJSPhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     IJSAssetModel *model = self.assetModelArr[indexPath.row];
     model.indexPath = indexPath;
     cell.type = model.type;
@@ -84,7 +84,7 @@ static NSString *const CellID = @"pickerID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     IJSPhotoPreviewController *preViewVc = [[IJSPhotoPreviewController alloc] init];
     IJSAssetModel *tempModel = self.assetModelArr[indexPath.row];
     if ((tempModel.type == JSAssetModelMediaTypeVideo || tempModel.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo) {
@@ -140,7 +140,7 @@ static NSString *const CellID = @"pickerID";
 - (void)didClickCellButtonWithButton:(UIButton *)button  ButtonState:(BOOL)state buttonIndex:(NSInteger)currentIndex {
     __weak typeof (self) weakSelf = self;
     IJSAssetModel *currentModel = self.assetModelArr[currentIndex];
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     if (state) { // 被选中
         currentModel.isSelectedModel = YES;
         currentModel.didMask = YES;
@@ -243,7 +243,7 @@ static NSString *const CellID = @"pickerID";
 - (void)finishSelectImageDisMiss {
     // lodingView
     
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     // 不满足最小要求就警告
     if (vc.minImagesCount && vc.selectedModels.count < vc.minImagesCount) {
         NSString *title = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Select a minimum of %zd photos"], vc.minImagesCount];
@@ -366,7 +366,7 @@ static NSString *const CellID = @"pickerID";
     
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.selectedHandler) {
-            self.selectedHandler(photos, nil, asset, infos, IJSPImageType, nil);
+            self.selectedHandler(photos, nil, asset, infos, ZZPhotoPickerSourceTypeImage, nil);
         }
     }];
 }
@@ -480,7 +480,7 @@ static NSString *const CellID = @"pickerID";
 }
 // 根据cell选中的数量重置toorbar的状态
 - (void)resetToorBarStatus {
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     if (vc.selectedModels.count > 0) {// 有数据)
         [self.previewButton setTitleColor:[IJSFColor colorWithR:232 G:236 B:239 alpha:1] forState:UIControlStateNormal];
         [self.finishButton setTitleColor:[IJSFColor colorWithR:232 G:236 B:239 alpha:1] forState:UIControlStateNormal];
@@ -532,7 +532,7 @@ static NSString *const CellID = @"pickerID";
 
 #pragma mark 清空数据--返回上一级界面
 - (void)cleanModelButtonAction {
-    IJSImagePickerController *vc = (IJSImagePickerController *) self.navigationController;
+    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     vc.selectedModels = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }

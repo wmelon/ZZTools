@@ -57,6 +57,10 @@ typedef enum : NSUInteger {
  */
 - (void)cancelSelectedData:(void(^)(void))cancelHandler;
 
+/**
+ *  警告
+ */
+- (void)showAlertWithTitle:(NSString *)title;
 
 /*-----------------------------------属性-------------------------------------------------------*/
 

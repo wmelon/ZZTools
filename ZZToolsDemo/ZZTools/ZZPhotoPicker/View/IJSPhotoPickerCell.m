@@ -12,7 +12,7 @@
 #import "IJSAssetModel.h"
 #import "IJSImageManager.h"
 #import "IJSPhotoPickerCell.h"
-#import "IJSImagePickerController.h"
+#import "ZZPhotoPickerVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 
 @interface IJSPhotoPickerCell ()

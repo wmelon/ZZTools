@@ -8,7 +8,7 @@
 
 #import "ZZPhotoPickerSelectedCell.h"
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 
 @interface ZZPhotoPickerSelectedCell()
 
@@ -47,7 +47,7 @@
         {
             [[PHImageManager defaultManager] cancelImageRequest:selectedModel.imageRequestID];  // 取消加载
         }
-        selectedModel.imageRequestID =  [[IJSImageManager shareManager] getPhotoWithAsset:selectedModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+        selectedModel.imageRequestID =  [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:selectedModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
             weakSelf.backImageView.image = photo;
             if (!isDegraded)
             {

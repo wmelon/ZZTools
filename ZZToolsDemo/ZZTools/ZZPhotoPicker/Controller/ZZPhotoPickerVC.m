@@ -6,9 +6,9 @@
 //  Copyright © 2019年 刘猛. All rights reserved.
 //
 
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "IJSExtension.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 
 #import "ZZPrivateHeader.h"
 #import "ZZPhotoPickerVC.h"
@@ -88,7 +88,7 @@
         
         [self setupDefaultData]; // 初始化信息
         
-        if (![[IJSImageManager shareManager] authorizationStatusAuthorized]) {// 没有授权,自定义的界面
+        if (![[ZZPhotoPickerImageManager shareManager] authorizationStatusAuthorized]) {// 没有授权,自定义的界面
         
             _tipLabel = [[UILabel alloc] init];
             _tipLabel.backgroundColor = [UIColor redColor];
@@ -136,7 +136,7 @@
 // 初始化时间排序的信息
 - (void)setSortAscendingByModificationDate:(BOOL)sortAscendingByModificationDate {
     _sortAscendingByModificationDate = sortAscendingByModificationDate;
-    [IJSImageManager shareManager].sortAscendingByModificationDate = sortAscendingByModificationDate;
+    [ZZPhotoPickerImageManager shareManager].sortAscendingByModificationDate = sortAscendingByModificationDate;
 }
 
 /*-----------------------------------私有方法-------------------------------------------------------*/
@@ -146,7 +146,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
 - (void)_observeAuthrizationStatusChange {
-    if ([[IJSImageManager shareManager] authorizationStatusAuthorized]) {
+    if ([[ZZPhotoPickerImageManager shareManager] authorizationStatusAuthorized]) {
         [_tipLabel removeFromSuperview];
         [_settingBtn removeFromSuperview];
         [_timer invalidate];
@@ -165,7 +165,7 @@
         vc.columnNumber = self.columnNumber; //列数
         __weak typeof(self) weakSelf = self;
         __weak typeof(vc) weakVc = vc;
-        [[IJSImageManager shareManager] getCameraRollAlbumContentImage:_allowPickingImage contentVideo:_allowPickingVideo completion:^(ZZPhotoPickerAlbumModel *model) {
+        [[ZZPhotoPickerImageManager shareManager] getCameraRollAlbumContentImage:_allowPickingImage contentVideo:_allowPickingVideo completion:^(ZZPhotoPickerAlbumModel *model) {
             weakVc.albumModel = model;
             [weakSelf pushViewController:vc animated:NO];
             self->_didPushPhotoPickerVc = YES;
@@ -192,16 +192,16 @@
 }
 - (void)setMinPhotoWidthSelectable:(NSInteger)minPhotoWidthSelectable {
     _minPhotoWidthSelectable = minPhotoWidthSelectable;
-    [IJSImageManager shareManager].minPhotoWidthSelectable = minPhotoWidthSelectable;
+    [ZZPhotoPickerImageManager shareManager].minPhotoWidthSelectable = minPhotoWidthSelectable;
 }
 
 - (void)setMinPhotoHeightSelectable:(NSInteger)minPhotoHeightSelectable {
     _minPhotoHeightSelectable = minPhotoHeightSelectable;
-    [IJSImageManager shareManager].minPhotoHeightSelectable = minPhotoHeightSelectable;
+    [ZZPhotoPickerImageManager shareManager].minPhotoHeightSelectable = minPhotoHeightSelectable;
 }
 - (void)setNetworkAccessAllowed:(BOOL)networkAccessAllowed {
     _networkAccessAllowed = networkAccessAllowed;
-    [IJSImageManager shareManager].networkAccessAllowed = networkAccessAllowed;
+    [ZZPhotoPickerImageManager shareManager].networkAccessAllowed = networkAccessAllowed;
 }
 
 // 设置屏幕默认的宽度
@@ -213,7 +213,7 @@
     else if (photoPreviewMaxWidth < 500) {
         _photoPreviewMaxWidth = 500;
     }
-    [IJSImageManager shareManager].photoPreviewMaxWidth = _photoPreviewMaxWidth;
+    [ZZPhotoPickerImageManager shareManager].photoPreviewMaxWidth = _photoPreviewMaxWidth;
 }
 // 设置最大的列数
 - (void)setMaxImagesCount:(NSInteger)maxImagesCount {
@@ -224,7 +224,7 @@
 /// 是否选择原图
 - (void)setAllowPickingOriginalPhoto:(BOOL)allowPickingOriginalPhoto {
     _allowPickingOriginalPhoto = allowPickingOriginalPhoto;
-    [IJSImageManager shareManager].allowPickingOriginalPhoto = allowPickingOriginalPhoto;
+    [ZZPhotoPickerImageManager shareManager].allowPickingOriginalPhoto = allowPickingOriginalPhoto;
 }
 /// 是否隐藏原图按钮
 - (void)setHiddenOriginalButton:(BOOL)hiddenOriginalButton {
@@ -246,7 +246,7 @@
     }
     ZZPhotoPickerAlbumListVC *albumPickerVc = [self.childViewControllers firstObject];
     albumPickerVc.columnNumber = _columnNumber;
-    [IJSImageManager shareManager].columnNumber = _columnNumber;
+    [ZZPhotoPickerImageManager shareManager].columnNumber = _columnNumber;
 }
 
 - (void)setMinVideoCut:(NSInteger)minVideoCut {

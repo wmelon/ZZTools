@@ -7,8 +7,8 @@
 //
 
 #import "ZZPhotoPickerPreviewImageCell.h"
-#import "IJSImageManager.h"
-#import "IJSConst.h"
+#import "ZZPhotoPickerImageManager.h"
+#import "ZZPhotoPickerConst.h"
 #import "ZZPhotoPickerPreviewGifView.h"
 #import "ZZPhotoPickerPreviewLivePhotoView.h"
 #import "IJSExtension.h"
@@ -125,7 +125,7 @@
             {
                 [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
             }
-            assetModel.imageRequestID = [[IJSImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+            assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 weakSelf.backImageView.image = photo;
                 if (!isDegraded)
                 {
@@ -181,7 +181,7 @@
                 {
                     [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
                 }
-                assetModel.imageRequestID = [[IJSImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     weakSelf.backImageView.image = photo;
                     if (!isDegraded)
                     {

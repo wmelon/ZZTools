@@ -6,11 +6,11 @@
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "IJSExtension.h"
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerChooseElementCell.h"
 #import "ZZPhotoPickerVC.h"
 #import <IJSFoundation/IJSFoundation.h>
@@ -45,7 +45,7 @@
         self.livePhotoButton.hidden = YES;
     }
     
-    self.representedAssetIdentifier = [[IJSImageManager shareManager] getAssetIdentifier:model.asset]; //设置资源唯一标识
+    self.representedAssetIdentifier = [[ZZPhotoPickerImageManager shareManager] getAssetIdentifier:model.asset]; //设置资源唯一标识
     __weak typeof(self) weakSelf = self;
     
     // 选择性加载图片裁剪的图片
@@ -57,8 +57,8 @@
     } else {
         if (model.imageRequestID) {[[PHImageManager defaultManager] cancelImageRequest:model.imageRequestID];}
         
-        model.imageRequestID =  [[IJSImageManager shareManager] getPhotoWithAsset:model.asset photoWidth:self.js_width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
-            if ([weakSelf.representedAssetIdentifier isEqualToString:[[IJSImageManager shareManager] getAssetIdentifier:model.asset]]) {
+        model.imageRequestID =  [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset photoWidth:self.js_width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+            if ([weakSelf.representedAssetIdentifier isEqualToString:[[ZZPhotoPickerImageManager shareManager] getAssetIdentifier:model.asset]]) {
                 weakSelf.contentImageView.image = photo;
                 model.lastImage = photo;
             } else {

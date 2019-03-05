@@ -8,9 +8,9 @@
 
 #import "ZZPhotoPickerAlbumListVC.h"
 #import "ZZPhotoPickerAlbumPickerCell.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerVC.h"
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPhotoPickerPreviewElementVC.h"
 #import "ZZPohotPickerChooseElementVC.h"
@@ -111,13 +111,13 @@ static NSString *const cellID = @"cellID";
 #pragma mark 获取相册列表
 - (void)_configImageData
 {
-    if ([[IJSImageManager shareManager] authorizationStatusAuthorized])
+    if ([[ZZPhotoPickerImageManager shareManager] authorizationStatusAuthorized])
     {
         __weak typeof(self) weakSelf = self;
         
         UIView *loadView =  [IJSLodingView showLodingViewAddedTo:self.view title:[NSBundle localizedStringForKey:@"Processing..."]];
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-        [[IJSImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<ZZPhotoPickerAlbumModel *> *models) {
+        [[ZZPhotoPickerImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<ZZPhotoPickerAlbumModel *> *models) {
             weakSelf.albumListArr = models;
             [loadView removeFromSuperview];
             if (!weakSelf.tableView)
@@ -149,7 +149,7 @@ static NSString *const cellID = @"cellID";
 // 警告
 - (void)addAlertTextField
 {
-    if (![[IJSImageManager shareManager] authorizationStatusAuthorized])
+    if (![[ZZPhotoPickerImageManager shareManager] authorizationStatusAuthorized])
     {
         [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您没有授权访问相册的权限,请您点击设置"];
         return;
@@ -165,7 +165,7 @@ static NSString *const cellID = @"cellID";
     UIAlertAction *determineAction = [UIAlertAction actionWithTitle:[NSBundle localizedStringForKey:@"OK"] style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
         
-        [[IJSImageManager shareManager] createdAlbumName:weakAlert.textFields.firstObject.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
+        [[ZZPhotoPickerImageManager shareManager] createdAlbumName:weakAlert.textFields.firstObject.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
             if (error)
             {
                 [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
@@ -188,7 +188,7 @@ static NSString *const cellID = @"cellID";
 {
     UITextField *textField = [alertView textFieldAtIndex:0]; //范围是 0 和1
 
-    [[IJSImageManager shareManager] createdAlbumName:textField.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
+    [[ZZPhotoPickerImageManager shareManager] createdAlbumName:textField.text completion:^(id assetCollection, NSError *error, BOOL isExisted) {
         if (error)
         {
             [(ZZPhotoPickerVC *) self.navigationController showAlertWithTitle:@"您创建的相册已经存在,或者系统原因没有创建成功"];
@@ -219,7 +219,7 @@ static NSString *const cellID = @"cellID";
     //        if (iOS8Later)
     //        {
     //            ZZPhotoPickerAlbumModel *model = self.albumListArr[indexPath.row];
-    //            [[IJSImageManager shareManager]deleteAlbum:model.name completion:^(id assetCollection, NSError *error, BOOL isExistedOrIsSuccess) {
+    //            [[ZZPhotoPickerImageManager shareManager]deleteAlbum:model.name completion:^(id assetCollection, NSError *error, BOOL isExistedOrIsSuccess) {
     //                if (!error)
     //                {
     //                     [(ZZPhotoPickerVC *)self.navigationController showAlertWithTitle:@"功能搁置"];

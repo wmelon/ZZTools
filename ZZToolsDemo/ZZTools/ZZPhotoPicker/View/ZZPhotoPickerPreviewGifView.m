@@ -7,7 +7,7 @@
 //
 
 #import "ZZPhotoPickerPreviewGifView.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
 
 #import <objc/runtime.h>
@@ -57,7 +57,7 @@
         {
             [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
         }
-        assetModel.imageRequestID = [[IJSImageManager shareManager] getOriginalPhotoDataWithAsset:assetModel.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
+        assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getOriginalPhotoDataWithAsset:assetModel.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
             [self.backWebView loadData:data MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
             if (!isDegraded)
             {

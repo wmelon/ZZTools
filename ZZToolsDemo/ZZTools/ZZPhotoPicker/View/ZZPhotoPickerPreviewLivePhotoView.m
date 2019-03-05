@@ -8,9 +8,9 @@
 
 #import "ZZPhotoPickerPreviewLivePhotoView.h"
 #import <PhotosUI/PhotosUI.h>
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 
 API_AVAILABLE(ios(9.1))
 @interface ZZPhotoPickerPreviewLivePhotoView ()
@@ -78,7 +78,7 @@ API_AVAILABLE(ios(9.1))
                 [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
             }
             if (@available(iOS 9.1, *)) {
-                assetModel.imageRequestID = [[IJSImageManager shareManager] getLivePhotoWithAsset:assetModel.asset photoWidth:JSScreenWidth networkAccessAllowed:YES completion:^(PHLivePhoto *livePhoto, NSDictionary *info) {
+                assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getLivePhotoWithAsset:assetModel.asset photoWidth:JSScreenWidth networkAccessAllowed:YES completion:^(PHLivePhoto *livePhoto, NSDictionary *info) {
                     weakSelf.backLivePhtotoView.livePhoto = livePhoto;
                 } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info){
                     if (error)

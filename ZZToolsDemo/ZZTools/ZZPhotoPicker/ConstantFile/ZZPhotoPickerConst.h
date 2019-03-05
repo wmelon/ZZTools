@@ -1,14 +1,14 @@
 
 //
-//  IJSConst.h
+//  ZZPhotoPickerConst.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/2.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#ifndef IJSConst_h
-#define IJSConst_h
+#ifndef ZZPhotoPickerConst_h
+#define ZZPhotoPickerConst_h
 
 // 导航条的高度
 #define NavigationHeight 64
@@ -51,4 +51,4 @@
 
 
 
-#endif /**IJSConst_h*/
+#endif /**ZZPhotoPickerConst_h*/

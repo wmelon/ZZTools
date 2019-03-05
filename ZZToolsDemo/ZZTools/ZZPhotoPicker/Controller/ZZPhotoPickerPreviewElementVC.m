@@ -9,9 +9,9 @@
 #import "ZZPhotoPickerPreviewElementVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "ZZPhotoPickerPreviewImageCell.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerMapViewModel.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPohotPickerChooseElementVC.h"
@@ -91,7 +91,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     [self.touchCell stopLivePhotos];
     [self.player pause];
     [self removeListenPlayerTimer];
-    [[IJSImageManager shareManager] stopCachingImagesFormAllAssets];
+    [[ZZPhotoPickerImageManager shareManager] stopCachingImagesFormAllAssets];
 }
 #pragma mark - 设置map数据
 - (void)_setupMapData
@@ -219,7 +219,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             [cell.videoView.player pause];
             self.videoPlayButton.hidden = NO;
         }
-        [[IJSImageManager shareManager] getAVAssetWithPHAsset:cell.assetModel.asset completion:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+        [[ZZPhotoPickerImageManager shareManager] getAVAssetWithPHAsset:cell.assetModel.asset completion:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
             self.videoDuraing = CMTimeGetSeconds([asset duration]);
         }];
     }
@@ -658,7 +658,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         
         IJSLodingView *lodingView = [IJSLodingView showLodingViewAddedTo:self.view title:@"正在加载... ..."];
         
-        [[IJSImageManager shareManager] getVideoOutputPathWithAsset:model.asset completion:^(NSURL *outputPath, NSError *error, IJSImageState state) {
+        [[ZZPhotoPickerImageManager shareManager] getVideoOutputPathWithAsset:model.asset completion:^(NSURL *outputPath, NSError *error, IJSImageState state) {
             [lodingView removeFromSuperview];
             weakSelf.isDoing = NO;
             if (error)
@@ -767,7 +767,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         if (model.outputPath) // 上次已经编辑过,直接编辑编辑过的图片
         {
 //            UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
-//            IJSImageManagerController *managerVc = [[IJSImageManagerController alloc] initWithEditImage:image];
+//            ZZPhotoPickerImageManagerController *managerVc = [[ZZPhotoPickerImageManagerController alloc] initWithEditImage:image];
 //
 //            [managerVc loadImageOnCompleteResult:^(UIImage *image, NSURL *outputPath, NSError *error) {
 //                if (error)
@@ -798,14 +798,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
             if (vc.allowPickingOriginalPhoto)  // 允许原图
             {
-                [[IJSImageManager shareManager]getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
+                [[ZZPhotoPickerImageManager shareManager]getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
                     UIImage *photo =[UIImage imageWithData:data];
                     [weakSelf _pushImageControllerFromModel:model photo:photo isDegraded:isDegraded currentIndex:currentIndex];
                 }];
             }
             else   // 非原图
             {
-                [[IJSImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     [weakSelf _pushImageControllerFromModel:model photo:photo isDegraded:isDegraded currentIndex:currentIndex];
                 }];
             }
@@ -826,7 +826,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     if (photo)
     {
 //        dispatch_async(dispatch_get_main_queue(), ^{
-//            IJSImageManagerController *managerVc = [[IJSImageManagerController alloc] initWithEditImage:photo];
+//            ZZPhotoPickerImageManagerController *managerVc = [[ZZPhotoPickerImageManagerController alloc] initWithEditImage:photo];
 //            [managerVc loadImageOnCompleteResult:^(UIImage *image, NSURL *outputPath, NSError *error) {
 //                model.outputPath = outputPath;
 //                [weakSelf.showCollectioView reloadData]; // 重载
@@ -1010,7 +1010,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         }
         _isDoing = YES;
         __weak typeof (self) weakSelf = self;
-        [[IJSImageManager shareManager] getAVAssetWithPHAsset:model.asset completion:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+        [[ZZPhotoPickerImageManager shareManager] getAVAssetWithPHAsset:model.asset completion:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
             ZZPhotoPickerVC *imagePick = (ZZPhotoPickerVC *) weakSelf.navigationController;
             Float64 duration = CMTimeGetSeconds([asset duration]);
             NSInteger maxTime = 10;
@@ -1075,7 +1075,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         else
         { // 没有裁剪过
             
-            [[IJSImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+            [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 if (isDegraded)
                     return; // 获取不到高清图
                 if (photo)
@@ -1136,7 +1136,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     }
     else
     {
-        [[IJSImageManager shareManager] getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
+        [[ZZPhotoPickerImageManager shareManager] getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
             if (isDegraded)
             {
                 return; // 获取不到高清图
@@ -1465,7 +1465,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    [[IJSImageManager shareManager] stopCachingImagesFormAllAssets];
+    [[ZZPhotoPickerImageManager shareManager] stopCachingImagesFormAllAssets];
     JSLog(@"内存警告了");
 }
 

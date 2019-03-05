@@ -6,10 +6,10 @@
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAlbumModel.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerChooseElementCell.h"
 #import "ZZPohotPickerChooseElementVC.h"
 #import "ZZPhotoPickerPreviewElementVC.h"
@@ -165,7 +165,7 @@ static NSString *const CellID = @"pickerID";
         
         NSArray *selectedModels = [NSArray arrayWithArray:vc.selectedModels]; // 处理用户回调数据
         for (ZZPhotoPickerAssetModel *newModel in selectedModels) {
-            if ([[[IJSImageManager shareManager] getAssetIdentifier:currentModel.asset] isEqualToString:[[IJSImageManager shareManager] getAssetIdentifier:newModel.asset]]) {
+            if ([[[ZZPhotoPickerImageManager shareManager] getAssetIdentifier:currentModel.asset] isEqualToString:[[ZZPhotoPickerImageManager shareManager] getAssetIdentifier:newModel.asset]]) {
                 [vc.selectedModels removeObject:newModel];
                 break;
             }
@@ -281,7 +281,7 @@ static NSString *const CellID = @"pickerID";
                 [self didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES];
             }
             else {
-                [[IJSImageManager shareManager] getOriginalPhotoWithAsset:model.asset newCompletion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                [[ZZPhotoPickerImageManager shareManager] getOriginalPhotoWithAsset:model.asset newCompletion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     if (isDegraded) {
                         return; // 获取不到高清图
                     }
@@ -321,7 +321,7 @@ static NSString *const CellID = @"pickerID";
                 [self didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:NO];
             }
             else {
-                [[IJSImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     if (isDegraded)
                         return; // 获取不到高清图
                     if (photo) {
@@ -465,7 +465,7 @@ static NSString *const CellID = @"pickerID";
 // 数据解析
 - (void)createrData {
     UIView *loadView =  [IJSLodingView showLodingViewAddedTo:self.view title:[NSBundle localizedStringForKey:@"Processing..."]];
-    [[IJSImageManager shareManager] getAssetsFromFetchResult:self.albumModel.result allowPickingVideo:YES allowPickingImage:YES completion:^(NSArray<ZZPhotoPickerAssetModel *> *models) {
+    [[ZZPhotoPickerImageManager shareManager] getAssetsFromFetchResult:self.albumModel.result allowPickingVideo:YES allowPickingImage:YES completion:^(NSArray<ZZPhotoPickerAssetModel *> *models) {
         [loadView removeFromSuperview];
         self.assetModelArr = [NSMutableArray arrayWithArray:models];
         [self.assetModelArr enumerateObjectsUsingBlock:^(ZZPhotoPickerAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
@@ -543,7 +543,7 @@ static NSString *const CellID = @"pickerID";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    [[IJSImageManager shareManager] stopCachingImagesFormAllAssets];
+    [[ZZPhotoPickerImageManager shareManager] stopCachingImagesFormAllAssets];
     JSLog(@"相册--ZZPohotPickerChooseElementVC--出现了内存增加的问题");
 }
 

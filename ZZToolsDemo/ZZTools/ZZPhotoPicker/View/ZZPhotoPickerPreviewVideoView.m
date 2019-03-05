@@ -7,10 +7,10 @@
 //
 
 #import "ZZPhotoPickerPreviewVideoView.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
 
 @interface ZZPhotoPickerPreviewVideoView ()
@@ -61,7 +61,7 @@
     {
         [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
     }
-    assetModel.imageRequestID = [[IJSImageManager shareManager] getVideoWithAsset:assetModel.asset networkAccessAllowed:assetModel.networkAccessAllowed progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+    assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getVideoWithAsset:assetModel.asset networkAccessAllowed:assetModel.networkAccessAllowed progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
     } completion:^(AVPlayerItem *playerItem, NSDictionary *info) {
         // 注意必须在主线程中操作
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -7,10 +7,10 @@
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 
 @implementation ZZPhotoPickerAssetModel
 
@@ -38,7 +38,7 @@
     {
         return _assetHeight;
     }
-    CGSize imageSize = [[IJSImageManager shareManager] photoSizeWithAsset:self.asset];
+    CGSize imageSize = [[ZZPhotoPickerImageManager shareManager] photoSizeWithAsset:self.asset];
     if (imageSize.width == 0)
     {
         return JSScreenHeight;

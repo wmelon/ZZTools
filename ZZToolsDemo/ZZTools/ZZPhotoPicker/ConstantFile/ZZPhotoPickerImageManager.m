@@ -1,28 +1,28 @@
 //
-//  IJSImageManager.m
+//  ZZPhotoPickerImageManager.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/28.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSConst.h"
+#import "ZZPhotoPickerConst.h"
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAlbumModel.h"
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSImageManager.h"
+#import "ZZPhotoPickerImageManager.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPhotoPickerAlbumPickerCell.h"
 
-static IJSImageManager *manager;
+static ZZPhotoPickerImageManager *manager;
 static CGFloat JSScreenScale;         //缩放比例
 static CGSize assetGridThumbnailSize; //预览照片的大小
 
-@interface IJSImageManager ()
+@interface ZZPhotoPickerImageManager ()
 
 @end
 
-@implementation IJSImageManager
+@implementation ZZPhotoPickerImageManager
 // 单利
 + (instancetype)shareManager
 {
@@ -239,7 +239,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     {
         asset = [model.result firstObject];
     }
-    PHImageRequestID imageRequestID = [[IJSImageManager shareManager] getPhotoWithAsset:asset photoWidth:thumbImageViewWidth completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+    PHImageRequestID imageRequestID = [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:asset photoWidth:thumbImageViewWidth completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         if (completion)
         {
             completion(photo);
@@ -252,7 +252,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
 /// 无进度条
 - (PHImageRequestID)getPhotoWithAsset:(PHAsset *)asset photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion
 {
-    return [[IJSImageManager shareManager] getPhotoWithAsset:asset photoWidth:photoWidth completion:completion progressHandler:nil networkAccessAllowed:YES];
+    return [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:asset photoWidth:photoWidth completion:completion progressHandler:nil networkAccessAllowed:YES];
 }
 ///
 - (PHImageRequestID)getPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion
@@ -262,7 +262,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     {
         fullScreenWidth = _photoPreviewMaxWidth;
     }
-    return [[IJSImageManager shareManager] getPhotoWithAsset:asset photoWidth:fullScreenWidth completion:completion progressHandler:nil networkAccessAllowed:YES];
+    return [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:asset photoWidth:fullScreenWidth completion:completion progressHandler:nil networkAccessAllowed:YES];
 }
 
 - (PHImageRequestID)getPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed
@@ -272,7 +272,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     {
         fullScreenWidth = _photoPreviewMaxWidth;
     }
-    return [[IJSImageManager shareManager] getPhotoWithAsset:asset photoWidth:fullScreenWidth completion:completion progressHandler:progressHandler networkAccessAllowed:networkAccessAllowed];
+    return [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:asset photoWidth:fullScreenWidth completion:completion progressHandler:progressHandler networkAccessAllowed:networkAccessAllowed];
 }
 // 获取照片总接口
 - (PHImageRequestID)getPhotoWithAsset:(PHAsset *)asset photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed

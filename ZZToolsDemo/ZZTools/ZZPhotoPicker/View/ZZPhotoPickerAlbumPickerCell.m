@@ -9,8 +9,8 @@
 #import "ZZPhotoPickerAlbumPickerCell.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
-#import "IJSImageManager.h"
-#import "IJSConst.h"
+#import "ZZPhotoPickerImageManager.h"
+#import "ZZPhotoPickerConst.h"
 #define ScreenW [[UIScreen mainScreen] bounds].size.width
 
 @interface ZZPhotoPickerAlbumPickerCell ()
@@ -84,7 +84,7 @@
     _numberLabel.text = [NSString stringWithFormat:@"(%ld)", (long) models.count];
     // 请求封面的照片
     __weak typeof(self) weakSelf = self;
-    [[IJSImageManager shareManager] getPostImageWithAlbumModel:models completion:^(UIImage *postImage) {
+    [[ZZPhotoPickerImageManager shareManager] getPostImageWithAlbumModel:models completion:^(UIImage *postImage) {
         weakSelf.thumbImageView.image = postImage;
     }];
 }

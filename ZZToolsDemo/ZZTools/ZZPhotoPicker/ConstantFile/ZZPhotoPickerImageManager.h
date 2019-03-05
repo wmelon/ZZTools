@@ -1,5 +1,5 @@
 //
-//  IJSImageManager.h
+//  ZZPhotoPickerImageManager.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/28.
@@ -35,7 +35,7 @@ typedef void (^completionBlock)(NSError *error, BOOL isExistedOrIsSuccess);
 */
 typedef void (^completionHandler)(id assetCollection, NSError *error, BOOL isExistedOrIsSuccess);
 
-@interface IJSImageManager : NSObject
+@interface ZZPhotoPickerImageManager : NSObject
 
 /**
  *  单例

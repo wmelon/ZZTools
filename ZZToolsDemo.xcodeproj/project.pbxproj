@@ -28,7 +28,7 @@
 		E49CEB56222E4FA900AC812D /* ZZPhotoPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB55222E4FA900AC812D /* ZZPhotoPickerVC.m */; };
 		E49CEB5C222E523000AC812D /* ZZPhotoPickerAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB58222E523000AC812D /* ZZPhotoPickerAlbumModel.m */; };
 		E49CEB5D222E523000AC812D /* ZZPhotoPickerAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB5B222E523000AC812D /* ZZPhotoPickerAssetModel.m */; };
-		E49CEB62222E530C00AC812D /* IJSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB5F222E530C00AC812D /* IJSImageManager.m */; };
+		E49CEB62222E530C00AC812D /* ZZPhotoPickerImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB5F222E530C00AC812D /* ZZPhotoPickerImageManager.m */; };
 		E49CEB80222E533200AC812D /* NSBundle+IJSUBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB65222E533200AC812D /* NSBundle+IJSUBundle.m */; };
 		E49CEB81222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB66222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m */; };
 		E49CEB82222E533200AC812D /* UIImage+IJSUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB67222E533200AC812D /* UIImage+IJSUImage.m */; };
@@ -100,9 +100,9 @@
 		E49CEB59222E523000AC812D /* ZZPhotoPickerAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerAssetModel.h; sourceTree = "<group>"; };
 		E49CEB5A222E523000AC812D /* ZZPhotoPickerAlbumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerAlbumModel.h; sourceTree = "<group>"; };
 		E49CEB5B222E523000AC812D /* ZZPhotoPickerAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerAssetModel.m; sourceTree = "<group>"; };
-		E49CEB5F222E530C00AC812D /* IJSImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSImageManager.m; sourceTree = "<group>"; };
-		E49CEB60222E530C00AC812D /* IJSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSConst.h; sourceTree = "<group>"; };
-		E49CEB61222E530C00AC812D /* IJSImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSImageManager.h; sourceTree = "<group>"; };
+		E49CEB5F222E530C00AC812D /* ZZPhotoPickerImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerImageManager.m; sourceTree = "<group>"; };
+		E49CEB60222E530C00AC812D /* ZZPhotoPickerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerConst.h; sourceTree = "<group>"; };
+		E49CEB61222E530C00AC812D /* ZZPhotoPickerImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerImageManager.h; sourceTree = "<group>"; };
 		E49CEB64222E533200AC812D /* UIView+IJSUUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IJSUUIView.h"; sourceTree = "<group>"; };
 		E49CEB65222E533200AC812D /* NSBundle+IJSUBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IJSUBundle.m"; sourceTree = "<group>"; };
 		E49CEB66222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+IJSUUIBarBtItem.m"; sourceTree = "<group>"; };
@@ -388,9 +388,9 @@
 		E49CEB5E222E530C00AC812D /* ConstantFile */ = {
 			isa = PBXGroup;
 			children = (
-				E49CEB60222E530C00AC812D /* IJSConst.h */,
-				E49CEB5F222E530C00AC812D /* IJSImageManager.m */,
-				E49CEB61222E530C00AC812D /* IJSImageManager.h */,
+				E49CEB60222E530C00AC812D /* ZZPhotoPickerConst.h */,
+				E49CEB61222E530C00AC812D /* ZZPhotoPickerImageManager.h */,
+				E49CEB5F222E530C00AC812D /* ZZPhotoPickerImageManager.m */,
 			);
 			path = ConstantFile;
 			sourceTree = "<group>";
@@ -646,7 +646,7 @@
 				3AA1BAA621F6C61400833ECA /* AppDelegate.m in Sources */,
 				3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */,
 				E49CEBBF222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m in Sources */,
-				E49CEB62222E530C00AC812D /* IJSImageManager.m in Sources */,
+				E49CEB62222E530C00AC812D /* ZZPhotoPickerImageManager.m in Sources */,
 				3AA1BACD21F6C71700833ECA /* ZZLayout.m in Sources */,
 				3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */,
 				E49CEB85222E533200AC812D /* IJSNotificationCenterString.m in Sources */,

@@ -2,7 +2,7 @@
 //  ZZPhotoPickerSelectedCell.h
 //  IJSDemo
 //
-//  Created by shan on 2017/8/10.
+//  Created by 刘猛 on 2017/8/10.
 //  Copyright © 2017年 shanshen. All rights reserved.
 //
 

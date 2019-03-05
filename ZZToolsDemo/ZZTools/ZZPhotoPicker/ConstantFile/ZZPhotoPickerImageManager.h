@@ -2,7 +2,7 @@
 //  ZZPhotoPickerImageManager.h
 //  JSPhotoSDK
 //
-//  Created by shan on 2017/5/28.
+//  Created by 刘猛 on 2017/5/28.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 

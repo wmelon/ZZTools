@@ -2,7 +2,7 @@
 //  CALayer+IJSULayer.h
 //  IJSImageEditSDK
 //
-//  Created by shan on 2017/7/19.
+//  Created by 刘猛 on 2017/7/19.
 //  Copyright © 2017年 shanshen. All rights reserved.
 //
 

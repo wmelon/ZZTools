@@ -2,7 +2,7 @@
 //  NSBundle+IJSUBundle.m
 //  IJSImageEditSDK
 //
-//  Created by shan on 2017/7/12.
+//  Created by 刘猛 on 2017/7/12.
 //  Copyright © 2017年 shanshen. All rights reserved.
 //
 

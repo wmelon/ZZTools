@@ -2,7 +2,7 @@
 //  IJSUConst.h
 //  IJSExtensionProject
 //
-//  Created by shan on 2017/7/9.
+//  Created by 刘猛 on 2017/7/9.
 //  Copyright © 2017年 shanshen. All rights reserved.
 //
 

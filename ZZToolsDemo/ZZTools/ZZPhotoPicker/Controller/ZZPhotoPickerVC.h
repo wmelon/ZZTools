@@ -2,7 +2,7 @@
 //  ZZPhotoPickerVC.h
 //  ZZToolsDemo
 //
-//  Created by yons on 2019/3/5.
+//  Created by 刘猛 on 2019/3/5.
 //  Copyright © 2019年 刘猛. All rights reserved.
 //
 //  提供给外部的工具, 本质是一个导航控制器.

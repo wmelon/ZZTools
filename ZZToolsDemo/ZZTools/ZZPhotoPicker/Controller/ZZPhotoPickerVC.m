@@ -307,8 +307,8 @@
 // 默认的外观，你可以在这个方法后重置
 - (void)_createrUI
 {
-    self.navigationBar.barTintColor = [UIColor colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0];
-    self.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationBar.barTintColor = [UIColor whiteColor];//colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0
+    self.navigationBar.tintColor = ZZCOLOR(33, 33, 33, 1);
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self configNaviTitleAppearance]; // 中间的文字
     [self configBarButtonItemAppearance];  //左右两边
@@ -317,7 +317,7 @@
 - (void)configNaviTitleAppearance
 {
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    textAttrs[NSForegroundColorAttributeName] = ZZCOLOR(33, 33, 33, 1);
     textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17];
     self.navigationBar.titleTextAttributes = textAttrs;
     

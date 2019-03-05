@@ -4,7 +4,7 @@
 //  JSPhotoSDK
 //
 //  Created by 刘猛 on 2017/6/2.
-//  Copyright © 2017年 shan. All rights reserved.
+//  Copyright © 2017年 刘猛. All rights reserved.
 //
 
 #import "ZZPhotoPickerConst.h"

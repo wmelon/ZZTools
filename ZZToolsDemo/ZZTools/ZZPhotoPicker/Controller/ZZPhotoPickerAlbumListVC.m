@@ -3,7 +3,7 @@
 //  JSPhotoSDK
 //
 //  Created by 刘猛 on 2017/5/29.
-//  Copyright © 2017年 shan. All rights reserved.
+//  Copyright © 2017年 刘猛. All rights reserved.
 //
 
 #import "ZZPhotoPickerAlbumListVC.h"
@@ -108,6 +108,7 @@ static NSString *const cellID = @"cellID";
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
         [[ZZPhotoPickerImageManager shareManager] getAllAlbumsContentImage:vc.allowPickingImage contentVideo:vc.allowPickingVideo completion:^(NSArray<ZZPhotoPickerAlbumModel *> *models) {
             weakSelf.albumListArr = models;
+            NSLog(@"models.count === %ld",models.count);
             [loadView removeFromSuperview];
             if (!weakSelf.tableView) {
                 [weakSelf _createTableViewUI];

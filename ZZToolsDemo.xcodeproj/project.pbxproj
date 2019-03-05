@@ -25,6 +25,38 @@
 		E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DF2206D61D00BF7657 /* ZZCollectionFooterView.m */; };
 		E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470602204581B001584C6 /* ZZStarView.m */; };
 		E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED2D922115F92009D9A8C /* ZZRouter.m */; };
+		E49CEB56222E4FA900AC812D /* ZZPhotoPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB55222E4FA900AC812D /* ZZPhotoPickerVC.m */; };
+		E49CEB5C222E523000AC812D /* IJSAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB58222E523000AC812D /* IJSAlbumModel.m */; };
+		E49CEB5D222E523000AC812D /* IJSAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB5B222E523000AC812D /* IJSAssetModel.m */; };
+		E49CEB62222E530C00AC812D /* IJSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB5F222E530C00AC812D /* IJSImageManager.m */; };
+		E49CEB80222E533200AC812D /* NSBundle+IJSUBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB65222E533200AC812D /* NSBundle+IJSUBundle.m */; };
+		E49CEB81222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB66222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m */; };
+		E49CEB82222E533200AC812D /* UIImage+IJSUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB67222E533200AC812D /* UIImage+IJSUImage.m */; };
+		E49CEB83222E533200AC812D /* CALayer+IJSULayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB68222E533200AC812D /* CALayer+IJSULayer.m */; };
+		E49CEB84222E533200AC812D /* IJSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB69222E533200AC812D /* IJSAlertViewController.m */; };
+		E49CEB85222E533200AC812D /* IJSNotificationCenterString.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB6C222E533200AC812D /* IJSNotificationCenterString.m */; };
+		E49CEB86222E533200AC812D /* IJSLodingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB6D222E533200AC812D /* IJSLodingView.m */; };
+		E49CEB87222E533200AC812D /* UIButton+IJSUButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB6E222E533200AC812D /* UIButton+IJSUButton.m */; };
+		E49CEB88222E533200AC812D /* UIView+IJSUUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB73222E533200AC812D /* UIView+IJSUUIView.m */; };
+		E49CEB89222E533200AC812D /* NSError+IJSError.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB77222E533200AC812D /* NSError+IJSError.m */; };
+		E49CEB8A222E533200AC812D /* UITextField+IJSUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB78222E533200AC812D /* UITextField+IJSUTextField.m */; };
+		E49CEB8B222E533200AC812D /* NSObject+IJSUKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB7B222E533200AC812D /* NSObject+IJSUKeyValue.m */; };
+		E49CEB8C222E533200AC812D /* UINavigationController+IJSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB7C222E533200AC812D /* UINavigationController+IJSNavigationController.m */; };
+		E49CEB93222E540400AC812D /* IJSFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49CEB92222E540400AC812D /* IJSFoundation.framework */; };
+		E49CEB97222E553500AC812D /* IJSAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */; };
+		E49CEB9A222E555800AC812D /* IJSImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB98222E555800AC812D /* IJSImagePickerController.m */; };
+		E49CEB9D222E559700AC812D /* IJSPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */; };
+		E49CEBA0222E55C900AC812D /* IJSPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB9F222E55C900AC812D /* IJSPhotoPickerController.m */; };
+		E49CEBBB222E569E00AC812D /* IJSPhotoPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBAD222E569E00AC812D /* IJSPhotoPickerCell.m */; };
+		E49CEBBC222E569E00AC812D /* IJSAlbumPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB2222E569E00AC812D /* IJSAlbumPickerCell.m */; };
+		E49CEBBD222E569E00AC812D /* IJSSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */; };
+		E49CEBBE222E569E00AC812D /* IJSPreviewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB6222E569E00AC812D /* IJSPreviewImageCell.m */; };
+		E49CEBBF222E569E00AC812D /* IJSPreviewGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB8222E569E00AC812D /* IJSPreviewGifView.m */; };
+		E49CEBC0222E569E00AC812D /* IJSPreviewLivePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */; };
+		E49CEBC1222E569E00AC812D /* IJSPreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */; };
+		E49CEBC5222E56F600AC812D /* IJSMapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */; };
+		E49CEBC8222E571800AC812D /* IJSImageManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBC7222E571700AC812D /* IJSImageManagerController.m */; };
+		E49CEBCE222E5BE300AC812D /* JSPhotoSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +95,72 @@
 		E43470642204587A001584C6 /* ZZStarViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZStarViewVC.m; sourceTree = "<group>"; };
 		E45ED2D822115F92009D9A8C /* ZZRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZRouter.h; sourceTree = "<group>"; };
 		E45ED2D922115F92009D9A8C /* ZZRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZRouter.m; sourceTree = "<group>"; };
+		E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPrivateHeader.h; sourceTree = "<group>"; };
+		E49CEB54222E4FA900AC812D /* ZZPhotoPickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerVC.h; sourceTree = "<group>"; };
+		E49CEB55222E4FA900AC812D /* ZZPhotoPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerVC.m; sourceTree = "<group>"; };
+		E49CEB58222E523000AC812D /* IJSAlbumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAlbumModel.m; sourceTree = "<group>"; };
+		E49CEB59222E523000AC812D /* IJSAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAssetModel.h; sourceTree = "<group>"; };
+		E49CEB5A222E523000AC812D /* IJSAlbumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAlbumModel.h; sourceTree = "<group>"; };
+		E49CEB5B222E523000AC812D /* IJSAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAssetModel.m; sourceTree = "<group>"; };
+		E49CEB5F222E530C00AC812D /* IJSImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSImageManager.m; sourceTree = "<group>"; };
+		E49CEB60222E530C00AC812D /* IJSConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSConst.h; sourceTree = "<group>"; };
+		E49CEB61222E530C00AC812D /* IJSImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSImageManager.h; sourceTree = "<group>"; };
+		E49CEB64222E533200AC812D /* UIView+IJSUUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IJSUUIView.h"; sourceTree = "<group>"; };
+		E49CEB65222E533200AC812D /* NSBundle+IJSUBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IJSUBundle.m"; sourceTree = "<group>"; };
+		E49CEB66222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+IJSUUIBarBtItem.m"; sourceTree = "<group>"; };
+		E49CEB67222E533200AC812D /* UIImage+IJSUImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+IJSUImage.m"; sourceTree = "<group>"; };
+		E49CEB68222E533200AC812D /* CALayer+IJSULayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+IJSULayer.m"; sourceTree = "<group>"; };
+		E49CEB69222E533200AC812D /* IJSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAlertViewController.m; sourceTree = "<group>"; };
+		E49CEB6A222E533200AC812D /* UITextField+IJSUTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IJSUTextField.h"; sourceTree = "<group>"; };
+		E49CEB6B222E533200AC812D /* NSError+IJSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+IJSError.h"; sourceTree = "<group>"; };
+		E49CEB6C222E533200AC812D /* IJSNotificationCenterString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSNotificationCenterString.m; sourceTree = "<group>"; };
+		E49CEB6D222E533200AC812D /* IJSLodingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSLodingView.m; sourceTree = "<group>"; };
+		E49CEB6E222E533200AC812D /* UIButton+IJSUButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+IJSUButton.m"; sourceTree = "<group>"; };
+		E49CEB6F222E533200AC812D /* UINavigationController+IJSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+IJSNavigationController.h"; sourceTree = "<group>"; };
+		E49CEB70222E533200AC812D /* NSObject+IJSUKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IJSUKeyValue.h"; sourceTree = "<group>"; };
+		E49CEB71222E533200AC812D /* NSBundle+IJSUBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IJSUBundle.h"; sourceTree = "<group>"; };
+		E49CEB72222E533200AC812D /* IJSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSExtension.h; sourceTree = "<group>"; };
+		E49CEB73222E533200AC812D /* UIView+IJSUUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IJSUUIView.m"; sourceTree = "<group>"; };
+		E49CEB74222E533200AC812D /* CALayer+IJSULayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+IJSULayer.h"; sourceTree = "<group>"; };
+		E49CEB75222E533200AC812D /* UIImage+IJSUImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IJSUImage.h"; sourceTree = "<group>"; };
+		E49CEB76222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+IJSUUIBarBtItem.h"; sourceTree = "<group>"; };
+		E49CEB77222E533200AC812D /* NSError+IJSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+IJSError.m"; sourceTree = "<group>"; };
+		E49CEB78222E533200AC812D /* UITextField+IJSUTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IJSUTextField.m"; sourceTree = "<group>"; };
+		E49CEB79222E533200AC812D /* IJSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAlertViewController.h; sourceTree = "<group>"; };
+		E49CEB7A222E533200AC812D /* IJSUConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSUConst.h; sourceTree = "<group>"; };
+		E49CEB7B222E533200AC812D /* NSObject+IJSUKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IJSUKeyValue.m"; sourceTree = "<group>"; };
+		E49CEB7C222E533200AC812D /* UINavigationController+IJSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+IJSNavigationController.m"; sourceTree = "<group>"; };
+		E49CEB7D222E533200AC812D /* UIButton+IJSUButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+IJSUButton.h"; sourceTree = "<group>"; };
+		E49CEB7E222E533200AC812D /* IJSLodingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSLodingView.h; sourceTree = "<group>"; };
+		E49CEB7F222E533200AC812D /* IJSNotificationCenterString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSNotificationCenterString.h; sourceTree = "<group>"; };
+		E49CEB92222E540400AC812D /* IJSFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJSFoundation.framework; sourceTree = "<group>"; };
+		E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAlbumPickerController.m; sourceTree = "<group>"; };
+		E49CEB96222E553500AC812D /* IJSAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAlbumPickerController.h; sourceTree = "<group>"; };
+		E49CEB98222E555800AC812D /* IJSImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSImagePickerController.m; sourceTree = "<group>"; };
+		E49CEB99222E555800AC812D /* IJSImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSImagePickerController.h; sourceTree = "<group>"; };
+		E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPhotoPreviewController.m; sourceTree = "<group>"; };
+		E49CEB9C222E559700AC812D /* IJSPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPhotoPreviewController.h; sourceTree = "<group>"; };
+		E49CEB9E222E55C900AC812D /* IJSPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPhotoPickerController.h; sourceTree = "<group>"; };
+		E49CEB9F222E55C900AC812D /* IJSPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPhotoPickerController.m; sourceTree = "<group>"; };
+		E49CEBAD222E569E00AC812D /* IJSPhotoPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPhotoPickerCell.m; sourceTree = "<group>"; };
+		E49CEBAE222E569E00AC812D /* IJSAlbumPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSAlbumPickerCell.h; sourceTree = "<group>"; };
+		E49CEBAF222E569E00AC812D /* IJSPreviewVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewVideoView.h; sourceTree = "<group>"; };
+		E49CEBB0222E569E00AC812D /* IJSSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSSelectedCell.h; sourceTree = "<group>"; };
+		E49CEBB1222E569E00AC812D /* IJSPreviewGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewGifView.h; sourceTree = "<group>"; };
+		E49CEBB2222E569E00AC812D /* IJSAlbumPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSAlbumPickerCell.m; sourceTree = "<group>"; };
+		E49CEBB3222E569E00AC812D /* IJSPreviewLivePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewLivePhotoView.h; sourceTree = "<group>"; };
+		E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSSelectedCell.m; sourceTree = "<group>"; };
+		E49CEBB5222E569E00AC812D /* IJSPreviewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewImageCell.h; sourceTree = "<group>"; };
+		E49CEBB6222E569E00AC812D /* IJSPreviewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewImageCell.m; sourceTree = "<group>"; };
+		E49CEBB7222E569E00AC812D /* IJSPhotoPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPhotoPickerCell.h; sourceTree = "<group>"; };
+		E49CEBB8222E569E00AC812D /* IJSPreviewGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewGifView.m; sourceTree = "<group>"; };
+		E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewLivePhotoView.m; sourceTree = "<group>"; };
+		E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewVideoView.m; sourceTree = "<group>"; };
+		E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSMapViewModel.m; sourceTree = "<group>"; };
+		E49CEBC4222E56F600AC812D /* IJSMapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSMapViewModel.h; sourceTree = "<group>"; };
+		E49CEBC6222E571700AC812D /* IJSImageManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSImageManagerController.h; sourceTree = "<group>"; };
+		E49CEBC7222E571700AC812D /* IJSImageManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSImageManagerController.m; sourceTree = "<group>"; };
+		E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSPhotoSDK.bundle; sourceTree = "<group>"; };
 		E616FE70C432DF5DFDB1D042 /* Pods-ZZToolsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZToolsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZZToolsDemo/Pods-ZZToolsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49CEB93222E540400AC812D /* IJSFoundation.framework in Frameworks */,
 				27E18B62912C88865725476E /* libPods-ZZToolsDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				3AA1BAD321F6C94700833ECA /* ZZTools.h */,
+				E49CEB52222E4CC000AC812D /* ZZPrivateHeader */,
+				E49CEB51222E4AE400AC812D /* ZZPhotoPicker */,
 				E45ED2D722115EB4009D9A8C /* ZZRouter */,
 				E434705E2204580D001584C6 /* ZZStarView */,
 				3AA1BAD221F6C85200833ECA /* ZZLayout */,
@@ -145,14 +246,14 @@
 			children = (
 				3AA1BAA721F6C61400833ECA /* ViewController.h */,
 				3AA1BAA821F6C61400833ECA /* ViewController.m */,
-				3AA1BAC021F6C71700833ECA /* C */,
-				3AA1BACA21F6C71700833ECA /* V */,
-				E42827DA2206BD1C00BF7657 /* M */,
+				3AA1BAC021F6C71700833ECA /* Controller */,
+				3AA1BACA21F6C71700833ECA /* View */,
+				E42827DA2206BD1C00BF7657 /* Model */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		3AA1BAC021F6C71700833ECA /* C */ = {
+		3AA1BAC021F6C71700833ECA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E43470622204586B001584C6 /* ZZStarViewVC */,
@@ -160,7 +261,7 @@
 				3AA1BAC421F6C71700833ECA /* ZZHorizontalVC */,
 				3AA1BAC721F6C71700833ECA /* ZZAutomateFloatVC */,
 			);
-			path = C;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3AA1BAC121F6C71700833ECA /* ZZVerticalVC */ = {
@@ -190,7 +291,7 @@
 			path = ZZAutomateFloatVC;
 			sourceTree = "<group>";
 		};
-		3AA1BACA21F6C71700833ECA /* V */ = {
+		3AA1BACA21F6C71700833ECA /* View */ = {
 			isa = PBXGroup;
 			children = (
 				3AA1BACB21F6C71700833ECA /* ZZCollectionHeaderView.h */,
@@ -200,7 +301,7 @@
 				E42827D72206BB7200BF7657 /* ZZCollectionViewCell.h */,
 				E42827D82206BB7200BF7657 /* ZZCollectionViewCell.m */,
 			);
-			path = V;
+			path = View;
 			sourceTree = "<group>";
 		};
 		3AA1BAD221F6C85200833ECA /* ZZLayout */ = {
@@ -220,13 +321,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E42827DA2206BD1C00BF7657 /* M */ = {
+		E42827DA2206BD1C00BF7657 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				E42827DB2206BD2900BF7657 /* ZZModel.h */,
 				E42827DC2206BD2900BF7657 /* ZZModel.m */,
 			);
-			path = M;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E434705E2204580D001584C6 /* ZZStarView */ = {
@@ -254,6 +355,150 @@
 				E45ED2D922115F92009D9A8C /* ZZRouter.m */,
 			);
 			path = ZZRouter;
+			sourceTree = "<group>";
+		};
+		E49CEB51222E4AE400AC812D /* ZZPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB94222E551600AC812D /* Controller */,
+				E49CEBC2222E56DF00AC812D /* ViewModel */,
+				E49CEB57222E523000AC812D /* Model */,
+				E49CEB8D222E53A300AC812D /* View */,
+				E49CEBCC222E5BD900AC812D /* Resources */,
+				E49CEB63222E533200AC812D /* IJSUExtension */,
+				E49CEB5E222E530C00AC812D /* ConstantFile */,
+				E49CEB91222E53DF00AC812D /* Required */,
+			);
+			path = ZZPhotoPicker;
+			sourceTree = "<group>";
+		};
+		E49CEB52222E4CC000AC812D /* ZZPrivateHeader */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */,
+			);
+			path = ZZPrivateHeader;
+			sourceTree = "<group>";
+		};
+		E49CEB57222E523000AC812D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB58222E523000AC812D /* IJSAlbumModel.m */,
+				E49CEB59222E523000AC812D /* IJSAssetModel.h */,
+				E49CEB5A222E523000AC812D /* IJSAlbumModel.h */,
+				E49CEB5B222E523000AC812D /* IJSAssetModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E49CEB5E222E530C00AC812D /* ConstantFile */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB5F222E530C00AC812D /* IJSImageManager.m */,
+				E49CEB60222E530C00AC812D /* IJSConst.h */,
+				E49CEB61222E530C00AC812D /* IJSImageManager.h */,
+			);
+			path = ConstantFile;
+			sourceTree = "<group>";
+		};
+		E49CEB63222E533200AC812D /* IJSUExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB64222E533200AC812D /* UIView+IJSUUIView.h */,
+				E49CEB65222E533200AC812D /* NSBundle+IJSUBundle.m */,
+				E49CEB66222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m */,
+				E49CEB67222E533200AC812D /* UIImage+IJSUImage.m */,
+				E49CEB68222E533200AC812D /* CALayer+IJSULayer.m */,
+				E49CEB69222E533200AC812D /* IJSAlertViewController.m */,
+				E49CEB6A222E533200AC812D /* UITextField+IJSUTextField.h */,
+				E49CEB6B222E533200AC812D /* NSError+IJSError.h */,
+				E49CEB6C222E533200AC812D /* IJSNotificationCenterString.m */,
+				E49CEB6D222E533200AC812D /* IJSLodingView.m */,
+				E49CEB6E222E533200AC812D /* UIButton+IJSUButton.m */,
+				E49CEB6F222E533200AC812D /* UINavigationController+IJSNavigationController.h */,
+				E49CEB70222E533200AC812D /* NSObject+IJSUKeyValue.h */,
+				E49CEB71222E533200AC812D /* NSBundle+IJSUBundle.h */,
+				E49CEB72222E533200AC812D /* IJSExtension.h */,
+				E49CEB73222E533200AC812D /* UIView+IJSUUIView.m */,
+				E49CEB74222E533200AC812D /* CALayer+IJSULayer.h */,
+				E49CEB75222E533200AC812D /* UIImage+IJSUImage.h */,
+				E49CEB76222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.h */,
+				E49CEB77222E533200AC812D /* NSError+IJSError.m */,
+				E49CEB78222E533200AC812D /* UITextField+IJSUTextField.m */,
+				E49CEB79222E533200AC812D /* IJSAlertViewController.h */,
+				E49CEB7A222E533200AC812D /* IJSUConst.h */,
+				E49CEB7B222E533200AC812D /* NSObject+IJSUKeyValue.m */,
+				E49CEB7C222E533200AC812D /* UINavigationController+IJSNavigationController.m */,
+				E49CEB7D222E533200AC812D /* UIButton+IJSUButton.h */,
+				E49CEB7E222E533200AC812D /* IJSLodingView.h */,
+				E49CEB7F222E533200AC812D /* IJSNotificationCenterString.h */,
+			);
+			path = IJSUExtension;
+			sourceTree = "<group>";
+		};
+		E49CEB8D222E53A300AC812D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEBAE222E569E00AC812D /* IJSAlbumPickerCell.h */,
+				E49CEBB2222E569E00AC812D /* IJSAlbumPickerCell.m */,
+				E49CEBB7222E569E00AC812D /* IJSPhotoPickerCell.h */,
+				E49CEBAD222E569E00AC812D /* IJSPhotoPickerCell.m */,
+				E49CEBB1222E569E00AC812D /* IJSPreviewGifView.h */,
+				E49CEBB8222E569E00AC812D /* IJSPreviewGifView.m */,
+				E49CEBB5222E569E00AC812D /* IJSPreviewImageCell.h */,
+				E49CEBB6222E569E00AC812D /* IJSPreviewImageCell.m */,
+				E49CEBB3222E569E00AC812D /* IJSPreviewLivePhotoView.h */,
+				E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */,
+				E49CEBAF222E569E00AC812D /* IJSPreviewVideoView.h */,
+				E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */,
+				E49CEBB0222E569E00AC812D /* IJSSelectedCell.h */,
+				E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E49CEB91222E53DF00AC812D /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB92222E540400AC812D /* IJSFoundation.framework */,
+			);
+			path = Required;
+			sourceTree = "<group>";
+		};
+		E49CEB94222E551600AC812D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEB54222E4FA900AC812D /* ZZPhotoPickerVC.h */,
+				E49CEB55222E4FA900AC812D /* ZZPhotoPickerVC.m */,
+				E49CEB96222E553500AC812D /* IJSAlbumPickerController.h */,
+				E49CEB95222E553500AC812D /* IJSAlbumPickerController.m */,
+				E49CEB99222E555800AC812D /* IJSImagePickerController.h */,
+				E49CEB98222E555800AC812D /* IJSImagePickerController.m */,
+				E49CEB9C222E559700AC812D /* IJSPhotoPreviewController.h */,
+				E49CEB9B222E559700AC812D /* IJSPhotoPreviewController.m */,
+				E49CEB9E222E55C900AC812D /* IJSPhotoPickerController.h */,
+				E49CEB9F222E55C900AC812D /* IJSPhotoPickerController.m */,
+				E49CEBC6222E571700AC812D /* IJSImageManagerController.h */,
+				E49CEBC7222E571700AC812D /* IJSImageManagerController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E49CEBC2222E56DF00AC812D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEBC4222E56F600AC812D /* IJSMapViewModel.h */,
+				E49CEBC3222E56F600AC812D /* IJSMapViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E49CEBCC222E5BD900AC812D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +562,7 @@
 			files = (
 				3AA1BAB121F6C61500833ECA /* LaunchScreen.storyboard in Resources */,
 				3AA1BAAE21F6C61500833ECA /* Assets.xcassets in Resources */,
+				E49CEBCE222E5BE300AC812D /* JSPhotoSDK.bundle in Resources */,
 				3AA1BAAC21F6C61400833ECA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,20 +621,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49CEB87222E533200AC812D /* UIButton+IJSUButton.m in Sources */,
+				E49CEBBC222E569E00AC812D /* IJSAlbumPickerCell.m in Sources */,
+				E49CEBBB222E569E00AC812D /* IJSPhotoPickerCell.m in Sources */,
+				E49CEB81222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m in Sources */,
+				E49CEB8C222E533200AC812D /* UINavigationController+IJSNavigationController.m in Sources */,
+				E49CEB97222E553500AC812D /* IJSAlbumPickerController.m in Sources */,
+				E49CEBC1222E569E00AC812D /* IJSPreviewVideoView.m in Sources */,
+				E49CEB5D222E523000AC812D /* IJSAssetModel.m in Sources */,
 				E42827D92206BB7200BF7657 /* ZZCollectionViewCell.m in Sources */,
+				E49CEB88222E533200AC812D /* UIView+IJSUUIView.m in Sources */,
 				3AA1BAA921F6C61400833ECA /* ViewController.m in Sources */,
+				E49CEBC5222E56F600AC812D /* IJSMapViewModel.m in Sources */,
+				E49CEB83222E533200AC812D /* CALayer+IJSULayer.m in Sources */,
+				E49CEB5C222E523000AC812D /* IJSAlbumModel.m in Sources */,
+				E49CEBA0222E55C900AC812D /* IJSPhotoPickerController.m in Sources */,
+				E49CEB80222E533200AC812D /* NSBundle+IJSUBundle.m in Sources */,
+				E49CEB9D222E559700AC812D /* IJSPhotoPreviewController.m in Sources */,
 				3AA1BAD021F6C71700833ECA /* ZZAutomateFloatVC.m in Sources */,
 				E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */,
+				E49CEB89222E533200AC812D /* NSError+IJSError.m in Sources */,
+				E49CEB86222E533200AC812D /* IJSLodingView.m in Sources */,
 				3AA1BAB421F6C61500833ECA /* main.m in Sources */,
+				E49CEBBE222E569E00AC812D /* IJSPreviewImageCell.m in Sources */,
+				E49CEB82222E533200AC812D /* UIImage+IJSUImage.m in Sources */,
 				E42827DD2206BD2900BF7657 /* ZZModel.m in Sources */,
 				E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
+				E49CEB8B222E533200AC812D /* NSObject+IJSUKeyValue.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,
+				E49CEB8A222E533200AC812D /* UITextField+IJSUTextField.m in Sources */,
+				E49CEBC0222E569E00AC812D /* IJSPreviewLivePhotoView.m in Sources */,
 				3AA1BAA621F6C61400833ECA /* AppDelegate.m in Sources */,
 				3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */,
+				E49CEBBF222E569E00AC812D /* IJSPreviewGifView.m in Sources */,
+				E49CEB62222E530C00AC812D /* IJSImageManager.m in Sources */,
 				3AA1BACD21F6C71700833ECA /* ZZLayout.m in Sources */,
 				3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */,
+				E49CEB9A222E555800AC812D /* IJSImagePickerController.m in Sources */,
+				E49CEB85222E533200AC812D /* IJSNotificationCenterString.m in Sources */,
+				E49CEBBD222E569E00AC812D /* IJSSelectedCell.m in Sources */,
+				E49CEB56222E4FA900AC812D /* ZZPhotoPickerVC.m in Sources */,
+				E49CEBC8222E571800AC812D /* IJSImageManagerController.m in Sources */,
+				E49CEB84222E533200AC812D /* IJSAlertViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +810,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7SN5JK7US;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZZToolsDemo/ZZTools/ZZPhotoPicker/Required",
+				);
 				INFOPLIST_FILE = ZZToolsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -554,6 +834,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7SN5JK7US;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZZToolsDemo/ZZTools/ZZPhotoPicker/Required",
+				);
 				INFOPLIST_FILE = ZZToolsDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (

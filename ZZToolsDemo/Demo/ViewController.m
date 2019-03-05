@@ -68,7 +68,28 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 4) {
-        NSLog(@"相片选择器, 正在实现中");
+        //NSLog(@"相片选择器, 正在实现中");
+        ZZPhotoPickerVC *vc = [[ZZPhotoPickerVC alloc] initWithMaxImagesCount:4 columnNumber:4];
+        vc.allowPickingVideo = NO;
+        vc.isHiddenEdit = NO;
+        vc.allowPickingOriginalPhoto = YES;
+        // 获取数据的方法
+        [vc loadTheSelectedData:^(NSArray<UIImage *> *photos, NSArray *avPlayers, NSArray *assets, NSArray<NSDictionary *> *infos, ZZPhotoPickerSourceType sourceType,NSError *error) {
+            if (sourceType == ZZPhotoPickerSourceTypeImage){
+                NSLog(@"拿到图片了: photos.count === %ld",photos.count);
+            } else {
+//                IJSVideoTestController *testVc = [[IJSVideoTestController alloc] init];
+//                AVAsset *avaseet = [AVAsset assetWithURL:avPlayers.firstObject];
+//                testVc.avasset = avaseet;
+//                [weakSelf presentViewController:testVc animated:YES completion:nil];
+            }
+            NSLog(@"完成选择");
+        }];
+        
+        [vc cancelSelectedData:^{NSLog(@"取消选择");}];
+        
+        [self presentViewController:vc animated:YES completion:nil];
+        
     }
 
 }

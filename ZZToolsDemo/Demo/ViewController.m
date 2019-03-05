@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ZZToolsDemo";
-    self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
+    self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分", @"图片选择器, 效果参照微信"];
     [self.view addSubview:self.tableView];
 }
 
@@ -47,22 +47,30 @@
     UIViewController *vc = nil;
     if (indexPath.row == 0) {
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/vertical"]];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 1) {
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/horizontal"]];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 2) {
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 3) {
         //星星评价, 传参实例, 类似get请求.
         NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
         vc = [[ZZRouter shared] getController:url];
         vc.routerCallBack = ^(NSDictionary * _Nonnull result) {
             //这里是次级控制器反向传值
-            NSLog(@"result === %@",result);
+            NSLog(@"页面路由反向传值: result === %@",result);
         };
-        
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.row == 4) {
+        NSLog(@"相片选择器, 正在实现中");
     }
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

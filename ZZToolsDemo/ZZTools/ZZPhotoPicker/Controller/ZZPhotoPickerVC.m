@@ -12,8 +12,8 @@
 
 #import "ZZPrivateHeader.h"
 #import "ZZPhotoPickerVC.h"
-#import "IJSPhotoPickerController.h"
-#import "IJSAlbumPickerController.h"
+#import "ZZPohotPickerChooseElementVC.h"
+#import "ZZPhotoPickerAlbumListVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 
 @interface ZZPhotoPickerVC (){
@@ -24,8 +24,8 @@
 }
 /**默认的列数*/
 @property (nonatomic , assign) NSInteger columnNumber;
-@property (nonatomic ,   weak) IJSAlbumPickerController *albumVc;  // 相册控制器
-@property(nonatomic ,weak) IJSPhotoPickerController *photoVc;  // 相册预览界面
+@property (nonatomic ,   weak) ZZPhotoPickerAlbumListVC *albumVc;  // 相册控制器
+@property(nonatomic ,weak) ZZPohotPickerChooseElementVC *photoVc;  // 相册预览界面
 @end
 
 @implementation ZZPhotoPickerVC
@@ -77,7 +77,7 @@
 // 统一接口
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber pushPhotoPickerVc:(BOOL)pushPhotoPickerVc {
     _pushPhotoPickerVc = pushPhotoPickerVc;
-    IJSAlbumPickerController *albumPickerVc = [[IJSAlbumPickerController alloc] init];
+    ZZPhotoPickerAlbumListVC *albumPickerVc = [[ZZPhotoPickerAlbumListVC alloc] init];
     self.albumVc = albumPickerVc;
     albumPickerVc.columnNumber = columnNumber;
     self = [super initWithRootViewController:albumPickerVc]; // 设置返回的跟控制器
@@ -160,7 +160,7 @@
     _didPushPhotoPickerVc = NO;
     if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) // 直接push
     {
-        IJSPhotoPickerController *vc = [[IJSPhotoPickerController alloc] init];
+        ZZPohotPickerChooseElementVC *vc = [[ZZPohotPickerChooseElementVC alloc] init];
         self.photoVc = vc;
         vc.columnNumber = self.columnNumber; //列数
         __weak typeof(self) weakSelf = self;
@@ -174,7 +174,7 @@
 }
 /// 跳转到相册列表页
 - (void)goAlbumViewController {
-    IJSAlbumPickerController *vc = [[IJSAlbumPickerController alloc] init];
+    ZZPhotoPickerAlbumListVC *vc = [[ZZPhotoPickerAlbumListVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -244,7 +244,7 @@
     else if (columnNumber >= 6) {
         _columnNumber = 6;
     }
-    IJSAlbumPickerController *albumPickerVc = [self.childViewControllers firstObject];
+    ZZPhotoPickerAlbumListVC *albumPickerVc = [self.childViewControllers firstObject];
     albumPickerVc.columnNumber = _columnNumber;
     [IJSImageManager shareManager].columnNumber = _columnNumber;
 }

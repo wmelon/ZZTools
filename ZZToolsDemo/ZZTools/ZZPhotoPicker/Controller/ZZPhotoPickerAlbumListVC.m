@@ -1,24 +1,24 @@
 //
-//  IJSAlbumPickerController.m
+//  ZZPhotoPickerAlbumListVC.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSAlbumPickerController.h"
+#import "ZZPhotoPickerAlbumListVC.h"
 #import "IJSAlbumPickerCell.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerVC.h"
 #import "IJSConst.h"
 #import "ZZPhotoPickerVC.h"
-#import "IJSPhotoPreviewController.h"
-#import "IJSPhotoPickerController.h"
+#import "ZZPhotoPickerPreviewElementVC.h"
+#import "ZZPohotPickerChooseElementVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 static NSString *const cellID = @"cellID";
 
-@interface IJSAlbumPickerController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface ZZPhotoPickerAlbumListVC () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 /**照片列表参数*/
 @property (nonatomic , strong) NSArray *albumListArr;
@@ -28,7 +28,7 @@ static NSString *const cellID = @"cellID";
 
 @end
 
-@implementation IJSAlbumPickerController
+@implementation ZZPhotoPickerAlbumListVC
 
 - (NSArray *)albumListArr
 {
@@ -99,7 +99,7 @@ static NSString *const cellID = @"cellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IJSPhotoPickerController *vc = [[IJSPhotoPickerController alloc] init];
+    ZZPohotPickerChooseElementVC *vc = [[ZZPohotPickerChooseElementVC alloc] init];
     vc.columnNumber = self.columnNumber; // 传递列数计算展示图的大小
     IJSAlbumModel *model = self.albumListArr[indexPath.row];
     vc.albumModel = model;

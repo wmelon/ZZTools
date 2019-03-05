@@ -1,12 +1,12 @@
 //
-//  IJSPhotoPreviewController.m
+//  ZZPhotoPickerPreviewElementVC.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSPhotoPreviewController.h"
+#import "ZZPhotoPickerPreviewElementVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 #import "IJSConst.h"
@@ -14,15 +14,13 @@
 #import "IJSImageManager.h"
 #import "IJSMapViewModel.h"
 #import "ZZPhotoPickerVC.h"
-#import "IJSPhotoPickerController.h"
-
-#import "IJSImageManagerController.h"
+#import "ZZPohotPickerChooseElementVC.h"
 #import "IJSSelectedCell.h"
 
 static NSString *const IJSShowCellID = @"IJSPreviewImageCell";
 static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 
-@interface IJSPhotoPreviewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate, IJSPreviewImageCellDelegate>
+@interface ZZPhotoPickerPreviewElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate, IJSPreviewImageCellDelegate>
 
 @property (nonatomic , assign) BOOL toHiddToolStatus;              // 改变工具的状态
 @property (nonatomic , assign) BOOL buttonSelected;                // button的改变状态
@@ -50,7 +48,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 
 @end
 
-@implementation IJSPhotoPreviewController
+@implementation ZZPhotoPickerPreviewElementVC
 
 - (NSMutableArray *)imageDataArr
 {
@@ -600,9 +598,9 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 {
     for (UIViewController *viewc in self.navigationController.childViewControllers)
     {
-        if ([viewc isKindOfClass:[IJSPhotoPickerController class]])
+        if ([viewc isKindOfClass:[ZZPohotPickerChooseElementVC class]])
         {
-            IJSPhotoPickerController *vc = (IJSPhotoPickerController *) viewc;
+            ZZPohotPickerChooseElementVC *vc = (ZZPohotPickerChooseElementVC *) viewc;
             if (vc.callBack)
             {
                 vc.callBack(self.selectedModels, self.allAssetModelArr);

@@ -1,5 +1,5 @@
 //
-//  IJSPhotoPickerController.m
+//  ZZPohotPickerChooseElementVC.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
@@ -11,13 +11,13 @@
 #import "IJSAlbumModel.h"
 #import "IJSImageManager.h"
 #import "IJSPhotoPickerCell.h"
-#import "IJSPhotoPickerController.h"
-#import "IJSPhotoPreviewController.h"
+#import "ZZPohotPickerChooseElementVC.h"
+#import "ZZPhotoPickerPreviewElementVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 
 static NSString *const CellID = @"pickerID";
 
-@interface IJSPhotoPickerController () <UICollectionViewDelegate, UICollectionViewDataSource, IJSPhotoPickerCellDelegate>
+@interface ZZPohotPickerChooseElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, IJSPhotoPickerCellDelegate>
 
 /**预览*/
 @property (nonatomic ,   weak) UIButton                         *previewButton;
@@ -38,7 +38,7 @@ static NSString *const CellID = @"pickerID";
 
 @end
 
-@implementation IJSPhotoPickerController
+@implementation ZZPohotPickerChooseElementVC
 
 /*-----------------------------------系统的方法-------------------------------------------------------*/
 - (void)viewDidLoad {
@@ -85,7 +85,7 @@ static NSString *const CellID = @"pickerID";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
-    IJSPhotoPreviewController *preViewVc = [[IJSPhotoPreviewController alloc] init];
+    ZZPhotoPickerPreviewElementVC *preViewVc = [[ZZPhotoPickerPreviewElementVC alloc] init];
     IJSAssetModel *tempModel = self.assetModelArr[indexPath.row];
     if ((tempModel.type == JSAssetModelMediaTypeVideo || tempModel.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo) {
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
@@ -226,7 +226,7 @@ static NSString *const CellID = @"pickerID";
     if (self.selectedModels.count == 0) {
         return;
     }
-    IJSPhotoPreviewController *vc = [[IJSPhotoPreviewController alloc] init];
+    ZZPhotoPickerPreviewElementVC *vc = [[ZZPhotoPickerPreviewElementVC alloc] init];
     vc.allAssetModelArr = self.assetModelArr;
     vc.selectedModels = self.selectedModels;
     
@@ -544,7 +544,7 @@ static NSString *const CellID = @"pickerID";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     [[IJSImageManager shareManager] stopCachingImagesFormAllAssets];
-    JSLog(@"相册--IJSPhotoPickerController--出现了内存增加的问题");
+    JSLog(@"相册--ZZPohotPickerChooseElementVC--出现了内存增加的问题");
 }
 
 @end

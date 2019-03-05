@@ -1,9 +1,11 @@
 //
-//  IJSPhotoPickerController.h
+//  ZZPohotPickerChooseElementVC.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
 //  Copyright © 2017年 shan. All rights reserved.
+//
+//  选择元素的控制器
 //
 
 #import <UIKit/UIKit.h>
@@ -15,7 +17,7 @@
 
 typedef void (^callBackReload)(NSMutableArray *selectedModel, NSMutableArray *allAssetModel);
 
-@interface IJSPhotoPickerController : UIViewController
+@interface ZZPohotPickerChooseElementVC : UIViewController
 
 /**是否为第一次出现*/
 @property (nonatomic , assign) BOOL isFirstAppear;

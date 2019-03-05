@@ -1,19 +1,18 @@
 //
-//  IJSPhotoPreviewController.h
+//  ZZPhotoPickerPreviewElementVC.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
 //  Copyright © 2017年 shan. All rights reserved.
 //
+//  照片预览控制器
+//
 
 #import <UIKit/UIKit.h>
 #import "ZZPhotoPickerVC.h"
 @class IJSAssetModel;
-/*
- *  照片预览控制器
-*/
 
-@interface IJSPhotoPreviewController : UIViewController
+@interface ZZPhotoPickerPreviewElementVC : UIViewController
 //不管有没有值都需要传递----否则导致无数据崩溃
 /**接受用户选中的相册*/
 @property (nonatomic , strong) NSMutableArray<IJSAssetModel *> *selectedModels;

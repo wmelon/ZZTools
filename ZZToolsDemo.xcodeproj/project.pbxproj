@@ -48,11 +48,11 @@
 		E49CEBA0222E55C900AC812D /* ZZPohotPickerChooseElementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEB9F222E55C900AC812D /* ZZPohotPickerChooseElementVC.m */; };
 		E49CEBBB222E569E00AC812D /* ZZPhotoPickerChooseElementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBAD222E569E00AC812D /* ZZPhotoPickerChooseElementCell.m */; };
 		E49CEBBC222E569E00AC812D /* ZZPhotoPickerAlbumPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB2222E569E00AC812D /* ZZPhotoPickerAlbumPickerCell.m */; };
-		E49CEBBD222E569E00AC812D /* IJSSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */; };
+		E49CEBBD222E569E00AC812D /* ZZPhotoPickerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB4222E569E00AC812D /* ZZPhotoPickerSelectedCell.m */; };
 		E49CEBBE222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB6222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.m */; };
 		E49CEBBF222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB8222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m */; };
-		E49CEBC0222E569E00AC812D /* IJSPreviewLivePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */; };
-		E49CEBC1222E569E00AC812D /* IJSPreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */; };
+		E49CEBC0222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBB9222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.m */; };
+		E49CEBC1222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBBA222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.m */; };
 		E49CEBC5222E56F600AC812D /* ZZPhotoPickerMapViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E49CEBC3222E56F600AC812D /* ZZPhotoPickerMapViewModel.m */; };
 		E49CEBCE222E5BE300AC812D /* JSPhotoSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */; };
 /* End PBXBuildFile section */
@@ -140,18 +140,18 @@
 		E49CEB9F222E55C900AC812D /* ZZPohotPickerChooseElementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPohotPickerChooseElementVC.m; sourceTree = "<group>"; };
 		E49CEBAD222E569E00AC812D /* ZZPhotoPickerChooseElementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerChooseElementCell.m; sourceTree = "<group>"; };
 		E49CEBAE222E569E00AC812D /* ZZPhotoPickerAlbumPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerAlbumPickerCell.h; sourceTree = "<group>"; };
-		E49CEBAF222E569E00AC812D /* IJSPreviewVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewVideoView.h; sourceTree = "<group>"; };
-		E49CEBB0222E569E00AC812D /* IJSSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSSelectedCell.h; sourceTree = "<group>"; };
+		E49CEBAF222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerPreviewVideoView.h; sourceTree = "<group>"; };
+		E49CEBB0222E569E00AC812D /* ZZPhotoPickerSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerSelectedCell.h; sourceTree = "<group>"; };
 		E49CEBB1222E569E00AC812D /* ZZPhotoPickerPreviewGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerPreviewGifView.h; sourceTree = "<group>"; };
 		E49CEBB2222E569E00AC812D /* ZZPhotoPickerAlbumPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerAlbumPickerCell.m; sourceTree = "<group>"; };
-		E49CEBB3222E569E00AC812D /* IJSPreviewLivePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJSPreviewLivePhotoView.h; sourceTree = "<group>"; };
-		E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSSelectedCell.m; sourceTree = "<group>"; };
+		E49CEBB3222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerPreviewLivePhotoView.h; sourceTree = "<group>"; };
+		E49CEBB4222E569E00AC812D /* ZZPhotoPickerSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerSelectedCell.m; sourceTree = "<group>"; };
 		E49CEBB5222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerPreviewImageCell.h; sourceTree = "<group>"; };
 		E49CEBB6222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerPreviewImageCell.m; sourceTree = "<group>"; };
 		E49CEBB7222E569E00AC812D /* ZZPhotoPickerChooseElementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerChooseElementCell.h; sourceTree = "<group>"; };
 		E49CEBB8222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerPreviewGifView.m; sourceTree = "<group>"; };
-		E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewLivePhotoView.m; sourceTree = "<group>"; };
-		E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJSPreviewVideoView.m; sourceTree = "<group>"; };
+		E49CEBB9222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerPreviewLivePhotoView.m; sourceTree = "<group>"; };
+		E49CEBBA222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerPreviewVideoView.m; sourceTree = "<group>"; };
 		E49CEBC3222E56F600AC812D /* ZZPhotoPickerMapViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPhotoPickerMapViewModel.m; sourceTree = "<group>"; };
 		E49CEBC4222E56F600AC812D /* ZZPhotoPickerMapViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPhotoPickerMapViewModel.h; sourceTree = "<group>"; };
 		E49CEBCD222E5BE300AC812D /* JSPhotoSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSPhotoSDK.bundle; sourceTree = "<group>"; };
@@ -441,12 +441,12 @@
 				E49CEBB8222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m */,
 				E49CEBB5222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.h */,
 				E49CEBB6222E569E00AC812D /* ZZPhotoPickerPreviewImageCell.m */,
-				E49CEBB3222E569E00AC812D /* IJSPreviewLivePhotoView.h */,
-				E49CEBB9222E569E00AC812D /* IJSPreviewLivePhotoView.m */,
-				E49CEBAF222E569E00AC812D /* IJSPreviewVideoView.h */,
-				E49CEBBA222E569E00AC812D /* IJSPreviewVideoView.m */,
-				E49CEBB0222E569E00AC812D /* IJSSelectedCell.h */,
-				E49CEBB4222E569E00AC812D /* IJSSelectedCell.m */,
+				E49CEBB3222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.h */,
+				E49CEBB9222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.m */,
+				E49CEBAF222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.h */,
+				E49CEBBA222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.m */,
+				E49CEBB0222E569E00AC812D /* ZZPhotoPickerSelectedCell.h */,
+				E49CEBB4222E569E00AC812D /* ZZPhotoPickerSelectedCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				E49CEB81222E533200AC812D /* UIBarButtonItem+IJSUUIBarBtItem.m in Sources */,
 				E49CEB8C222E533200AC812D /* UINavigationController+IJSNavigationController.m in Sources */,
 				E49CEB97222E553500AC812D /* ZZPhotoPickerAlbumListVC.m in Sources */,
-				E49CEBC1222E569E00AC812D /* IJSPreviewVideoView.m in Sources */,
+				E49CEBC1222E569E00AC812D /* ZZPhotoPickerPreviewVideoView.m in Sources */,
 				E49CEB5D222E523000AC812D /* ZZPhotoPickerAssetModel.m in Sources */,
 				E42827D92206BB7200BF7657 /* ZZCollectionViewCell.m in Sources */,
 				E49CEB88222E533200AC812D /* UIView+IJSUUIView.m in Sources */,
@@ -642,7 +642,7 @@
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,
 				E49CEB8A222E533200AC812D /* UITextField+IJSUTextField.m in Sources */,
-				E49CEBC0222E569E00AC812D /* IJSPreviewLivePhotoView.m in Sources */,
+				E49CEBC0222E569E00AC812D /* ZZPhotoPickerPreviewLivePhotoView.m in Sources */,
 				3AA1BAA621F6C61400833ECA /* AppDelegate.m in Sources */,
 				3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */,
 				E49CEBBF222E569E00AC812D /* ZZPhotoPickerPreviewGifView.m in Sources */,
@@ -650,7 +650,7 @@
 				3AA1BACD21F6C71700833ECA /* ZZLayout.m in Sources */,
 				3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */,
 				E49CEB85222E533200AC812D /* IJSNotificationCenterString.m in Sources */,
-				E49CEBBD222E569E00AC812D /* IJSSelectedCell.m in Sources */,
+				E49CEBBD222E569E00AC812D /* ZZPhotoPickerSelectedCell.m in Sources */,
 				E49CEB56222E4FA900AC812D /* ZZPhotoPickerVC.m in Sources */,
 				E49CEB84222E533200AC812D /* IJSAlertViewController.m in Sources */,
 			);

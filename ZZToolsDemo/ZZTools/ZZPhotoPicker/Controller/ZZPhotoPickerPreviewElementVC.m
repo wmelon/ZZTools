@@ -15,10 +15,10 @@
 #import "ZZPhotoPickerMapViewModel.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPohotPickerChooseElementVC.h"
-#import "IJSSelectedCell.h"
+#import "ZZPhotoPickerSelectedCell.h"
 
 static NSString *const IJSShowCellID = @"ZZPhotoPickerPreviewImageCell";
-static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
+static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell";
 
 @interface ZZPhotoPickerPreviewElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate, ZZPhotoPickerPreviewImageCellDelegate>
 
@@ -155,7 +155,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     }
     else
     { //选中的cell
-        IJSSelectedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSSelectedCellID forIndexPath:indexPath];
+        ZZPhotoPickerSelectedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZZPhotoPickerSelectedCellID forIndexPath:indexPath];
         ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
         cell.pushSelectedIndex = self.pushSelectedIndex; //首次进来的坐标
         model.isFirstAppear = _isFirstAppear;
@@ -259,7 +259,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
             self.rightButton.hidden = NO;
         }
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (IJSSelectedCell *allCell in cellArr)
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
         {
             [self _cleanAssetCellStatus:allCell];
         }
@@ -277,7 +277,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                     [self.selectedCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                 }
             }
@@ -293,7 +293,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
                     [self.selectedCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
                     
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
                 }
@@ -308,7 +308,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     else if (scrollView == self.selectedCollection)
     {
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (IJSSelectedCell *allCell in cellArr)
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
         {
             [self _cleanAssetCellStatus:allCell];
         }
@@ -322,7 +322,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 if (self.selectedModels[i] == self.previewAssetModelArr[index])
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
                 }
@@ -335,7 +335,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 if (selectModel.onlyOneTag == index) //对应
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
                 }
@@ -352,7 +352,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     if (scrollView == self.selectedCollection)
     {
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (IJSSelectedCell *allCell in cellArr)
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
         {
             [self _cleanAssetCellStatus:allCell];
         }
@@ -366,7 +366,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 if (self.selectedModels[i] == self.previewAssetModelArr[index])
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
                 }
@@ -379,7 +379,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
                 if (selectModel.onlyOneTag == index) //对应
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
-                    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+                    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
                 }
@@ -445,7 +445,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     selectedCollection.dataSource = self;
     selectedCollection.delegate = self;
     
-    [self.selectedCollection registerClass:[IJSSelectedCell class] forCellWithReuseIdentifier:IJSSelectedCellID];
+    [self.selectedCollection registerClass:[ZZPhotoPickerSelectedCell class] forCellWithReuseIdentifier:ZZPhotoPickerSelectedCellID];
     
     if (_selectedCollectionHidden)
     {
@@ -847,12 +847,12 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 {
     _isFirstAppear = NO;
     NSArray *cellArr = [self.selectedCollection visibleCells];
-    for (IJSSelectedCell *allCell in cellArr)
+    for (ZZPhotoPickerSelectedCell *allCell in cellArr)
     {
         [self _cleanAssetCellStatus:allCell];
     }
     self.didClinkIndex = indexPath;
-    IJSSelectedCell *cell = (IJSSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
+    ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
     ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
     if (self.isPreviewButton)
     {
@@ -1325,14 +1325,14 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 }
 
 // 清楚cell上的状态
-- (void)_cleanAssetCellStatus:(IJSSelectedCell *)cell
+- (void)_cleanAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell
 {
     cell.backImageView.layer.borderWidth = 0;
     cell.backImageView.layer.cornerRadius = 0;
     cell.backImageView.clipsToBounds = YES;
 }
 // 添加边框
-- (void)_resetAssetCellStatus:(IJSSelectedCell *)cell
+- (void)_resetAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell
 {
     cell.backImageView.layer.borderWidth = 2;
     cell.backImageView.layer.cornerRadius = 3;

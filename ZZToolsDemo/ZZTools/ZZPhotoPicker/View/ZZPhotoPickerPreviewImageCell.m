@@ -10,7 +10,7 @@
 #import "IJSImageManager.h"
 #import "IJSConst.h"
 #import "ZZPhotoPickerPreviewGifView.h"
-#import "IJSPreviewLivePhotoView.h"
+#import "ZZPhotoPickerPreviewLivePhotoView.h"
 #import "IJSExtension.h"
 @interface ZZPhotoPickerPreviewImageCell () <UIScrollViewDelegate>
 /**gif视图*/
@@ -18,7 +18,7 @@
 /**图片视图*/
 @property (nonatomic , strong) UIImageView *backImageView;
 /**livephoto*/
-@property (nonatomic ,   weak) IJSPreviewLivePhotoView *livePhoto;
+@property (nonatomic ,   weak) ZZPhotoPickerPreviewLivePhotoView *livePhoto;
 /**单击隐藏的状态*/
 @property (nonatomic , assign) BOOL hiddenToolsStatus;
 
@@ -62,11 +62,11 @@
     return _backImageView;
 }
 
-- (IJSPreviewVideoView *)videoView
+- (ZZPhotoPickerPreviewVideoView *)videoView
 {
     if (!_videoView)
     {
-        IJSPreviewVideoView *videoView = [IJSPreviewVideoView new];
+        ZZPhotoPickerPreviewVideoView *videoView = [ZZPhotoPickerPreviewVideoView new];
         videoView.backgroundColor = [UIColor colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0];
         _videoView = videoView;
         [self.scrollView addSubview:videoView];
@@ -75,11 +75,11 @@
     return _videoView;
 }
 
-- (IJSPreviewLivePhotoView *)livePhoto
+- (ZZPhotoPickerPreviewLivePhotoView *)livePhoto
 {
     if (!_livePhoto)
     {
-        IJSPreviewLivePhotoView *livePhoto = [IJSPreviewLivePhotoView new];
+        ZZPhotoPickerPreviewLivePhotoView *livePhoto = [ZZPhotoPickerPreviewLivePhotoView new];
         livePhoto.backgroundColor = [UIColor colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0];
         [self.scrollView addSubview:livePhoto];
         _livePhoto = livePhoto;

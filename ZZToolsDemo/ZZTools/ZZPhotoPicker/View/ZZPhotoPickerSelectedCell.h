@@ -1,5 +1,5 @@
 //
-//  IJSSelectedCell.h
+//  ZZPhotoPickerSelectedCell.h
 //  IJSDemo
 //
 //  Created by shan on 2017/8/10.
@@ -10,7 +10,7 @@
 
 @class ZZPhotoPickerAssetModel;
 
-@interface IJSSelectedCell : UICollectionViewCell
+@interface ZZPhotoPickerSelectedCell : UICollectionViewCell
 
 /**选中的数据*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *selectedModel;

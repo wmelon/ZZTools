@@ -1,21 +1,21 @@
 //
-//  IJSSelectedCell.m
+//  ZZPhotoPickerSelectedCell.m
 //  IJSDemo
 //
 //  Created by shan on 2017/8/10.
 //  Copyright © 2017年 shanshen. All rights reserved.
 //
 
-#import "IJSSelectedCell.h"
+#import "ZZPhotoPickerSelectedCell.h"
 #import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 
-@interface IJSSelectedCell()
+@interface ZZPhotoPickerSelectedCell()
 
 
 @end
 
-@implementation IJSSelectedCell
+@implementation ZZPhotoPickerSelectedCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -1,19 +1,19 @@
 //
-//  IJSPreviewVideoView.m
+//  ZZPhotoPickerPreviewVideoView.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSPreviewVideoView.h"
+#import "ZZPhotoPickerPreviewVideoView.h"
 #import "IJSImageManager.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
 
-@interface IJSPreviewVideoView ()
+@interface ZZPhotoPickerPreviewVideoView ()
 
 /**是否允许网络*/
 @property (nonatomic , assign) BOOL networkAccessAllowed;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation IJSPreviewVideoView
+@implementation ZZPhotoPickerPreviewVideoView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -1,5 +1,5 @@
 //
-//  IJSPreviewVideoView.h
+//  ZZPhotoPickerPreviewVideoView.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 @class ZZPhotoPickerAssetModel;
 
-@interface IJSPreviewVideoView : UIView
+@interface ZZPhotoPickerPreviewVideoView : UIView
 
 /**数据模型*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;

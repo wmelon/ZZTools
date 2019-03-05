@@ -1,5 +1,5 @@
 //
-//  IJSPreviewLivePhotoView.h
+//  ZZPhotoPickerPreviewLivePhotoView.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class ZZPhotoPickerAssetModel;
 
-@interface IJSPreviewLivePhotoView : UIView
+@interface ZZPhotoPickerPreviewLivePhotoView : UIView
 
 /**数据模型*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;

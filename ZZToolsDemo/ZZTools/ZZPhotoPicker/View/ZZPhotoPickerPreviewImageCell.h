@@ -11,7 +11,7 @@
  * 展示图片视频预览的大cell
 */
 #import "ZZPhotoPickerAssetModel.h"
-#import "IJSPreviewVideoView.h"
+#import "ZZPhotoPickerPreviewVideoView.h"
 // 展示用的cell
 @protocol ZZPhotoPickerPreviewImageCellDelegate;
 
@@ -20,7 +20,7 @@
 /**所有的数据*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
 /**视频界面*/
-@property (nonatomic ,   weak) IJSPreviewVideoView *videoView;
+@property (nonatomic ,   weak) ZZPhotoPickerPreviewVideoView *videoView;
 /**缩放用的scrollview*/
 @property (nonatomic , strong) UIScrollView *scrollView;
 

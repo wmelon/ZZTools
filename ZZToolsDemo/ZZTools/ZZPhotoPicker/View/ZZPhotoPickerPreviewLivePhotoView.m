@@ -1,19 +1,19 @@
 //
-//  IJSPreviewLivePhotoView.m
+//  ZZPhotoPickerPreviewLivePhotoView.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSPreviewLivePhotoView.h"
+#import "ZZPhotoPickerPreviewLivePhotoView.h"
 #import <PhotosUI/PhotosUI.h>
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
 #import "IJSConst.h"
 
 API_AVAILABLE(ios(9.1))
-@interface IJSPreviewLivePhotoView ()
+@interface ZZPhotoPickerPreviewLivePhotoView ()
 
 /**播放视图*/
 @property (nonatomic ,   weak) PHLivePhotoView *backLivePhtotoView;
@@ -21,7 +21,7 @@ API_AVAILABLE(ios(9.1))
 
 @end
 
-@implementation IJSPreviewLivePhotoView
+@implementation ZZPhotoPickerPreviewLivePhotoView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

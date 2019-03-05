@@ -210,7 +210,7 @@ typedef void (^completionHandler)(id assetCollection, NSError *error, BOOL isExi
  @param assets 需要缓存的数组
  @param targetSize 目标大小
 */
--(void)startCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize;
+- (void)startCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize;
 
 /**
  结束缓存
@@ -218,7 +218,7 @@ typedef void (^completionHandler)(id assetCollection, NSError *error, BOOL isExi
  @param assets 需要缓存的数组
  @param targetSize 目标大小
 */
--(void)stopCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize ;
+- (void)stopCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize ;
 
 /**
  取消所有的缓存

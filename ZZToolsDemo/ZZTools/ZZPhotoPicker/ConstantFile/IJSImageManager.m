@@ -310,7 +310,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
     return  [self _requestImageForAsset:asset targetSize:targetSize completion:completion progressHandler:progressHandler networkAccessAllowed:networkAccessAllowed];
 }
 ///  为了定制大小分开
--(PHImageRequestID)_requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed
+- (PHImageRequestID)_requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize completion:(void (^)(UIImage *photo, NSDictionary *info, BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed
 {
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.resizeMode = PHImageRequestOptionsResizeModeFast;
@@ -838,14 +838,14 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
 }
 /*-------------------------------------------------------------------------缓存-------------------------------*/
 #pragma mark 缓存
--(void)startCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize
+- (void)startCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize
 {
     [self.cachingImageManager startCachingImagesForAssets:assets
                                                targetSize:targetSize
                                               contentMode:PHImageContentModeAspectFill
                                                   options:nil];
 }
--(void)stopCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize
+- (void)stopCachingImagesFormAssets:(NSArray<PHAsset *> *)assets targetSize:(CGSize)targetSize
 {
     [self.cachingImageManager stopCachingImagesForAssets:assets
                                               targetSize:targetSize

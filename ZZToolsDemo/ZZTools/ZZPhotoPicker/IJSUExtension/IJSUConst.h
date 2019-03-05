@@ -101,11 +101,11 @@ _instance = [[super allocWithZone:zone] init];  \
 });                                                 \
 return _instance;                                   \
 }                                                       \
--(id) copyWithZone : (NSZone *) zone                    \
+- (id) copyWithZone : (NSZone *) zone                    \
 {                                                       \
 return _instance;                                   \
 }                                                       \
--(id) mutableCopyWithZone : (NSZone *) zone             \
+- (id) mutableCopyWithZone : (NSZone *) zone             \
 {                                                       \
 return _instance;                                   \
 }
@@ -127,22 +127,22 @@ _instance = [[super allocWithZone:zone] init];  \
 });                                                 \
 return _instance;                                   \
 }                                                       \
--(id) copyWithZone : (NSZone *) zone                    \
+- (id) copyWithZone : (NSZone *) zone                    \
 {                                                       \
 return _instance;                                   \
 }                                                       \
--(id) mutableCopyWithZone : (NSZone *) zone             \
+- (id) mutableCopyWithZone : (NSZone *) zone             \
 {                                                       \
 return _instance;                                   \
 }                                                       \
--(oneway void) release                                  \
+- (oneway void) release                                  \
 {                                                       \
 }                                                       \
--(instancetype) retain                                  \
+- (instancetype) retain                                  \
 {                                                       \
 return _instance;                                   \
 }                                                       \
--(NSUInteger) retainCount                               \
+- (NSUInteger) retainCount                               \
 {                                                       \
 return MAXFLOAT;                                    \
 }

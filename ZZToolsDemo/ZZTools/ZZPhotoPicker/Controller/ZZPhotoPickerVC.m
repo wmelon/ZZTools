@@ -30,8 +30,7 @@
 
 @implementation ZZPhotoPickerVC
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self _createrUI];    // 设置UI
@@ -39,15 +38,13 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
@@ -62,8 +59,7 @@
 //    self.photoVc.selectedHandler = selectedHandler;
 //}
 
--(void)cancelSelectedData:(void(^)(void))cancelHandler
-{
+- (void)cancelSelectedData:(void(^)(void))cancelHandler {
     self.albumVc.cancelHandler = cancelHandler;
     self.photoVc.cancelHandler = cancelHandler;
 }
@@ -71,33 +67,29 @@
 /*-----------------------------------初始化方法-------------------------------------------------------*/
 #pragma mark 初始化方法
 // 默认是4个返回值
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
-{
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount {
     return [self initWithMaxImagesCount:maxImagesCount columnNumber:4  pushPhotoPickerVc:YES];
 }
 // 自定义
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber
-{
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber {
     return [self initWithMaxImagesCount:maxImagesCount columnNumber:columnNumber  pushPhotoPickerVc:YES];
 }
 // 统一接口
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber pushPhotoPickerVc:(BOOL)pushPhotoPickerVc
-{
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber pushPhotoPickerVc:(BOOL)pushPhotoPickerVc {
     _pushPhotoPickerVc = pushPhotoPickerVc;
     IJSAlbumPickerController *albumPickerVc = [[IJSAlbumPickerController alloc] init];
     self.albumVc = albumPickerVc;
     albumPickerVc.columnNumber = columnNumber;
     self = [super initWithRootViewController:albumPickerVc]; // 设置返回的跟控制器
-    if (self)
-    {
+    if (self) {
         self.maxImagesCount = maxImagesCount > 0 ? maxImagesCount : 9; // Default is 9 / 默认最大可选9张图片
         self.selectedModels = [NSMutableArray array];
         self.columnNumber = columnNumber;
         
         [self setupDefaultData]; // 初始化信息
         
-        if (![[IJSImageManager shareManager] authorizationStatusAuthorized]) // 没有授权,自定义的界面
-        {
+        if (![[IJSImageManager shareManager] authorizationStatusAuthorized]) {// 没有授权,自定义的界面
+        
             _tipLabel = [[UILabel alloc] init];
             _tipLabel.backgroundColor = [UIColor redColor];
             _tipLabel.frame = CGRectMake(8, 200, self.view.js_width - 16, 60);
@@ -142,8 +134,7 @@
 
 /*-----------------------------------属性初始化-------------------------------------------------------*/
 // 初始化时间排序的信息
-- (void)setSortAscendingByModificationDate:(BOOL)sortAscendingByModificationDate
-{
+- (void)setSortAscendingByModificationDate:(BOOL)sortAscendingByModificationDate {
     _sortAscendingByModificationDate = sortAscendingByModificationDate;
     [IJSImageManager shareManager].sortAscendingByModificationDate = sortAscendingByModificationDate;
 }
@@ -151,14 +142,11 @@
 /*-----------------------------------私有方法-------------------------------------------------------*/
 #pragma mark 私有方法
 // 监听授权状态
-- (void)_settingBtnClick
-{
+- (void)_settingBtnClick {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
-- (void)_observeAuthrizationStatusChange
-{
-    if ([[IJSImageManager shareManager] authorizationStatusAuthorized])
-    {
+- (void)_observeAuthrizationStatusChange {
+    if ([[IJSImageManager shareManager] authorizationStatusAuthorized]) {
         [_tipLabel removeFromSuperview];
         [_settingBtn removeFromSuperview];
         [_timer invalidate];
@@ -168,8 +156,7 @@
 }
 
 // 跳转界面
-- (void)_pushPhotoPickerVc
-{
+- (void)_pushPhotoPickerVc {
     _didPushPhotoPickerVc = NO;
     if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) // 直接push
     {
@@ -180,14 +167,13 @@
         __weak typeof(vc) weakVc = vc;
         [[IJSImageManager shareManager] getCameraRollAlbumContentImage:_allowPickingImage contentVideo:_allowPickingVideo completion:^(IJSAlbumModel *model) {
             weakVc.albumModel = model;
-            [weakSelf pushViewController:vc animated:YES];
+            [weakSelf pushViewController:vc animated:NO];
             self->_didPushPhotoPickerVc = YES;
         }];
     }
 }
 /// 跳转到相册列表页
-- (void)goAlbumViewController
-{
+- (void)goAlbumViewController {
     IJSAlbumPickerController *vc = [[IJSAlbumPickerController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -195,84 +181,67 @@
 #pragma mark 点击方法
 /*-----------------------------------get set 方法-------------------------------------------------------*/
 #pragma mark set方法
-- (void)setAllowPickingImage:(BOOL)allowPickingImage
-{
+- (void)setAllowPickingImage:(BOOL)allowPickingImage {
     _allowPickingImage = allowPickingImage;
 }
-- (void)setAllowPickingVideo:(BOOL)allowPickingVideo
-{
+- (void)setAllowPickingVideo:(BOOL)allowPickingVideo {
     _allowPickingVideo = allowPickingVideo;
 }
--(void)setIsHiddenEdit:(BOOL)isHiddenEdit
-{
+- (void)setIsHiddenEdit:(BOOL)isHiddenEdit {
     _isHiddenEdit = isHiddenEdit;
 }
-- (void)setMinPhotoWidthSelectable:(NSInteger)minPhotoWidthSelectable
-{
+- (void)setMinPhotoWidthSelectable:(NSInteger)minPhotoWidthSelectable {
     _minPhotoWidthSelectable = minPhotoWidthSelectable;
     [IJSImageManager shareManager].minPhotoWidthSelectable = minPhotoWidthSelectable;
 }
 
-- (void)setMinPhotoHeightSelectable:(NSInteger)minPhotoHeightSelectable
-{
+- (void)setMinPhotoHeightSelectable:(NSInteger)minPhotoHeightSelectable {
     _minPhotoHeightSelectable = minPhotoHeightSelectable;
     [IJSImageManager shareManager].minPhotoHeightSelectable = minPhotoHeightSelectable;
 }
-- (void)setNetworkAccessAllowed:(BOOL)networkAccessAllowed
-{
+- (void)setNetworkAccessAllowed:(BOOL)networkAccessAllowed {
     _networkAccessAllowed = networkAccessAllowed;
     [IJSImageManager shareManager].networkAccessAllowed = networkAccessAllowed;
 }
 
 // 设置屏幕默认的宽度
-- (void)setPhotoPreviewMaxWidth:(CGFloat)photoPreviewMaxWidth
-{
+- (void)setPhotoPreviewMaxWidth:(CGFloat)photoPreviewMaxWidth {
     _photoPreviewMaxWidth = photoPreviewMaxWidth;
-    if (photoPreviewMaxWidth > 800)
-    {
+    if (photoPreviewMaxWidth > 800) {
         _photoPreviewMaxWidth = 800;
     }
-    else if (photoPreviewMaxWidth < 500)
-    {
+    else if (photoPreviewMaxWidth < 500) {
         _photoPreviewMaxWidth = 500;
     }
     [IJSImageManager shareManager].photoPreviewMaxWidth = _photoPreviewMaxWidth;
 }
 // 设置最大的列数
-- (void)setMaxImagesCount:(NSInteger)maxImagesCount
-{
+- (void)setMaxImagesCount:(NSInteger)maxImagesCount {
     _maxImagesCount = maxImagesCount;
-    if (maxImagesCount > 1)
-    {
+    if (maxImagesCount > 1) {
     }
 }
 /// 是否选择原图
-- (void)setAllowPickingOriginalPhoto:(BOOL)allowPickingOriginalPhoto
-{
+- (void)setAllowPickingOriginalPhoto:(BOOL)allowPickingOriginalPhoto {
     _allowPickingOriginalPhoto = allowPickingOriginalPhoto;
     [IJSImageManager shareManager].allowPickingOriginalPhoto = allowPickingOriginalPhoto;
 }
 /// 是否隐藏原图按钮
--(void)setHiddenOriginalButton:(BOOL)hiddenOriginalButton
-{
+- (void)setHiddenOriginalButton:(BOOL)hiddenOriginalButton {
     _hiddenOriginalButton = hiddenOriginalButton;
 }
 /// 贴图数组
-- (void)setMapImageArr:(NSMutableArray<IJSMapViewModel *> *)mapImageArr
-{
+- (void)setMapImageArr:(NSMutableArray<IJSMapViewModel *> *)mapImageArr {
     _mapImageArr = mapImageArr;
 }
 
 // 给相册控制和图片管理者设置列数计算图片高度
-- (void)setColumnNumber:(NSInteger)columnNumber
-{
+- (void)setColumnNumber:(NSInteger)columnNumber {
     _columnNumber = columnNumber;
-    if (columnNumber <= 2)
-    {
+    if (columnNumber <= 2) {
         _columnNumber = 2;
     }
-    else if (columnNumber >= 6)
-    {
+    else if (columnNumber >= 6) {
         _columnNumber = 6;
     }
     IJSAlbumPickerController *albumPickerVc = [self.childViewControllers firstObject];
@@ -280,19 +249,16 @@
     [IJSImageManager shareManager].columnNumber = _columnNumber;
 }
 
-- (void)setMinVideoCut:(NSInteger)minVideoCut
-{
+- (void)setMinVideoCut:(NSInteger)minVideoCut {
     _minVideoCut = minVideoCut;
 }
-- (void)setMaxVideoCut:(NSInteger)maxVideoCut
-{
+- (void)setMaxVideoCut:(NSInteger)maxVideoCut {
     _maxVideoCut = maxVideoCut;
 }
 #pragma mark 初始化设置UI
 /*-----------------------------------------------------初始化默认设置-------------------------------*/
 /// 设置默认的数据
--(void)setupDefaultData
-{
+- (void)setupDefaultData {
     self.photoWidth = 828.0;
     self.photoPreviewMaxWidth = 750; // 图片预览器默认的宽度
     // 默认准许用户选择原图和视频, 你也可以在这个方法后置为NO
@@ -305,8 +271,7 @@
     _hiddenOriginalButton = YES;
 }
 // 默认的外观，你可以在这个方法后重置
-- (void)_createrUI
-{
+- (void)_createrUI {
     self.navigationBar.barTintColor = [UIColor whiteColor];//colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0
     self.navigationBar.tintColor = ZZCOLOR(33, 33, 33, 1);
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -314,8 +279,7 @@
     [self configBarButtonItemAppearance];  //左右两边
 }
 // 导航条中间文字的颜色
-- (void)configNaviTitleAppearance
-{
+- (void)configNaviTitleAppearance {
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = ZZCOLOR(33, 33, 33, 1);
     textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17];
@@ -323,40 +287,28 @@
     
 }
 ///  设置导航条左右两边的按钮
-- (void)configBarButtonItemAppearance
-{
+- (void)configBarButtonItemAppearance {
     UIBarButtonItem *barItem;
-    if (iOS9Later)
-    {
-        if (@available(iOS 9.0, *)) {
-            barItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[ZZPhotoPickerVC class]]];
-        } else {
-            // Fallback on earlier versions
-        }
-    } else {
-        barItem = [UIBarButtonItem appearanceWhenContainedIn:[ZZPhotoPickerVC class], nil];
-    }
+    barItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[ZZPhotoPickerVC class]]];
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = ZZCOLOR(33, 33, 33, 1);
     textAttrs[NSFontAttributeName] =[UIFont systemFontOfSize:17];
     [barItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
 }
 /// 警告
-- (void)showAlertWithTitle:(NSString *)title
-{
+- (void)showAlertWithTitle:(NSString *)title {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:[NSBundle localizedStringForKey:@"OK"] style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)dealloc {
-    NSLog(@"相片选择器被释放了!");
-}
+//- (void)dealloc {
+//    NSLog(@"相片选择器被释放了!");
+//}
 
 @end

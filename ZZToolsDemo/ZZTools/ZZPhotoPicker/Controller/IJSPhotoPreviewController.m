@@ -815,7 +815,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     }
 }
 /// 跳转的私有方法
--(void)_pushImageControllerFromModel:( IJSAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex
+- (void)_pushImageControllerFromModel:( IJSAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex
 {
     //__weak typeof (self) weakSelf = self;
     if (isDegraded)
@@ -889,7 +889,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     return model;
 }
 #pragma mark -----------------------允许选择原图------------------------------
--(void)_selectedOriginImage:(UIButton *)button
+- (void)_selectedOriginImage:(UIButton *)button
 {
    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     vc.allowPickingOriginalPhoto = !button.selected;

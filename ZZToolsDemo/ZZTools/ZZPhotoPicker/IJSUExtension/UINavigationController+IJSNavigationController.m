@@ -20,7 +20,7 @@
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
--(void)_nvViewWillAppear:(BOOL)animated
+- (void)_nvViewWillAppear:(BOOL)animated
 {
     [self _nvViewWillAppear:animated];  // 先去调用一下viewWillAppear 方法
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -73,7 +73,7 @@
 }
 
 #pragma mark -----------------------set  get------------------------------
--(CGFloat)recognizerLength
+- (CGFloat)recognizerLength
 {
     CGFloat rec = [objc_getAssociatedObject(self, _cmd) floatValue];
     if (!rec)
@@ -83,13 +83,13 @@
     return rec;
 }
 
--(void)setRecognizerLength:(CGFloat)recognizerLength
+- (void)setRecognizerLength:(CGFloat)recognizerLength
 {
     objc_setAssociatedObject(self, @selector(recognizerLength), @(recognizerLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
 
--(UIPanGestureRecognizer *)popPanGestureRecognizer
+- (UIPanGestureRecognizer *)popPanGestureRecognizer
 {
     UIPanGestureRecognizer *pan = objc_getAssociatedObject(self, _cmd);
     if (!pan)
@@ -137,7 +137,7 @@
     method_exchangeImplementations(originalViewWillDisapperM, swizzleViewWillDisapperM);
 }
 
--(void)_vcViewWillAppear:(BOOL)animated
+- (void)_vcViewWillAppear:(BOOL)animated
 {
     [self _vcViewWillAppear:animated];
     if (self.noPopAction)
@@ -146,7 +146,7 @@
     }
 }
 
--(void)_vcViewWillDisAppear:(BOOL)animated
+- (void)_vcViewWillDisAppear:(BOOL)animated
 {
     [self _vcViewWillDisAppear:animated];
     if (self.noPopAction)
@@ -155,12 +155,12 @@
     }
 }
 
--(BOOL)noPopAction
+- (BOOL)noPopAction
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
--(void)setNoPopAction:(BOOL)noPopAction
+- (void)setNoPopAction:(BOOL)noPopAction
 {
     objc_setAssociatedObject(self, @selector(noPopAction), @(noPopAction), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

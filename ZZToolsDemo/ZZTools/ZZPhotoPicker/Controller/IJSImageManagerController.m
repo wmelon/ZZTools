@@ -34,7 +34,7 @@
     //[[IJSImageEditController new] addMapViewImageArr:mapImageArr];
 }
 
--(void)cancelSelectedData:(void(^)(void))cancelHandler
+- (void)cancelSelectedData:(void(^)(void))cancelHandler
 {
      //[[IJSImageEditController new] cancelSelectedData:cancelHandler];
 }

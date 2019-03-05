@@ -107,7 +107,7 @@ typedef enum : NSUInteger {
 @property (nonatomic , assign) BOOL isSelectOriginalPhoto;
 
 /**用户选取并且需要返回的数据*/
-@property (nonatomic , strong) NSMutableArray<IJSAssetModel *> *selectedModels;
+@property (nonatomic , strong) NSMutableArray<IJSAssetModel * > * _Nullable selectedModels;
 /**
  最小裁剪尺寸
  */

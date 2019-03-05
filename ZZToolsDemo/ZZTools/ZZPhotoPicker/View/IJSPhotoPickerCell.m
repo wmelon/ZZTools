@@ -134,7 +134,7 @@
 }
 
 #pragma mark 懒加载区域
--(UIImageView *)contentImageView {
+- (UIImageView *)contentImageView {
     if (_contentImageView == nil) {
         UIImageView *contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.js_width,self.js_height)];
         contentImageView.backgroundColor = [UIColor whiteColor];
@@ -146,7 +146,7 @@
     return _contentImageView;
 }
 
--(UIButton *)selectButton {
+- (UIButton *)selectButton {
     if (_selectButton == nil) {
         UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
         selectButton.frame = CGRectMake(self.js_width - ButtonHeight, 0, ButtonHeight, ButtonHeight);
@@ -159,7 +159,7 @@
     return _selectButton;
 }
 
--(UIButton *)livePhotoButton {
+- (UIButton *)livePhotoButton {
     if (_livePhotoButton == nil) {
         UIButton *livePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         livePhotoButton.frame = CGRectMake(2, 0, ButtonHeight, ButtonHeight);
@@ -170,7 +170,7 @@
     return _livePhotoButton;
 }
 
--(UIButton *)videoButton {
+- (UIButton *)videoButton {
     if (_videoButton == nil) {
         UIButton *videoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         videoButton.frame = CGRectMake(0, self.js_height - 10, self.js_width, 10);
@@ -186,7 +186,7 @@
     return _videoButton;
 }
 
--(UIView *)maskView {
+- (UIView *)maskView {
     if (_maskView == nil) {
         UIView *maskView = [[UIView alloc] initWithFrame:_contentImageView.frame];
         maskView.backgroundColor = [IJSFColor colorWithR:230 G:230 B:230 alpha:0.8];

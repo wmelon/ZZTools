@@ -30,7 +30,7 @@
  
  @param cancelHandler 取消的回调
 */
--(void)cancelSelectedData:(void(^)(void))cancelHandler;
+- (void)cancelSelectedData:(void(^)(void))cancelHandler;
 /**
  *  设置贴图数据
 */

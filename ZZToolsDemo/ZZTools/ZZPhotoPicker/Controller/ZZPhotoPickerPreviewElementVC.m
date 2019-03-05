@@ -227,8 +227,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                 [self _cleanRightButtonStatus];
             }
             for (int i = 0; i < self.selectedModels.count; i++) {
-                if (self.selectedModels[i] == self.previewAssetModelArr[index])
-                {
+                if (self.selectedModels[i] == self.previewAssetModelArr[index]) {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                     [self.selectedCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
@@ -248,9 +247,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
                     break;
-                }
-                else
-                {
+                } else {
                     _rightButton.titleLabel.text = nil;
                     [self _cleanRightButtonStatus];
                 }
@@ -267,8 +264,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         
         if (self.isPreviewButton) {
             for (int i = 0; i < self.selectedModels.count; i++) {
-                if (self.selectedModels[i] == self.previewAssetModelArr[index])
-                {
+                if (self.selectedModels[i] == self.previewAssetModelArr[index]) {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
@@ -277,8 +273,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         } else {
             for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels) {
-                if (selectModel.onlyOneTag == index) //对应
-                {
+                if (selectModel.onlyOneTag == index) {//对应
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
@@ -303,8 +298,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         
         if (self.isPreviewButton) {
             for (int i = 0; i < self.selectedModels.count; i++) {
-                if (self.selectedModels[i] == self.previewAssetModelArr[index])
-                {
+                if (self.selectedModels[i] == self.previewAssetModelArr[index]) {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
@@ -313,8 +307,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         } else {
             for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels) {
-                if (selectModel.onlyOneTag == index) //对应
-                {
+                if (selectModel.onlyOneTag == index) {//对应 
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
                     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
                     [self _resetAssetCellStatus:cell];
@@ -480,8 +473,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         if (self.selectedModels.count > 0) {
             [rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"photo_def_previewVc@2x" imageType:@"png"] forState:UIControlStateNormal];
             for (ZZPhotoPickerAssetModel *model in self.selectedModels) {
-                if (model.onlyOneTag == self.pushSelectedIndex)
-                {
+                if (model.onlyOneTag == self.pushSelectedIndex) {
                     [self _resetRightButtonStatus:model.cellButtonNnumber];
                     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:model.cellButtonNnumber - 1 inSection:0];
                     [self.selectedCollection scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
@@ -880,12 +872,9 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             NSInteger maxTime = 10;
             
             if (imagePick.minVideoCut || imagePick.maxVideoCut) {
-                if (duration >= imagePick.minVideoCut && duration <= imagePick.maxVideoCut)
-                {
+                if (duration >= imagePick.minVideoCut && duration <= imagePick.maxVideoCut) {
                     maxTime = duration;
-                }
-                else
-                {
+                } else {
                     maxTime = 10;
                 }
             }
@@ -925,8 +914,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             [assets replaceObjectAtIndex:index withObject:model.asset];
             for (id item in photos)
             {
-                if ([item isKindOfClass:[NSNumber class]])
-                {
+                if ([item isKindOfClass:[NSNumber class]]) {
                     return;
                 }
             }
@@ -936,32 +924,27 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 if (isDegraded)
                     return; // 获取不到高清图
-                if (photo)
-                {
+                if (photo) {
                     [photos replaceObjectAtIndex:index withObject:photo];
                 }
-                if (info)
-                {
+                if (info) {
                     [infoArr replaceObjectAtIndex:index withObject:info];
                 }
                 [assets replaceObjectAtIndex:index withObject:model.asset];
-                for (id item in photos)
-                {
+                for (id item in photos) {
                     if ([item isKindOfClass:[NSNumber class]])
                     {
                         return;
                     }
                 }
                 
-                if (noShowAlert)
-                {
+                if (noShowAlert) {
                     [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:NO avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
                 }
                 
             } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
                 // 如果图片正在从iCloud同步中,提醒用户
-                if (progress < 1 && noShowAlert)
-                {
+                if (progress < 1 && noShowAlert) {
                     [vc showAlertWithTitle:[NSBundle localizedStringForKey:@"Synchronizing photos from iCloud"]];
                     noShowAlert = NO;
                     return;
@@ -1008,8 +991,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             
             for (id item in photos)
             {
-                if ([item isKindOfClass:[NSNumber class]])
-                {
+                if ([item isKindOfClass:[NSNumber class]]) {
                     return;
                 }
             }
@@ -1063,8 +1045,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             self.rightButton.titleLabel.text = nil;
             for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
-                if (model == self.previewAssetModelArr[index])
-                {
+                if (model == self.previewAssetModelArr[index]) {
                     [self.selectedModels removeObject:model];
                     [self.selectedCollection reloadData];
                     
@@ -1117,8 +1098,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             self.rightButton.titleLabel.text = nil;
             for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
-                if (model.onlyOneTag == index)
-                {
+                if (model.onlyOneTag == index) {
                     [self.selectedModels removeObject:model];
                     [self.selectedCollection reloadData];
                     // 替换掉被删除的model

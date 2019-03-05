@@ -367,9 +367,7 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees) {
                      像素点: 分量组成,指针位移,移动分量----> 4个字节 = 一个像素
                     */
                     memcpy(pixel, bitmapData + bytesPerRow * index, bytesPerRow); //给我们的像素点赋值
-                }
-                else
-                {
+                } else {
                     // 在第二个满足马赛克矩阵的坐标之前的所有的坐标
                     memcpy(bitmapData + bytesPerRow * index, pixel, bytesPerRow);
                 }

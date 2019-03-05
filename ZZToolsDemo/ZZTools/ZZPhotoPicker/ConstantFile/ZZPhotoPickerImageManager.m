@@ -124,25 +124,19 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
         for (PHFetchResult *fetchResult in allAlbums) {
             for (PHAssetCollection *collection in fetchResult) {
                 // 有可能是PHCollectionList类的的对象，过滤掉
-                if (![collection isKindOfClass:[PHAssetCollection class]])
-                {
+                if (![collection isKindOfClass:[PHAssetCollection class]]) {
                     continue;
                 }
                 PHFetchResult<PHAsset *> *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-                if (fetchResult.count < 1)
-                {
+                if (fetchResult.count < 1) {
                     continue; // 过滤无照片的相册
                 }
-                if ([collection.localizedTitle containsString:@"Deleted"] || [collection.localizedTitle isEqualToString:@"最近删除"])
-                {
+                if ([collection.localizedTitle containsString:@"Deleted"] || [collection.localizedTitle isEqualToString:@"最近删除"]) {
                     continue;
                 }
-                if ([self isCameraRollAlbum:collection.localizedTitle]) // 相机胶卷
-                {
+                if ([self isCameraRollAlbum:collection.localizedTitle]) {// 相机胶卷
                     [albumArr insertObject:[self modelWithResult:fetchResult name:collection.localizedTitle] atIndex:0];
-                }
-                else // 非相机胶卷
-                {
+                } else {// 非相机胶卷
                     [albumArr addObject:[self modelWithResult:fetchResult name:collection.localizedTitle]];
                 }
             }
@@ -419,8 +413,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
             PHImageRequestID imageRequestID = [[PHImageManager defaultManager] requestLivePhotoForAsset:asset targetSize:[UIScreen mainScreen].bounds.size contentMode:PHImageContentModeAspectFit options:livePhotoOptions resultHandler:^(PHLivePhoto *_Nullable livePhoto, NSDictionary *_Nullable info) {
                 // 排除取消，错误，低清图三种情况，即已经获取到了高清图
                  BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];  //表示已经获取了高清图
-                if (downloadFinined && livePhoto)
-                {
+                if (downloadFinined && livePhoto) {
                     if (completion)
                     {
                         completion(livePhoto, info);
@@ -604,8 +597,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
             [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
                 PHAssetCollectionChangeRequest *request = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:assetCollection];
                 [request insertAssets:asset atIndexes:[NSIndexSet indexSetWithIndex:0]];
-                if (completion)
-                {
+                if (completion) {
                     completion(error, error ? NO : YES);
                 }
             } error:&error];
@@ -621,8 +613,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
             [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
                 PHAssetCollectionChangeRequest *request = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection];
                 [request insertAssets:asset atIndexes:[NSIndexSet indexSetWithIndex:0]];
-                if (completion)
-                {
+                if (completion) {
                     completion(error, error ? NO : YES);
                 }
             } error:&error];
@@ -1029,8 +1020,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
         __block NSError *error;
         [session exportAsynchronouslyWithCompletionHandler:^(void) {
             switch (session.status) {
-                case AVAssetExportSessionStatusUnknown:
-                {
+                case AVAssetExportSessionStatusUnknown: {
                     error = [NSError ijsPhotoSDKVideoActionDescription:@"AVAssetExportSessionStatusUnknown"];
                     if (completion)
                     {
@@ -1038,8 +1028,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
                     }
                     break;
                 }
-                case AVAssetExportSessionStatusWaiting:
-                {
+                case AVAssetExportSessionStatusWaiting: {
                     error = [NSError ijsPhotoSDKVideoActionDescription:@"AVAssetExportSessionStatusWaiting"];
                     if (completion)
                     {
@@ -1047,8 +1036,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
                     }
                     break;
                 }
-                case AVAssetExportSessionStatusExporting:
-                {
+                case AVAssetExportSessionStatusExporting: {
                     error = [NSError ijsPhotoSDKVideoActionDescription:@"AVAssetExportSessionStatusExporting"];
                     if (completion)
                     {
@@ -1056,8 +1044,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
                     }
                     break;
                 }
-                case AVAssetExportSessionStatusCompleted:
-                {
+                case AVAssetExportSessionStatusCompleted: {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (completion)
                         {
@@ -1066,8 +1053,7 @@ static CGSize assetGridThumbnailSize; //预览照片的大小
                     });
                     break;
                 }
-                case AVAssetExportSessionStatusFailed:
-                {
+                case AVAssetExportSessionStatusFailed: {
                     error = [NSError ijsPhotoSDKVideoActionDescription:[NSString stringWithFormat:@"导出失败:%@", session.error]];
                     if (completion)
                     {

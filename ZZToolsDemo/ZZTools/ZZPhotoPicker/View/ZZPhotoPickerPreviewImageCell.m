@@ -109,8 +109,7 @@
             }
             assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 weakSelf.backImageView.image = photo;
-                if (!isDegraded)
-                {
+                if (!isDegraded) {
                     assetModel.imageRequestID = 0;
                 }
             }];
@@ -151,8 +150,7 @@
                 self.backImageView.image = image;
             }
             else {
-                if (assetModel.asset && assetModel.imageRequestID)
-                {
+                if (assetModel.asset && assetModel.imageRequestID) {
                     [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
                 }
                 assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {

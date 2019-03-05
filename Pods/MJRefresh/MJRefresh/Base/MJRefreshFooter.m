@@ -16,22 +16,19 @@
 
 @implementation MJRefreshFooter
 #pragma mark - 构造方法
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
-{
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock {
     MJRefreshFooter *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
-{
++ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action {
     MJRefreshFooter *cmp = [[self alloc] init];
     [cmp setRefreshingTarget:target refreshingAction:action];
     return cmp;
 }
 
 #pragma mark - 重写父类的方法
-- (void)prepare
-{
+- (void)prepare {
     [super prepare];
     
     // 设置自己的高度
@@ -41,8 +38,7 @@
     self.automaticallyHidden = NO;
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
+- (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) {
@@ -58,23 +54,19 @@
 }
 
 #pragma mark - 公共方法
-- (void)endRefreshingWithNoMoreData
-{
+- (void)endRefreshingWithNoMoreData {
     MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateNoMoreData;)
 }
 
-- (void)noticeNoMoreData
-{
+- (void)noticeNoMoreData {
     [self endRefreshingWithNoMoreData];
 }
 
-- (void)resetNoMoreData
-{
+- (void)resetNoMoreData {
     MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateIdle;)
 }
 
-- (void)setAutomaticallyHidden:(BOOL)automaticallyHidden
-{
+- (void)setAutomaticallyHidden:(BOOL)automaticallyHidden {
     _automaticallyHidden = automaticallyHidden;
 }
 @end

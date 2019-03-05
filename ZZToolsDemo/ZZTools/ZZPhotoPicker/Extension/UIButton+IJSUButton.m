@@ -12,10 +12,8 @@
 @implementation UIButton (IJSUButton)
 
 // 添加弹跳动画
-- (void)addSpringAnimation
-{
-    if (@available(iOS 9.0, *))
-    {
+- (void)addSpringAnimation {
+    if (@available(iOS 9.0, *)) {
         CASpringAnimation *spring = [CASpringAnimation animationWithKeyPath:@"transform.scale"];
         spring.toValue = @(2);
         spring.removedOnCompletion = NO;
@@ -28,12 +26,9 @@
 }
 
 // 划圆
-- (void)drawCirleWithRadius:(CGFloat)radius fillColor:(UIColor *)fillColor strokeColor:(UIColor *)strokeColor isClick:(BOOL)isClick
-{
-    for (CALayer *layer in self.layer.sublayers)
-    {
-        if (!layer.hidden)
-        {
+- (void)drawCirleWithRadius:(CGFloat)radius fillColor:(UIColor *)fillColor strokeColor:(UIColor *)strokeColor isClick:(BOOL)isClick {
+    for (CALayer *layer in self.layer.sublayers) {
+        if (!layer.hidden) {
             [layer removeFromSuperlayer];
         }
     }
@@ -45,8 +40,7 @@
     layer.fillColor = fillColor.CGColor; //填充色
     layer.allowsEdgeAntialiasing = YES;
     layer.backgroundColor = [UIColor clearColor].CGColor;
-    if (isClick)
-    {
+    if (isClick) {
         layer.strokeColor = strokeColor.CGColor; //边缘的颜色 描边
         layer.lineWidth = 2.f;                   //线宽
     }

@@ -8,8 +8,7 @@
 
 #import "MJRefreshStateHeader.h"
 
-@interface MJRefreshStateHeader()
-{
+@interface MJRefreshStateHeader() {
     /** 显示上一次刷新时间的label */
     __unsafe_unretained UILabel *_lastUpdatedTimeLabel;
     /** 显示刷新状态的label */
@@ -21,24 +20,21 @@
 
 @implementation MJRefreshStateHeader
 #pragma mark - 懒加载
-- (NSMutableDictionary *)stateTitles
-{
+- (NSMutableDictionary *)stateTitles {
     if (!_stateTitles) {
         self.stateTitles = [NSMutableDictionary dictionary];
     }
     return _stateTitles;
 }
 
-- (UILabel *)stateLabel
-{
+- (UILabel *)stateLabel {
     if (!_stateLabel) {
         [self addSubview:_stateLabel = [UILabel mj_label]];
     }
     return _stateLabel;
 }
 
-- (UILabel *)lastUpdatedTimeLabel
-{
+- (UILabel *)lastUpdatedTimeLabel {
     if (!_lastUpdatedTimeLabel) {
         [self addSubview:_lastUpdatedTimeLabel = [UILabel mj_label]];
     }
@@ -46,8 +42,7 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
-{
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state {
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
@@ -62,8 +57,7 @@
 }
 
 #pragma mark key的处理
-- (void)setLastUpdatedTimeKey:(NSString *)lastUpdatedTimeKey
-{
+- (void)setLastUpdatedTimeKey:(NSString *)lastUpdatedTimeKey {
     [super setLastUpdatedTimeKey:lastUpdatedTimeKey];
     
     // 如果label隐藏了，就不用再处理
@@ -110,8 +104,7 @@
 }
 
 #pragma mark - 覆盖父类的方法
-- (void)prepare
-{
+- (void)prepare {
     [super prepare];
     
     // 初始化间距
@@ -123,8 +116,7 @@
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
 }
 
-- (void)placeSubviews
-{
+- (void)placeSubviews {
     [super placeSubviews];
     
     if (self.stateLabel.hidden) return;
@@ -154,8 +146,7 @@
     }
 }
 
-- (void)setState:(MJRefreshState)state
-{
+- (void)setState:(MJRefreshState)state {
     MJRefreshCheckState
     
     // 设置状态文字

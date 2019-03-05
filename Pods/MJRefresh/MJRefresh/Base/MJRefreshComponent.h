@@ -36,8 +36,7 @@ typedef void (^MJRefreshComponentbeginRefreshingCompletionBlock)(void);
 typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 
 /** 刷新控件的基类 */
-@interface MJRefreshComponent : UIView
-{
+@interface MJRefreshComponent : UIView {
     /** 记录scrollView刚开始的inset */
     UIEdgeInsets _scrollViewOriginalInset;
     /** 父控件 */

@@ -103,8 +103,7 @@
             if (!appName)
                 appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleName"];
             NSString *tipText;
-            if ([NSBundle localizedStringForKey:@"Allow %@ to access your album in \"Settings -> Privacy -> Photos\""] != nil)
-            {
+            if ([NSBundle localizedStringForKey:@"Allow %@ to access your album in \"Settings -> Privacy -> Photos\""] != nil) {
                 tipText = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Allow %@ to access your album in \"Settings -> Privacy -> Photos\""], appName];
             }
             _tipLabel.text = tipText;
@@ -123,9 +122,8 @@
             [self.view addSubview:_settingBtn];
             
             _timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(_observeAuthrizationStatusChange) userInfo:nil repeats:YES];
-        }
-        else // 已经授权
-        {
+        } else {// 已经授权
+        
             [self _pushPhotoPickerVc];
         }
     }
@@ -158,8 +156,7 @@
 // 跳转界面
 - (void)_pushPhotoPickerVc {
     _didPushPhotoPickerVc = NO;
-    if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) // 直接push
-    {
+    if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) {// 直接push 
         ZZPohotPickerChooseElementVC *vc = [[ZZPohotPickerChooseElementVC alloc] init];
         self.photoVc = vc;
         vc.columnNumber = self.columnNumber; //列数

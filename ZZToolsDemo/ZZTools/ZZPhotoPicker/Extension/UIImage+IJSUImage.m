@@ -16,10 +16,8 @@
 @implementation UIImage (IJSUImage)
 
 // 在周边加一个边框为1的透明像素
-- (UIImage *)imageAntialias
-{
-    if (self)
-    {
+- (UIImage *)imageAntialias {
+    if (self) {
         CGFloat border = 1.0f;
         CGRect rect = CGRectMake(border, border, self.size.width - 2 * border, self.size.height - 2 * border);
         UIImage *img = nil;
@@ -38,8 +36,7 @@
     return nil;
 }
 // 返回一张圆形图
-+ (UIImage *)imageCircleFromOriginImage:(UIImage *)originImage
-{
++ (UIImage *)imageCircleFromOriginImage:(UIImage *)originImage {
     // 2,裁剪图片,--> 图形上下文可以进行图片裁剪生成新图
     // 1 开启图形上下文    // 上下文值/设置透明/比例因素: 当前点与像素的比例,写0自动适配
     UIGraphicsBeginImageContextWithOptions(originImage.size, NO, 0);
@@ -54,14 +51,12 @@
 }
 
 // 根据图片的名字返回需要的圆形图片
-+ (UIImage *)imageCircleFromImageName:(NSString *)imageName
-{
++ (UIImage *)imageCircleFromImageName:(NSString *)imageName {
     return [UIImage imageCircleFromOriginImage:[UIImage imageNamed:imageName]];
 }
 
 //图片旋转角度
-- (UIImage *)imageRotatedByRadians:(CGFloat)radians
-{
+- (UIImage *)imageRotatedByRadians:(CGFloat)radians {
     //定义一个执行旋转的CGAffineTransform结构体
     CGAffineTransform t = CGAffineTransformMakeRotation(radians);
     //对图片的原始区域执行旋转，获取旋转后的区域
@@ -88,8 +83,7 @@
 }
 
 // 根据全图获取一张高斯模糊图
-- (UIImage *)getImageFilterForGaussianBlur:(int)blurNumber
-{
+- (UIImage *)getImageFilterForGaussianBlur:(int)blurNumber {
     CGFloat blur = blurNumber * self.size.width / [UIScreen mainScreen].bounds.size.width;
     CIContext *context = [CIContext contextWithOptions:nil];
     CIImage *inputImage = [CIImage imageWithCGImage:self.CGImage];
@@ -100,51 +94,41 @@
     CIImage *outputImage = filter.outputImage;
     CGImageRef cgImage = [context createCGImage:outputImage fromRect:CGRectMake(0, 0, self.size.width, self.size.height)];
     UIImage *image = [UIImage imageWithCGImage:cgImage];
-    if (cgImage)
-    {
+    if (cgImage) {
         CGImageRelease(cgImage);
     }
     return image;
 }
 
-+ (CGRect)getViewBoundWith:(UIImage *)image
-{
++ (CGRect)getViewBoundWith:(UIImage *)image {
     CGSize toSize = image.size;
     CGSize size = CTImageEditPreviewFrame.size;
 
-    if (size.width >= toSize.width && size.height >= toSize.height)
-    { //宽度大于要显示的区域
+    if (size.width >= toSize.width && size.height >= toSize.height) { //宽度大于要显示的区域
         return CGRectMake(0, 0, toSize.width, toSize.height);
     }
-    else if (size.width < toSize.width && size.height >= toSize.height)
-    { //宽度小于要显示区域，,太长截取
+    else if (size.width < toSize.width && size.height >= toSize.height) { //宽度小于要显示区域，,太长截取
         CGSize resultSize = CGSizeMake(size.width, toSize.height * size.width / toSize.width);
         return CGRectMake(0, 0, resultSize.width, resultSize.height);
     }
-    else if (size.width >= toSize.width && size.height < toSize.height)
-    {
+    else if (size.width >= toSize.width && size.height < toSize.height) {
         CGSize resultSize = CGSizeMake(toSize.width * size.height / toSize.height, size.height);
         return CGRectMake(0, 0, resultSize.width, resultSize.height);
     }
-    else
-    {
+    else {
         CGFloat scaleW = toSize.width / size.width;
         CGFloat scaleH = toSize.height / size.height;
         CGSize resultSize;
-        if (scaleW > scaleH)
-        {
+        if (scaleW > scaleH) {
             resultSize = CGSizeMake(size.width, toSize.height / scaleW);
-        }
-        else
-        {
+        } else {
             resultSize = CGSizeMake(toSize.width / scaleH, size.height);
         }
         return CGRectMake(0, 0, resultSize.width, resultSize.height);
     }
 }
 
-+ (UIImage *)getImageWithOldImage:(UIImage *)image
-{
++ (UIImage *)getImageWithOldImage:(UIImage *)image {
     CGSize resultSize = image.size;
     UIGraphicsBeginImageContext(resultSize);
     [image drawInRect:CGRectMake(0, 0, resultSize.width, resultSize.height)];
@@ -154,19 +138,16 @@
     return scaledImage;
 }
 
-+ (UIImage *)getScaleImageWith:(UIImage *)image
-{
++ (UIImage *)getScaleImageWith:(UIImage *)image {
     CGSize toSize = image.size;
     CGSize size = CTImageEditPreviewFrame.size;
     size.width = size.width * [UIScreen mainScreen].scale;
     size.height = size.height * [UIScreen mainScreen].scale;
 
-    if (size.width >= toSize.width && size.height >= toSize.height)
-    { //宽度大于要显示的区域
+    if (size.width >= toSize.width && size.height >= toSize.height) { //宽度大于要显示的区域
         return image;
     }
-    else if (size.width < toSize.width && size.height >= toSize.height)
-    { //宽度小于要显示区域，,太长截取
+    else if (size.width < toSize.width && size.height >= toSize.height) { //宽度小于要显示区域，,太长截取
         CGSize resultSize = CGSizeMake(size.width, toSize.height * size.width / toSize.width);
         UIGraphicsBeginImageContext(resultSize);
         [image drawInRect:CGRectMake(0, 0, resultSize.width, resultSize.height)];
@@ -175,8 +156,7 @@
 
         return scaledImage;
     }
-    else if (size.width >= toSize.width && size.height < toSize.height)
-    {
+    else if (size.width >= toSize.width && size.height < toSize.height) {
         CGSize resultSize = CGSizeMake(toSize.width * size.height / toSize.height, size.height);
         UIGraphicsBeginImageContext(resultSize);
         [image drawInRect:CGRectMake(0, 0, resultSize.width, resultSize.height)];
@@ -185,17 +165,13 @@
 
         return scaledImage;
     }
-    else
-    {
+    else {
         CGFloat scaleW = toSize.width / size.width;
         CGFloat scaleH = toSize.height / size.height;
         CGSize resultSize;
-        if (scaleW > scaleH)
-        {
+        if (scaleW > scaleH) {
             resultSize = CGSizeMake(size.width, toSize.height / scaleW);
-        }
-        else
-        {
+        } else {
             resultSize = CGSizeMake(toSize.width / scaleH, size.height);
         }
         UIGraphicsBeginImageContext(resultSize);
@@ -207,29 +183,23 @@
     }
 }
 
-+ (UIImage *)getRotationWithImage:(UIImage *)image withOrientation:(UIDeviceOrientation)orientation
-{
++ (UIImage *)getRotationWithImage:(UIImage *)image withOrientation:(UIDeviceOrientation)orientation {
     UIImage *newImage;
 
-    switch (orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-        {
+    switch (orientation) {
+        case UIDeviceOrientationLandscapeLeft: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationRight];
             break;
         }
-        case UIDeviceOrientationLandscapeRight:
-        {
+        case UIDeviceOrientationLandscapeRight: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationRight];
             break;
         }
-        case UIDeviceOrientationPortraitUpsideDown:
-        {
+        case UIDeviceOrientationPortraitUpsideDown: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationRight];
             break;
         }
-        default:
-        {
+        default: {
             newImage = image;
             break;
         }
@@ -237,29 +207,23 @@
     return newImage;
 }
 
-+ (UIImage *)getUnrotationWithImage:(UIImage *)image withOrientation:(UIDeviceOrientation)orientation
-{
++ (UIImage *)getUnrotationWithImage:(UIImage *)image withOrientation:(UIDeviceOrientation)orientation {
     UIImage *newImage;
 
-    switch (orientation)
-    {
-        case UIDeviceOrientationLandscapeLeft:
-        {
+    switch (orientation) {
+        case UIDeviceOrientationLandscapeLeft: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationLeft];
             break;
         }
-        case UIDeviceOrientationLandscapeRight:
-        {
+        case UIDeviceOrientationLandscapeRight: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationRight];
             break;
         }
-        case UIDeviceOrientationPortraitUpsideDown:
-        {
+        case UIDeviceOrientationPortraitUpsideDown: {
             newImage = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationDown];
             break;
         }
-        default:
-        {
+        default: {
             newImage = image;
             break;
         }
@@ -267,14 +231,12 @@
     return newImage;
 }
 
-static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
-{
+static inline CGFloat IJSDegreesToRadians(CGFloat degrees) {
     return M_PI * (degrees / 180.0);
 }
 
 //  旋转图片
-+ (UIImage *)rotatedByDegrees:(CGFloat)degrees withImage:(UIImage *)image
-{
++ (UIImage *)rotatedByDegrees:(CGFloat)degrees withImage:(UIImage *)image {
     // calculate the size of the rotated view's containing box for our drawing space
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     CGAffineTransform t = CGAffineTransformMakeRotation(IJSDegreesToRadians(degrees));
@@ -300,8 +262,7 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
     return newImage;
 }
 
-+ (UIImage *)rotatedWithImage:(UIImage *)image
-{
++ (UIImage *)rotatedWithImage:(UIImage *)image {
     // calculate the size of the rotated view's containing box for our drawing space
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     CGAffineTransform t = CGAffineTransformMakeRotation(IJSDegreesToRadians(90));
@@ -327,37 +288,30 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
     return newImage;
 }
 
-+ (CGSize)getCutViewSizeWith:(CGSize)bSize
-{
++ (CGSize)getCutViewSizeWith:(CGSize)bSize {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
 
     CGFloat scaleW = screenSize.width / bSize.width;
     CGFloat scaleH = screenSize.height / bSize.height;
-    if (scaleH < scaleW && scaleH < 1)
-    {
+    if (scaleH < scaleW && scaleH < 1) {
         return CGSizeMake(bSize.width * scaleH, screenSize.height);
     }
-    else if (scaleW <= scaleH && scaleW < 1)
-    {
+    else if (scaleW <= scaleH && scaleW < 1) {
         return CGSizeMake(screenSize.width, bSize.height * scaleW);
     }
-    else
-    {
+    else {
         return bSize;
     }
 }
 
-+ (CGSize)getCutImageViewSizeWith:(CGSize)bSize cutViewSize:(CGSize)cSize
-{
++ (CGSize)getCutImageViewSizeWith:(CGSize)bSize cutViewSize:(CGSize)cSize {
     CGFloat scaleW = cSize.width / bSize.width;
     CGFloat scaleH = cSize.height / bSize.height;
 
-    if (scaleH > scaleW)
-    {
+    if (scaleH > scaleW) {
         return CGSizeMake(bSize.width * scaleH, cSize.height);
     }
-    else
-    {
+    else {
         return CGSizeMake(cSize.width, bSize.height * scaleW);
     }
 }
@@ -365,8 +319,7 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
 /*
  * 转换成马赛克,level代表一个点转为多少level*level的正方形
 */
-- (UIImage *)getMosaicImageFromOrginImageBlockLevel:(NSUInteger)level
-{
+- (UIImage *)getMosaicImageFromOrginImageBlockLevel:(NSUInteger)level {
     // self == OrginImage
     //1,获取BitmapData
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); // 创建颜色空间,需要释放内存
@@ -399,15 +352,12 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
     unsigned char pixel[bytesPerRow] = {0}; // 像素点默认是4个通道,默认值是0
     NSUInteger index, preIndex;             // 从左到右 上到下
 
-    for (NSUInteger i = 0; i < height - 1; i++) // 行
-    {
-        for (NSUInteger j = 0; j < width - 1; j++) // 列
-        {
+    for (NSUInteger i = 0; i < height - 1; i++) {// 行 
+        for (NSUInteger j = 0; j < width - 1; j++) {// 列 
             index = i * width + j;  // 获取当前像素点坐标
-            if (i % level == 0)     // 新矩形开始(马赛克矩形第一行)
-            {                       //行向所有被整除的坐标
-                if (j % level == 0) // 第一个像素点 (马赛克矩形第一行第一个像素点)
-                {                   //列向所有被整除的坐标 比如 3 * 3 (00 03 06 09.........)
+            if (i % level == 0) {     // 新矩形开始(马赛克矩形第一行)                        //行向所有被整除的坐标
+                if (j % level == 0) { // 第一个像素点 (马赛克矩形第一行第一个像素点)
+                                   //列向所有被整除的坐标 比如 3 * 3 (00 03 06 09.........)
                     /*
                      拷贝数据,例如 将马赛克矩阵第一行第一列像素点的值取出来替换后面的像素点的值
                      参数1: 目标数据----> pixels(像素点)
@@ -424,8 +374,7 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
                     memcpy(bitmapData + bytesPerRow * index, pixel, bytesPerRow);
                 }
             }
-            else
-            {                                   // 行向没有被整除的其他的坐标
+            else {                                   // 行向没有被整除的其他的坐标
                 preIndex = (i - 1) * width + j; //获取当前行上一行的坐标
                 memcpy(bitmapData + bytesPerRow * index, bitmapData + bytesPerRow * preIndex, bytesPerRow);
             }
@@ -460,46 +409,37 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
     CGContextDrawImage(outputContext, CGRectMake(0.0f, 0.0f, width, height), mosaicImageRef); //  //绘制图片
     CGImageRef resultImageRef = CGBitmapContextCreateImage(outputContext);                    // //创建图片
     UIImage *resultImage = nil;
-    if ([UIImage respondsToSelector:@selector(imageWithCGImage:scale:orientation:)])
-    {
+    if ([UIImage respondsToSelector:@selector(imageWithCGImage:scale:orientation:)]) {
         float scale = [[UIScreen mainScreen] scale];
         resultImage = [UIImage imageWithCGImage:resultImageRef scale:scale orientation:UIImageOrientationUp];
     }
-    else
-    {
+    else {
         resultImage = [UIImage imageWithCGImage:resultImageRef];
     }
     //释放
-    if (colorSpace)
-    {
+    if (colorSpace) {
         CGColorSpaceRelease(colorSpace);
     }
-    if (resultImageRef)
-    {
+    if (resultImageRef) {
         CFRelease(resultImageRef);
     }
-    if (mosaicImageRef)
-    {
+    if (mosaicImageRef) {
         CFRelease(mosaicImageRef);
     }
-    if (provider)
-    {
+    if (provider) {
         CGDataProviderRelease(provider);
     }
-    if (context)
-    {
+    if (context) {
         CGContextRelease(context);
     }
-    if (outputContext)
-    {
+    if (outputContext) {
         CGContextRelease(outputContext);
     }
     return resultImage;
 }
 
 // coreimage 获取马赛克图
-- (UIImage *)getMosaicImageFromOrginImageFromCoreImagePixelSize:(int)pixel
-{
+- (UIImage *)getMosaicImageFromOrginImageFromCoreImagePixelSize:(int)pixel {
     CIImage *ciImage = [[CIImage alloc] initWithImage:self];
     //生成马赛克
     CIFilter *filter = [CIFilter filterWithName:@"CIPixellate"];
@@ -515,8 +455,7 @@ static inline CGFloat IJSDegreesToRadians(CGFloat degrees)
     return showImage;
 }
 
-- (UIImage *)getImageWithOldImage
-{
+- (UIImage *)getImageWithOldImage {
     CGSize resultSize = self.size;
     UIGraphicsBeginImageContext(resultSize);
     [self drawInRect:CGRectMake(0, 0, resultSize.width, resultSize.height)];

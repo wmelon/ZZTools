@@ -25,17 +25,14 @@
 
 @implementation ZZPhotoPickerPreviewVideoView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         [self _createdUI];
     }
     return self;
 }
-- (void)_createdUI
-{
+- (void)_createdUI {
     self.backgroundColor = [UIColor blackColor];
 
     UIImageView *backVideoView = [UIImageView new];
@@ -51,14 +48,12 @@
     self.playButton.userInteractionEnabled = NO;
 }
 // 正常加载
-- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
-{
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel {
     _assetModel = assetModel;
     [self.playerLayer removeFromSuperlayer];
     __weak typeof(self) weakSelf = self;
     weakSelf.player = nil;
-    if (assetModel.imageRequestID)
-    {
+    if (assetModel.imageRequestID) {
         [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
     }
     assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getVideoWithAsset:assetModel.asset networkAccessAllowed:assetModel.networkAccessAllowed progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
@@ -74,8 +69,7 @@
     }];
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     self.backVideoView.frame = CGRectMake(0, 0, self.js_width, self.js_height);
     self.playButton.frame = CGRectMake(0, 0, 80, 80);
     self.playButton.center = self.backVideoView.center;

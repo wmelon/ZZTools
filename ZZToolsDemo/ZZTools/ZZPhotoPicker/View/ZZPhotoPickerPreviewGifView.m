@@ -20,18 +20,15 @@
 
 @implementation ZZPhotoPickerPreviewGifView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         [self _createdUI];
     }
     return self;
 }
 
-- (void)_createdUI
-{
+- (void)_createdUI {
     UIWebView *backWebView = [UIWebView new];
     backWebView.backgroundColor = [UIColor blackColor];
     self.backWebView = backWebView;
@@ -42,33 +39,27 @@
     
 }
 
-- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
-{
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel {
     _assetModel = assetModel;
     
-    if (assetModel.outputPath) //编辑完成的image
-    {
+    if (assetModel.outputPath) {//编辑完成的image 
         NSData *imageData = [NSData dataWithContentsOfURL:assetModel.outputPath];
         [self.backWebView loadData:imageData MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
     }
-    else
-    {
-        if (assetModel.imageRequestID)
-        {
+    else {
+        if (assetModel.imageRequestID) {
             [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
         }
         assetModel.imageRequestID = [[ZZPhotoPickerImageManager shareManager] getOriginalPhotoDataWithAsset:assetModel.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
             [self.backWebView loadData:data MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
-            if (!isDegraded)
-            {
+            if (!isDegraded) {
                 assetModel.imageRequestID = 0;
             }
         }];
     }
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     self.backWebView.frame = CGRectMake(0, 0, self.frame.size.width, self.assetModel.assetHeight);
 }
 

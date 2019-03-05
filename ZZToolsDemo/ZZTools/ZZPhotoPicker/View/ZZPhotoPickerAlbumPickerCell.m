@@ -26,19 +26,16 @@
 
 @implementation ZZPhotoPickerAlbumPickerCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
+    if (self) {
         [self _createrUI];
     }
     return self;
 }
 
 #pragma mark 私有方法
-- (void)_createrUI
-{
+- (void)_createrUI {
     // 缩略图
     UIImageView *thumbImageView = [UIImageView new];
     thumbImageView.backgroundColor = [UIColor whiteColor];
@@ -65,8 +62,7 @@
     line.backgroundColor = [UIColor colorWithRed:203 / 255.0 green:203 / 255.0 blue:203 / 255.0 alpha:1];
     [self.contentView addSubview:line];
 }
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     self.thumbImageView.frame = CGRectMake(thumbImageMarginTop, thumbImageMarginleft, thumbImageViewWidth, thumbImageViewHeight);
     NSDictionary *attrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:titleFontSize]};
     CGSize size = [self.titleLable.text sizeWithAttributes:attrs];
@@ -77,8 +73,7 @@
 
 #pragma mark se方法数据
 // 设置参数
-- (void)setModels:(ZZPhotoPickerAlbumModel *)models
-{
+- (void)setModels:(ZZPhotoPickerAlbumModel *)models {
     _models = models;
     _titleLable.text = models.name;
     _numberLabel.text = [NSString stringWithFormat:@"(%ld)", (long) models.count];
@@ -89,13 +84,11 @@
     }];
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 

@@ -46,8 +46,7 @@ case "${TARGETED_DEVICE_FAMILY:-}" in
     ;;
 esac
 
-install_resource()
-{
+install_resource() {
   if [[ "$1" = /* ]] ; then
     RESOURCE_PATH="$1"
   else

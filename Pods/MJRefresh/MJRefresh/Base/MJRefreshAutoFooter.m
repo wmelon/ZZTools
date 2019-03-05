@@ -16,8 +16,7 @@
 @implementation MJRefreshAutoFooter
 
 #pragma mark - 初始化
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
+- (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) { // 新的父控件
@@ -35,19 +34,16 @@
 }
 
 #pragma mark - 过期方法
-- (void)setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh
-{
+- (void)setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh {
     self.triggerAutomaticallyRefreshPercent = appearencePercentTriggerAutoRefresh;
 }
 
-- (CGFloat)appearencePercentTriggerAutoRefresh
-{
+- (CGFloat)appearencePercentTriggerAutoRefresh {
     return self.triggerAutomaticallyRefreshPercent;
 }
 
 #pragma mark - 实现父类的方法
-- (void)prepare
-{
+- (void)prepare {
     [super prepare];
     
     // 默认底部控件100%出现时才会自动刷新
@@ -60,16 +56,14 @@
     self.onlyRefreshPerDrag = NO;
 }
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
-{
+- (void)scrollViewContentSizeDidChange:(NSDictionary *)change {
     [super scrollViewContentSizeDidChange:change];
     
     // 设置位置
     self.mj_y = self.scrollView.mj_contentH;
 }
 
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
-{
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
     [super scrollViewContentOffsetDidChange:change];
     
     if (self.state != MJRefreshStateIdle || !self.automaticallyRefresh || self.mj_y == 0) return;
@@ -88,8 +82,7 @@
     }
 }
 
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change
-{
+- (void)scrollViewPanStateDidChange:(NSDictionary *)change {
     [super scrollViewPanStateDidChange:change];
     
     if (self.state != MJRefreshStateIdle) return;
@@ -110,8 +103,7 @@
     }
 }
 
-- (void)beginRefreshing
-{
+- (void)beginRefreshing {
     if (!self.isOneNewPan && self.isOnlyRefreshPerDrag) return;
     
     [super beginRefreshing];
@@ -119,8 +111,7 @@
     self.oneNewPan = NO;
 }
 
-- (void)setState:(MJRefreshState)state
-{
+- (void)setState:(MJRefreshState)state {
     MJRefreshCheckState
     
     if (state == MJRefreshStateRefreshing) {
@@ -134,8 +125,7 @@
     }
 }
 
-- (void)setHidden:(BOOL)hidden
-{
+- (void)setHidden:(BOOL)hidden {
     BOOL lastHidden = self.isHidden;
     
     [super setHidden:hidden];

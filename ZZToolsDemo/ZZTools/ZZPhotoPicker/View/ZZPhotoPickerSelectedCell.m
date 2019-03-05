@@ -17,11 +17,9 @@
 
 @implementation ZZPhotoPickerSelectedCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         UIImageView *backImageView = [[UIImageView alloc] init];
         backImageView.contentMode = UIViewContentModeScaleAspectFill;
         backImageView.clipsToBounds = YES;
@@ -32,25 +30,20 @@
     return self;
 }
 
-- (void)setSelectedModel:(ZZPhotoPickerAssetModel *)selectedModel
-{
+- (void)setSelectedModel:(ZZPhotoPickerAssetModel *)selectedModel {
     _selectedModel = selectedModel;
-    if (selectedModel.outputPath)
-    {
+    if (selectedModel.outputPath) {
         UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:selectedModel.outputPath]];
         _backImageView.image = image;
     }
-    else
-    {
+    else {
         __weak typeof(self) weakSelf = self;
-        if (selectedModel.imageRequestID)
-        {
+        if (selectedModel.imageRequestID) {
             [[PHImageManager defaultManager] cancelImageRequest:selectedModel.imageRequestID];  // 取消加载
         }
         selectedModel.imageRequestID =  [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:selectedModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
             weakSelf.backImageView.image = photo;
-            if (!isDegraded)
-            {
+            if (!isDegraded) {
                 selectedModel.imageRequestID = 0;
             }
         }];
@@ -59,14 +52,12 @@
     _backImageView.layer.cornerRadius = 0;
     _backImageView.clipsToBounds = YES;
 
-    if ((self.pushSelectedIndex == selectedModel.onlyOneTag && selectedModel.isFirstAppear) && !selectedModel.isPreviewButton)
-    { // 第一次
+    if ((self.pushSelectedIndex == selectedModel.onlyOneTag && selectedModel.isFirstAppear) && !selectedModel.isPreviewButton) { // 第一次
         [self _addBorderForBackImageView];
     }
 }
 /// 点亮方法
-- (void)_addBorderForBackImageView
-{
+- (void)_addBorderForBackImageView {
     _backImageView.layer.borderWidth = 2;
     _backImageView.layer.cornerRadius = 3;
     _backImageView.layer.borderColor = [[UIColor greenColor] CGColor]; //设置边框的颜色

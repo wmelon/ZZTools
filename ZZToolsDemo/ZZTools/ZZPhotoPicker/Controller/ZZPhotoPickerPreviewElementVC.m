@@ -50,43 +50,35 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 
 @implementation ZZPhotoPickerPreviewElementVC
 
-- (NSMutableArray *)imageDataArr
-{
-    if (!_imageDataArr)
-    {
+- (NSMutableArray *)imageDataArr {
+    if (!_imageDataArr) {
         _imageDataArr = [NSMutableArray array];
     }
     return _imageDataArr;
 }
-- (NSMutableArray *)mapDataArr
-{
-    if (_mapDataArr == nil)
-    {
+- (NSMutableArray *)mapDataArr {
+    if (_mapDataArr == nil) {
         _mapDataArr = [NSMutableArray array];
     }
     return _mapDataArr;
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     _toHiddToolStatus = YES;
     _isFirstAppear = YES;
     _isPlaying = NO;
     _isDoing = NO;
-    if (self.selectedModels.count > 0)
-    {
+    if (self.selectedModels.count > 0) {
         _selectedCollectionHidden = NO;
     }
-    else
-    {
+    else {
         _selectedCollectionHidden = YES;
     }
     [self _setupMapData];
     [self _createdUI];
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.touchCell stopLivePhotos];
     [self.player pause];
@@ -94,18 +86,15 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     [[ZZPhotoPickerImageManager shareManager] stopCachingImagesFormAllAssets];
 }
 #pragma mark - 设置map数据
-- (void)_setupMapData
-{
+- (void)_setupMapData {
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-    if (vc.mapImageArr == nil)
-    {
+    if (vc.mapImageArr == nil) {
         NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"JSPhotoSDK" ofType:@"bundle"];
         NSString *filePath = [bundlePath stringByAppendingString:@"/Expression"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         BOOL isDir = NO;
         BOOL existed = [fileManager fileExistsAtPath:filePath isDirectory:&isDir];
-        if ( !(isDir == YES && existed == YES) )
-        {  //不存在
+        if ( !(isDir == YES && existed == YES) ) {  //不存在
             return;
         }
 
@@ -118,34 +107,25 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 /*-----------------------------------collection-------------------------------------------------------*/
 #pragma mark collectionview delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    if (collectionView == self.showCollectioView)
-    {
-        if (self.isPreviewButton)
-        {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (collectionView == self.showCollectioView) {
+        if (self.isPreviewButton) {
             return self.previewAssetModelArr.count; //预览模式
         }
         return self.allAssetModelArr.count;
     }
-    else
-    {
+    else {
         return self.selectedModels.count;
     }
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (collectionView == self.showCollectioView)
-    {
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.showCollectioView) {
         ZZPhotoPickerPreviewImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSShowCellID forIndexPath:indexPath];
         ZZPhotoPickerAssetModel *assetModel;
-        if (self.isPreviewButton)
-        {
+        if (self.isPreviewButton) {
             assetModel = self.previewAssetModelArr[indexPath.row];
-        }
-        else
-        {
+        } else {
             assetModel = self.allAssetModelArr[indexPath.row];
         }
         assetModel.networkAccessAllowed = ((ZZPhotoPickerVC *) self.navigationController).networkAccessAllowed;
@@ -153,18 +133,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         cell.cellDelegate = self;
         return cell;
     }
-    else
-    { //选中的cell
+    else { //选中的cell
         ZZPhotoPickerSelectedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZZPhotoPickerSelectedCellID forIndexPath:indexPath];
         ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
         cell.pushSelectedIndex = self.pushSelectedIndex; //首次进来的坐标
         model.isFirstAppear = _isFirstAppear;
-        if (self.isPreviewButton)
-        {
+        if (self.isPreviewButton) {
             model.isPreviewButton = YES;
-        }
-        else
-        {
+        } else {
             model.isPreviewButton = NO;
         }
         cell.selectedModel = model;
@@ -174,48 +150,36 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     return nil;
 }
 /// cell 点击代理
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (collectionView == self.showCollectioView) // 展示的cell
-    {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.showCollectioView) {// 展示的cell
     }
-    else if (collectionView == self.selectedCollection)
-    {
+    else if (collectionView == self.selectedCollection) {
         [self _resetUpSelectedDidClick:indexPath];
     }
 }
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (collectionView == self.showCollectioView)
-    {
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.showCollectioView) {
         ZZPhotoPickerPreviewImageCell *preciewCell = (ZZPhotoPickerPreviewImageCell *) cell;
         [preciewCell.scrollView setZoomScale:1.0];
     }
 }
 #pragma mark - ZZPhotoPickerPreviewImageCellDelegate 代理方法
-- (void)didClickCellToHiddenNavigationAndToosWithCell:(ZZPhotoPickerPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus
-{
+- (void)didClickCellToHiddenNavigationAndToosWithCell:(ZZPhotoPickerPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus {
     _toHiddToolStatus = hiddenToolsStatus;
-    if (hiddenToolsStatus)
-    {
+    if (hiddenToolsStatus) {
         [self isHiddenStatus:YES];
     }
-    else
-    {
+    else {
         [self isHiddenStatus:NO];
     }
-    if (cell.assetModel.type == JSAssetModelMediaTypeVideo)   //视频单独处理
-    {
+    if (cell.assetModel.type == JSAssetModelMediaTypeVideo) {  //视频单独处理
         self.videoPlayButton = cell.videoView.playButton;
         self.player = cell.videoView.player;
-        if (hiddenToolsStatus)
-        {
+        if (hiddenToolsStatus) {
             [cell.videoView.player play];
             self.videoPlayButton.hidden = YES;
             [self startListenPlayerTimer];
-        }
-        else
-        {
+        } else {
             [cell.videoView.player pause];
             self.videoPlayButton.hidden = NO;
         }
@@ -224,8 +188,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         }];
     }
     // livePhoto
-    if (cell.assetModel.type == JSAssetModelMediaTypeLivePhoto)
-    {
+    if (cell.assetModel.type == JSAssetModelMediaTypeLivePhoto) {
         [cell stopLivePhotos];
         [cell playLivePhotos];
         self.touchCell = cell;
@@ -241,38 +204,29 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 
 #pragma mark - 滚动结束
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    if (scrollView == self.showCollectioView)
-    {
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (scrollView == self.showCollectioView) {
         // 计算当前的下标值
         NSInteger index = targetContentOffset->x / JSScreenWidth;
         ZZPhotoPickerAssetModel *model = self.allAssetModelArr[index];
-        if (model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio)
-        {
+        if (model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) {
             self.rightButton.hidden = YES;
             self.originalButton.hidden = YES;
-        }
-        else
-        {
+        } else {
             self.originalButton.hidden = NO;
             self.rightButton.hidden = NO;
         }
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
-        {
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr) {
             [self _cleanAssetCellStatus:allCell];
         }
-        if (self.isPreviewButton) // 如果是预览点击进来的
-        {
+        if (self.isPreviewButton) {// 如果是预览点击进来的
             [self _resetRightButtonStatus:self.previewAssetModelArr[index].cellButtonNnumber];
-            if (self.previewAssetModelArr[index].cellButtonNnumber == 0)
-            {
+            if (self.previewAssetModelArr[index].cellButtonNnumber == 0) {
                 _rightButton.titleLabel.text = nil;
                 [self _cleanRightButtonStatus];
             }
-            for (int i = 0; i < self.selectedModels.count; i++)
-            {
+            for (int i = 0; i < self.selectedModels.count; i++) {
                 if (self.selectedModels[i] == self.previewAssetModelArr[index])
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -281,14 +235,12 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                     [self _resetAssetCellStatus:cell];
                 }
             }
-        }
-        else
-        { //正常点击进来
+        } else { //正常点击进来
             
-            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
-            {
-                if (selectModel.onlyOneTag == index) //对应
-                {
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels) {
+            
+                if (selectModel.onlyOneTag == index) { //对应
+                
                     [self _resetRightButtonStatus:selectModel.cellButtonNnumber];
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
                     [self.selectedCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
@@ -305,20 +257,16 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         }
     }
-    else if (scrollView == self.selectedCollection)
-    {
+    else if (scrollView == self.selectedCollection) {
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
-        {
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr) {
             [self _cleanAssetCellStatus:allCell];
         }
         
         NSInteger index = self.showCollectioView.contentOffset.x / JSScreenWidth;
         
-        if (self.isPreviewButton)
-        {
-            for (int i = 0; i < self.selectedModels.count; i++)
-            {
+        if (self.isPreviewButton) {
+            for (int i = 0; i < self.selectedModels.count; i++) {
                 if (self.selectedModels[i] == self.previewAssetModelArr[index])
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -327,11 +275,8 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                     break;
                 }
             }
-        }
-        else
-        {
-            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
-            {
+        } else {
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels) {
                 if (selectModel.onlyOneTag == index) //对应
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
@@ -347,22 +292,17 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 
 // 自动滚动 ---导航条添加按钮执行 处理底部选中数组逻辑cell
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    if (scrollView == self.selectedCollection)
-    {
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    if (scrollView == self.selectedCollection) {
         NSArray *cellArr = [self.selectedCollection visibleCells];
-        for (ZZPhotoPickerSelectedCell *allCell in cellArr)
-        {
+        for (ZZPhotoPickerSelectedCell *allCell in cellArr) {
             [self _cleanAssetCellStatus:allCell];
         }
         // 其他开发者提出的建议修复 多图预览选中滑动上下图标不对应问题
         NSInteger index = self.showCollectioView.contentOffset.x / JSScreenWidth + 0.5;
         
-        if (self.isPreviewButton)
-        {
-            for (int i = 0; i < self.selectedModels.count; i++)
-            {
+        if (self.isPreviewButton) {
+            for (int i = 0; i < self.selectedModels.count; i++) {
                 if (self.selectedModels[i] == self.previewAssetModelArr[index])
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -371,11 +311,8 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                     break;
                 }
             }
-        }
-        else
-        {
-            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels)
-            {
+        } else {
+            for (ZZPhotoPickerAssetModel *selectModel in self.selectedModels) {
                 if (selectModel.onlyOneTag == index) //对应
                 {
                     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:selectModel.cellButtonNnumber - 1 inSection:0];
@@ -388,16 +325,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     }
 }
 // 滚动执行
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.touchCell stopLivePhotos];
     [self.player pause];
     _toHiddToolStatus = YES;
 }
 /*-----------------------------------UI-------------------------------------------------------*/
 #pragma mark - UI
-- (void)_createdUI
-{
+- (void)_createdUI {
     // 不让内容下移动
     self.automaticallyAdjustsScrollViewInsets = NO;
     //中间的collectionview
@@ -432,8 +367,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     selectedLayout.minimumLineSpacing = 0;
     selectedLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     UICollectionView *selectedCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, JSScreenHeight - 124, JSScreenWidth, 80) collectionViewLayout:selectedLayout];
-    if (IJSGiPhoneX)
-    {
+    if (IJSGiPhoneX) {
         selectedCollection.frame = CGRectMake(0, JSScreenHeight - 124 - IJSGTabbarSafeBottomMargin, JSScreenWidth, 80);
     }
     self.selectedCollection = selectedCollection;
@@ -447,12 +381,10 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     
     [self.selectedCollection registerClass:[ZZPhotoPickerSelectedCell class] forCellWithReuseIdentifier:ZZPhotoPickerSelectedCellID];
     
-    if (_selectedCollectionHidden)
-    {
+    if (_selectedCollectionHidden) {
         self.selectedCollection.hidden = YES;
     }
-    else
-    {
+    else {
         self.selectedCollection.hidden = NO;
     }
     
@@ -462,8 +394,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     [self.view addSubview:toolBarView];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.toolBarView = toolBarView;
-    if (IJSGiPhoneX)
-    {
+    if (IJSGiPhoneX) {
         toolBarView.frame = CGRectMake(0, JSScreenHeight - TabbarHeight - IJSGTabbarSafeBottomMargin, JSScreenWidth, TabbarHeight);
     }
     
@@ -479,8 +410,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 //    [toolBarView addSubview:editButton];
 //    self.editButton = editButton;
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-    if (vc.isHiddenEdit)
-    {
+    if (vc.isHiddenEdit) {
         self.editButton.hidden = YES;
     }
     // 完成
@@ -511,24 +441,19 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     originalButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     originalButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
     originalButton.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-    if (!self.isPreviewButton)
-    {
+    if (!self.isPreviewButton) {
         ZZPhotoPickerAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
-        if (model.type == JSAssetModelMediaTypeVideo || model.type== JSAssetModelMediaTypeAudio)
-        {
+        if (model.type == JSAssetModelMediaTypeVideo || model.type== JSAssetModelMediaTypeAudio) {
             originalButton.hidden = YES;
         }
     }
-    if (vc.hiddenOriginalButton)
-    {
+    if (vc.hiddenOriginalButton) {
         originalButton.hidden = YES;
     }
-    if (vc.allowPickingOriginalPhoto)
-    {
+    if (vc.allowPickingOriginalPhoto) {
         originalButton.selected = YES;
     }
-    else
-    {
+    else {
          originalButton.selected = NO;
     }
     // 左按钮
@@ -547,18 +472,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     
     [rightButton addTarget:self action:@selector(_selectImageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (self.isPreviewButton)
-    {
+    if (self.isPreviewButton) {
         [rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"preview_number_icon@2x" imageType:@"png"] forState:UIControlStateNormal];
         [rightButton setTitle:@"1" forState:UIControlStateNormal];
     }
-    else
-    { // 正常进来
-        if (self.selectedModels.count > 0)
-        {
+    else { // 正常进来
+        if (self.selectedModels.count > 0) {
             [rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"photo_def_previewVc@2x" imageType:@"png"] forState:UIControlStateNormal];
-            for (ZZPhotoPickerAssetModel *model in self.selectedModels)
-            {
+            for (ZZPhotoPickerAssetModel *model in self.selectedModels) {
                 if (model.onlyOneTag == self.pushSelectedIndex)
                 {
                     [self _resetRightButtonStatus:model.cellButtonNnumber];
@@ -573,17 +494,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     [rightView addSubview:rightButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];
     ZZPhotoPickerAssetModel *model = self.allAssetModelArr[self.pushSelectedIndex];
-    if (model.type == JSAssetModelMediaTypeVideo)
-    {
+    if (model.type == JSAssetModelMediaTypeVideo) {
         self.rightButton.hidden = YES;
     }
-    else
-    {
+    else {
         self.rightButton.hidden = NO;
     }
     
-    if (_isFirstAppear && self.isPreviewButton)
-    {
+    if (_isFirstAppear && self.isPreviewButton) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [self _resetUpSelectedDidClick:indexPath];
@@ -594,15 +512,11 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 /*-----------------------------------点击事件-------------------------------------------------------*/
 #pragma mark 点击事件
 // 返回
-- (void)callBackButtonAction
-{
-    for (UIViewController *viewc in self.navigationController.childViewControllers)
-    {
-        if ([viewc isKindOfClass:[ZZPohotPickerChooseElementVC class]])
-        {
+- (void)callBackButtonAction {
+    for (UIViewController *viewc in self.navigationController.childViewControllers) {
+        if ([viewc isKindOfClass:[ZZPohotPickerChooseElementVC class]]) {
             ZZPohotPickerChooseElementVC *vc = (ZZPohotPickerChooseElementVC *) viewc;
-            if (vc.callBack)
-            {
+            if (vc.callBack) {
                 vc.callBack(self.selectedModels, self.allAssetModelArr);
             }
         }
@@ -611,47 +525,39 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 
 #pragma mark 编辑按钮
-- (void)_editPhotoAction:(UIButton *)button
-{
+- (void)_editPhotoAction:(UIButton *)button {
     __weak typeof(self) weakSelf = self;
     __block ZZPhotoPickerAssetModel *model;
     __block NSUInteger index = 0;
     model = [self _selectedCurrentModel:model]; //判断选中当前的模型数据
     // 先处理不支持的类型
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-    if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo)
-    {
+    if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo) {
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
         [vc showAlertWithTitle:title];
         return;
     }
-    if ((model.type != JSAssetModelMediaTypeVideo || model.type != JSAssetModelMediaTypeAudio) && !vc.allowPickingImage)
-    {
+    if ((model.type != JSAssetModelMediaTypeVideo || model.type != JSAssetModelMediaTypeAudio) && !vc.allowPickingImage) {
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of image types"]];
         [vc showAlertWithTitle:title];
         return;
     }
 
-    if (model.type != JSAssetModelMediaTypeVideo)
-    {
+    if (model.type != JSAssetModelMediaTypeVideo) {
         // 判断数据
-        if (_rightButton.titleLabel.text == nil)
-        {
+        if (_rightButton.titleLabel.text == nil) {
             [self _selectImageButtonAction:nil]; // 选择添加
         }
         [self _selectedCurrentModel:model]; //判断选中当前的模型数据
         [self.selectedModels enumerateObjectsUsingBlock:^(ZZPhotoPickerAssetModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-            if (obj.onlyOneTag == model.onlyOneTag)
-            {
+            if (obj.onlyOneTag == model.onlyOneTag) {
                 model = obj; // 统一内存地址
                 index = idx;
             }
         }];
     }
-    if (model.type == JSAssetModelMediaTypeVideo)
-    {
-        if (self.isDoing)
-        {
+    if (model.type == JSAssetModelMediaTypeVideo) {
+        if (self.isDoing) {
             return;
         }
         self.isDoing = YES;
@@ -661,8 +567,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         [[ZZPhotoPickerImageManager shareManager] getVideoOutputPathWithAsset:model.asset completion:^(NSURL *outputPath, NSError *error, IJSImageState state) {
             [lodingView removeFromSuperview];
             weakSelf.isDoing = NO;
-            if (error)
-            {
+            if (error) {
                 UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"警告" message:[NSString stringWithFormat:@"%@", error] preferredStyle:(UIAlertControllerStyleActionSheet)];
                 UIAlertAction *cancle = [UIAlertAction actionWithTitle:[NSBundle localizedStringForKey:@"OK"] style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *_Nonnull action) {
                     [alertView dismissViewControllerAnimated:YES completion:nil];
@@ -670,8 +575,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                 [alertView addAction:cancle];
                 [weakSelf presentViewController:alertView animated:YES completion:nil];
             }
-            else
-            {
+            else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     AVAsset *asset = [AVAsset assetWithURL:outputPath];
                     Float64 duration = CMTimeGetSeconds([asset duration]);
@@ -760,12 +664,10 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         }];
     }
-    else
-    {
+    else {
         NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:index inSection:0];
         // 执行点击操作
-        if (model.outputPath) // 上次已经编辑过,直接编辑编辑过的图片
-        {
+        if (model.outputPath) {// 上次已经编辑过,直接编辑编辑过的图片
 //            UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
 //            ZZPhotoPickerImageManagerController *managerVc = [[ZZPhotoPickerImageManagerController alloc] initWithEditImage:image];
 //
@@ -792,19 +694,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 //
 //            managerVc.mapImageArr = [(ZZPhotoPickerVC *) weakSelf.navigationController mapImageArr];
 //            [weakSelf presentViewController:managerVc animated:YES completion:nil];
-        }
-        else
-        {
+        } else {
             ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
-            if (vc.allowPickingOriginalPhoto)  // 允许原图
-            {
+            if (vc.allowPickingOriginalPhoto) { // 允许原图
                 [[ZZPhotoPickerImageManager shareManager]getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
                     UIImage *photo =[UIImage imageWithData:data];
                     [weakSelf _pushImageControllerFromModel:model photo:photo isDegraded:isDegraded currentIndex:currentIndex];
                 }];
-            }
-            else   // 非原图
-            {
+            } else {   // 非原图
                 [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                     [weakSelf _pushImageControllerFromModel:model photo:photo isDegraded:isDegraded currentIndex:currentIndex];
                 }];
@@ -813,18 +710,15 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     }
 }
 /// 跳转的私有方法
-- (void)_pushImageControllerFromModel:( ZZPhotoPickerAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex
-{
+- (void)_pushImageControllerFromModel:( ZZPhotoPickerAssetModel *)model photo:(UIImage *)photo isDegraded:(BOOL)isDegraded currentIndex:(NSIndexPath *)currentIndex {
     //__weak typeof (self) weakSelf = self;
-    if (isDegraded)
-    {
+    if (isDegraded) {
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
         NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not get a high definition diagram"]];
         [vc showAlertWithTitle:title];
         return; // 获取不到高清图
     }
-    if (photo)
-    {
+    if (photo) {
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            ZZPhotoPickerImageManagerController *managerVc = [[ZZPhotoPickerImageManagerController alloc] initWithEditImage:photo];
 //            [managerVc loadImageOnCompleteResult:^(UIImage *image, NSURL *outputPath, NSError *error) {
@@ -843,59 +737,49 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 
 #pragma mark - 执行刷新选择UI的操作
 /// 执行刷新选择UI的操作
-- (void)_resetUpSelectedDidClick:(NSIndexPath *)indexPath
-{
+- (void)_resetUpSelectedDidClick:(NSIndexPath *)indexPath {
     _isFirstAppear = NO;
     NSArray *cellArr = [self.selectedCollection visibleCells];
-    for (ZZPhotoPickerSelectedCell *allCell in cellArr)
-    {
+    for (ZZPhotoPickerSelectedCell *allCell in cellArr) {
         [self _cleanAssetCellStatus:allCell];
     }
     self.didClinkIndex = indexPath;
     ZZPhotoPickerSelectedCell *cell = (ZZPhotoPickerSelectedCell *) [self.selectedCollection cellForItemAtIndexPath:indexPath];
     ZZPhotoPickerAssetModel *model = self.selectedModels[indexPath.row];
-    if (self.isPreviewButton)
-    {
-        for (int i = 0; i < self.previewAssetModelArr.count; i++)
-        {
-            if (self.selectedModels[indexPath.row] == self.previewAssetModelArr[i])
-            {
+    if (self.isPreviewButton) {
+        for (int i = 0; i < self.previewAssetModelArr.count; i++) {
+            if (self.selectedModels[indexPath.row] == self.previewAssetModelArr[i]) {
                 self.showCollectioView.contentOffset = CGPointMake(JSScreenWidth * i, 0);
                 break;
             }
         }
     }
-    else
-    {
+    else {
         self.showCollectioView.contentOffset = CGPointMake(JSScreenWidth * model.onlyOneTag, 0);
     }
     [self _resetAssetCellStatus:cell];                      //加边框
     [self _resetRightButtonStatus:model.cellButtonNnumber]; // 刷新导航条
 }
 /// 选则需要的模型
-- (ZZPhotoPickerAssetModel *)_selectedCurrentModel:(ZZPhotoPickerAssetModel *)model
-{
+- (ZZPhotoPickerAssetModel *)_selectedCurrentModel:(ZZPhotoPickerAssetModel *)model {
     NSIndexPath *firstIndexPath = [[self.showCollectioView indexPathsForVisibleItems] firstObject];
-    if (self.isPreviewButton) //预览模式下
-    {                         //获取的是不变的数据
+    if (self.isPreviewButton) {//预览模式下
+        //获取的是不变的数据
         model = self.previewAssetModelArr[firstIndexPath.row];
     }
-    else
-    {
+    else {
         model = self.allAssetModelArr[firstIndexPath.row]; // 正常模式
     }
     return model;
 }
 #pragma mark -----------------------允许选择原图------------------------------
-- (void)_selectedOriginImage:(UIButton *)button
-{
+- (void)_selectedOriginImage:(UIButton *)button {
    ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     vc.allowPickingOriginalPhoto = !button.selected;
     button.selected = !button.selected;
 }
 #pragma mark 完成选择
-- (void)_finishSelectImageDisMiss
-{
+- (void)_finishSelectImageDisMiss {
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     vc.selectedModels = self.selectedModels;
     
@@ -903,8 +787,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     NSMutableArray *assets = [NSMutableArray array];
     NSMutableArray *infoArr = [NSMutableArray array];
     NSMutableArray *avPlayers = [NSMutableArray array];
-    for (NSInteger i = 0; i < vc.selectedModels.count; i++)
-    {
+    for (NSInteger i = 0; i < vc.selectedModels.count; i++) {
         [photos addObject:@1];
         [assets addObject:@1];
         [infoArr addObject:@1];
@@ -913,8 +796,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     // 解析数据并返回
     BOOL noShowAlert = YES;
     
-    if (vc.selectedModels.count == 0) // 用户没有选中图片或者视频
-    {
+    if (vc.selectedModels.count == 0) {// 用户没有选中图片或者视频
         [photos addObject:@1];
         [assets addObject:@1];
         [infoArr addObject:@1];
@@ -925,64 +807,49 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         JSAssetModelSourceType type = model.type;
         // 先处理不支持的类型
         ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
-        if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo)
-        {
+        if ((model.type == JSAssetModelMediaTypeVideo || model.type == JSAssetModelMediaTypeAudio) && !vc.allowPickingVideo) {
             NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of video types"]];
             [vc showAlertWithTitle:title];
             return;
         }
-        if ((model.type != JSAssetModelMediaTypeVideo || model.type != JSAssetModelMediaTypeAudio) && !vc.allowPickingImage)
-        {
+        if ((model.type != JSAssetModelMediaTypeVideo || model.type != JSAssetModelMediaTypeAudio) && !vc.allowPickingImage) {
             NSString *title = [NSString stringWithFormat:@"%@", [NSBundle localizedStringForKey:@"Do not support selection of image types"]];
             [vc showAlertWithTitle:title];
             return;
         }
-        if (type == JSAssetModelMediaTypeVideo) //当前显示的是视频资源
-        {
+        if (type == JSAssetModelMediaTypeVideo) {//当前显示的是视频资源 
             [self _getBackThumbnailDataPhotos:photos assets:assets infoArr:infoArr avPlayers:avPlayers model:model index:0 networkAccessAllowed:NO noAlert:noShowAlert vc:vc];
-        }
-        else
-        {
+        } else {
             // 不满足最小要求就警告
-            if (vc.minImagesCount && vc.selectedModels.count < vc.minImagesCount)
-            {
+            if (vc.minImagesCount && vc.selectedModels.count < vc.minImagesCount) {
                 NSString *title = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Select a minimum of %zd photos"], vc.minImagesCount];
                 [vc showAlertWithTitle:title];
                 return;
             }
             // 当前显示的是非视频资源
-            if (vc.allowPickingOriginalPhoto) // 原图
-            {
+            if (vc.allowPickingOriginalPhoto) {// 原图 
                 [self _getBackOriginalDataPhotos:photos assets:assets infoArr:infoArr avPlayers:nil model:model index:0];
             }
-            else
-            { //缩略图
+            else { //缩略图
                 
                 [self _getBackThumbnailDataPhotos:photos assets:assets infoArr:infoArr avPlayers:nil model:model index:0 networkAccessAllowed:YES noAlert:noShowAlert vc:vc];
             }
         }
     }
-    else
-    { // 已经选中了多图
+    else { // 已经选中了多图
         // 不满足最小要求就警告
-        if (vc.minImagesCount && vc.selectedModels.count < vc.minImagesCount)
-        {
+        if (vc.minImagesCount && vc.selectedModels.count < vc.minImagesCount) {
             NSString *title = [NSString stringWithFormat:[NSBundle localizedStringForKey:@"Select a minimum of %zd photos"], vc.minImagesCount];
             [vc showAlertWithTitle:title];
             return;
         }
-        if (vc.allowPickingOriginalPhoto) // 获取本地原图
-        {
-            for (int i = 0; i < vc.selectedModels.count; i++)
-            {
+        if (vc.allowPickingOriginalPhoto) {// 获取本地原图
+            for (int i = 0; i < vc.selectedModels.count; i++) {
                 ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
                 [self _getBackOriginalDataPhotos:photos assets:assets infoArr:infoArr avPlayers:nil model:model index:i];
             }
-        }
-        else
-        { //缩略图,默认是828
-            for (int i = 0; i < vc.selectedModels.count; i++)
-            {
+        } else { //缩略图,默认是828
+            for (int i = 0; i < vc.selectedModels.count; i++) {
                 ZZPhotoPickerAssetModel *model = vc.selectedModels[i];
                 [self _getBackThumbnailDataPhotos:photos assets:assets infoArr:infoArr avPlayers:avPlayers model:model index:i networkAccessAllowed:YES noAlert:noShowAlert vc:vc];
             }
@@ -998,14 +865,11 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                               index:(NSInteger)index
                networkAccessAllowed:(BOOL)networkAccessAllowed
                             noAlert:(BOOL)noAlert
-                                 vc:(ZZPhotoPickerVC *)vc
-{
+                                 vc:(ZZPhotoPickerVC *)vc {
     __block BOOL noShowAlert = noAlert;
     
-    if (model.type == JSAssetModelMediaTypeVideo) //导出视频
-    {
-        if (_isDoing)
-        {
+    if (model.type == JSAssetModelMediaTypeVideo) {//导出视频
+        if (_isDoing) {
             return;
         }
         _isDoing = YES;
@@ -1015,8 +879,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             Float64 duration = CMTimeGetSeconds([asset duration]);
             NSInteger maxTime = 10;
             
-            if (imagePick.minVideoCut || imagePick.maxVideoCut)
-            {
+            if (imagePick.minVideoCut || imagePick.maxVideoCut) {
                 if (duration >= imagePick.minVideoCut && duration <= imagePick.maxVideoCut)
                 {
                     maxTime = duration;
@@ -1026,8 +889,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                     maxTime = 10;
                 }
             }
-            else
-            { // 没有设置就导出原视频
+            else { // 没有设置就导出原视频
                 maxTime = duration;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -1056,10 +918,8 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             
         }];
     }
-    else
-    {                    // 图片
-        if (model.outputPath) // 裁剪过了
-        {
+    else {                    // 图片
+        if (model.outputPath) {// 裁剪过了
             UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
             [photos replaceObjectAtIndex:index withObject:image];
             [assets replaceObjectAtIndex:index withObject:model.asset];
@@ -1071,9 +931,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                 }
             }
             [self _didGetAllPhotos:photos asset:assets infos:nil isSelectOriginalPhoto:NO avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
-        }
-        else
-        { // 没有裁剪过
+        } else { // 没有裁剪过
             
             [[ZZPhotoPickerImageManager shareManager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 if (isDegraded)
@@ -1118,15 +976,12 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                            infoArr:(NSMutableArray *)infoArr
                          avPlayers:(NSMutableArray *)avPlayers
                              model:(ZZPhotoPickerAssetModel *)model
-                             index:(NSInteger)index
-{
-    if (model.outputPath) //裁剪过了
-    {
+                             index:(NSInteger)index {
+    if (model.outputPath) {//裁剪过了 
         UIImage *image =[UIImage imageWithData:[NSData dataWithContentsOfURL:model.outputPath]];
         [photos replaceObjectAtIndex:index withObject:image];
         [assets replaceObjectAtIndex:index withObject:model.asset];
-        for (id item in photos)
-        {
+        for (id item in photos) {
             if ([item isKindOfClass:[NSNumber class]])
             {
                 return;
@@ -1134,8 +989,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
         }
         [self _didGetAllPhotos:photos asset:assets infos:infoArr isSelectOriginalPhoto:YES avPlayers:nil sourceType:ZZPhotoPickerSourceTypeImage];
     }
-    else
-    {
+    else {
         [[ZZPhotoPickerImageManager shareManager] getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
             if (isDegraded)
             {
@@ -1166,8 +1020,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 
 //设置返回的数据
-- (void)_didGetAllPhotos:(NSArray *)photos asset:(NSArray *)asset infos:(NSArray *)infos isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto avPlayers:(NSArray *)avPlayers sourceType:(ZZPhotoPickerSourceType)sourceType
-{
+- (void)_didGetAllPhotos:(NSArray *)photos asset:(NSArray *)asset infos:(NSArray *)infos isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto avPlayers:(NSArray *)avPlayers sourceType:(ZZPhotoPickerSourceType)sourceType {
     _isDoing = NO;
     __weak typeof (self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -1181,15 +1034,13 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
     });
 }
 #pragma mark - 导航条按钮选图片
-- (void)_selectImageButtonAction:(UIButton *)button
-{
+- (void)_selectImageButtonAction:(UIButton *)button {
     [button addSpringAnimation];
     _isFirstAppear = NO;
     NSInteger index = self.showCollectioView.contentOffset.x / JSScreenWidth;
-    if (self.isPreviewButton)
-    {                                                //1, 处理预览模式下的逻辑
-        if (self.rightButton.titleLabel.text == nil) //增加
-        {
+    if (self.isPreviewButton) {
+        //1, 处理预览模式下的逻辑
+        if (self.rightButton.titleLabel.text == nil) {//增加
             ZZPhotoPickerAssetModel *model = self.previewAssetModelArr[index];
             [self.selectedModels addObject:model];
             [self.selectedCollection reloadData];
@@ -1208,9 +1059,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             [self.selectedCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
             
             [self _resetRightButtonStatus:self.selectedModels.count];
-        }
-        else
-        { //删除
+        } else { //删除
             self.rightButton.titleLabel.text = nil;
             for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
@@ -1238,10 +1087,8 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         }
     }
-    else // 2, 正常点击跳转的逻辑处理
-    {
-        if (_rightButton.titleLabel.text == nil) //没有选中 选中添加
-        {
+    else {// 2, 正常点击跳转的逻辑处理
+        if (_rightButton.titleLabel.text == nil) { //没有选中 选中添加
             if (self.selectedModels.count < ((ZZPhotoPickerVC *) self.navigationController).maxImagesCount) //还没有超标
             {
                 ZZPhotoPickerAssetModel *model = self.allAssetModelArr[index];
@@ -1266,9 +1113,7 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
                 NSString *alertTitle = [NSString stringWithFormat:@"%@,%@", countTitle, editTitle];
                 [((ZZPhotoPickerVC *) self.navigationController) showAlertWithTitle:alertTitle];
             }
-        }
-        else
-        { //删除
+        } else { //删除
             self.rightButton.titleLabel.text = nil;
             for (ZZPhotoPickerAssetModel *model in self.selectedModels)
             {
@@ -1293,12 +1138,10 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
             }
         }
     }
-    if (self.selectedModels.count > 0)
-    {
+    if (self.selectedModels.count > 0) {
         self.selectedCollection.hidden = NO;
     }
-    else
-    {
+    else {
         self.selectedCollection.hidden = YES;
     }
     [self _resetToorBarStatus];
@@ -1307,70 +1150,57 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 /*-----------------------------------私有方法-------------------------------------------------------*/
 #pragma mark 私有方法
 // 根据cell选中的数量重置toorbar的状态
-- (void)_resetToorBarStatus
-{
+- (void)_resetToorBarStatus {
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     vc.selectedModels = self.selectedModels;
-    if (vc.selectedModels.count > 0) // 有数据
-    {
+    if (vc.selectedModels.count > 0) {// 有数据 
         [_finishButton setTitle:[NSString stringWithFormat:@"%@(%lu)", [NSBundle localizedStringForKey:@"Done"], (unsigned long) vc.selectedModels.count] forState:UIControlStateNormal];
         self.finishButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_editButton setTitleColor:[IJSFColor colorWithR:232 G:236 B:239 alpha:1] forState:UIControlStateNormal];
     }
-    else
-    {
+    else {
         [_finishButton setTitle:[NSBundle localizedStringForKey:@"Done"] forState:UIControlStateNormal];
         self.finishButton.titleLabel.font = [UIFont systemFontOfSize:17];
     }
 }
 
 // 清楚cell上的状态
-- (void)_cleanAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell
-{
+- (void)_cleanAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell {
     cell.backImageView.layer.borderWidth = 0;
     cell.backImageView.layer.cornerRadius = 0;
     cell.backImageView.clipsToBounds = YES;
 }
 // 添加边框
-- (void)_resetAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell
-{
+- (void)_resetAssetCellStatus:(ZZPhotoPickerSelectedCell *)cell {
     cell.backImageView.layer.borderWidth = 2;
     cell.backImageView.layer.cornerRadius = 3;
     cell.backImageView.layer.borderColor = [[UIColor greenColor] CGColor];
     cell.backImageView.clipsToBounds = YES;
 }
 // 是否隐藏状态栏
-- (void)isHiddenStatus:(BOOL)state
-{
-    if (state)
-    {
+- (void)isHiddenStatus:(BOOL)state {
+    if (state) {
         self.toolBarView.hidden = YES;
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         self.selectedCollection.hidden = YES;
     }
-    else
-    {
+    else {
         self.toolBarView.hidden = NO;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-        if (self.selectedModels.count == 0)
-        {
+        if (self.selectedModels.count == 0) {
             self.selectedCollection.hidden = YES;
-        }
-        else
-        {
+        } else {
             self.selectedCollection.hidden = NO;
         }
     }
 }
 // 清空导航条button的数据
-- (void)_cleanRightButtonStatus
-{
+- (void)_cleanRightButtonStatus {
     [self.rightButton setTitle:nil forState:UIControlStateNormal];
     [self.rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"photo_def_previewVc@2x" imageType:@"png"] forState:UIControlStateNormal];
 }
 // 重置导航条button的状态
-- (void)_resetRightButtonStatus:(NSInteger)number
-{
+- (void)_resetRightButtonStatus:(NSInteger)number {
     [self.rightButton setTitle:[NSString stringWithFormat:@"%ld", (long) number] forState:UIControlStateNormal];
     [self.rightButton setBackgroundImage:[IJSFImageGet loadImageWithBundle:@"JSPhotoSDK" subFile:nil grandson:nil imageName:@"preview_number_icon@2x" imageType:@"png"] forState:UIControlStateNormal];
 }
@@ -1378,17 +1208,14 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 /*-----------------------------------3D Touch-------------------------------------------------------*/
 #pragma mark - UIViewControllerPreviewingDelegate method
 //peek(预览模式)
-- (nullable UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
-{
+- (nullable UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
     [self.touchCell stopLivePhotos];
     ZZPhotoPickerPreviewImageCell *cell = (ZZPhotoPickerPreviewImageCell *) [self.showCollectioView visibleCells].firstObject;
-    if (cell.assetModel.type == JSAssetModelMediaTypeLivePhoto)
-    {
+    if (cell.assetModel.type == JSAssetModelMediaTypeLivePhoto) {
         self.touchCell = cell;
         [cell playLivePhotos];
     }
-    if (iOS9Later)
-    {
+    if (iOS9Later) {
 //        NSIndexPath *indexPath = [self.showCollectioView indexPathForCell:(ZZPhotoPickerPreviewImageCell *) [previewingContext sourceView]];
 //        IJS3DTouchController *touchVC = [[IJS3DTouchController alloc] init];
 //        touchVC.model = self.allAssetModelArr[indexPath.row];
@@ -1402,20 +1229,16 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 }
 
 //pop（继续按压进入）
-- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
-{
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
     //    IJS3DTouchController *childVC = [[IJS3DTouchController alloc] init];
     //    [self.navigationController pushViewController:childVC animated:YES];
     //     [self showViewController:viewControllerToCommit sender:self];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context
-{
-    if ([keyPath isEqual:@"state"])
-    {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
+    if ([keyPath isEqual:@"state"]) {
         NSInteger state = [change[NSKeyValueChangeNewKey] integerValue];
-        switch (state)
-        {
+        switch (state) {
             case 1:
             case 3:
             case 5:
@@ -1436,34 +1259,28 @@ static NSString *const ZZPhotoPickerSelectedCellID = @"ZZPhotoPickerSelectedCell
 
 #pragma mark - 播放监听器
 #pragma mark 开始定时器
-- (void)startListenPlayerTimer
-{
+- (void)startListenPlayerTimer {
     [self removeListenPlayerTimer];
     self.listenPlayerTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(listenPlayerTimerResetTimer) userInfo:nil repeats:YES];
 }
 #pragma mark 清空定时器
-- (void)removeListenPlayerTimer
-{
-    if (self.listenPlayerTimer)
-    {
+- (void)removeListenPlayerTimer {
+    if (self.listenPlayerTimer) {
         [self.listenPlayerTimer invalidate];
         self.listenPlayerTimer = nil;
     }
 }
 #pragma mark 监听播放的状态
 // 播放中
-- (void)listenPlayerTimerResetTimer
-{
+- (void)listenPlayerTimerResetTimer {
     CGFloat current = CMTimeGetSeconds([self.player currentTime]);
-    if (current >= self.videoDuraing)
-    {
+    if (current >= self.videoDuraing) {
         CMTime time = CMTimeMakeWithSeconds(0, self.player.currentTime.timescale);
         [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     [[ZZPhotoPickerImageManager shareManager] stopCachingImagesFormAllAssets];
     JSLog(@"内存警告了");

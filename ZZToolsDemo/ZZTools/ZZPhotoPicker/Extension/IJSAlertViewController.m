@@ -10,13 +10,11 @@
 
 @implementation IJSAlertViewController
 
-+ (void)addAlertViewController:(UIViewController *)controller title:(NSString *)title message:(NSString *)message actionTitle:(NSString *)actionTitle actionHandle:(void (^)(void))actionHandle
-{
++ (void)addAlertViewController:(UIViewController *)controller title:(NSString *)title message:(NSString *)message actionTitle:(NSString *)actionTitle actionHandle:(void (^)(void))actionHandle {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
 
     [alertController addAction:[UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-        if (actionHandle)
-        {
+        if (actionHandle) {
             actionHandle();
         }
         [controller dismissViewControllerAnimated:YES completion:nil];
@@ -25,20 +23,17 @@
 }
 
 // 两种风格
-+ (void)addAlertViewController:(UIViewController *)controller title:(NSString *)title message:(NSString *)message actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(void))twoHandle
-{
++ (void)addAlertViewController:(UIViewController *)controller title:(NSString *)title message:(NSString *)message actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(void))twoHandle {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
 
     [alertController addAction:[UIAlertAction actionWithTitle:oneTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-        if (oneHandle)
-        {
+        if (oneHandle) {
             oneHandle();
         }
         [controller dismissViewControllerAnimated:YES completion:nil];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:twoTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-        if (twoHandle)
-        {
+        if (twoHandle) {
             twoHandle();
         }
         [controller dismissViewControllerAnimated:YES completion:nil];
@@ -47,8 +42,7 @@
 }
 
 /// 添加输入框的警告窗口
-+(void)addAlertViewController:(UIViewController *)controller  title:(NSString *)title message:(NSString *)message placeholder:(NSString *)placeholder  actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(NSString *text))twoHandle
-{
++(void)addAlertViewController:(UIViewController *)controller  title:(NSString *)title message:(NSString *)message placeholder:(NSString *)placeholder  actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(NSString *text))twoHandle {
     
     // 1.创建UIAlertController
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
@@ -61,16 +55,14 @@
     }];
  
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:oneTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        if (oneHandle)
-        {
+        if (oneHandle) {
             oneHandle();
              [controller dismissViewControllerAnimated:YES completion:nil];
         }
     }];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:twoTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *userName = alertController.textFields.firstObject;
-        if (twoHandle)
-        {
+        if (twoHandle) {
             twoHandle(userName.text);
              [controller dismissViewControllerAnimated:YES completion:nil];
         }
@@ -86,8 +78,7 @@
 }
 
 
-+(void)addAlertViewController:(UIViewController *)controller  title:(NSString *)title message:(NSString *)message oneplaceholder:(NSString *)oneplaceholder twoplaceholder:(NSString *)twoplaceholder  actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(NSString *userName, NSString *password))twoHandle
-{
++(void)addAlertViewController:(UIViewController *)controller  title:(NSString *)title message:(NSString *)message oneplaceholder:(NSString *)oneplaceholder twoplaceholder:(NSString *)twoplaceholder  actionOneTitle:(NSString *)oneTitle actionTwoTitle:(NSString *)twoTitle actionOneHandle:(void (^)(void))oneHandle actionTwoHandle:(void (^)(NSString *userName, NSString *password))twoHandle {
     // 1.创建UIAlertController
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
@@ -103,8 +94,7 @@
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:oneTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"Cancel Action");
-        if (oneHandle)
-        {
+        if (oneHandle) {
             oneHandle();
             [controller dismissViewControllerAnimated:YES completion:nil];
         }
@@ -112,8 +102,7 @@
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:twoTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *userName = alertController.textFields.firstObject;
         UITextField *password = alertController.textFields.lastObject;
-        if (twoHandle)
-        {
+        if (twoHandle) {
             twoHandle(userName.text,password.text);
             [controller dismissViewControllerAnimated:YES completion:nil];
         }

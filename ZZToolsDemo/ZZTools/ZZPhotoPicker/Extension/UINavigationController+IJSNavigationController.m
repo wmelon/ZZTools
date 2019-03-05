@@ -13,15 +13,13 @@
 
 @implementation UINavigationController (IJSNavigationController)
 
-+ (void)load
-{
++ (void)load {
     Method originalMethod = class_getInstanceMethod(self, @selector(viewWillAppear:));
     Method swizzledMethod = class_getInstanceMethod(self, @selector(_nvViewWillAppear:));
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
-- (void)_nvViewWillAppear:(BOOL)animated
-{
+- (void)_nvViewWillAppear:(BOOL)animated {
     [self _nvViewWillAppear:animated];  // 先去调用一下viewWillAppear 方法
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
@@ -34,18 +32,14 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 ///开始进行手势识别时调用的方法是否接收一个手势触摸事件默认为YES返回NO为不接收用处：可以在控件指定的位置使用手势识别
-- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    if ([[self valueForKey:@"_isTransitioning"] boolValue])
-    {
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
+    if ([[self valueForKey:@"_isTransitioning"] boolValue]) {
         return NO;
     }
-    if ([self.navigationController.transitionCoordinator isAnimated])
-    {
+    if ([self.navigationController.transitionCoordinator isAnimated]) {
         return NO;
     }
-    if (self.childViewControllers.count <= 1)
-    {
+    if (self.childViewControllers.count <= 1) {
         return NO;
     }
    
@@ -62,38 +56,31 @@
  第一个手势是  <UIPanGestureRecognizer: 0x7fdd5d70ac90; state = Possible; view = <UILayoutContainerView 0x7fdd5d50ff20>; target= <(action=handleNavigationTransition:, target=<_UINavigationInteractiveTransition 0x7fdd5d40fd60>)>>
  第二个手势是  <UIScrollViewPanGestureRecognizer: 0x7fdd5d425840; state = Possible; delaysTouchesEnded = NO; view = <UIScrollView 0x7fdd5d8ec000>; target= <(action=handlePan:, target=<UIScrollView 0x7fdd5d8ec000>)>>
 */
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
 ///是否允许接收手指的触摸点
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.childViewControllers.count > 1; // 只有非跟控制器才需要触发手势
 }
 
 #pragma mark -----------------------set  get------------------------------
-- (CGFloat)recognizerLength
-{
+- (CGFloat)recognizerLength {
     CGFloat rec = [objc_getAssociatedObject(self, _cmd) floatValue];
-    if (!rec)
-    {
+    if (!rec) {
         rec = 100;
     }
     return rec;
 }
 
-- (void)setRecognizerLength:(CGFloat)recognizerLength
-{
+- (void)setRecognizerLength:(CGFloat)recognizerLength {
     objc_setAssociatedObject(self, @selector(recognizerLength), @(recognizerLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
 
-- (UIPanGestureRecognizer *)popPanGestureRecognizer
-{
+- (UIPanGestureRecognizer *)popPanGestureRecognizer {
     UIPanGestureRecognizer *pan = objc_getAssociatedObject(self, _cmd);
-    if (!pan)
-    {
+    if (!pan) {
         // 侧滑返回手势 手势触发的时候，让target执行action
         id target = self.interactivePopGestureRecognizer.delegate;
         SEL action = NSSelectorFromString(@"handleNavigationTransition:");
@@ -126,8 +113,7 @@
 */
 @implementation UIViewController (IJSNPopViewController)
 
-+(void)load
-{
++(void)load {
     Method originalViewWillAppearM = class_getInstanceMethod(self, @selector(viewWillAppear:));
     Method swizzleViewWillAppearM = class_getInstanceMethod(self, @selector(_vcViewWillAppear:));
     method_exchangeImplementations(originalViewWillAppearM, swizzleViewWillAppearM);
@@ -137,31 +123,25 @@
     method_exchangeImplementations(originalViewWillDisapperM, swizzleViewWillDisapperM);
 }
 
-- (void)_vcViewWillAppear:(BOOL)animated
-{
+- (void)_vcViewWillAppear:(BOOL)animated {
     [self _vcViewWillAppear:animated];
-    if (self.noPopAction)
-    {
+    if (self.noPopAction) {
         self.navigationController.popPanGestureRecognizer.enabled = NO;
     }
 }
 
-- (void)_vcViewWillDisAppear:(BOOL)animated
-{
+- (void)_vcViewWillDisAppear:(BOOL)animated {
     [self _vcViewWillDisAppear:animated];
-    if (self.noPopAction)
-    {
+    if (self.noPopAction) {
         self.navigationController.popPanGestureRecognizer.enabled = YES;
     }
 }
 
-- (BOOL)noPopAction
-{
+- (BOOL)noPopAction {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setNoPopAction:(BOOL)noPopAction
-{
+- (void)setNoPopAction:(BOOL)noPopAction {
     objc_setAssociatedObject(self, @selector(noPopAction), @(noPopAction), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

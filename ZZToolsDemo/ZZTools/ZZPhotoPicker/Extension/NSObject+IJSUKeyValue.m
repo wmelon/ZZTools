@@ -10,8 +10,7 @@
 
 @implementation NSObject (IJSUKeyValue)
 
-+ (instancetype)objectWithKeyValues:(id)keyValues
-{
++ (instancetype)objectWithKeyValues:(id)keyValues {
     return nil;
 }
 

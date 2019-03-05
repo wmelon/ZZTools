@@ -23,20 +23,16 @@ API_AVAILABLE(ios(9.1))
 
 @implementation ZZPhotoPickerPreviewLivePhotoView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         [self _createdUI];
     }
     return self;
 }
 
-- (void)_createdUI
-{
-    if (iOS9_1Later)
-    {
+- (void)_createdUI {
+    if (iOS9_1Later) {
         if (@available(iOS 9.1, *)) {
             PHLivePhotoView *backLivePhotoView = [PHLivePhotoView new];
             backLivePhotoView.backgroundColor = [UIColor whiteColor];
@@ -53,28 +49,21 @@ API_AVAILABLE(ios(9.1))
     }
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     self.backLivePhtotoView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.backImageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
-- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel
-{
+- (void)setAssetModel:(ZZPhotoPickerAssetModel *)assetModel {
     _assetModel = assetModel;
     self.backImageView.image = nil;
-    if (iOS9_1Later)
-    {
-        if (assetModel.outputPath) //编辑完成的image
-        {
+    if (iOS9_1Later) {
+        if (assetModel.outputPath) {//编辑完成的image 
             NSData *imageData = [NSData dataWithContentsOfURL:assetModel.outputPath];
             self.backImageView.image = [UIImage imageWithData:imageData];
-        }
-        else
-        {
+        } else {
             __weak typeof(self) weakSelf = self;
-            if (assetModel.imageRequestID)
-            {
+            if (assetModel.imageRequestID) {
                 [[PHImageManager defaultManager] cancelImageRequest:assetModel.imageRequestID];  // 取消加载
             }
             if (@available(iOS 9.1, *)) {
@@ -93,10 +82,8 @@ API_AVAILABLE(ios(9.1))
     }
 }
 
-- (void)playLivePhotos
-{
-    if (iOS9_1Later)
-    {
+- (void)playLivePhotos {
+    if (iOS9_1Later) {
         if (@available(iOS 9.1, *)) {
             [self.backLivePhtotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleFull];
         } else {
@@ -104,8 +91,7 @@ API_AVAILABLE(ios(9.1))
         }
     }
 }
-- (void)stopLivePhotos
-{
+- (void)stopLivePhotos {
     [self.backLivePhtotoView stopPlayback];
 }
 

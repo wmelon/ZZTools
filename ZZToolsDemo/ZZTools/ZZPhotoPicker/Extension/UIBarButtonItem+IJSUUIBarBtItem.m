@@ -10,8 +10,7 @@
 
 @implementation UIBarButtonItem (IJSUUIBarBtItem)
 
-+ (UIBarButtonItem *)setBarButtonItem:(UIImage *)image heightImage:(UIImage *)heightImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
-{
++ (UIBarButtonItem *)setBarButtonItem:(UIImage *)image heightImage:(UIImage *)heightImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
     //    左边的按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:image
@@ -25,8 +24,7 @@
     return [[UIBarButtonItem alloc] initWithCustomView:contentView];
 }
 
-+ (UIBarButtonItem *)setBarButtonItem:(UIImage *)image selectImage:(UIImage *)selectImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
-{
++ (UIBarButtonItem *)setBarButtonItem:(UIImage *)image selectImage:(UIImage *)selectImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
     //    左边的按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:image
@@ -40,8 +38,7 @@
     return [[UIBarButtonItem alloc] initWithCustomView:contentView];
 }
 
-+ (UIButton *)setBackButtonImage:(UIImage *)image imageHeight:(UIImage *)imageHeight selectImage:(UIImage *)selectImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents title:(NSString *)title
-{
++ (UIButton *)setBackButtonImage:(UIImage *)image imageHeight:(UIImage *)imageHeight selectImage:(UIImage *)selectImage addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents title:(NSString *)title {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
     [button setImage:image

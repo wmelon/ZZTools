@@ -10,8 +10,7 @@
 
 @implementation ZZPhotoPickerMapViewModel
 
-- (instancetype)initWithImageDataModel:(NSMutableArray *)imageArr
-{
+- (instancetype)initWithImageDataModel:(NSMutableArray *)imageArr {
     self.imageDataArr = imageArr;
     return self;
 }

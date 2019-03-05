@@ -15,8 +15,7 @@
 @implementation IJSLodingView
 
 ///  添加lodingView
-+ (instancetype)showLodingViewAddedTo:(UIView *)view title:(NSString *)title
-{
++ (instancetype)showLodingViewAddedTo:(UIView *)view title:(NSString *)title {
     IJSLodingView *lodingView = [[IJSLodingView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     lodingView.layer.borderWidth = 1;
     lodingView.layer.cornerRadius = 10;

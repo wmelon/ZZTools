@@ -1,5 +1,5 @@
 //
-//  IJSAlbumPickerCell.h
+//  ZZPhotoPickerAlbumPickerCell.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
@@ -12,7 +12,7 @@
  * 相册列表的cell
 */
 
-@interface IJSAlbumPickerCell : UITableViewCell
+@interface ZZPhotoPickerAlbumPickerCell : UITableViewCell
 
 /**展示数据*/
 @property (nonatomic ,   weak) ZZPhotoPickerAlbumModel *models;

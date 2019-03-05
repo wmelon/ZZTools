@@ -1,20 +1,20 @@
 //
-//  IJSPreviewImageCell.m
+//  ZZPhotoPickerPreviewImageCell.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/6.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSPreviewImageCell.h"
+#import "ZZPhotoPickerPreviewImageCell.h"
 #import "IJSImageManager.h"
 #import "IJSConst.h"
-#import "IJSPreviewGifView.h"
+#import "ZZPhotoPickerPreviewGifView.h"
 #import "IJSPreviewLivePhotoView.h"
 #import "IJSExtension.h"
-@interface IJSPreviewImageCell () <UIScrollViewDelegate>
+@interface ZZPhotoPickerPreviewImageCell () <UIScrollViewDelegate>
 /**gif视图*/
-@property (nonatomic ,   weak) IJSPreviewGifView *gifView;
+@property (nonatomic ,   weak) ZZPhotoPickerPreviewGifView *gifView;
 /**图片视图*/
 @property (nonatomic , strong) UIImageView *backImageView;
 /**livephoto*/
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation IJSPreviewImageCell
+@implementation ZZPhotoPickerPreviewImageCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -36,11 +36,11 @@
     return self;
 }
 #pragma mark 懒加载区域
-- (IJSPreviewGifView *)gifView
+- (ZZPhotoPickerPreviewGifView *)gifView
 {
     if (!_gifView)
     {
-        IJSPreviewGifView *gifView = [[IJSPreviewGifView alloc] init];
+        ZZPhotoPickerPreviewGifView *gifView = [[ZZPhotoPickerPreviewGifView alloc] init];
         gifView.backgroundColor = [UIColor colorWithRed:(34 / 255.0) green:(34 / 255.0) blue:(34 / 255.0) alpha:1.0];
         [self.scrollView addSubview:gifView];
         _gifView = gifView;

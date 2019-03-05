@@ -1,5 +1,5 @@
 //
-//  IJSPreviewImageCell.h
+//  ZZPhotoPickerPreviewImageCell.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/6.
@@ -13,9 +13,9 @@
 #import "ZZPhotoPickerAssetModel.h"
 #import "IJSPreviewVideoView.h"
 // 展示用的cell
-@protocol IJSPreviewImageCellDelegate;
+@protocol ZZPhotoPickerPreviewImageCellDelegate;
 
-@interface IJSPreviewImageCell : UICollectionViewCell
+@interface ZZPhotoPickerPreviewImageCell : UICollectionViewCell
 
 /**所有的数据*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;
@@ -24,7 +24,7 @@
 /**缩放用的scrollview*/
 @property (nonatomic , strong) UIScrollView *scrollView;
 
-@property (nonatomic ,   weak) id<IJSPreviewImageCellDelegate> cellDelegate; // cell的代理方法
+@property (nonatomic ,   weak) id<ZZPhotoPickerPreviewImageCellDelegate> cellDelegate; // cell的代理方法
 
 - (void)playLivePhotos;
 - (void)stopLivePhotos;
@@ -34,8 +34,8 @@
 /*
  * 协议
 */
-@protocol IJSPreviewImageCellDelegate <NSObject>
+@protocol ZZPhotoPickerPreviewImageCellDelegate <NSObject>
 
-- (void)didClickCellToHiddenNavigationAndToosWithCell:(IJSPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus;
+- (void)didClickCellToHiddenNavigationAndToosWithCell:(ZZPhotoPickerPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus;
 
 @end

@@ -10,17 +10,17 @@
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 #import "IJSConst.h"
-#import "IJSPreviewImageCell.h"
+#import "ZZPhotoPickerPreviewImageCell.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerMapViewModel.h"
 #import "ZZPhotoPickerVC.h"
 #import "ZZPohotPickerChooseElementVC.h"
 #import "IJSSelectedCell.h"
 
-static NSString *const IJSShowCellID = @"IJSPreviewImageCell";
+static NSString *const IJSShowCellID = @"ZZPhotoPickerPreviewImageCell";
 static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 
-@interface ZZPhotoPickerPreviewElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate, IJSPreviewImageCellDelegate>
+@interface ZZPhotoPickerPreviewElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, UIViewControllerPreviewingDelegate, ZZPhotoPickerPreviewImageCellDelegate>
 
 @property (nonatomic , assign) BOOL toHiddToolStatus;              // 改变工具的状态
 @property (nonatomic , assign) BOOL buttonSelected;                // button的改变状态
@@ -36,7 +36,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 @property (nonatomic ,   weak) UIButton *rightButton;                /**导航条后边的button*/
 @property (nonatomic ,   weak) UICollectionView *selectedCollection; /**用户选中了的collectionview*/
 @property (nonatomic , assign) NSIndexPath *didClinkIndex;         /**记录一下上点击的坐标*/
-@property (nonatomic ,   weak) IJSPreviewImageCell *touchCell;       /**当前可见的cell*/
+@property (nonatomic ,   weak) ZZPhotoPickerPreviewImageCell *touchCell;       /**当前可见的cell*/
 @property (nonatomic ,   weak) UIGestureRecognizer *gesture;         /**3dtouch*/
 @property (nonatomic , strong) UIButton *videoPlayButton;          /**播放视频的button*/
 @property (nonatomic , strong) AVPlayer *player;                   /**播放控制器*/
@@ -138,7 +138,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 {
     if (collectionView == self.showCollectioView)
     {
-        IJSPreviewImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSShowCellID forIndexPath:indexPath];
+        ZZPhotoPickerPreviewImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:IJSShowCellID forIndexPath:indexPath];
         ZZPhotoPickerAssetModel *assetModel;
         if (self.isPreviewButton)
         {
@@ -188,12 +188,12 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 {
     if (collectionView == self.showCollectioView)
     {
-        IJSPreviewImageCell *preciewCell = (IJSPreviewImageCell *) cell;
+        ZZPhotoPickerPreviewImageCell *preciewCell = (ZZPhotoPickerPreviewImageCell *) cell;
         [preciewCell.scrollView setZoomScale:1.0];
     }
 }
-#pragma mark - IJSPreviewImageCellDelegate 代理方法
-- (void)didClickCellToHiddenNavigationAndToosWithCell:(IJSPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus
+#pragma mark - ZZPhotoPickerPreviewImageCellDelegate 代理方法
+- (void)didClickCellToHiddenNavigationAndToosWithCell:(ZZPhotoPickerPreviewImageCell *)cell hiddenToolsStatus:(BOOL)hiddenToolsStatus
 {
     _toHiddToolStatus = hiddenToolsStatus;
     if (hiddenToolsStatus)
@@ -423,7 +423,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:self.pushSelectedIndex inSection:0];
     [self.showCollectioView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     
-    [self.showCollectioView registerClass:[IJSPreviewImageCell class] forCellWithReuseIdentifier:IJSShowCellID];
+    [self.showCollectioView registerClass:[ZZPhotoPickerPreviewImageCell class] forCellWithReuseIdentifier:IJSShowCellID];
     
     // 显示选中的collection
     UICollectionViewFlowLayout *selectedLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -467,17 +467,17 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
         toolBarView.frame = CGRectMake(0, JSScreenHeight - TabbarHeight - IJSGTabbarSafeBottomMargin, JSScreenWidth, TabbarHeight);
     }
     
-    //编辑
-    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    editButton.frame = CGRectMake(5, 5, 70, 30);
-    editButton.layer.masksToBounds = YES;
-    editButton.layer.cornerRadius = 2;
-    [editButton setTitle:[NSBundle localizedStringForKey:@"Edit"] forState:UIControlStateNormal];
-    editButton.backgroundColor = [IJSFColor colorWithR:40 G:170 B:40 alpha:1];
-    [editButton setTitleColor:[IJSFColor colorWithR:232 G:236 B:239 alpha:1] forState:UIControlStateNormal];
-    [editButton addTarget:self action:@selector(_editPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
-    [toolBarView addSubview:editButton];
-    self.editButton = editButton;
+//    //编辑
+//    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    editButton.frame = CGRectMake(5, 5, 70, 30);
+//    editButton.layer.masksToBounds = YES;
+//    editButton.layer.cornerRadius = 2;
+//    [editButton setTitle:[NSBundle localizedStringForKey:@"Edit"] forState:UIControlStateNormal];
+//    editButton.backgroundColor = [IJSFColor colorWithR:40 G:170 B:40 alpha:1];
+//    [editButton setTitleColor:[IJSFColor colorWithR:232 G:236 B:239 alpha:1] forState:UIControlStateNormal];
+//    [editButton addTarget:self action:@selector(_editPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [toolBarView addSubview:editButton];
+//    self.editButton = editButton;
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *)self.navigationController;
     if (vc.isHiddenEdit)
     {
@@ -1381,7 +1381,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
 - (nullable UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     [self.touchCell stopLivePhotos];
-    IJSPreviewImageCell *cell = (IJSPreviewImageCell *) [self.showCollectioView visibleCells].firstObject;
+    ZZPhotoPickerPreviewImageCell *cell = (ZZPhotoPickerPreviewImageCell *) [self.showCollectioView visibleCells].firstObject;
     if (cell.assetModel.type == JSAssetModelMediaTypeLivePhoto)
     {
         self.touchCell = cell;
@@ -1389,7 +1389,7 @@ static NSString *const IJSSelectedCellID = @"IJSSelectedCell";
     }
     if (iOS9Later)
     {
-//        NSIndexPath *indexPath = [self.showCollectioView indexPathForCell:(IJSPreviewImageCell *) [previewingContext sourceView]];
+//        NSIndexPath *indexPath = [self.showCollectioView indexPathForCell:(ZZPhotoPickerPreviewImageCell *) [previewingContext sourceView]];
 //        IJS3DTouchController *touchVC = [[IJS3DTouchController alloc] init];
 //        touchVC.model = self.allAssetModelArr[indexPath.row];
 //        touchVC.preferredContentSize = CGSizeMake(0.0f, 500.0f);

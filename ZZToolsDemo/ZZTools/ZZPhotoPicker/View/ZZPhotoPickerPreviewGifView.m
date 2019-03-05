@@ -1,24 +1,24 @@
 //
-//  IJSPreviewGifView.m
+//  ZZPhotoPickerPreviewGifView.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSPreviewGifView.h"
+#import "ZZPhotoPickerPreviewGifView.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerAssetModel.h"
 
 #import <objc/runtime.h>
 
-@interface IJSPreviewGifView ()
+@interface ZZPhotoPickerPreviewGifView ()
 /**背景动态图*/
 @property (nonatomic ,   weak) UIWebView *backWebView;
 
 @end
 
-@implementation IJSPreviewGifView
+@implementation ZZPhotoPickerPreviewGifView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

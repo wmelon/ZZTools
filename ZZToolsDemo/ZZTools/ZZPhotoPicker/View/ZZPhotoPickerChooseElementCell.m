@@ -1,5 +1,5 @@
 //
-//  IJSPhotoPickerCell.m
+//  ZZPhotoPickerChooseElementCell.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/2.
@@ -11,11 +11,11 @@
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
-#import "IJSPhotoPickerCell.h"
+#import "ZZPhotoPickerChooseElementCell.h"
 #import "ZZPhotoPickerVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 
-@interface IJSPhotoPickerCell ()
+@interface ZZPhotoPickerChooseElementCell ()
 
 /**左上角live标识*/
 @property (nonatomic ,   weak) UIButton *livePhotoButton;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation IJSPhotoPickerCell
+@implementation ZZPhotoPickerChooseElementCell
 
 #pragma mark set方法
 - (void)setModel:(ZZPhotoPickerAssetModel *)model {

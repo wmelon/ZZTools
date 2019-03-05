@@ -7,7 +7,7 @@
 //
 
 #import "ZZPhotoPickerAlbumListVC.h"
-#import "IJSAlbumPickerCell.h"
+#import "ZZPhotoPickerAlbumPickerCell.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerVC.h"
 #import "IJSConst.h"
@@ -79,7 +79,7 @@ static NSString *const cellID = @"cellID";
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.tableFooterView = [UIView new];
-    [tableView registerClass:[IJSAlbumPickerCell class] forCellReuseIdentifier:cellID];
+    [tableView registerClass:[ZZPhotoPickerAlbumPickerCell class] forCellReuseIdentifier:cellID];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView = tableView;
 }
@@ -91,7 +91,7 @@ static NSString *const cellID = @"cellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IJSAlbumPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    ZZPhotoPickerAlbumPickerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     cell.models = self.albumListArr[indexPath.row];
     cell.selectionStyle = UITableViewCellAccessoryNone;
     return cell;

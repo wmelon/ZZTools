@@ -10,14 +10,14 @@
 #import "IJSExtension.h"
 #import "ZZPhotoPickerAlbumModel.h"
 #import "IJSImageManager.h"
-#import "IJSPhotoPickerCell.h"
+#import "ZZPhotoPickerChooseElementCell.h"
 #import "ZZPohotPickerChooseElementVC.h"
 #import "ZZPhotoPickerPreviewElementVC.h"
 #import <IJSFoundation/IJSFoundation.h>
 
 static NSString *const CellID = @"pickerID";
 
-@interface ZZPohotPickerChooseElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, IJSPhotoPickerCellDelegate>
+@interface ZZPohotPickerChooseElementVC () <UICollectionViewDelegate, UICollectionViewDataSource, ZZPhotoPickerChooseElementCellDelegate>
 
 /**预览*/
 @property (nonatomic ,   weak) UIButton                         *previewButton;
@@ -30,7 +30,7 @@ static NSString *const CellID = @"pickerID";
 /**存储被点击的modle*/
 @property (nonatomic , strong) NSMutableArray<ZZPhotoPickerAssetModel *>  *selectedModels;
 /**被选中的cell*/
-@property (nonatomic , strong) NSMutableArray<IJSPhotoPickerCell *> *hasSelectedCell;
+@property (nonatomic , strong) NSMutableArray<ZZPhotoPickerChooseElementCell *> *hasSelectedCell;
 /**加载界面*/
 @property (nonatomic ,   weak) IJSLodingView                    *lodingView;
 /**item的高度*/
@@ -58,7 +58,7 @@ static NSString *const CellID = @"pickerID";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IJSPhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
+    ZZPhotoPickerChooseElementCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
     ZZPhotoPickerVC *vc = (ZZPhotoPickerVC *) self.navigationController;
     ZZPhotoPickerAssetModel *model = self.assetModelArr[indexPath.row];
     model.indexPath = indexPath;
@@ -458,7 +458,7 @@ static NSString *const CellID = @"pickerID";
     collection.alwaysBounceHorizontal = NO;
     [self.view addSubview:collection];
     self.showCollectioView = collection;
-    [self.showCollectioView registerClass:[IJSPhotoPickerCell class] forCellWithReuseIdentifier:CellID];
+    [self.showCollectioView registerClass:[ZZPhotoPickerChooseElementCell class] forCellWithReuseIdentifier:CellID];
 }
 
 #pragma mark 私有方法

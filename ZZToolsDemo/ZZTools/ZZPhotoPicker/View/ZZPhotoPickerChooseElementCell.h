@@ -1,5 +1,5 @@
 //
-//  IJSPhotoPickerCell.h
+//  ZZPhotoPickerChooseElementCell.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/2.
@@ -14,9 +14,9 @@
 /**
  * 9宫格数据展示页面
 */
-@protocol IJSPhotoPickerCellDelegate;
+@protocol ZZPhotoPickerChooseElementCellDelegate;
 
-@interface IJSPhotoPickerCell : UICollectionViewCell
+@interface ZZPhotoPickerChooseElementCell : UICollectionViewCell
 
 /**数据模型*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *model;
@@ -27,14 +27,14 @@
 @property (nonatomic , assign) BOOL allowPickingGif;
 /**选中照片*/
 
-@property (nonatomic ,   weak) id<IJSPhotoPickerCellDelegate> cellDelegate; // 代理属性
+@property (nonatomic ,   weak) id<ZZPhotoPickerChooseElementCellDelegate> cellDelegate; // 代理属性
 
 @end
 ///为了优化内存问题,使用代理方法
 /*
  * 协议
 */
-@protocol IJSPhotoPickerCellDelegate <NSObject>
+@protocol ZZPhotoPickerChooseElementCellDelegate <NSObject>
 
 - (void)didClickCellButtonWithButton:(UIButton *)button  ButtonState:(BOOL)state buttonIndex:(NSInteger)currentIndex;
 

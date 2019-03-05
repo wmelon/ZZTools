@@ -1,5 +1,5 @@
 //
-//  IJSPreviewGifView.h
+//  ZZPhotoPickerPreviewGifView.h
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/6/15.
@@ -12,7 +12,7 @@
 */
 @class ZZPhotoPickerAssetModel;
 
-@interface IJSPreviewGifView : UIView
+@interface ZZPhotoPickerPreviewGifView : UIView
 
 /**数据模型*/
 @property (nonatomic ,   weak) ZZPhotoPickerAssetModel *assetModel;

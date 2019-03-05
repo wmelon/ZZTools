@@ -12,7 +12,7 @@
 #import "ZZPhotoPickerAssetModel.h"
 #import "IJSImageManager.h"
 #import "ZZPhotoPickerVC.h"
-#import "IJSAlbumPickerCell.h"
+#import "ZZPhotoPickerAlbumPickerCell.h"
 
 static IJSImageManager *manager;
 static CGFloat JSScreenScale;         //缩放比例

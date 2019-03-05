@@ -1,19 +1,19 @@
 //
-//  IJSAlbumPickerCell.m
+//  ZZPhotoPickerAlbumPickerCell.m
 //  JSPhotoSDK
 //
 //  Created by shan on 2017/5/29.
 //  Copyright © 2017年 shan. All rights reserved.
 //
 
-#import "IJSAlbumPickerCell.h"
+#import "ZZPhotoPickerAlbumPickerCell.h"
 #import <IJSFoundation/IJSFoundation.h>
 #import "IJSExtension.h"
 #import "IJSImageManager.h"
 #import "IJSConst.h"
 #define ScreenW [[UIScreen mainScreen] bounds].size.width
 
-@interface IJSAlbumPickerCell ()
+@interface ZZPhotoPickerAlbumPickerCell ()
 /**缩略图*/
 @property (nonatomic ,   weak) UIImageView *thumbImageView;
 /**标题*/
@@ -24,7 +24,7 @@
 @property (nonatomic ,   weak) UIImageView *arrowImage;
 @end
 
-@implementation IJSAlbumPickerCell
+@implementation ZZPhotoPickerAlbumPickerCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

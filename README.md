@@ -78,6 +78,9 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] selectImage:[UIImage imageNamed:@"didStar"] starWidth:20 starHeight:20 starMargin:5 starCount:5 callBack:^(CGFloat userGrade, CGFloat finalGrade) {
     NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
 }];
+//此view宽高自适应, 设置frame时, 只需考虑q起点xy坐标
+[self.view addSubview:self.starView];
+self.starView.frame = CGRectMake(50, 150, self.starView.bounds.size.width, self.starView.bounds.size.height);
 ```
 
 ### 一些可选的设置
@@ -85,8 +88,6 @@ self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] s
 self.starView.sublevel = 0.5;//默认值, 可以不写, 用户可选分值范围是0.5的倍数.(建议在设置分值之前确定此值)
 self.starView.grade = [self.params[@"grade1"] floatValue];//设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)
 self.starView.miniGrade = 0.5;//默认值, 可以不写 ,用户可以设置的最低分值.
-[self.view addSubview:self.starView];
-self.starView.frame = CGRectMake(50, 150, self.starView.bounds.size.width, self.starView.bounds.size.height);
 ```
 
 # 特别鸣谢

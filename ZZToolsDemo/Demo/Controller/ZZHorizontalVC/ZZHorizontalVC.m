@@ -33,7 +33,7 @@
 #pragma mark- 协议方法
 //collectionView的协议方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return rand() % 5 + 6;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

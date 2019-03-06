@@ -17,7 +17,9 @@
 
 # 效果展示
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="208" height="404"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="208" height="404"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="208" height="404"><img src="http://thyrsi.com/t6/669/1549792030x1822611383.png" width="208" height="404">
+##瀑布流部分
+
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="543" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="543" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="543" height="449">
 
 # 用法简介
 

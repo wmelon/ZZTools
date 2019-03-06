@@ -15,7 +15,6 @@
 #define AfW(x) (x / 375.0 * UIWidth)
 #define ZZWidth UIScreen.mainScreen.bounds.size.width
 #define ZZHeight UIScreen.mainScreen.bounds.size.height
-
 #define ZZKeyWindow [[UIApplication sharedApplication] keyWindow]
 
 //MARK:- iPhone X系列

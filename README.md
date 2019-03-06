@@ -25,7 +25,7 @@
 
 ## ZZLyout使用方法(瀑布流)
 
-### 建议使用以下方法初始化layou
+#### 建议使用以下方法初始化layou
 
 ```
 
@@ -33,7 +33,7 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 
 ```
 
-### 以下协议方法根据瀑布流类型调用, 用法详见demo.
+#### 以下协议方法根据瀑布流类型调用, 用法详见demo.
 ```
 
 /**cell的宽(垂直瀑布流时此协议方法无效, 宽度根据columnNumber和各种间距自适应)*/
@@ -47,7 +47,7 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 
 ```
 
-### 以下协议方法可选择性实现.
+#### 以下协议方法可选择性实现.
 ```
 
 /**每个区的边距(上左下右)*/
@@ -72,7 +72,7 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 
 ## ZZStarView使用方法(星星评价)
 
-### 请使用以下初始化方法
+#### 请使用以下初始化方法
 ```
 //starView是一个ZZStarView类型的属性, 请自行实现
 self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] selectImage:[UIImage imageNamed:@"didStar"] starWidth:20 starHeight:20 starMargin:5 starCount:5 callBack:^(CGFloat userGrade, CGFloat finalGrade) {
@@ -83,7 +83,7 @@ self.starView = [[ZZStarView alloc] initWithImage:[UIImage imageNamed:@"star"] s
 self.starView.frame = CGRectMake(50, 150, self.starView.bounds.size.width, self.starView.bounds.size.height);
 ```
 
-### 一些可选的设置
+#### 一些可选的设置
 ```
 self.starView.sublevel = 0.5;//默认值, 可以不写, 用户可选分值范围是0.5的倍数.(建议在设置分值之前确定此值)
 self.starView.grade = [self.params[@"grade1"] floatValue];//设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)

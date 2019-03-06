@@ -14,6 +14,5 @@
 #import "ZZLayout.h"
 #import "ZZRouter.h"
 #import "ZZStarView.h"
-#import "ZZPhotoPickerVC.h"
 
 #endif /* ZZTools_h */

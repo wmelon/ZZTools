@@ -79,8 +79,11 @@
 }
 
 //ZZLyout的流协议方法
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的度
-    return indexPath.section % 2 == 0 ? 25 : 30;//同一section下请不要改变高度.
+- (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
+    if (indexPath.section %2 == 0) {
+        return 30;
+    }
+    return random() % 120 + 20;//同一section下请不要改变高度.
 }
 
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的宽
@@ -88,14 +91,10 @@
 }
 
 - (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
-    if (section % 2 == 0) {
-        return UIEdgeInsetsMake(10, 0, 10, 50);
-    }
     return UIEdgeInsetsMake(10, 20, 10, 20);
 }
 
 - (ZZLayoutFlowType)layout:(ZZLayout *)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section {//如果重写了这个方法, 滚动类型则可变, 混合类型不支持对水平的支持
-    NSLog(@"section === %ld",section);
     if (section % 2 == 0) {
         return ZZLayoutFlowTypeAutomateFloat;
     }

@@ -37,6 +37,7 @@ typedef enum : NSUInteger {
 /**每个区的边距(上左下右)*/
 - (UIEdgeInsets)layout:(ZZLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
 
+/**多种类型混合, 暂不支持水平, 可随意兼容垂直和浮动效果*/
 - (ZZLayoutFlowType)layout:(ZZLayout*)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
 
 /**每个item行间距(如果为水平方向瀑布流, 这里则是左右间距)*/

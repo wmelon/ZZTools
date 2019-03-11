@@ -2,11 +2,11 @@
 Pod::Spec.new do |s|
 
 s.name				= "ZZTools"
-s.version			= "1.0.6"
+s.version			= "1.0.7"
 s.summary			= "first version"
 s.description			= "first version for public"
 s.author			= { "ZZ" => "1156858877@qq.com" }
-s.platform			= :ios, "7.0"
+s.platform			= :ios, "8.0"
 s.license			= { :type => 'MIT', :file => 'LICENSE' }
 s.homepage			= "https://github.com/iOS-ZZ/ZZTools.git"
 s.source			= { :git => "https://github.com/iOS-ZZ/ZZTools.git", :tag => "#{s.version}" }

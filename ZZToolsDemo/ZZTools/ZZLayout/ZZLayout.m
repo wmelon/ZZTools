@@ -136,6 +136,12 @@ static const NSInteger DefaultColumnCpunt = 3;
         self.interitemSpacing = [_delegate layout:self interitemSpacingForSectionAtIndex:indexPath.section];
     }
     
+    //如果是混合类型, 则需要动态处理.
+    if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
+        self.scrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
+        
+    }
+    NSLog(@"indexPath.section === %ld",indexPath.section);
     //2.分类布局
     if (self.scrollDirection == ZZLayoutFlowTypeVertical) {
         

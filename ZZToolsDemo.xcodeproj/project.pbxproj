@@ -25,6 +25,7 @@
 		E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DF2206D61D00BF7657 /* ZZCollectionFooterView.m */; };
 		E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470602204581B001584C6 /* ZZStarView.m */; };
 		E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED2D922115F92009D9A8C /* ZZRouter.m */; };
+		E4F4A899223640E200491E6E /* ZZMixVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F4A898223640E200491E6E /* ZZMixVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		E45ED2D822115F92009D9A8C /* ZZRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZRouter.h; sourceTree = "<group>"; };
 		E45ED2D922115F92009D9A8C /* ZZRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZRouter.m; sourceTree = "<group>"; };
 		E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPrivateHeader.h; sourceTree = "<group>"; };
+		E4F4A897223640E200491E6E /* ZZMixVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMixVC.h; sourceTree = "<group>"; };
+		E4F4A898223640E200491E6E /* ZZMixVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMixVC.m; sourceTree = "<group>"; };
 		E616FE70C432DF5DFDB1D042 /* Pods-ZZToolsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZToolsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZZToolsDemo/Pods-ZZToolsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,9 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				E43470622204586B001584C6 /* ZZStarViewVC */,
-				3AA1BAC121F6C71700833ECA /* ZZVerticalVC */,
-				3AA1BAC421F6C71700833ECA /* ZZHorizontalVC */,
-				3AA1BAC721F6C71700833ECA /* ZZAutomateFloatVC */,
+				E4F4A8942236401000491E6E /* ZZLyoutDemos */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +267,26 @@
 			path = ZZPrivateHeader;
 			sourceTree = "<group>";
 		};
+		E4F4A89322363FF500491E6E /* ZZMixVC */ = {
+			isa = PBXGroup;
+			children = (
+				E4F4A897223640E200491E6E /* ZZMixVC.h */,
+				E4F4A898223640E200491E6E /* ZZMixVC.m */,
+			);
+			path = ZZMixVC;
+			sourceTree = "<group>";
+		};
+		E4F4A8942236401000491E6E /* ZZLyoutDemos */ = {
+			isa = PBXGroup;
+			children = (
+				E4F4A89322363FF500491E6E /* ZZMixVC */,
+				3AA1BAC121F6C71700833ECA /* ZZVerticalVC */,
+				3AA1BAC421F6C71700833ECA /* ZZHorizontalVC */,
+				3AA1BAC721F6C71700833ECA /* ZZAutomateFloatVC */,
+			);
+			path = ZZLyoutDemos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +320,7 @@
 				TargetAttributes = {
 					3AA1BAA021F6C61400833ECA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -393,6 +415,7 @@
 				E42827DD2206BD2900BF7657 /* ZZModel.m in Sources */,
 				E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
+				E4F4A899223640E200491E6E /* ZZMixVC.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,
 				3AA1BAA621F6C61400833ECA /* AppDelegate.m in Sources */,
@@ -541,6 +564,7 @@
 			baseConfigurationReference = E616FE70C432DF5DFDB1D042 /* Pods-ZZToolsDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7SN5JK7US;
 				ENABLE_BITCODE = NO;
@@ -553,6 +577,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.zz.com.ZZToolsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -562,6 +588,7 @@
 			baseConfigurationReference = 817DC901F7C64119D1FE199A /* Pods-ZZToolsDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7SN5JK7US;
 				ENABLE_BITCODE = NO;
@@ -574,6 +601,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.zz.com.ZZToolsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

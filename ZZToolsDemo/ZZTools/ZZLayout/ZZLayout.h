@@ -16,6 +16,12 @@
 
 @class ZZLayout;
 
+typedef enum : NSUInteger {
+    ZZLayoutFlowTypeVertical,//垂直(默认)
+    ZZLayoutFlowTypeHorizontal,//水平(暂未支持)
+    ZZLayoutFlowTypeAutomateFloat,//浮动效果(item宽度不相等, 自动换行, 类似淘宝sku选择时的效果)
+} ZZLayoutFlowType;
+
 @protocol ZZLayoutDelegate <NSObject>
 
 @optional
@@ -30,6 +36,8 @@
 
 /**每个区的边距(上左下右)*/
 - (UIEdgeInsets)layout:(ZZLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+
+- (ZZLayoutFlowType)layout:(ZZLayout*)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
 
 /**每个item行间距(如果为水平方向瀑布流, 这里则是左右间距)*/
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section;
@@ -47,12 +55,6 @@
 - (CGFloat)layout:(ZZLayout*)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
 
 @end
-
-typedef enum : NSUInteger {
-    ZZLayoutFlowTypeVertical,//垂直(默认)
-    ZZLayoutFlowTypeHorizontal,//水平(暂未支持)
-    ZZLayoutFlowTypeAutomateFloat,//浮动效果(item宽度不相等, 自动换行, 类似淘宝sku选择时的效果)
-} ZZLayoutFlowType;
 
 @interface ZZLayout : UICollectionViewLayout
 

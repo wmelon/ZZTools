@@ -24,6 +24,7 @@
 + (void)load {
     
     [[ZZRouter shared] mapRoute:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];//星星评价
+    [[ZZRouter shared] mapRoute:@"app/demo/mix" toControllerClass:NSClassFromString(@"ZZMixVC")];//垂直瀑布流
     [[ZZRouter shared] mapRoute:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
     [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
     [[ZZRouter shared] mapRoute:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
@@ -33,10 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ZZToolsDemo";
-    self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
+    self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"混合类型瀑布流", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
     [self.view addSubview:self.tableView];
-    NSLog(@"UIScreen.mainScreen.bounds.size.width === %.0f",UIScreen.mainScreen.bounds.size.width);
-    NSLog(@"UIScreen.mainScreen.bounds.size.height === %.0f",UIScreen.mainScreen.bounds.size.height);
+    NSLog(@"UIScreen.mainScreen.bounds.size.width === %.0f, UIScreen.mainScreen.bounds.size.height === %.0f",UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
 }
 
 #pragma mark- 协议方法
@@ -60,6 +60,10 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 3) {
+        vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/mix"]];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.row == 4) {
         //星星评价, 传参实例, 类似get请求.
         NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
         vc = [[ZZRouter shared] getController:url];

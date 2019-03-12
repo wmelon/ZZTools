@@ -13,7 +13,6 @@
 
 #import "ZZTools.h"
 
-
 ```
 
 ## 效果展示
@@ -21,6 +20,7 @@
 ### 瀑布流部分
 
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="449">
+
 
 ### 星星评价部分
 
@@ -100,8 +100,9 @@ self.starView.miniGrade = 0.5;//默认值, 可以不写 ,用户可以设置的�
 
 特别鸣谢以下开源作者/开源工具
 
-竖向瀑布流: https://github.com/JiWuChao/CustomLayout
+竖向瀑布流: https://github.com/JiWuChao/CustomLayout     [传送门](https://github.com/JiWuChao/CustomLayout)
 
-横向瀑布流: https://github.com/ZhouZhengzz/ZZCollectionViewLayout
+横向瀑布流: https://github.com/ZhouZhengzz/ZZCollectionViewLayout        [传送门](https://github.com/ZhouZhengzz/ZZCollectionViewLayout)
 
-页面路由:    https://github.com/lightory/HHRouter
+页面路由:    https://github.com/lightory/HHRouter       [传送门](https://github.com/lightory/HHRouter)
+

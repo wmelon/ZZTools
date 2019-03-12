@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"浮动";
+    self.title = @"混合";
     [self.view addSubview:self.collectionView];
 }
 

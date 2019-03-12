@@ -6,7 +6,7 @@
 ## 使用方法
 
 ### 导入
-1.可直接下载demo, 将ZZLyout文件夹下的ZZLyout.h&ZZLyout.m拖入工程中使用.
+1.可直接下载demo, 将ZZTools文件夹拖入工程中使用.
 
 2.cocoapods集成可使用: pod 'ZZTools' ,若搜索不到可尝试先使用pod setup更新.
 
@@ -102,9 +102,9 @@ self.starView.miniGrade = 0.5;//默认值, 可以不写 ,用户可以设置的�
 
 特别鸣谢以下开源作者/开源工具
 
-竖向瀑布流: https://github.com/JiWuChao/CustomLayout     [传送门](https://github.com/JiWuChao/CustomLayout)
+竖向瀑布流: [CustomLayout](https://github.com/JiWuChao/CustomLayout)
 
-横向瀑布流: https://github.com/ZhouZhengzz/ZZCollectionViewLayout        [传送门](https://github.com/ZhouZhengzz/ZZCollectionViewLayout)
+横向瀑布流: [ZZCollectionViewLayout](https://github.com/ZhouZhengzz/ZZCollectionViewLayout)
 
-页面路由:    https://github.com/lightory/HHRouter       [传送门](https://github.com/lightory/HHRouter)
+页面路由: [HHRouter](https://github.com/lightory/HHRouter)
 

@@ -114,10 +114,11 @@
 }
 
 - (NSArray *)pathComponentsFromRoute:(NSString *)route {
-    NSMutableArray *pathComponents = [NSMutableArray array];
-    NSURL *url = [NSURL URLWithString:[route stringByRemovingPercentEncoding]];
     
-    for (NSString *pathComponent in url.path.pathComponents) {
+    NSMutableArray *pathComponents = [NSMutableArray array];
+    NSString *string = [[route componentsSeparatedByString:@"?"] firstObject];
+    
+    for (NSString *pathComponent in string.pathComponents) {
         if ([pathComponent isEqualToString:@"/"]) continue;
         if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
         [pathComponents addObject:[pathComponent stringByRemovingPercentEncoding]];

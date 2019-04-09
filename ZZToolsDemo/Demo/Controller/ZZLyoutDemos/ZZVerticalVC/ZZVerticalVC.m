@@ -138,6 +138,13 @@
     return 10;
 }
 
+- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section {
+    if (section == 1) {
+        return [UIColor redColor];
+    }
+    return [UIColor darkGrayColor];
+}
+
 #pragma mark- 懒加载
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -157,7 +164,7 @@
         headerView.backgroundColor = [UIColor redColor];
         [_collectionView addSubview:headerView];
         _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
-        
+
         //配合MJRefresh可这么使用.
         __weak typeof(self)weakSelf = self;
         MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];

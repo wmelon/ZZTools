@@ -45,6 +45,9 @@ static const NSInteger DefaultColumnCpunt = 3;
 //存放attribute的数组
 @property (nonatomic , strong) NSMutableArray   *attributesArray;
 
+//分区背景颜色的数组
+@property (nonatomic , strong) NSMutableArray   *decorationViewAttrs;
+
 @end
 
 @implementation ZZLayout
@@ -70,10 +73,12 @@ static const NSInteger DefaultColumnCpunt = 3;
 - (void)prepareLayout {
     [super prepareLayout];
     
+     [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
+    
     //1.整理数据
-    self.lineSpacing = 0;self.contentDistance = 0;self.lastContentHeight = 0;self.columnDistances[0] = @(0);
-    self.spacingWithLastSection = 0;self.sectionInsets = UIEdgeInsetsZero;self.headerReferenceSize = CGSizeZero;
     self.footerReferenceSize = CGSizeZero;[self.columnDistances removeAllObjects];[self.attributesArray removeAllObjects];
+    self.sectionInsets = UIEdgeInsetsZero;self.headerReferenceSize = CGSizeZero;[self.decorationViewAttrs removeAllObjects];
+    self.lineSpacing = 0;self.contentDistance = 0;self.lastContentHeight = 0;self.columnDistances[0] = @(0);self.spacingWithLastSection = 0;
     
     //2.布局每个区
     NSInteger sectionCount = [self.collectionView numberOfSections];
@@ -106,17 +111,54 @@ static const NSInteger DefaultColumnCpunt = 3;
             [self.columnDistances addObject:@(self.contentDistance)];
         }
         
+        UICollectionViewLayoutAttributes *firstAttributes;
         //3.每个区中有多少 item(布局每个区的每个cell)
         for (NSInteger j = 0; j < itemCountOfSection; j ++) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:j inSection:i];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             [self.attributesArray addObject:attributes];
+            //获取第一个item的布局信息
+            if (j == 0) {firstAttributes = attributes;}
         }
         
         //4.初始化 footer
         UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
         [self.attributesArray addObject:footerAttributes];
         
+        //5.修改分区颜色
+        if (itemCountOfSection >0 && [self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
+            
+            //获取最小包含frame
+            CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
+            if ([self.delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
+                footSize = [self.delegate layout:self referenceSizeForFooterInSection:i];
+            }
+            
+            //根据不同瀑布流类型计算.
+            if (self.scrollDirection == ZZLayoutFlowTypeVertical) {
+                sectionFrame.origin.x -= self.sectionInsets.left;
+                sectionFrame.origin.y -= self.sectionInsets.top;
+                sectionFrame.size.width = self.collectionView.bounds.size.width;
+                sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
+            } else if (self.scrollDirection == ZZLayoutFlowTypeHorizontal) {
+                sectionFrame.origin.x -= self.sectionInsets.left;
+                sectionFrame.origin.y -= self.sectionInsets.top;
+                sectionFrame.size.width = self.contentDistance - sectionFrame.origin.x - footSize.width;
+                sectionFrame.size.height = self.collectionView.bounds.size.height;
+            } else {
+                sectionFrame.origin.x -= self.sectionInsets.left;
+                sectionFrame.origin.y -= self.sectionInsets.top;
+                sectionFrame.size.width = self.collectionView.bounds.size.width;
+                sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
+            }
+            
+            //设置frame
+            ZZCollectionViewLayoutAttributes *attr = [ZZCollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"ZZCollectionReusableView" withIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
+            attr.frame = sectionFrame;attr.zIndex = -1;
+            attr.backgroudColor = [self.delegate collectionview:self.collectionView colorForSection:i];
+            [self.decorationViewAttrs addObject:attr];
+            
+        }
     }
 }
 
@@ -191,7 +233,7 @@ static const NSInteger DefaultColumnCpunt = 3;
     self.columnDistances[tempMinColumn] = @(CGRectGetMaxY(CGRectMake(cellX, cellY, cellWeight, cellHeight)));
     
     //取出最大的
-    for (NSInteger i = 0; i < self.columnDistances.count; i++ ) {
+    for (NSInteger i = 0; i < self.columnDistances.count; i++) {
         if (self.contentDistance < [self.columnDistances[i] doubleValue]) {self.contentDistance = [self.columnDistances[i] doubleValue];}
     }
     
@@ -339,7 +381,22 @@ static const NSInteger DefaultColumnCpunt = 3;
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    return self.attributesArray;
+    NSMutableArray *attrs = self.attributesArray;
+    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
+        //添加分区背景颜色
+        if (CGRectIntersectsRect(rect, attr.frame)) {
+            [attrs addObject:attr];
+        }
+    }
+    return attrs;
+}
+
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([elementKind isEqualToString:@"ZZCollectionReusableView"]) {
+        return [self.decorationViewAttrs objectAtIndex:indexPath.section];
+    }
+    return [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
 }
 
 #pragma mark - 懒加载
@@ -363,5 +420,31 @@ static const NSInteger DefaultColumnCpunt = 3;
     }
     return _columnDistances;
 }
+
+- (NSMutableArray *)decorationViewAttrs {
+    if (!_decorationViewAttrs) {
+        _decorationViewAttrs = [[NSMutableArray alloc] init];
+    }
+    return _decorationViewAttrs;
+}
+
+@end
+
+@implementation ZZCollectionReusableView
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
+    
+    [super applyLayoutAttributes:layoutAttributes];
+    
+    if ([layoutAttributes isKindOfClass:[ZZCollectionViewLayoutAttributes class]]) {
+        ZZCollectionViewLayoutAttributes *attr = (ZZCollectionViewLayoutAttributes *)layoutAttributes;
+        self.backgroundColor = attr.backgroudColor;
+    }
+    
+}
+
+@end
+
+@implementation ZZCollectionViewLayoutAttributes
 
 @end

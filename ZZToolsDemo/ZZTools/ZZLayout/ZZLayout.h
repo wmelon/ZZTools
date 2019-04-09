@@ -18,7 +18,7 @@
 
 typedef enum : NSUInteger {
     ZZLayoutFlowTypeVertical,//垂直(默认)
-    ZZLayoutFlowTypeHorizontal,//水平(暂未支持)
+    ZZLayoutFlowTypeHorizontal,//水平
     ZZLayoutFlowTypeAutomateFloat,//浮动效果(item宽度不相等, 自动换行, 类似淘宝sku选择时的效果)
 } ZZLayoutFlowType;
 
@@ -55,6 +55,8 @@ typedef enum : NSUInteger {
 /**本区区头和上个区区尾的间距*/
 - (CGFloat)layout:(ZZLayout*)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
 
+- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section;
+
 @end
 
 @interface ZZLayout : UICollectionViewLayout
@@ -67,5 +69,17 @@ typedef enum : NSUInteger {
 
 /**layout的类型, 暂不支持横向*/
 @property (nonatomic , assign) ZZLayoutFlowType scrollDirection;
+
+@end
+
+
+@interface ZZCollectionReusableView : UICollectionReusableView;
+
+@end
+
+@interface ZZCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes;
+
+/**背景颜色*/
+@property (nonatomic , strong) UIColor  *backgroudColor;
 
 @end

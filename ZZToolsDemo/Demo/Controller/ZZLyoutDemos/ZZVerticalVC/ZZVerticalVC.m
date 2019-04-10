@@ -68,6 +68,10 @@
     //2.模拟给cell填充数据
     ZZModel *model = self.models[indexPath.row];
     model.title = [NSString stringWithFormat:@"第%ld个", indexPath.row];
+    if (model.cellHeight <= 0) {
+         model.cellHeight = rand() % 100 + 60;
+    }
+   
     cell.model = model;
     
     //3.随机颜色, 实际开发中用不到
@@ -101,6 +105,9 @@
 
 //ZZLyout的流协议方法
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
+    //ZZModel *model = self.models[indexPath.row];
+    //NSLog(@"model.cellHeight === %.2f",model.cellHeight);
+    //return model.cellHeight;
     return rand() % 100 + 60;
 }
 
@@ -150,6 +157,7 @@
     if (!_collectionView) {
         
         ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:self];
+        layout.estimatedItemSize = CGSizeMake(414, 100);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64 - ([UIScreen mainScreen].bounds.size.height >= 812.f ? 24 : 0)) collectionViewLayout:layout];
         _collectionView.delegate = self;_collectionView.dataSource = self;
         [self.view addSubview:_collectionView];

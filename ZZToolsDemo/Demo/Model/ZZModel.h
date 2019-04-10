@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**标题*/
 @property (nonatomic ,   copy) NSString *title;
 
+/**缓存cell的高*/
+@property (nonatomic , assign) CGFloat  cellHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

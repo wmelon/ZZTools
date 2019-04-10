@@ -24,11 +24,11 @@ static const NSInteger DefaultColumnCpunt = 3;
 //列间距
 @property (nonatomic , assign) CGFloat          interitemSpacing;
 
-//区头尺寸
-@property (nonatomic , assign) CGSize           headerReferenceSize;
-
-//区尾尺寸
-@property (nonatomic , assign) CGSize           footerReferenceSize;
+////区头尺寸
+//@property (nonatomic , assign) CGSize           headerReferenceSize;
+//
+////区尾尺寸
+//@property (nonatomic , assign) CGSize           footerReferenceSize;
 
 //collectionView的可滚动距离(横竖)
 @property (nonatomic , assign) CGFloat          contentDistance;
@@ -48,6 +48,9 @@ static const NSInteger DefaultColumnCpunt = 3;
 //分区背景颜色的数组
 @property (nonatomic , strong) NSMutableArray   *decorationViewAttrs;
 
+/**当前布局的cell*/
+@property (nonatomic , strong) UICollectionViewCell *currentCell;
+
 @end
 
 @implementation ZZLayout
@@ -55,7 +58,7 @@ static const NSInteger DefaultColumnCpunt = 3;
 - (instancetype)init {
     if (self == [super init]) {
         //默认滚动方向为垂直
-        self.scrollDirection = ZZLayoutFlowTypeVertical;
+        self.zzScrollDirection = ZZLayoutFlowTypeVertical;
     }
     return self;
 }
@@ -63,7 +66,10 @@ static const NSInteger DefaultColumnCpunt = 3;
 //自定义初始化方法, 建议使用
 - (instancetype)initWith:(ZZLayoutFlowType)scrollDirection delegate:(id<ZZLayoutDelegate>)delegate {
     if (self == [super init]) {
-        self.scrollDirection = scrollDirection;
+        self.zzScrollDirection = scrollDirection;
+        if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
+            self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        }
         self.delegate = delegate;
     }
     return self;
@@ -73,7 +79,7 @@ static const NSInteger DefaultColumnCpunt = 3;
 - (void)prepareLayout {
     [super prepareLayout];
     
-     [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
+    [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
     
     //1.整理数据
     self.footerReferenceSize = CGSizeZero;[self.columnDistances removeAllObjects];[self.attributesArray removeAllObjects];
@@ -111,8 +117,8 @@ static const NSInteger DefaultColumnCpunt = 3;
             [self.columnDistances addObject:@(self.contentDistance)];
         }
         
-        UICollectionViewLayoutAttributes *firstAttributes;
         //3.每个区中有多少 item(布局每个区的每个cell)
+        UICollectionViewLayoutAttributes *firstAttributes;
         for (NSInteger j = 0; j < itemCountOfSection; j ++) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:j inSection:i];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
@@ -135,12 +141,12 @@ static const NSInteger DefaultColumnCpunt = 3;
             }
             
             //根据不同瀑布流类型计算.
-            if (self.scrollDirection == ZZLayoutFlowTypeVertical) {
+            if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
                 sectionFrame.origin.x -= self.sectionInsets.left;
                 sectionFrame.origin.y -= self.sectionInsets.top;
                 sectionFrame.size.width = self.collectionView.bounds.size.width;
                 sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
-            } else if (self.scrollDirection == ZZLayoutFlowTypeHorizontal) {
+            } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
                 sectionFrame.origin.x -= self.sectionInsets.left;
                 sectionFrame.origin.y -= self.sectionInsets.top;
                 sectionFrame.size.width = self.contentDistance - sectionFrame.origin.x - footSize.width;
@@ -180,19 +186,19 @@ static const NSInteger DefaultColumnCpunt = 3;
     
     //如果是混合类型, 则需要动态处理.
     if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
-        self.scrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
+        self.zzScrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
     }
     
     //2.分类布局
-    if (self.scrollDirection == ZZLayoutFlowTypeVertical) {
+    if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
         
         return [self setupAttributesWithVertical:indexPath];
         
-    } else if (self.scrollDirection == ZZLayoutFlowTypeAutomateFloat) {
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeAutomateFloat) {
         
         return [self setupAttributesWithVerticalFloat:indexPath];
         
-    } else if (self.scrollDirection == ZZLayoutFlowTypeHorizontal) {
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
         
         return [self setupAttributesWithHorizontal:indexPath];
         
@@ -339,7 +345,7 @@ static const NSInteger DefaultColumnCpunt = 3;
             self.headerReferenceSize = [_delegate layout:self referenceSizeForHeaderInSection:indexPath.section];
         }
         
-        if (self.scrollDirection != ZZLayoutFlowTypeHorizontal) {
+        if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
             self.contentDistance += indexPath.section == 0 ? 0 : self.spacingWithLastSection;
             attributes.frame = CGRectMake(0,  self.contentDistance, self.headerReferenceSize.width, self.headerReferenceSize.height);
             self.contentDistance += self.sectionInsets.top;
@@ -357,7 +363,7 @@ static const NSInteger DefaultColumnCpunt = 3;
             self.footerReferenceSize = [_delegate layout:self referenceSizeForFooterInSection:indexPath.section];
         }
         
-        if (self.scrollDirection != ZZLayoutFlowTypeHorizontal) {
+        if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
             self.contentDistance += self.sectionInsets.bottom;
             attributes.frame = CGRectMake(0, self.contentDistance, self.footerReferenceSize.width, self.footerReferenceSize.height);
             self.contentDistance += self.footerReferenceSize.height;
@@ -374,7 +380,7 @@ static const NSInteger DefaultColumnCpunt = 3;
 
 //collection的可滚动范围
 - (CGSize)collectionViewContentSize {
-    if (self.scrollDirection != ZZLayoutFlowTypeHorizontal) {
+    if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
         return CGSizeMake(self.collectionView.frame.size.width, self.contentDistance);
     }
     return CGSizeMake(self.contentDistance, self.collectionView.frame.size.height);

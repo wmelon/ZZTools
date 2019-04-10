@@ -59,7 +59,7 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface ZZLayout : UICollectionViewLayout
+@interface ZZLayout : UICollectionViewFlowLayout
 
 /**自定义初始化方法, 建议使用*/
 - (instancetype)initWith:(ZZLayoutFlowType)flowType delegate:(id<ZZLayoutDelegate>)delegate;
@@ -67,8 +67,8 @@ typedef enum : NSUInteger {
 /**传入回调的代理, 建议通过自定义协议方法传入*/
 @property (nonatomic , weak) id<ZZLayoutDelegate> delegate;
 
-/**layout的类型, 暂不支持横向*/
-@property (nonatomic , assign) ZZLayoutFlowType scrollDirection;
+/**layout的类型*/
+@property (nonatomic , assign) ZZLayoutFlowType zzScrollDirection;
 
 @end
 

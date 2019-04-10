@@ -45,4 +45,13 @@
     
 }
 
+////返回特定的高
+//- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+//    UICollectionViewLayoutAttributes *attributes = [layoutAttributes copy];
+//    [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
+//    //NSLog(@"preferredLayoutAttributesFittingAttributes: self.model.cellHeight === %.2f",self.model.cellHeight);
+//    attributes.size = CGSizeMake(attributes.size.width, self.model.cellHeight);
+//    return attributes;
+//}
+
 @end

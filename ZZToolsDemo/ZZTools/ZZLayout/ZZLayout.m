@@ -7,6 +7,7 @@
 //
 
 #import "ZZLayout.h"
+#import <objc/message.h>
 
 static const NSInteger DefaultColumnCpunt = 3;
 
@@ -23,12 +24,6 @@ static const NSInteger DefaultColumnCpunt = 3;
 
 //列间距
 @property (nonatomic , assign) CGFloat          interitemSpacing;
-
-////区头尺寸
-//@property (nonatomic , assign) CGSize           headerReferenceSize;
-//
-////区尾尺寸
-//@property (nonatomic , assign) CGSize           footerReferenceSize;
 
 //collectionView的可滚动距离(横竖)
 @property (nonatomic , assign) CGFloat          contentDistance;
@@ -47,9 +42,6 @@ static const NSInteger DefaultColumnCpunt = 3;
 
 //分区背景颜色的数组
 @property (nonatomic , strong) NSMutableArray   *decorationViewAttrs;
-
-/**当前布局的cell*/
-@property (nonatomic , strong) UICollectionViewCell *currentCell;
 
 @end
 
@@ -71,6 +63,7 @@ static const NSInteger DefaultColumnCpunt = 3;
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         }
         self.delegate = delegate;
+        [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
     }
     return self;
 }
@@ -78,8 +71,6 @@ static const NSInteger DefaultColumnCpunt = 3;
 //准备布局,自定义layout必须重写
 - (void)prepareLayout {
     [super prepareLayout];
-    
-    [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
     
     //1.整理数据
     self.footerReferenceSize = CGSizeZero;[self.columnDistances removeAllObjects];[self.attributesArray removeAllObjects];
@@ -132,7 +123,7 @@ static const NSInteger DefaultColumnCpunt = 3;
         [self.attributesArray addObject:footerAttributes];
         
         //5.修改分区颜色
-        if (itemCountOfSection >0 && [self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
+        if (itemCountOfSection > 0 && [self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
             
             //获取最小包含frame
             CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
@@ -166,45 +157,6 @@ static const NSInteger DefaultColumnCpunt = 3;
             
         }
     }
-}
-
-//计算返回布局attributes
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //1.协议取值
-    if ([_delegate respondsToSelector:@selector(layout:columnNumberAtSection:)]) {
-        self.columnCount = [_delegate layout:self columnNumberAtSection:indexPath.section];
-    }
-    
-    if ([_delegate respondsToSelector:@selector(layout:lineSpacingForSectionAtIndex:)]) {
-        self.lineSpacing = [_delegate layout:self lineSpacingForSectionAtIndex:indexPath.section];
-    }
-    
-    if ([_delegate respondsToSelector:@selector(layout:interitemSpacingForSectionAtIndex:)]) {
-        self.interitemSpacing = [_delegate layout:self interitemSpacingForSectionAtIndex:indexPath.section];
-    }
-    
-    //如果是混合类型, 则需要动态处理.
-    if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
-        self.zzScrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
-    }
-    
-    //2.分类布局
-    if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
-        
-        return [self setupAttributesWithVertical:indexPath];
-        
-    } else if (self.zzScrollDirection == ZZLayoutFlowTypeAutomateFloat) {
-        
-        return [self setupAttributesWithVerticalFloat:indexPath];
-        
-    } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
-        
-        return [self setupAttributesWithHorizontal:indexPath];
-        
-    }
-    
-    return [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];;
 }
 
 //垂直瀑布流算法
@@ -334,6 +286,45 @@ static const NSInteger DefaultColumnCpunt = 3;
     return attributes;
 }
 
+//计算返回布局attributes
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //1.协议取值
+    if ([_delegate respondsToSelector:@selector(layout:columnNumberAtSection:)]) {
+        self.columnCount = [_delegate layout:self columnNumberAtSection:indexPath.section];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(layout:lineSpacingForSectionAtIndex:)]) {
+        self.lineSpacing = [_delegate layout:self lineSpacingForSectionAtIndex:indexPath.section];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(layout:interitemSpacingForSectionAtIndex:)]) {
+        self.interitemSpacing = [_delegate layout:self interitemSpacingForSectionAtIndex:indexPath.section];
+    }
+    
+    //如果是混合类型, 则需要动态处理.
+    if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
+        self.zzScrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
+    }
+    
+    //2.分类布局
+    if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
+        
+        return [self setupAttributesWithVertical:indexPath];
+        
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeAutomateFloat) {
+        
+        return [self setupAttributesWithVerticalFloat:indexPath];
+        
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
+        
+        return [self setupAttributesWithHorizontal:indexPath];
+        
+    }
+    
+    return [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];;
+}
+
 //区头区尾
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     
@@ -454,3 +445,18 @@ static const NSInteger DefaultColumnCpunt = 3;
 @implementation ZZCollectionViewLayoutAttributes
 
 @end
+//
+//char const ZZ_CELLHEIGHT;
+//
+//@implementation UICollectionViewCell (ZZLayout)
+//
+//
+//- (void)setZz_cellHeight:(CGFloat)zz_cellHeight {
+//    objc_setAssociatedObject(self, &ZZ_CELLHEIGHT, @(zz_cellHeight), OBJC_ASSOCIATION_ASSIGN);
+//}
+//
+//- (CGFloat)zz_cellHeight {
+//    return [objc_getAssociatedObject(self, &ZZ_CELLHEIGHT) floatValue];
+//}
+//
+//@end

@@ -83,3 +83,11 @@ typedef enum : NSUInteger {
 @property (nonatomic , strong) UIColor  *backgroudColor;
 
 @end
+//
+//
+//@interface UICollectionViewCell (ZZLayout)
+//
+///**cell的高度*/
+//@property (nonatomic , assign) CGFloat  zz_cellHeight;
+//
+//@end

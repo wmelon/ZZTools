@@ -79,61 +79,6 @@ static const NSInteger DefaultColumnCpunt = 3;
     return self;
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    
-    //添加分区背景
-    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {//添加分区背景颜色
-        if (CGRectIntersectsRect(rect, attr.frame)) {[self.attributesArray addObject:attr];}
-    }
-    
-    //如果区头不需要悬浮, 直接返回布局对象数组
-    if (!self.sectionHeadersPinToVisibleBounds) {return self.attributesArray;}
-    
-    //遍历所有区头
-    for (UICollectionViewLayoutAttributes *headerAttributes in self.headerArray) {
-        
-        UICollectionViewLayoutAttributes *sectionBgAttirbutes = self.decorationViewAttrs[headerAttributes.indexPath.section];
-        UICollectionViewLayoutAttributes *footerAttributes = self.footerArray[headerAttributes.indexPath.section];
-        headerAttributes.zIndex = 10 + headerAttributes.indexPath.section;
-        footerAttributes.zIndex = 20 + headerAttributes.indexPath.section;
-        CGRect headerRect = headerAttributes.frame;
-        
-        if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
-            //如果找到一个区头 符合这个条件, 则不再执行其他区
-            if (headerAttributes.frame.origin.y >= self.collectionView.contentOffset.y) {
-                return self.attributesArray;
-            }
-            
-            if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
-                headerRect.origin.y = self.collectionView.contentOffset.y;
-            } else {
-                headerRect.origin.y = footerAttributes.frame.origin.y - headerRect.size.height;
-            }
-            headerAttributes.frame = headerRect;
-        } else {
-            //如果找到一个区头 符合这个条件, 则不再执行其他区
-            if (headerAttributes.frame.origin.x >= self.collectionView.contentOffset.x) {
-                return self.attributesArray;
-            }
-            
-            if (self.collectionView.contentOffset.x < sectionBgAttirbutes.frame.size.width + headerAttributes.frame.origin.x) {
-                headerRect.origin.x = self.collectionView.contentOffset.x;
-            } else {
-                headerRect.origin.x = footerAttributes.frame.origin.x - headerRect.size.width;
-            }
-            headerAttributes.frame = headerRect;
-        }
-        
-    }
-    
-    return self.attributesArray;
-    
-}
-
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
-    return self.sectionHeadersPinToVisibleBounds;
-}
-
 //准备布局,自定义layout必须重写
 - (void)prepareLayout {
     [super prepareLayout];
@@ -471,6 +416,63 @@ static const NSInteger DefaultColumnCpunt = 3;
         return CGSizeMake(self.collectionView.frame.size.width, self.contentDistance);
     }
     return CGSizeMake(self.contentDistance, self.collectionView.frame.size.height);
+}
+
+//处理区头浮动和分区背景颜色
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    
+    //添加分区背景
+    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {//添加分区背景颜色
+        if (CGRectIntersectsRect(rect, attr.frame)) {[self.attributesArray addObject:attr];}
+    }
+    
+    //如果区头不需要悬浮, 直接返回布局对象数组
+    if (!self.sectionHeadersPinToVisibleBounds) {return self.attributesArray;}
+    
+    //遍历所有区头
+    for (UICollectionViewLayoutAttributes *headerAttributes in self.headerArray) {
+        
+        UICollectionViewLayoutAttributes *sectionBgAttirbutes = self.decorationViewAttrs[headerAttributes.indexPath.section];
+        UICollectionViewLayoutAttributes *footerAttributes = self.footerArray[headerAttributes.indexPath.section];
+        headerAttributes.zIndex = 10 + headerAttributes.indexPath.section;
+        footerAttributes.zIndex = 20 + headerAttributes.indexPath.section;
+        CGRect headerRect = headerAttributes.frame;
+        
+        if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
+            //如果找到一个区头 符合这个条件, 则不再执行其他区
+            if (headerAttributes.frame.origin.y >= self.collectionView.contentOffset.y) {
+                return self.attributesArray;
+            }
+            
+            if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
+                headerRect.origin.y = self.collectionView.contentOffset.y;
+            } else {
+                headerRect.origin.y = footerAttributes.frame.origin.y - headerRect.size.height;
+            }
+            headerAttributes.frame = headerRect;
+        } else {
+            //如果找到一个区头 符合这个条件, 则不再执行其他区
+            if (headerAttributes.frame.origin.x >= self.collectionView.contentOffset.x) {
+                return self.attributesArray;
+            }
+            
+            if (self.collectionView.contentOffset.x < sectionBgAttirbutes.frame.size.width + headerAttributes.frame.origin.x) {
+                headerRect.origin.x = self.collectionView.contentOffset.x;
+            } else {
+                headerRect.origin.x = footerAttributes.frame.origin.x - headerRect.size.width;
+            }
+            headerAttributes.frame = headerRect;
+        }
+        
+    }
+    
+    return self.attributesArray;
+    
+}
+
+//这里返回是否浮动区头, 否则不会重复调用.
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
+    return self.sectionHeadersPinToVisibleBounds;
 }
 
 #pragma mark - 懒加载

@@ -14,7 +14,7 @@
     if (self == [super initWithFrame:frame]) {
         self.label = [[UILabel alloc] initWithFrame:self.bounds];
         [self addSubview:self.label];
-        self.backgroundColor = [UIColor yellowColor];
+        self.backgroundColor = [UIColor purpleColor];
     }
     return self;
 }

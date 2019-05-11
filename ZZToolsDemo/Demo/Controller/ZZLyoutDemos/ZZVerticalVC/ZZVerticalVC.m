@@ -46,7 +46,7 @@
 #pragma mark- 协议方法
 //collectionView的协议方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -63,12 +63,14 @@
     if (kind == UICollectionElementKindSectionHeader) {
         ZZCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZZCollectionHeaderView" forIndexPath:indexPath];
         headerView.label.text = [NSString stringWithFormat:@"    这里是第: %ld个区的区头",indexPath.section];
+        headerView.zz_section = indexPath.section;
         reusableView = headerView;
     }
     // 区尾
     if (kind == UICollectionElementKindSectionFooter) {
         ZZCollectionFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"ZZCollectionFooterView" forIndexPath:indexPath];
         footerView.label.text = [NSString stringWithFormat:@"    这里是第: %ld个区的区尾",indexPath.section];
+        footerView.zz_section = indexPath.section;
         reusableView = footerView;
     }
     return reusableView;
@@ -103,7 +105,8 @@
 
 //ZZLyout的流协议方法
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
-    return rand() % 100 + 60;
+    return 100;
+    //return rand() % 100 + 60;
 }
 
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列
@@ -152,26 +155,27 @@
     if (!_collectionView) {
         
         ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:self];
+        layout.sectionHeadersPinToVisibleBounds = YES;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64 - ([UIScreen mainScreen].bounds.size.height >= 812.f ? 24 : 0)) collectionViewLayout:layout];
         _collectionView.delegate = self;_collectionView.dataSource = self;
         [self.view addSubview:_collectionView];
         
-        //实现"头视图"效果
-        UILabel *headerView = [[UILabel alloc] init];
-        headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
-        headerView.backgroundColor = [UIColor whiteColor];
-        headerView.text = @"实现类似tableView的头视图效果.";
-        headerView.textColor = [UIColor blackColor];
-        headerView.textAlignment = NSTextAlignmentCenter;
-        headerView.backgroundColor = [UIColor redColor];
-        [_collectionView addSubview:headerView];
-        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
-
-        //配合MJRefresh可这么使用.
-        __weak typeof(self)weakSelf = self;
-        MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];
-        header.ignoredScrollViewContentInsetTop = 200;
-        _collectionView.mj_header = header;
+//        //实现"头视图"效果
+//        UILabel *headerView = [[UILabel alloc] init];
+//        headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
+//        headerView.backgroundColor = [UIColor whiteColor];
+//        headerView.text = @"实现类似tableView的头视图效果.";
+//        headerView.textColor = [UIColor blackColor];
+//        headerView.textAlignment = NSTextAlignmentCenter;
+//        headerView.backgroundColor = [UIColor redColor];
+//        [_collectionView addSubview:headerView];
+//        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
+//
+//        //配合MJRefresh可这么使用.
+//        __weak typeof(self)weakSelf = self;
+//        MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];
+//        header.ignoredScrollViewContentInsetTop = 200;
+//        _collectionView.mj_header = header;
         
         //注册cell
         [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];

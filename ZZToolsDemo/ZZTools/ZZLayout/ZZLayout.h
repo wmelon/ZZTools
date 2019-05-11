@@ -83,6 +83,15 @@ typedef enum : NSUInteger {
 @property (nonatomic , strong) UIColor  *backgroudColor;
 
 @end
+
+
+@interface UICollectionReusableView (ZZLayout)
+
+/**如果需要区头浮动, 必须给出此值*/
+@property (nonatomic , assign) NSInteger  zz_section;
+
+@end
+
 //
 //
 //@interface UICollectionViewCell (ZZLayout)

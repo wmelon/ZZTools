@@ -40,8 +40,20 @@ static const NSInteger DefaultColumnCpunt = 3;
 //存放attribute的数组
 @property (nonatomic , strong) NSMutableArray   *attributesArray;
 
+/**存放header的数组*/
+@property (nonatomic , strong) NSMutableArray   *headerArray;
+
+/**存放item的数组*/
+@property (nonatomic , strong) NSMutableArray   *itemArray;
+
+/**存放footer的数组*/
+@property (nonatomic , strong) NSMutableArray   *footerArray;
+
 //分区背景颜色的数组
 @property (nonatomic , strong) NSMutableArray   *decorationViewAttrs;
+
+/**备注*/
+@property (nonatomic , strong) UICollectionReusableView *currentHeader;
 
 @end
 
@@ -58,14 +70,54 @@ static const NSInteger DefaultColumnCpunt = 3;
 //自定义初始化方法, 建议使用
 - (instancetype)initWith:(ZZLayoutFlowType)scrollDirection delegate:(id<ZZLayoutDelegate>)delegate {
     if (self == [super init]) {
-        self.zzScrollDirection = scrollDirection;
+        self.zzScrollDirection = scrollDirection;self.delegate = delegate;
         if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
             self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         }
-        self.delegate = delegate;
         [self registerClass:[ZZCollectionReusableView class] forDecorationViewOfKind:@"ZZCollectionReusableView"];
     }
     return self;
+}
+
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    
+    //添加分区背景
+    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {//添加分区背景颜色
+        if (CGRectIntersectsRect(rect, attr.frame)) {[self.attributesArray addObject:attr];}
+    }
+    
+    //如果区头不需要悬浮, 直接返回布局对象数组
+    if (!self.sectionHeadersPinToVisibleBounds) {return self.attributesArray;}
+    
+    //遍历所有区头
+    for (UICollectionViewLayoutAttributes *headerAttributes in self.headerArray) {
+        
+        UICollectionViewLayoutAttributes *sectionBgAttirbutes = self.decorationViewAttrs[headerAttributes.indexPath.section];
+        UICollectionViewLayoutAttributes *footerAttributes = self.footerArray[headerAttributes.indexPath.section];
+        headerAttributes.zIndex = 10 + headerAttributes.indexPath.section;
+        footerAttributes.zIndex = 20 + headerAttributes.indexPath.section;
+        CGRect headerRect = headerAttributes.frame;
+        
+        if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
+            headerRect.origin.y = self.collectionView.contentOffset.y;
+        } else {
+            headerRect.origin.y = footerAttributes.frame.origin.y - headerRect.size.height;
+        }
+        headerAttributes.frame = headerRect;
+        
+        //如果找到一个区头 符合这个条件, 则不再执行其他区
+        if (headerAttributes.frame.origin.y + headerAttributes.frame.size.height >= self.collectionView.contentOffset.y) {
+            return self.attributesArray;
+        }
+        
+    }
+    
+    return self.attributesArray;
+    
+}
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBound {
+    return self.sectionHeadersPinToVisibleBounds;
 }
 
 //准备布局,自定义layout必须重写
@@ -73,9 +125,10 @@ static const NSInteger DefaultColumnCpunt = 3;
     [super prepareLayout];
     
     //1.整理数据
+    self.lineSpacing = 0;self.contentDistance = 0;self.lastContentHeight = 0;self.spacingWithLastSection = 0;
     self.footerReferenceSize = CGSizeZero;[self.columnDistances removeAllObjects];[self.attributesArray removeAllObjects];
     self.sectionInsets = UIEdgeInsetsZero;self.headerReferenceSize = CGSizeZero;[self.decorationViewAttrs removeAllObjects];
-    self.lineSpacing = 0;self.contentDistance = 0;self.lastContentHeight = 0;self.columnDistances[0] = @(0);self.spacingWithLastSection = 0;
+    [self.headerArray removeAllObjects];[self.footerArray removeAllObjects];[self.itemArray removeAllObjects];
     
     //2.布局每个区
     NSInteger sectionCount = [self.collectionView numberOfSections];
@@ -98,15 +151,21 @@ static const NSInteger DefaultColumnCpunt = 3;
         //1.生成区头
         NSInteger itemCountOfSection = [self.collectionView numberOfItemsInSection:i];
         NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:i];
-        UICollectionViewLayoutAttributes *headerAttributs = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
-        [self.attributesArray addObject:headerAttributs];
+        
+        if ([self.collectionView.dataSource respondsToSelector:@selector(collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+            UICollectionViewLayoutAttributes *headerAttributs = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
+            if (headerAttributs) {
+                headerAttributs.zIndex = 1;
+                [self.attributesArray addObject:headerAttributs];
+                [self.headerArray addObject:headerAttributs];
+            }
+        }
+        
         [self.columnDistances removeAllObjects];
         self.lastContentHeight = self.contentDistance;
         
         //2.初始化区的distance值
-        for (NSInteger i = 0; i < self.columnCount; i ++) {
-            [self.columnDistances addObject:@(self.contentDistance)];
-        }
+        for (NSInteger i = 0; i < self.columnCount; i ++) {[self.columnDistances addObject:@(self.contentDistance)];}
         
         //3.每个区中有多少 item(布局每个区的每个cell)
         UICollectionViewLayoutAttributes *firstAttributes;
@@ -119,8 +178,13 @@ static const NSInteger DefaultColumnCpunt = 3;
         }
         
         //4.初始化 footer
-        UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
-        [self.attributesArray addObject:footerAttributes];
+        if ([self.collectionView.dataSource respondsToSelector:@selector(collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+            UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
+            if (footerAttributes) {
+                [self.attributesArray addObject:footerAttributes];
+                [self.footerArray addObject:footerAttributes];
+            }
+        }
         
         //5.修改分区颜色
         if (itemCountOfSection > 0 && [self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
@@ -151,12 +215,54 @@ static const NSInteger DefaultColumnCpunt = 3;
             
             //设置frame
             ZZCollectionViewLayoutAttributes *attr = [ZZCollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"ZZCollectionReusableView" withIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
-            attr.frame = sectionFrame;attr.zIndex = -1;
-            attr.backgroudColor = [self.delegate collectionview:self.collectionView colorForSection:i];
+            attr.zIndex = -1;attr.frame = sectionFrame;
+            attr.backgroudColor = [UIColor clearColor];
+            if ([self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
+                attr.backgroudColor = [self.delegate collectionview:self.collectionView colorForSection:i];
+            }
             [self.decorationViewAttrs addObject:attr];
             
         }
     }
+}
+
+# pragma mark- 计算返回布局attributes(item布局算法核心)
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //1.协议取值
+    if ([_delegate respondsToSelector:@selector(layout:columnNumberAtSection:)]) {
+        self.columnCount = [_delegate layout:self columnNumberAtSection:indexPath.section];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(layout:lineSpacingForSectionAtIndex:)]) {
+        self.lineSpacing = [_delegate layout:self lineSpacingForSectionAtIndex:indexPath.section];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(layout:interitemSpacingForSectionAtIndex:)]) {
+        self.interitemSpacing = [_delegate layout:self interitemSpacingForSectionAtIndex:indexPath.section];
+    }
+    
+    //如果是混合类型, 则需要动态处理.
+    if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
+        self.zzScrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
+    }
+    
+    //2.分类布局
+    if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
+        
+        return [self setupAttributesWithVertical:indexPath];
+        
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeAutomateFloat) {
+        
+        return [self setupAttributesWithVerticalFloat:indexPath];
+        
+    } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
+        
+        return [self setupAttributesWithHorizontal:indexPath];
+        
+    }
+    
+    return [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];;
 }
 
 //垂直瀑布流算法
@@ -286,64 +392,30 @@ static const NSInteger DefaultColumnCpunt = 3;
     return attributes;
 }
 
-//计算返回布局attributes
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //1.协议取值
-    if ([_delegate respondsToSelector:@selector(layout:columnNumberAtSection:)]) {
-        self.columnCount = [_delegate layout:self columnNumberAtSection:indexPath.section];
-    }
-    
-    if ([_delegate respondsToSelector:@selector(layout:lineSpacingForSectionAtIndex:)]) {
-        self.lineSpacing = [_delegate layout:self lineSpacingForSectionAtIndex:indexPath.section];
-    }
-    
-    if ([_delegate respondsToSelector:@selector(layout:interitemSpacingForSectionAtIndex:)]) {
-        self.interitemSpacing = [_delegate layout:self interitemSpacingForSectionAtIndex:indexPath.section];
-    }
-    
-    //如果是混合类型, 则需要动态处理.
-    if ([self.delegate respondsToSelector:@selector(layout:layoutFlowTypeForSectionAtIndex:)]) {
-        self.zzScrollDirection = [self.delegate layout:self layoutFlowTypeForSectionAtIndex:indexPath.section];
-    }
-    
-    //2.分类布局
-    if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
-        
-        return [self setupAttributesWithVertical:indexPath];
-        
-    } else if (self.zzScrollDirection == ZZLayoutFlowTypeAutomateFloat) {
-        
-        return [self setupAttributesWithVerticalFloat:indexPath];
-        
-    } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
-        
-        return [self setupAttributesWithHorizontal:indexPath];
-        
-    }
-    
-    return [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];;
-}
-
 //区头区尾
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *attribute = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
     
     if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
         
         if ([_delegate respondsToSelector:@selector(layout:referenceSizeForHeaderInSection:)]) {
             self.headerReferenceSize = [_delegate layout:self referenceSizeForHeaderInSection:indexPath.section];
+        } else {
+            self.headerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, 0.001);
         }
         
+        self.contentDistance += indexPath.section == 0 ? 0 : self.spacingWithLastSection;
+        
         if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
-            self.contentDistance += indexPath.section == 0 ? 0 : self.spacingWithLastSection;
-            attributes.frame = CGRectMake(0,  self.contentDistance, self.headerReferenceSize.width, self.headerReferenceSize.height);
+            
+            attribute.frame = CGRectMake(0, self.contentDistance, self.headerReferenceSize.width, self.headerReferenceSize.height);
             self.contentDistance += self.sectionInsets.top;
             self.contentDistance += self.headerReferenceSize.height;
+            
         } else {
-            self.contentDistance += indexPath.section == 0 ? 0 : self.spacingWithLastSection;
-            attributes.frame = CGRectMake(self.contentDistance,  0, self.headerReferenceSize.width, self.headerReferenceSize.height);
+            
+            attribute.frame = CGRectMake(self.contentDistance,  0, self.headerReferenceSize.width, self.headerReferenceSize.height);
             self.contentDistance += self.sectionInsets.left;
             self.contentDistance += self.headerReferenceSize.width;
         }
@@ -352,21 +424,32 @@ static const NSInteger DefaultColumnCpunt = 3;
         
         if ([_delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
             self.footerReferenceSize = [_delegate layout:self referenceSizeForFooterInSection:indexPath.section];
+        } else {
+            self.footerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, 0.001);
         }
+        //NSLog(@"footer === %ld",indexPath.section);
         
         if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
             self.contentDistance += self.sectionInsets.bottom;
-            attributes.frame = CGRectMake(0, self.contentDistance, self.footerReferenceSize.width, self.footerReferenceSize.height);
+            attribute.frame = CGRectMake(0, self.contentDistance, self.footerReferenceSize.width, self.footerReferenceSize.height);
             self.contentDistance += self.footerReferenceSize.height;
         } else {
             self.contentDistance += self.sectionInsets.right;
-            attributes.frame = CGRectMake(self.contentDistance, 0, self.footerReferenceSize.width, self.footerReferenceSize.height);
+            attribute.frame = CGRectMake(self.contentDistance, 0, self.footerReferenceSize.width, self.footerReferenceSize.height);
             self.contentDistance += self.footerReferenceSize.width;
         }
         
     }
     
-    return attributes;
+    return attribute;
+}
+
+//分区背景颜色相关
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    if ([elementKind isEqualToString:@"ZZCollectionReusableView"]) {
+        return [self.decorationViewAttrs objectAtIndex:indexPath.section];
+    }
+    return [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
 }
 
 //collection的可滚动范围
@@ -377,52 +460,40 @@ static const NSInteger DefaultColumnCpunt = 3;
     return CGSizeMake(self.contentDistance, self.collectionView.frame.size.height);
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSMutableArray *attrs = self.attributesArray;
-    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
-        //添加分区背景颜色
-        if (CGRectIntersectsRect(rect, attr.frame)) {
-            [attrs addObject:attr];
-        }
-    }
-    return attrs;
-}
-
-- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath
-{
-    if ([elementKind isEqualToString:@"ZZCollectionReusableView"]) {
-        return [self.decorationViewAttrs objectAtIndex:indexPath.section];
-    }
-    return [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
-}
-
 #pragma mark - 懒加载
 - (NSInteger)columnCount {
-    if (_columnCount) {
-        return _columnCount;
-    }
+    if (_columnCount) {return _columnCount;}
     return DefaultColumnCpunt;
 }
 
 - (NSMutableArray *)attributesArray {
-    if (!_attributesArray) {
-        _attributesArray = [[NSMutableArray alloc] init];
-    }
+    if (!_attributesArray) {_attributesArray = [[NSMutableArray alloc] init];}
     return _attributesArray;
 }
 
 - (NSMutableArray *)columnDistances {
-    if (!_columnDistances) {
-        _columnDistances = [NSMutableArray arrayWithCapacity:DefaultColumnCpunt];
-    }
+    if (!_columnDistances) {_columnDistances = [NSMutableArray arrayWithCapacity:DefaultColumnCpunt];}
     return _columnDistances;
 }
 
 - (NSMutableArray *)decorationViewAttrs {
-    if (!_decorationViewAttrs) {
-        _decorationViewAttrs = [[NSMutableArray alloc] init];
-    }
+    if (!_decorationViewAttrs) {_decorationViewAttrs = [[NSMutableArray alloc] init];}
     return _decorationViewAttrs;
+}
+
+- (NSMutableArray *)headerArray {
+    if (!_headerArray) {_headerArray = [[NSMutableArray alloc] init];}
+    return _headerArray;
+}
+
+- (NSMutableArray *)itemArray {
+    if (!_itemArray) {_itemArray = [[NSMutableArray alloc] init];}
+    return _itemArray;
+}
+
+- (NSMutableArray *)footerArray {
+    if (!_footerArray) {_footerArray = [[NSMutableArray alloc] init];}
+    return _footerArray;
 }
 
 @end
@@ -445,6 +516,21 @@ static const NSInteger DefaultColumnCpunt = 3;
 @implementation ZZCollectionViewLayoutAttributes
 
 @end
+
+@implementation UICollectionReusableView (ZZLayout)
+
+char const ZZ_SECTION;
+
+- (void)setZz_section:(NSInteger)zz_section {
+    objc_setAssociatedObject(self, &ZZ_SECTION, @(zz_section), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (NSInteger)zz_section {
+    return [objc_getAssociatedObject(self, &ZZ_SECTION) integerValue];
+}
+
+@end
+
 //
 //char const ZZ_CELLHEIGHT;
 //
@@ -460,3 +546,4 @@ static const NSInteger DefaultColumnCpunt = 3;
 //}
 //
 //@end
+

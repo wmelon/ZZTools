@@ -85,12 +85,12 @@ typedef enum : NSUInteger {
 @end
 
 
-@interface UICollectionReusableView (ZZLayout)
-
-/**如果需要区头浮动, 必须给出此值*/
-@property (nonatomic , assign) NSInteger  zz_section;
-
-@end
+//@interface UICollectionReusableView (ZZLayout)
+//
+///**如果需要区头浮动, 必须给出此值*/
+//@property (nonatomic , assign) NSInteger  zz_section;
+//
+//@end
 
 //
 //

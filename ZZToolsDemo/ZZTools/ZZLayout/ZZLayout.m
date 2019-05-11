@@ -98,6 +98,11 @@ static const NSInteger DefaultColumnCpunt = 3;
         footerAttributes.zIndex = 20 + headerAttributes.indexPath.section;
         CGRect headerRect = headerAttributes.frame;
         
+        //如果找到一个区头 符合这个条件, 则不再执行其他区
+        if (headerAttributes.frame.origin.y >= self.collectionView.contentOffset.y) {
+            return self.attributesArray;
+        }
+        
         if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
             headerRect.origin.y = self.collectionView.contentOffset.y;
         } else {
@@ -105,10 +110,6 @@ static const NSInteger DefaultColumnCpunt = 3;
         }
         headerAttributes.frame = headerRect;
         
-        //如果找到一个区头 符合这个条件, 则不再执行其他区
-        if (headerAttributes.frame.origin.y + headerAttributes.frame.size.height >= self.collectionView.contentOffset.y) {
-            return self.attributesArray;
-        }
         
     }
     

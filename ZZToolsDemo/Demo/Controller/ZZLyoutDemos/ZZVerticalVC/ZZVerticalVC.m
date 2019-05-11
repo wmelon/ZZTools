@@ -19,7 +19,7 @@
 @property (nonatomic , strong) UICollectionView *collectionView;
 
 /**数据数组*/
-@property (nonatomic , strong) NSMutableArray   *models;
+@property (nonatomic , strong) NSMutableArray   *modelArrays;
 
 @end
 
@@ -29,9 +29,20 @@
     [super viewDidLoad];
     self.title = @"垂直瀑布流";
     
-    self.models = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 10; i ++) {
-        [self.models addObject:[[ZZModel alloc] init]];
+    self.modelArrays = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 5; i ++) {
+        
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        
+        int count = rand() % 6 + 10;
+        for (int j = 0; j < count; j ++) {
+            ZZModel *model = [[ZZModel alloc] init];
+            model.cellHeight = rand() % 100 + 60;
+            [array addObject:model];
+        }
+        
+        [self.modelArrays addObject:array];
+
     }
     
     //通过懒加载添加到self.view上
@@ -46,14 +57,11 @@
 #pragma mark- 协议方法
 //collectionView的协议方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 4;
+    return self.modelArrays.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 1) {
-        return self.models.count / 3;
-    }
-    return self.models.count;
+    return [self.modelArrays[section] count];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -63,14 +71,12 @@
     if (kind == UICollectionElementKindSectionHeader) {
         ZZCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZZCollectionHeaderView" forIndexPath:indexPath];
         headerView.label.text = [NSString stringWithFormat:@"    这里是第: %ld个区的区头",indexPath.section];
-        headerView.zz_section = indexPath.section;
         reusableView = headerView;
     }
     // 区尾
     if (kind == UICollectionElementKindSectionFooter) {
         ZZCollectionFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"ZZCollectionFooterView" forIndexPath:indexPath];
         footerView.label.text = [NSString stringWithFormat:@"    这里是第: %ld个区的区尾",indexPath.section];
-        footerView.zz_section = indexPath.section;
         reusableView = footerView;
     }
     return reusableView;
@@ -78,7 +84,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"点击了第: %ld个区的第: %ld个item",indexPath.section,indexPath.row);
+    NSLog(@"点击了第: %ld个区的第: %ld个item", indexPath.section, indexPath.row);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,11 +92,8 @@
     //1.从重用队列中获取一个cell
     ZZCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZZCollectionViewCell" forIndexPath:indexPath];
     //2.模拟给cell填充数据
-    ZZModel *model = self.models[indexPath.row];
+    ZZModel *model = self.modelArrays[indexPath.section][indexPath.row];
     model.title = [NSString stringWithFormat:@"第%ld个", indexPath.row];
-    if (model.cellHeight <= 0) {
-        model.cellHeight = rand() % 100 + 60;
-    }
     cell.model = model;
     //3.随机颜色, 实际开发中用不到
     int r = rand() % 255;
@@ -105,8 +108,8 @@
 
 //ZZLyout的流协议方法
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
-    return 100;
-    //return rand() % 100 + 60;
+    ZZModel *model = self.modelArrays[indexPath.section][indexPath.row];
+    return model.cellHeight;
 }
 
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列
@@ -145,7 +148,7 @@
 
 - (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section {
     if (section == 1) {
-        return [UIColor redColor];
+        return [UIColor whiteColor];
     }
     return [UIColor darkGrayColor];
 }

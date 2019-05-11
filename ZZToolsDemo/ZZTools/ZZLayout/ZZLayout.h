@@ -32,19 +32,19 @@ typedef enum : NSUInteger {
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**每个区多少列(浮动瀑布流时时此协议方法无效)*/
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger )section;
+- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section;
 
 /**每个区的边距(上左下右)*/
-- (UIEdgeInsets)layout:(ZZLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+- (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
 
 /**多种类型混合, 暂不支持水平, 可随意兼容垂直和浮动效果*/
-- (ZZLayoutFlowType)layout:(ZZLayout*)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
+- (ZZLayoutFlowType)layout:(ZZLayout *)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
 
 /**每个item行间距(如果为水平方向瀑布流, 这里则是左右间距)*/
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section;
 
 /**每个item列间距(如果是水平方向瀑布流, 这里则是上下间距)*/
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section;
 
 /**header的size*/
 - (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
@@ -53,9 +53,10 @@ typedef enum : NSUInteger {
 - (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section;
 
 /**本区区头和上个区区尾的间距*/
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
 
-- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section;
+/**指定某个分区的"背景"颜色(从区头, 到区尾的空间, 不包含区头区尾)*/
+- (UIColor *)layout:(ZZLayout *)collectionViewLayout colorForSection:(NSInteger)section;
 
 @end
 

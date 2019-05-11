@@ -98,18 +98,31 @@ static const NSInteger DefaultColumnCpunt = 3;
         footerAttributes.zIndex = 20 + headerAttributes.indexPath.section;
         CGRect headerRect = headerAttributes.frame;
         
-        //如果找到一个区头 符合这个条件, 则不再执行其他区
-        if (headerAttributes.frame.origin.y >= self.collectionView.contentOffset.y) {
-            return self.attributesArray;
-        }
-        
-        if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
-            headerRect.origin.y = self.collectionView.contentOffset.y;
+        if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
+            //如果找到一个区头 符合这个条件, 则不再执行其他区
+            if (headerAttributes.frame.origin.y >= self.collectionView.contentOffset.y) {
+                return self.attributesArray;
+            }
+            
+            if (self.collectionView.contentOffset.y < sectionBgAttirbutes.frame.size.height + headerAttributes.frame.origin.y) {
+                headerRect.origin.y = self.collectionView.contentOffset.y;
+            } else {
+                headerRect.origin.y = footerAttributes.frame.origin.y - headerRect.size.height;
+            }
+            headerAttributes.frame = headerRect;
         } else {
-            headerRect.origin.y = footerAttributes.frame.origin.y - headerRect.size.height;
+            //如果找到一个区头 符合这个条件, 则不再执行其他区
+            if (headerAttributes.frame.origin.x >= self.collectionView.contentOffset.x) {
+                return self.attributesArray;
+            }
+            
+            if (self.collectionView.contentOffset.x < sectionBgAttirbutes.frame.size.width + headerAttributes.frame.origin.x) {
+                headerRect.origin.x = self.collectionView.contentOffset.x;
+            } else {
+                headerRect.origin.x = footerAttributes.frame.origin.x - headerRect.size.width;
+            }
+            headerAttributes.frame = headerRect;
         }
-        headerAttributes.frame = headerRect;
-        
         
     }
     
@@ -188,7 +201,7 @@ static const NSInteger DefaultColumnCpunt = 3;
         }
         
         //5.修改分区颜色
-        if (itemCountOfSection > 0 && [self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
+        if (itemCountOfSection > 0 && [self.delegate respondsToSelector:@selector(layout:colorForSection:)]) {
             
             //获取最小包含frame
             CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
@@ -218,8 +231,8 @@ static const NSInteger DefaultColumnCpunt = 3;
             ZZCollectionViewLayoutAttributes *attr = [ZZCollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"ZZCollectionReusableView" withIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
             attr.zIndex = -1;attr.frame = sectionFrame;
             attr.backgroudColor = [UIColor clearColor];
-            if ([self.delegate respondsToSelector:@selector(collectionview:colorForSection:)]) {
-                attr.backgroudColor = [self.delegate collectionview:self.collectionView colorForSection:i];
+            if ([self.delegate respondsToSelector:@selector(layout:colorForSection:)]) {
+                attr.backgroudColor = [self.delegate layout:self colorForSection:i];
             }
             [self.decorationViewAttrs addObject:attr];
             
@@ -426,9 +439,8 @@ static const NSInteger DefaultColumnCpunt = 3;
         if ([_delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
             self.footerReferenceSize = [_delegate layout:self referenceSizeForFooterInSection:indexPath.section];
         } else {
-            self.footerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, 0.001);
+            self.headerReferenceSize = CGSizeMake(0.001, self.collectionView.bounds.size.height);
         }
-        //NSLog(@"footer === %ld",indexPath.section);
         
         if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {
             self.contentDistance += self.sectionInsets.bottom;

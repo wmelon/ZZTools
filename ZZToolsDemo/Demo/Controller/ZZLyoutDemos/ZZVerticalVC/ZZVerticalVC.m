@@ -28,23 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"垂直瀑布流";
-    
-    self.modelArrays = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 5; i ++) {
-        
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        
-        int count = rand() % 6 + 10;
-        for (int j = 0; j < count; j ++) {
-            ZZModel *model = [[ZZModel alloc] init];
-            model.cellHeight = rand() % 100 + 60;
-            [array addObject:model];
-        }
-        
-        [self.modelArrays addObject:array];
-
-    }
-    
     //通过懒加载添加到self.view上
     [self.collectionView reloadData];
 }
@@ -146,7 +129,7 @@
     return 10;
 }
 
-- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section {
+- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
     if (section == 1) {
         return [UIColor whiteColor];
     }
@@ -195,6 +178,27 @@
         
     }
     return _collectionView;
+}
+
+- (NSMutableArray *)modelArrays {
+    if (!_modelArrays) {
+        _modelArrays = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 5; i ++) {
+            
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            
+            int count = rand() % 6 + 10;
+            for (int j = 0; j < count; j ++) {
+                ZZModel *model = [[ZZModel alloc] init];
+                model.cellHeight = rand() % 100 + 60;
+                [array addObject:model];
+            }
+            
+            [_modelArrays addObject:array];
+            
+        }
+    }
+    return _modelArrays;
 }
 
 - (void)dealloc {

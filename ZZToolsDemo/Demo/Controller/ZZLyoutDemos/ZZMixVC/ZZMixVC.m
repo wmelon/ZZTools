@@ -113,7 +113,7 @@
     return CGSizeMake(self.view.bounds.size.width, 44);
 }
 
-- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section {
+- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
     if (section == 1) {
         return [UIColor redColor];
     }

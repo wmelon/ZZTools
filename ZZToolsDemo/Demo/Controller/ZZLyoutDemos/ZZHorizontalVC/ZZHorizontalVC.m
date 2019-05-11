@@ -18,7 +18,7 @@
 @property (nonatomic , strong) UICollectionView *collectionView;
 
 /**数据数组*/
-@property (nonatomic , strong) NSMutableArray   *models;
+@property (nonatomic , strong) NSMutableArray   *modelArrays;
 
 @end
 
@@ -33,13 +33,11 @@
 #pragma mark- 协议方法
 //collectionView的协议方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 3;
+    return self.modelArrays.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return random() % 20 + 20;
-    
+    return [self.modelArrays[section] count];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,6 +65,13 @@
     if (kind == UICollectionElementKindSectionHeader) {
         ZZCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ZZCollectionHeaderView" forIndexPath:indexPath];
         headerView.label.text = [NSString stringWithFormat:@"    %ld",indexPath.section];
+        
+        if (indexPath.section % 2 == 0) {
+            headerView.backgroundColor = [UIColor yellowColor];
+        } else {
+            headerView.backgroundColor = [UIColor purpleColor];
+        }
+        
         reusableView = headerView;
     }
     // 区尾
@@ -79,7 +84,8 @@
 
 //瀑布流协议方法
 - (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的宽
-    return random() % 100 + 80;
+    ZZModel *model = self.modelArrays[indexPath.section][indexPath.row];
+    return model.cellHeight;
 }
 
 - (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列(横向的列)
@@ -105,7 +111,7 @@
     return CGSizeMake(44, self.collectionView.bounds.size.height);
 }
 
-- (UIColor *)collectionview:(UICollectionView *)collectionView colorForSection:(NSInteger)section {
+- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
     if (section == 1) {
         return [UIColor redColor];
     }
@@ -117,19 +123,19 @@
     if (!_collectionView) {
         
         ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeHorizontal delegate:self];
-        
+        layout.sectionHeadersPinToVisibleBounds = YES;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64 - ([UIScreen mainScreen].bounds.size.height >= 812.f ? 24 : 0)) collectionViewLayout:layout];
         _collectionView.delegate = self;_collectionView.dataSource = self;
         
-//        //实现"头视图"效果
-//        UILabel *headerView = [[UILabel alloc] init];
-//        headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
-//        headerView.backgroundColor = [UIColor whiteColor];
-//        headerView.text = @"实现类似tableView的头视图效果.";
-//        headerView.textColor = [UIColor blackColor];
-//        headerView.textAlignment = NSTextAlignmentCenter;
-//        [_collectionView addSubview:headerView];
-//        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
+        //实现"头视图"效果
+        UILabel *headerView = [[UILabel alloc] init];
+        headerView.frame = CGRectMake(-300, 0, 300, self.view.bounds.size.height);
+        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.text = @"实现类似tableView的头视图效果.";
+        headerView.textColor = [UIColor blackColor];
+        headerView.textAlignment = NSTextAlignmentCenter;
+        [_collectionView addSubview:headerView];
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 300, 0, 0);
         
         //注册cell
         [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];
@@ -144,6 +150,27 @@
         
     }
     return _collectionView;
+}
+
+- (NSMutableArray *)modelArrays {
+    if (!_modelArrays) {
+        _modelArrays = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 5; i ++) {
+            
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            
+            int count = rand() % 31 + 20;
+            for (int j = 0; j < count; j ++) {
+                ZZModel *model = [[ZZModel alloc] init];
+                model.cellHeight = rand() % 100 + 80;
+                [array addObject:model];
+            }
+            
+            [_modelArrays addObject:array];
+            
+        }
+    }
+    return _modelArrays;
 }
 
 - (void)dealloc {

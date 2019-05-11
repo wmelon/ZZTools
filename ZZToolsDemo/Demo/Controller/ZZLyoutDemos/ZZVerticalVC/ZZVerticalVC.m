@@ -163,22 +163,22 @@
         _collectionView.delegate = self;_collectionView.dataSource = self;
         [self.view addSubview:_collectionView];
         
-//        //实现"头视图"效果
-//        UILabel *headerView = [[UILabel alloc] init];
-//        headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
-//        headerView.backgroundColor = [UIColor whiteColor];
-//        headerView.text = @"实现类似tableView的头视图效果.";
-//        headerView.textColor = [UIColor blackColor];
-//        headerView.textAlignment = NSTextAlignmentCenter;
-//        headerView.backgroundColor = [UIColor redColor];
-//        [_collectionView addSubview:headerView];
-//        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
-//
-//        //配合MJRefresh可这么使用.
-//        __weak typeof(self)weakSelf = self;
-//        MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];
-//        header.ignoredScrollViewContentInsetTop = 200;
-//        _collectionView.mj_header = header;
+        //实现"头视图"效果
+        UILabel *headerView = [[UILabel alloc] init];
+        headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
+        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.text = @"实现类似tableView的头视图效果.";
+        headerView.textColor = [UIColor blackColor];
+        headerView.textAlignment = NSTextAlignmentCenter;
+        headerView.backgroundColor = [UIColor redColor];
+        [_collectionView addSubview:headerView];
+        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
+
+        //配合MJRefresh可这么使用.
+        __weak typeof(self)weakSelf = self;
+        MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];
+        header.ignoredScrollViewContentInsetTop = 200;
+        _collectionView.mj_header = header;
         
         //注册cell
         [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];

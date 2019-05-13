@@ -129,12 +129,12 @@
     return 10;
 }
 
-- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
-    if (section == 1) {
-        return [UIColor whiteColor];
-    }
-    return [UIColor darkGrayColor];
-}
+//- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
+//    if (section == 1) {
+//        return [UIColor whiteColor];
+//    }
+//    return [UIColor darkGrayColor];
+//}
 
 #pragma mark- 懒加载
 - (UICollectionView *)collectionView {

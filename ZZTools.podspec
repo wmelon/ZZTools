@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name				= "ZZTools"
-s.version			= "1.1.0"
+s.version			= "1.1.2"
 s.summary			= "一些通用工具, 包括:瀑布流, 星星评价, 页面路由等, 详细见: https://github.com/iOS-ZZ/ZZTools"
 s.description			= "1.瀑布流：自定义collectionView的布局，提供垂直＆水平＆浮动;水平＆多状态混合瀑布流效果（可实现淘宝SKU选择的浮动效果）, 支持设置不同分区不同背景颜色。"
 s.description			= "2.星星评价：可自定义星星数量，分级，最低分，支持拖曳手势，支持半颗星（同样支持小数，最低0.01）。"

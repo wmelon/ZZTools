@@ -52,9 +52,6 @@ static const NSInteger DefaultColumnCpunt = 3;
 //分区背景颜色的数组
 @property (nonatomic , strong) NSMutableArray   *decorationViewAttrs;
 
-/**备注*/
-@property (nonatomic , strong) UICollectionReusableView *currentHeader;
-
 @end
 
 @implementation ZZLayout
@@ -146,42 +143,45 @@ static const NSInteger DefaultColumnCpunt = 3;
         }
         
         //5.修改分区颜色
-        if (itemCountOfSection > 0 && [self.delegate respondsToSelector:@selector(layout:colorForSection:)]) {
-            
-            //获取最小包含frame
-            CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
-            if ([self.delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
-                footSize = [self.delegate layout:self referenceSizeForFooterInSection:i];
-            }
-            
-            //根据不同瀑布流类型计算.
-            if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
-                sectionFrame.origin.x -= self.sectionInsets.left;
-                sectionFrame.origin.y -= self.sectionInsets.top;
-                sectionFrame.size.width = self.collectionView.bounds.size.width;
-                sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
-            } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
-                sectionFrame.origin.x -= self.sectionInsets.left;
-                sectionFrame.origin.y -= self.sectionInsets.top;
-                sectionFrame.size.width = self.contentDistance - sectionFrame.origin.x - footSize.width;
-                sectionFrame.size.height = self.collectionView.bounds.size.height;
-            } else {
-                sectionFrame.origin.x -= self.sectionInsets.left;
-                sectionFrame.origin.y -= self.sectionInsets.top;
-                sectionFrame.size.width = self.collectionView.bounds.size.width;
-                sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
-            }
-            
-            //设置frame
-            ZZCollectionViewLayoutAttributes *attr = [ZZCollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"ZZCollectionReusableView" withIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
-            attr.zIndex = -1;attr.frame = sectionFrame;
-            attr.backgroudColor = [UIColor clearColor];
-            if ([self.delegate respondsToSelector:@selector(layout:colorForSection:)]) {
-                attr.backgroudColor = [self.delegate layout:self colorForSection:i];
-            }
-            [self.decorationViewAttrs addObject:attr];
-            
+        if (itemCountOfSection < 1) {return;}
+        [self.delegate respondsToSelector:@selector(layout:colorForSection:)];
+        
+        //获取最小包含frame
+        CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
+        if ([self.delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
+            footSize = [self.delegate layout:self referenceSizeForFooterInSection:i];
         }
+        
+        //根据不同瀑布流类型计算.
+        if (self.zzScrollDirection == ZZLayoutFlowTypeVertical) {
+            sectionFrame.origin.x -= self.sectionInsets.left;
+            sectionFrame.origin.y -= self.sectionInsets.top;
+            sectionFrame.size.width = self.collectionView.bounds.size.width;
+            sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
+        } else if (self.zzScrollDirection == ZZLayoutFlowTypeHorizontal) {
+            sectionFrame.origin.x -= self.sectionInsets.left;
+            sectionFrame.origin.y -= self.sectionInsets.top;
+            sectionFrame.size.width = self.contentDistance - sectionFrame.origin.x - footSize.width;
+            sectionFrame.size.height = self.collectionView.bounds.size.height;
+        } else {
+            sectionFrame.origin.x -= self.sectionInsets.left;
+            sectionFrame.origin.y -= self.sectionInsets.top;
+            sectionFrame.size.width = self.collectionView.bounds.size.width;
+            sectionFrame.size.height = self.contentDistance - sectionFrame.origin.y - footSize.height;
+        }
+        
+        //设置frame
+        ZZCollectionViewLayoutAttributes *attr = [ZZCollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:@"ZZCollectionReusableView" withIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
+        attr.zIndex = -1;attr.frame = sectionFrame;
+        attr.backgroudColor = [UIColor clearColor];
+        if ([self.delegate respondsToSelector:@selector(layout:colorForSection:)]) {
+            attr.backgroudColor = [self.delegate layout:self colorForSection:i];
+        } else {
+            attr.backgroudColor = [UIColor clearColor];
+        }
+        [self.decorationViewAttrs addObject:attr];
+            
+        
     }
 }
 
@@ -532,20 +532,20 @@ static const NSInteger DefaultColumnCpunt = 3;
 
 @end
 
-@implementation UICollectionReusableView (ZZLayout)
-
-char const ZZ_SECTION;
-
-- (void)setZz_section:(NSInteger)zz_section {
-    objc_setAssociatedObject(self, &ZZ_SECTION, @(zz_section), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (NSInteger)zz_section {
-    return [objc_getAssociatedObject(self, &ZZ_SECTION) integerValue];
-}
-
-@end
-
+//@implementation UICollectionReusableView (ZZLayout)
+//
+//char const ZZ_SECTION;
+//
+//- (void)setZz_section:(NSInteger)zz_section {
+//    objc_setAssociatedObject(self, &ZZ_SECTION, @(zz_section), OBJC_ASSOCIATION_ASSIGN);
+//}
+//
+//- (NSInteger)zz_section {
+//    return [objc_getAssociatedObject(self, &ZZ_SECTION) integerValue];
+//}
+//
+//@end
+//
 //
 //char const ZZ_CELLHEIGHT;
 //

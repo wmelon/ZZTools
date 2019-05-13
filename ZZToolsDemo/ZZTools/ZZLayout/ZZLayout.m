@@ -143,10 +143,6 @@ static const NSInteger DefaultColumnCpunt = 3;
         }
         
         //5.修改分区颜色
-        if (itemCountOfSection < 1) {return;}
-        [self.delegate respondsToSelector:@selector(layout:colorForSection:)];
-        
-        //获取最小包含frame
         CGRect sectionFrame = firstAttributes.frame;CGSize footSize = CGSizeZero;
         if ([self.delegate respondsToSelector:@selector(layout:referenceSizeForFooterInSection:)]) {
             footSize = [self.delegate layout:self referenceSizeForFooterInSection:i];
@@ -180,7 +176,6 @@ static const NSInteger DefaultColumnCpunt = 3;
             attr.backgroudColor = [UIColor clearColor];
         }
         [self.decorationViewAttrs addObject:attr];
-            
         
     }
 }

@@ -156,7 +156,7 @@
         headerView.backgroundColor = [UIColor redColor];
         [_collectionView addSubview:headerView];
         _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
-
+        
         //配合MJRefresh可这么使用.
         __weak typeof(self)weakSelf = self;
         MJRefreshNormalHeader *header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{[weakSelf loadData];}];

@@ -244,7 +244,11 @@ static const NSInteger DefaultColumnCpunt = 3;
     CGFloat cellY = MAX(minColumnHeight, 0);
     
     //如果cell的y值不等于上个区的最高的高度 即不是此区的第一列 要加上此区的每个cell的上下间距
-    if (cellY != self.lastContentHeight) {cellY += self.lineSpacing;}
+    if (cellY != self.lastContentHeight) {
+        cellY += self.lineSpacing;
+    } else {
+        cellY += self.sectionInsets.top;
+    }
     if (self.contentDistance < minColumnHeight) {self.contentDistance = minColumnHeight;}
     
     attributes.frame = CGRectMake(cellX, cellY, cellWeight, cellHeight);
@@ -284,7 +288,9 @@ static const NSInteger DefaultColumnCpunt = 3;
     CGFloat cellY = self.sectionInsets.top + tempMinColumn * (cellHeight + self.interitemSpacing);
     
     //如果cell的y值不等于上个区的最高的高度 即不是此区的第一列 要加上此区的每个cell的上下间距
-    if (cellX != self.lastContentHeight) {cellX += self.lineSpacing;}
+    if (cellX != self.lastContentHeight) {
+        cellX += self.lineSpacing;
+    }
     if (self.contentDistance < minColumnWidth) {self.contentDistance = minColumnWidth;}
     
     attributes.frame = CGRectMake(cellX, cellY, cellWeight, cellHeight);
@@ -321,20 +327,17 @@ static const NSInteger DefaultColumnCpunt = 3;
     
     //3.判断当前item和上一个item是否在同一个row
     if (CGRectGetMaxX(lastFrame) + self.sectionInsets.right + cellWidth >= self.collectionView.bounds.size.width) {//不在同一行
-        
         currentFrame.origin.x = self.sectionInsets.left;
-        if (indexPath.row > 1) {
-            currentFrame.origin.y = CGRectGetMaxY(lastFrame) + self.lineSpacing;
-        } else {
+        if (indexPath.row == 0) {
             currentFrame.origin.y = CGRectGetMaxY(lastFrame) + self.sectionInsets.top;
+        } else {
+            currentFrame.origin.y = CGRectGetMaxY(lastFrame) + self.lineSpacing;
         }
-        
         currentFrame.size.width = cellWidth;
         currentFrame.size.height = cellHeight;
         attributes.frame = currentFrame;
         
     } else {///在同一行
-        
         currentFrame.origin.x = CGRectGetMaxX(lastFrame) + self.interitemSpacing;
         currentFrame.origin.y = lastFrame.origin.y;
         currentFrame.size.width = cellWidth;
@@ -358,7 +361,6 @@ static const NSInteger DefaultColumnCpunt = 3;
         } else {
             self.headerReferenceSize = CGSizeMake(self.collectionView.bounds.size.width, 0.001);
         }
-        
         self.contentDistance += indexPath.section == 0 ? 0 : self.spacingWithLastSection;
         
         if (self.zzScrollDirection != ZZLayoutFlowTypeHorizontal) {

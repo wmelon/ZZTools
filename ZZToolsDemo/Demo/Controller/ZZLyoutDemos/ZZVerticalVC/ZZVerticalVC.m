@@ -90,16 +90,16 @@
 }
 
 //ZZLyout的流协议方法
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
+- (CGFloat)layout:(ZZLayout *)layout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
     ZZModel *model = self.modelArrays[indexPath.section][indexPath.row];
     return model.cellHeight;
 }
 
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列
+- (NSInteger)layout:(ZZLayout *)layout columnNumberAtSection:(NSInteger)section {//每个区有几列
     return section;//默认值为3, 第0个区传入0时其实是使用了默认值.
 }
 
-- (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
+- (UIEdgeInsets)layout:(ZZLayout *)layout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
     
     if (section < 3) {
         return UIEdgeInsetsMake(0, 20, 10, 20);
@@ -109,27 +109,27 @@
     
 }
 
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的行间距
+- (NSInteger)layout:(ZZLayout *)layout lineSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的行间距
     return 10;
 }
 
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的列间距
+- (CGFloat)layout:(ZZLayout*)layout interitemSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的列间距
     return 10;
 }
 
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {//设置区头的高度
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section {//设置区头的高度
     return CGSizeMake(self.view.bounds.size.width, 44);
 }
 
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {//设置区尾的高度
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForFooterInSection:(NSInteger)section {//设置区尾的高度
     return CGSizeMake(self.view.bounds.size.width, 44);
 }
 
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section {//本区区头和上个区区尾的间距
+- (CGFloat)layout:(ZZLayout*)layout spacingWithLastSectionForSectionAtIndex:(NSInteger)section {//本区区头和上个区区尾的间距
     return 10;
 }
 
-//- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
+//- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {
 //    if (section == 1) {
 //        return [UIColor whiteColor];
 //    }

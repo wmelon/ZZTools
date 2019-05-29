@@ -83,35 +83,35 @@
 }
 
 //瀑布流协议方法
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的宽
+- (CGFloat)layout:(ZZLayout *)layout widthForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的宽
     ZZModel *model = self.modelArrays[indexPath.section][indexPath.row];
     return model.cellHeight;
 }
 
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section {//每个区有几列(横向的列)
+- (NSInteger)layout:(ZZLayout *)layout columnNumberAtSection:(NSInteger)section {//每个区有几列(横向的列)
     return section % 2 == 0 ? 10 : 12;
 }
 
-- (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
-    if (section % 2 == 0) {
+- (UIEdgeInsets)layout:(ZZLayout *)layout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
+    if (section % 2 == 1) {
         return UIEdgeInsetsMake(10, 0, 10, 0);
     }
     return UIEdgeInsetsMake(0, 10, 0, 10);
 }
 
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的行间距
+- (NSInteger)layout:(ZZLayout *)layout lineSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的行间距
     return 10;
 }
 
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的列间距
+- (CGFloat)layout:(ZZLayout *)layout interitemSpacingForSectionAtIndex:(NSInteger)section {//设置每个区的列间距
     return 15;
 }
 
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {//设置区头的高度
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section {//设置区头的高度
     return CGSizeMake(44, self.collectionView.bounds.size.height);
 }
 
-- (UIColor *)layout:(UICollectionView *)collectionViewLayout colorForSection:(NSInteger)section {
+- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {
     if (section == 1) {
         return [UIColor redColor];
     }

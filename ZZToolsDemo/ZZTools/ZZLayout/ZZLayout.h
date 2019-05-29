@@ -26,37 +26,37 @@ typedef enum : NSUInteger {
 
 @optional
 /**cell的宽(垂直瀑布流时此协议方法无效, 根据columnNumber和各种间距自适应)*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)layout:(ZZLayout *)layout widthForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**cell的高(水平瀑布流是此协议方法无效, 根据columnNumber和各种间距自适应)*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)layout:(ZZLayout *)layout heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**每个区多少列(浮动瀑布流时时此协议方法无效)*/
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger)section;
+- (NSInteger)layout:(ZZLayout *)layout columnNumberAtSection:(NSInteger)section;
 
 /**每个区的边距(上左下右)*/
-- (UIEdgeInsets)layout:(ZZLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+- (UIEdgeInsets)layout:(ZZLayout *)layout insetForSectionAtIndex:(NSInteger)section;
 
 /**多种类型混合, 暂不支持水平, 可随意兼容垂直和浮动效果*/
-- (ZZLayoutFlowType)layout:(ZZLayout *)collectionViewLayout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
+- (ZZLayoutFlowType)layout:(ZZLayout *)layout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
 
 /**每个item行间距(如果为水平方向瀑布流, 这里则是左右间距)*/
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section;
+- (NSInteger)layout:(ZZLayout *)layout lineSpacingForSectionAtIndex:(NSInteger)section;
 
 /**每个item列间距(如果是水平方向瀑布流, 这里则是上下间距)*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)layout interitemSpacingForSectionAtIndex:(NSInteger)section;
 
 /**header的size*/
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section;
 
 /**footer的size*/
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section;
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForFooterInSection:(NSInteger)section;
 
 /**本区区头和上个区区尾的间距*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)layout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
 
 /**指定某个分区的"背景"颜色(从区头, 到区尾的空间, 不包含区头区尾)*/
-- (UIColor *)layout:(ZZLayout *)collectionViewLayout colorForSection:(NSInteger)section;
+- (UIColor *)layout:(ZZLayout *)layout colorForSection:(NSInteger)section;
 
 @end
 

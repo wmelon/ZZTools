@@ -36,7 +36,6 @@
     self.title = @"ZZToolsDemo";
     self.titles = @[@"竖直方向瀑布流", @"水平方向瀑布流", @"浮动瀑布流(可实现淘宝商品详情SKU选择)", @"混合类型瀑布流(目前仅支持浮动和垂直类型的混合)", @"星星评价, 支持间距, 滑动交互, 分阶, 最低分"];
     [self.view addSubview:self.tableView];
-    //NSLog(@"UIScreen.mainScreen.bounds.size.width === %.0f, UIScreen.mainScreen.bounds.size.height === %.0f",UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height);
 }
 
 #pragma mark- 协议方法
@@ -47,22 +46,14 @@
     
     //2.通过路由获取要跳转的控制器对象, 并跳转.页面路由可打断模块之间的耦合, 实现组件化.
     UIViewController *vc = nil;
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0) {//垂直瀑布流
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/vertical"]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 1) {
+    } else if (indexPath.row == 1) {//水平瀑布流
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/horizontal"]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 2) {
+    } else if (indexPath.row == 2) {//浮动瀑布流
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/automateFloat"]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 3) {//组合瀑布流
         vc = [[ZZRouter shared] getController:[NSString stringWithFormat:@"app/demo/mix"]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 4) {
         //星星评价, 传参实例, 类似get请求.
         NSString *url = [NSString stringWithFormat:@"app/demo/starView?grade1=%@&grade2=%@&grade3=%@",@"3.5",@"2",@"2.8"];
@@ -71,10 +62,9 @@
             //这里是次级控制器反向传值
             NSLog(@"页面路由反向传值: result === %@",result);
         };
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
     }
-
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

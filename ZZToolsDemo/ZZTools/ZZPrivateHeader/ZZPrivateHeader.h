@@ -12,7 +12,7 @@
 #define ZZPrivateHeader_h
 
 //MARK:- 屏幕适配
-#define AfW(x) (x / 375.0 * UIWidth)
+#define AfW(x) (x / 375.0 * ZZWidth)
 #define ZZWidth UIScreen.mainScreen.bounds.size.width
 #define ZZHeight UIScreen.mainScreen.bounds.size.height
 #define ZZKeyWindow [[UIApplication sharedApplication] keyWindow]

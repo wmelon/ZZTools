@@ -24,6 +24,11 @@
 
 @implementation ZZHorizontalVC
 
++ (void)load {
+    [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:[self class]];//水平瀑布流
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"水平瀑布流";

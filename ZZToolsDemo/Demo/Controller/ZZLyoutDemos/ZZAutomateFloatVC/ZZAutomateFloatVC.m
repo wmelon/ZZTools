@@ -24,6 +24,11 @@
 
 @implementation ZZAutomateFloatVC
 
++ (void)load {
+    [[ZZRouter shared] mapRoute:@"app/demo/automateFloat" toControllerClass:[self class]];//浮动瀑布流
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"浮动";

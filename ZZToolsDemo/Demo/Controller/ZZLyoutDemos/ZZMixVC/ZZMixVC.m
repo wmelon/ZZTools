@@ -25,6 +25,11 @@
 
 @implementation ZZMixVC
 
++ (void)load {
+    [[ZZRouter shared] mapRoute:@"app/demo/mix" toControllerClass:[self class]];//垂直瀑布流
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"混合";

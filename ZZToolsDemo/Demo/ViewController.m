@@ -21,16 +21,6 @@
 
 @implementation ViewController
 
-+ (void)load {
-    
-    [[ZZRouter shared] mapRoute:@"app/demo/starView" toControllerClass:NSClassFromString(@"ZZStarViewVC")];//星星评价
-    [[ZZRouter shared] mapRoute:@"app/demo/mix" toControllerClass:NSClassFromString(@"ZZMixVC")];//垂直瀑布流
-    [[ZZRouter shared] mapRoute:@"app/demo/vertical" toControllerClass:NSClassFromString(@"ZZVerticalVC")];//垂直瀑布流
-    [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:NSClassFromString(@"ZZHorizontalVC")];//水平瀑布流
-    [[ZZRouter shared] mapRoute:@"app/demo/automateFloat" toControllerClass:NSClassFromString(@"ZZAutomateFloatVC")];//浮动瀑布流
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ZZToolsDemo";

@@ -134,7 +134,7 @@
         
         //实现"头视图"效果
         UILabel *headerView = [[UILabel alloc] init];
-        headerView.frame = CGRectMake(-300, 0, 300, self.view.bounds.size.height);
+        headerView.frame = CGRectMake(-300, 0, 300, _collectionView.bounds.size.height);
         headerView.backgroundColor = [UIColor whiteColor];
         headerView.text = @"实现类似tableView的头视图效果.";
         headerView.textColor = [UIColor blackColor];

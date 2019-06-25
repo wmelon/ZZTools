@@ -45,15 +45,4 @@
     
 }
 
-////返回特定的高
-//- (ZZcollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(ZZcollectionViewLayoutAttributes *)layoutAttributes {
-//    ZZcollectionViewLayoutAttributes *attributes = [layoutAttributes copy];
-//    //dispatch_async(dispatch_get_main_queue(), ^{
-//        [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
-//        //NSLog(@"preferredLayoutAttributesFittingAttributes: self.model.cellHeight === %.2f",self.model.cellHeight);
-//        attributes.size = CGSizeMake(attributes.size.width, self.model.cellHeight);
-//    //});
-//    return attributes;
-//}
-
 @end

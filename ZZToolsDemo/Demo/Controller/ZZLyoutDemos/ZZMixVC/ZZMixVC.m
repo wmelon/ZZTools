@@ -85,7 +85,7 @@
 
 //ZZLyout的流协议方法
 - (CGFloat)layout:(ZZLayout *)layout heightForRowAtIndexPath:(NSIndexPath *)indexPath {//返回item的高
-    if (indexPath.section %2 == 0) {
+    if (indexPath.section % 2 == 0) {
         return 30;
     }
     return random() % 120 + 20;//同一section下请不要改变高度.

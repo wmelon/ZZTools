@@ -1,5 +1,5 @@
 ## 功能简介
-1. 瀑布流:     自定义collectionView的layout, 提供垂直&amp;水平&amp;浮动;水平&amp;多状态混合瀑布流效果(可实现淘宝SKU选择的浮动效果).
+1. 瀑布流:     自定义collectionView的layout, 提供垂直&amp;水平&amp;浮动;水平&amp;多状态混合瀑布流效果(可实现淘宝SKU选择的浮动效果), 支持设置不同分区不同背景颜色.
 2. 星星评价:  可自定义星星数量, 分级, 最低分, 支持拖拽手势, 支持半颗星(同样支持小数, 最低0.01).
 3. 页面路由:  模块解耦, 组件化必备, 用法简单, 支持正向传值以及反向传值, 无需继承, 侵入性低.
 
@@ -8,7 +8,7 @@
 ### 导入
 1.可直接下载demo, 将ZZTools文件夹拖入工程中使用.
 
-2.cocoapods集成可使用: pod 'ZZTools' ,若搜索不到可尝试先使用pod setup更新.
+2.cocoapods集成可使用: pod 'ZZTools' , 若搜索不到可尝试先使用pod setup更新.
 
 ### 引用
 ```
@@ -24,7 +24,7 @@
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="449">
 
 
-### 星星评价部分
+### 星星评价部分(gif较多, 刚打开网页看起来不流畅, 可以直接下载demo运行)
 
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.GIF" width="212" height="449">
 
@@ -42,14 +42,14 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 ##### 以下协议方法根据瀑布流类型调用, 用法详见demo.
 ```
 
-/**cell的宽(垂直瀑布流时此协议方法无效, 宽度根据columnNumber和各种间距自适应)*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout widthForRowAtIndexPath:(NSIndexPath *)indexPath;
+/**cell的宽(垂直瀑布流时此协议方法无效, 根据columnNumber和各种间距自适应)*/
+- (CGFloat)layout:(ZZLayout *)layout widthForRowAtIndexPath:(NSIndexPath *)indexPath;
 
-/**cell的高(水平瀑布流是此协议方法无效, 高度根据columnNumber和各种间距自适应)*/
-- (CGFloat)layout:(ZZLayout *)collectionViewLayout heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+/**cell的高(水平瀑布流是此协议方法无效, 根据columnNumber和各种间距自适应)*/
+- (CGFloat)layout:(ZZLayout *)layout heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**每个区多少列(浮动瀑布流时时此协议方法无效)*/
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout columnNumberAtSection:(NSInteger )section;
+- (NSInteger)layout:(ZZLayout *)layout columnNumberAtSection:(NSInteger)section;
 
 ```
 
@@ -57,22 +57,28 @@ ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:
 ```
 
 /**每个区的边距(上左下右)*/
-- (UIEdgeInsets)layout:(ZZLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+- (UIEdgeInsets)layout:(ZZLayout *)layout insetForSectionAtIndex:(NSInteger)section;
+
+/**多种类型混合, 暂不支持水平, 可随意兼容垂直和浮动效果*/
+- (ZZLayoutFlowType)layout:(ZZLayout *)layout layoutFlowTypeForSectionAtIndex:(NSInteger)section;
 
 /**每个item行间距(如果为水平方向瀑布流, 这里则是左右间距)*/
-- (NSInteger)layout:(ZZLayout *)collectionViewLayout lineSpacingForSectionAtIndex:(NSInteger)section;
+- (NSInteger)layout:(ZZLayout *)layout lineSpacingForSectionAtIndex:(NSInteger)section;
 
 /**每个item列间距(如果是水平方向瀑布流, 这里则是上下间距)*/
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout interitemSpacingForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)layout interitemSpacingForSectionAtIndex:(NSInteger)section;
 
 /**header的size*/
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section;
 
 /**footer的size*/
-- (CGSize)layout:(ZZLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section;
+- (CGSize)layout:(ZZLayout *)layout referenceSizeForFooterInSection:(NSInteger)section;
 
 /**本区区头和上个区区尾的间距*/
-- (CGFloat)layout:(ZZLayout*)collectionViewLayout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
+- (CGFloat)layout:(ZZLayout *)layout spacingWithLastSectionForSectionAtIndex:(NSInteger)section;
+
+/**指定某个分区的"背景"颜色(从区头, 到区尾的空间, 不包含区头区尾)*/
+- (UIColor *)layout:(ZZLayout *)layout colorForSection:(NSInteger)section;
 
 ```
 

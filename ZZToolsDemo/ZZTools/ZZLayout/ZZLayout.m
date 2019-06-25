@@ -247,7 +247,7 @@ static const NSInteger DefaultColumnCpunt = 3;
     if (cellY != self.lastContentHeight) {
         cellY += self.lineSpacing;
     } else {
-        cellY += self.sectionInsets.top;
+        cellY += self.sectionInset.top;
     }
     if (self.contentDistance < minColumnHeight) {self.contentDistance = minColumnHeight;}
     

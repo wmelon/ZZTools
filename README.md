@@ -19,7 +19,7 @@
 
 ## 效果展示
 
-### 瀑布流部分
+### 瀑布流部分(gif较多, 刚打开网页看起来不流畅, 可以直接下载demo运行)
 
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="449"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="449">
 

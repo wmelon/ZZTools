@@ -29,7 +29,6 @@
     [[ZZRouter shared] mapRoute:@"app/demo/vertical" toControllerClass:[self class]];//垂直瀑布流
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"垂直瀑布流";
@@ -101,7 +100,7 @@
 }
 
 - (NSInteger)layout:(ZZLayout *)layout columnNumberAtSection:(NSInteger)section {//每个区有几列
-    return section;//默认值为3, 第0个区传入0时其实是使用了默认值.
+    return section == 1 ? 4 : section;//默认值为3, 第0个区传入0时其实是使用了默认值.
 }
 
 - (UIEdgeInsets)layout:(ZZLayout *)layout insetForSectionAtIndex:(NSInteger)section {//设置每个区的边距
@@ -134,18 +133,19 @@
     return 10;
 }
 
-//- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {
-//    if (section == 1) {
-//        return [UIColor whiteColor];
-//    }
-//    return [UIColor darkGrayColor];
-//}
+- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {//设置不同分区的不同背景颜色
+    if (section % 2 == 0) {
+        return [UIColor whiteColor];
+    }
+    return [UIColor darkGrayColor];
+}
 
 #pragma mark- 懒加载
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         
         ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:self];
+        //打开区头悬浮功能(默认关闭)
         layout.sectionHeadersPinToVisibleBounds = YES;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64 - ([UIScreen mainScreen].bounds.size.height >= 812.f ? 24 : 0)) collectionViewLayout:layout];
         _collectionView.delegate = self;_collectionView.dataSource = self;
@@ -154,13 +154,12 @@
         //实现"头视图"效果
         UILabel *headerView = [[UILabel alloc] init];
         headerView.frame = CGRectMake(0, -200, self.view.bounds.size.width, 200);
-        headerView.backgroundColor = [UIColor whiteColor];
         headerView.text = @"实现类似tableView的头视图效果.";
         headerView.textColor = [UIColor blackColor];
         headerView.textAlignment = NSTextAlignmentCenter;
         headerView.backgroundColor = [UIColor redColor];
         [_collectionView addSubview:headerView];
-        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 100, 0);
+        _collectionView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
         
         //配合MJRefresh可这么使用.
         __weak typeof(self)weakSelf = self;
@@ -192,7 +191,7 @@
             
             NSMutableArray *array = [[NSMutableArray alloc] init];
             
-            int count = rand() % 6 + 10;
+            int count = rand() % 6 + 7;
             for (int j = 0; j < count; j ++) {
                 ZZModel *model = [[ZZModel alloc] init];
                 model.cellHeight = rand() % 100 + 60;

@@ -130,7 +130,8 @@
     if (!_collectionView) {
         
         ZZLayout *layout = [[ZZLayout alloc] initWith:ZZLayoutFlowTypeVertical delegate:self];
-        
+        //浮动同样支持区头悬浮, 但是demo中的宽高给的是随机的, 每次都刷新, 所以不要打开, 实际开发中可以使用.
+        //layout.sectionHeadersPinToVisibleBounds = YES;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64 - ([UIScreen mainScreen].bounds.size.height >= 812.f ? 24 : 0)) collectionViewLayout:layout];
         _collectionView.delegate = self;_collectionView.dataSource = self;
         

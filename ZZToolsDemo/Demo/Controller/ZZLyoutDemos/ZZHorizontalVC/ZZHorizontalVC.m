@@ -28,7 +28,6 @@
     [[ZZRouter shared] mapRoute:@"app/demo/horizontal" toControllerClass:[self class]];//水平瀑布流
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"水平瀑布流";
@@ -116,12 +115,12 @@
     return CGSizeMake(44, self.collectionView.bounds.size.height);
 }
 
-- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {
-    if (section == 1) {
-        return [UIColor redColor];
-    }
-    return [UIColor darkGrayColor];
-}
+//- (UIColor *)layout:(UICollectionView *)layout colorForSection:(NSInteger)section {
+//    if (section == 1) {
+//        return [UIColor redColor];
+//    }
+//    return [UIColor darkGrayColor];
+//}
 
 #pragma mark- 懒加载
 - (UICollectionView *)collectionView {
@@ -134,13 +133,14 @@
         
         //实现"头视图"效果
         UILabel *headerView = [[UILabel alloc] init];
-        headerView.frame = CGRectMake(-300, 0, 300, _collectionView.bounds.size.height);
-        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.numberOfLines = 2;
+        headerView.frame = CGRectMake(-220, 0, 220, _collectionView.bounds.size.height);
+        headerView.backgroundColor = [UIColor redColor];
         headerView.text = @"实现类似tableView的头视图效果.";
         headerView.textColor = [UIColor blackColor];
         headerView.textAlignment = NSTextAlignmentCenter;
         [_collectionView addSubview:headerView];
-        _collectionView.contentInset = UIEdgeInsetsMake(0, 300, 0, 0);
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 220, 0, 0);
         
         //注册cell
         [_collectionView registerClass:[ZZCollectionViewCell class] forCellWithReuseIdentifier:@"ZZCollectionViewCell"];

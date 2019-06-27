@@ -19,14 +19,14 @@
 
 ## 效果展示
 
-### 瀑布流部分(gif较多, 刚打开网页看起来不流畅, 可以直接下载demo运行)
+### 瀑布流部分(gif较多, 看起来可能比较花, 可以直接下载demo运行)
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="380"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="380"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="380"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="380">
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="370">
 
 
-### 星星评价部分(gif较多, 刚打开网页看起来不流畅, 可以直接下载demo运行)
+### 星星评价部分
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.GIF" width="212" height="380">
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.GIF" width="212" height="370">
 
 ## 用法简介
 

@@ -36,9 +36,9 @@
     //设置分值, 可以不写, 默认显示0分.(self.params是UIViewController在ZZRouter中扩展的属性, 包含了所有参数)
     self.starView.grade = [self.params[@"grade1"] floatValue];
     //默认值, 可以不写 ,用户可以设置的最低分值.
-    self.starView.miniGrade = 0.5;
+    self.starView.miniGrade = 0;
     [self.view addSubview:self.starView];
-    self.starView.frame = CGRectMake(50, 150, self.starView.bounds.size.width, self.starView.bounds.size.height);
+    self.starView.frame = CGRectMake(50, 170, self.starView.bounds.size.width, self.starView.bounds.size.height);
     
     
     //第二个
@@ -46,8 +46,8 @@
         NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     starView1.sublevel = 1;starView1.grade = [self.params[@"grade2"] floatValue];
-    starView1.miniGrade = 0;[self.view addSubview:starView1];
-    starView1.frame = CGRectMake(50, 210, starView1.bounds.size.width, starView1.bounds.size.height);
+    starView1.miniGrade = 2;[self.view addSubview:starView1];
+    starView1.frame = CGRectMake(50, 260, starView1.bounds.size.width, starView1.bounds.size.height);
     
     
     //第三个
@@ -55,9 +55,40 @@
         NSLog(@"用户实际选择分 === %.2f, 最终分 === %.2f", userGrade, finalGrade);
     }];
     starView2.sublevel = 0.01;starView2.grade = [self.params[@"grade3"] floatValue];
-    starView2.miniGrade = 0.5;[self.view addSubview:starView2];
-    starView2.frame = CGRectMake(50, 270, starView2.bounds.size.width, starView2.bounds.size.height);
+    starView2.miniGrade = 0.0;[self.view addSubview:starView2];
+    starView2.frame = CGRectMake(50, 350, starView2.bounds.size.width, starView2.bounds.size.height);
+    
+    
+    [self createTitleLabels];
    
+}
+
+- (void)createTitleLabels {
+    
+    UILabel *label1 = [[UILabel alloc] init];
+    [self.view addSubview:label1];
+    label1.frame = CGRectMake(50, 140, 300, 20);
+    label1.textAlignment = NSTextAlignmentLeft;
+    label1.textColor = [UIColor darkTextColor];
+    label1.text = @"1. 分阶=0.5(半星), 最低分=0";
+    
+    
+    UILabel *label2 = [[UILabel alloc] init];
+    [self.view addSubview:label2];
+    label2.frame = CGRectMake(50, 230, 300, 20);
+    label2.textAlignment = NSTextAlignmentLeft;
+    label2.textColor = [UIColor darkTextColor];
+    label2.text = @"2. 分阶=1(整星), 最低分=2";
+    
+    
+    UILabel *label3 = [[UILabel alloc] init];
+    [self.view addSubview:label3];
+    label3.frame = CGRectMake(50, 320, 300, 20);
+    label3.textAlignment = NSTextAlignmentLeft;
+    label3.textColor = [UIColor darkTextColor];
+    label3.text = @"1. 分阶=0.01(任意星), 最低分=0";
+    
+    
 }
 
 - (void)dealloc {

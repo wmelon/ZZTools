@@ -28,7 +28,7 @@
 
 ### 星星评价(gif帧数较多, 开始看起来比较卡,  加载完成后为具体效果, 真机&模拟器效果十分流畅粘手!)
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.GIF" width="212" height="370">
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.gif" width="212" height="370">
 
 ## 用法简介
 

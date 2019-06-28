@@ -6,9 +6,11 @@
 ## 使用方法
 
 ### 导入
-1.可直接下载demo, 将ZZTools文件夹拖入工程中使用.
+1. 可直接下载demo, 将ZZTools文件夹拖入工程中使用.
 
-2.cocoapods集成可使用: pod 'ZZTools' , 若搜索不到可尝试先使用pod setup更新.
+2. cocoapods集成可使用: pod 'ZZTools' , 若搜索不到可尝试先使用pod setup更新.
+
+3. 好用的话, 记得留下你的小星星哦!
 
 ### 引用
 ```
@@ -24,7 +26,7 @@
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="370"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="370">
 
 
-### 星星评价部分
+### 星星评价部分(gif较大, 刚开始看起来比较卡, 后续网页加载完成才是具体效果, 真机&模拟器效果十分流畅n粘手!)
 
 <img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.GIF" width="212" height="370">
 

@@ -23,12 +23,12 @@
 
 ### 瀑布流部分(gif较多, 看起来可能比较花, 可以直接下载demo运行)
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="365"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="365"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="365"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="365">
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E5%9E%82%E7%9B%B4.gif" width="212" height="350"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B5%AE%E5%8A%A8.gif" width="212" height="350"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B0%B4%E5%B9%B3.gif" width="212" height="350"><img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZLayout/%E6%B7%B7%E5%90%88.GIF" width="212" height="350">
 
 
 ### 星星评价(gif帧数较多, 开始看起来比较卡,  加载完成后为具体效果, 真机&模拟器效果十分流畅粘手!)
 
-<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.gif" width="212" height="365">
+<img src="https://github.com/iOS-ZZ/ZZResources/blob/master/ZZResources/ZZStarView/%E6%98%9F%E6%98%9F%E8%AF%84%E4%BB%B7.gif" width="212" height="350">
 
 ## 用法简介
 

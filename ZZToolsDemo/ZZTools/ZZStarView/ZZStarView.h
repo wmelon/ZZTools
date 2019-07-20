@@ -27,14 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) CGFloat              miniGrade;
 
 /**
- * image:           未选中状态的图片
- * selectImage:     选中状态的图片
- * starWidth:       星星的宽度
- * starHeight:      星星的高度
- * starMargin:      每两个星星之间的间距
- * starCount:       需要几个星星
- * callBack:        如果传入nil, 则用户不可以修改分值
- * 注:               此view宽高自适应, 设置frame时, 只需考虑q起点xy坐标.
+ * image:       未选中状态的图片
+ * selectImage: 选中状态的图片
+ * starWidth:   星星的宽度
+ * starHeight:  星星的高度
+ * starMargin:  每两个星星之间的间距
+ * starCount:   需要几个星星
+ * callBack:    如果传入nil, 则用户不可以修改分值
+ * 注:          此view宽高自适应, 设置frame时, 只需考虑起点xy坐标.
  */
 - (instancetype)initWithImage:(UIImage *)image selectImage:(UIImage *)selectImage starWidth:(CGFloat)starWidth starHeight:(CGFloat)starHeight starMargin:(CGFloat)starMargin starCount:(int)starCount callBack:(nullable ZZStarViewCallBack)callBack;
 

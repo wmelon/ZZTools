@@ -8,7 +8,7 @@ s.description			= "1.瀑布流：自定义collectionView的布局，提供垂直
 s.description			= "2.星星评价：可自定义星星数量，分级，最低分，支持拖曳手势，支持半颗星（同样支持小数，最低0.01）。"
 s.description			= "3.页面路由：模块解耦，组件化必备，用法简单，支持正向传值以及反向传值，无需继承，侵入性低。"
 s.author			= { "ZZ" => "1156858877@qq.com" }
-s.platform			= :ios, "8.0"An-iOSer
+s.platform			= :ios, "8.0"
 s.license			= { :type => 'MIT', :file => 'LICENSE' }
 s.homepage			= "https://github.com/An-iOSer/ZZTools.git"
 s.source			= { :git => "https://github.com/An-iOSer/ZZTools.git", :tag => "#{s.version}" }

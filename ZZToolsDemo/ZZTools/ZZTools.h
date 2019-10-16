@@ -14,5 +14,6 @@
 #import "ZZLayout.h"
 #import "ZZRouter.h"
 #import "ZZStarView.h"
+#import "ZZFPSButton.h"
 
 #endif /* ZZTools_h */

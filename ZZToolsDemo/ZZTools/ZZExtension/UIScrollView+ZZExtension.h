@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///滚动到顶部, 无视偏移量!!!
 - (void)zz_scrollToTopAnimated:(BOOL)animated;
 
-
 /**
  * 设置指示器的颜色, 背景颜色, 圆角
  * originalMargin默认为3, 这个是微调的偏移量, 一试便知!

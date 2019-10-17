@@ -75,7 +75,7 @@ static char GLAYER;
     .leftSpaceToView(self, leftMargin)
     .rightSpaceToView(self, rightMargin)
     .heightIs(height);
-    bottomLine.backgroundColor = [UIColor colorWithCSS:color];
+    bottomLine.backgroundColor = [UIColor zz_colorWithCSS:color];
     bottomLine.alpha = alpha;
     
 }
@@ -88,7 +88,7 @@ static char GLAYER;
     .rightSpaceToView(self, rightMargin)
     .leftSpaceToView(self, leftMargin)
     .heightIs(height);
-    bottomLine.backgroundColor = [UIColor colorWithCSS:color];
+    bottomLine.backgroundColor = [UIColor zz_colorWithCSS:color];
     bottomLine.alpha = alpha;
     
 }
@@ -102,7 +102,7 @@ static char GLAYER;
     for (NSString *string in colorArray) {
         id color;
         if ([string isKindOfClass:[NSString class]]) {
-            color = (__bridge id)[UIColor colorWithCSS:string].CGColor;
+            color = (__bridge id)[UIColor zz_colorWithCSS:string].CGColor;
         } else {
             UIColor *cor = (UIColor *)string;
             color = (__bridge id)cor.CGColor;

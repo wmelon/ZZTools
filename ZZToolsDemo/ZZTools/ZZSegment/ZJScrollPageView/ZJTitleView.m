@@ -201,7 +201,7 @@
     if (_label == nil) {
         _label = [[UILabel alloc] init];
         _label.textAlignment = NSTextAlignmentCenter;
-        _label.backgroundColor = [UIColor colorWithCSS:@"#0xf5f5f5"];
+        _label.backgroundColor = [UIColor zz_colorWithCSS:@"#0xf5f5f5"];
     }
     return _label;
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -191,8 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				3AA1BAD321F6C94700833ECA /* ZZTools.h */,
+				E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */,
 				8166F7F92356BBF700EF8F4B /* ZZSegment */,
-				E49CEB52222E4CC000AC812D /* ZZPrivateHeader */,
 				E4984AA322C3BF8A000448B9 /* ZZFPSButton */,
 				E45ED2D722115EB4009D9A8C /* ZZRouter */,
 				3AA1BAD221F6C85200833ECA /* ZZLayout */,
@@ -401,14 +401,6 @@
 				E4984AA422C3BF8A000448B9 /* ZZFPSButton.m */,
 			);
 			path = ZZFPSButton;
-			sourceTree = "<group>";
-		};
-		E49CEB52222E4CC000AC812D /* ZZPrivateHeader */ = {
-			isa = PBXGroup;
-			children = (
-				E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */,
-			);
-			path = ZZPrivateHeader;
 			sourceTree = "<group>";
 		};
 		E4F4A89322363FF500491E6E /* ZZMixVC */ = {

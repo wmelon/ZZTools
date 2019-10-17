@@ -26,27 +26,22 @@ typedef NS_ENUM(NSInteger, ZZGradientChangeDirection) {
 
 @interface UIColor (ZZExtension)
 
-+ (UIColor*)colorWithCSS: (NSString*) css;
-+ (UIColor*)colorWithHex: (NSUInteger) hex;
++ (UIColor*)zz_colorWithCSS:(NSString*)css;
++ (UIColor*)zz_colorWithHex:(NSUInteger)hex;
 
-- (uint)hex;
-- (NSString*)hexString;
-- (NSString*)cssString;
+- (uint)zz_hex;
+- (NSString*)zz_hexString;
+- (NSString*)zz_cssString;
 
 /**
  创建渐变颜色
- 
  @param size       渐变的size
  @param direction  渐变方式
  @param startcolor 开始颜色
  @param endColor   结束颜色
- 
  @return 创建的渐变颜色
  */
-+ (UIColor *)zz_gradientColorWithSize:(CGSize)size
-                                     direction:(ZZGradientChangeDirection)direction
-                                    startColor:(UIColor *)startcolor
-                                      endColor:(UIColor *)endColor;
++ (UIColor *)zz_gradientColorWithSize:(CGSize)size direction:(ZZGradientChangeDirection)direction startColor:(UIColor *)startcolor endColor:(UIColor *)endColor;
 
 /// 竖向渐变色。如果满足不了需要，请调用包含全部参数的方法
 + (UIColor *)zz_gradientColorWithSize:(CGSize)size colorArray:(NSArray<NSString *> *)colorArray;

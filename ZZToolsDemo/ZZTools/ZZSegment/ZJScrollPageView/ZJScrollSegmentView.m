@@ -687,7 +687,7 @@ static CGFloat const contentSizeXOff = 20.0;
     if (!_bottomShadowLabel) {
         _bottomShadowLabel = [[UILabel alloc] init];
         [self addSubview:_bottomShadowLabel];
-        _bottomShadowLabel.backgroundColor = [UIColor colorWithCSS:@"000000"];
+        _bottomShadowLabel.backgroundColor = [UIColor zz_colorWithCSS:@"000000"];
         _bottomShadowLabel.alpha = 0.11;
         _bottomShadowLabel.sd_layout.leftEqualToView(self)
         .rightEqualToView(self)

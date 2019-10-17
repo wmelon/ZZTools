@@ -14,7 +14,7 @@
 
 // taken from http://stackoverflow.com/questions/964322/padding-string-to-left-with-objective-c
 
-- (NSString *) stringByPaddingTheLeftToLength:(NSUInteger) newLength withString:(NSString *) padString startingAtIndex:(NSUInteger) padIndex {
+- (NSString *)zz_stringByPaddingTheLeftToLength:(NSUInteger) newLength withString:(NSString *) padString startingAtIndex:(NSUInteger) padIndex {
     if ([self length] <= newLength)
         return [[@"" stringByPaddingToLength:newLength - [self length] withString:padString startingAtIndex:padIndex] stringByAppendingString:self];
     else
@@ -23,10 +23,9 @@
 
 @end
 
-
 @implementation UIColor (Hex)
 
-+ (UIColor*) colorWithCSS: (NSString*)css {
++ (UIColor*)zz_colorWithCSS: (NSString*)css {
 	if (css.length == 0)
 		return [UIColor blackColor];
 
@@ -76,7 +75,7 @@
 		goto eight;
 	}
 	else if (len < 3) {
-		css = [css stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
+		css = [css zz_stringByPaddingTheLeftToLength:3 withString:@"0" startingAtIndex:0];
 		goto three;
 	}
 	else if (len > 8) {
@@ -109,7 +108,7 @@
 						   alpha: av / 255.f];
 }
 
-+ (UIColor*) colorWithHex: (NSUInteger)hex {
++ (UIColor*)zz_colorWithHex: (NSUInteger)hex {
 	CGFloat red, green, blue, alpha;
 
 	red = ((CGFloat)((hex >> 16) & 0xFF)) / ((CGFloat)0xFF);
@@ -120,7 +119,7 @@
 	return [UIColor colorWithRed: red green:green blue:blue alpha:alpha];
 }
 
-- (uint)hex {
+- (uint)zz_hex{
     CGFloat red, green, blue, alpha;
     if (![self getRed:&red green:&green blue:&blue alpha:&alpha]) {
         [self getWhite:&red alpha:&alpha];
@@ -136,12 +135,12 @@
     return ((uint)alpha << 24) | ((uint)red << 16) | ((uint)green << 8) | ((uint)blue);
 }
 
-- (NSString*)hexString {
-    return [NSString stringWithFormat:@"0x%08x", [self hex]];
+- (NSString*)zz_hexString {
+    return [NSString stringWithFormat:@"0x%08x", [self zz_hex]];
 }
 
-- (NSString*)cssString {
-    uint hex = [self hex];
+- (NSString*)zz_cssString {
+    uint hex = [self zz_hex];
     if ((hex & 0xFF000000) == 0xFF000000)
         return [NSString stringWithFormat:@"#%06x", hex & 0xFFFFFF];
 
@@ -201,7 +200,7 @@
     NSAssert(colorArray.count == 2, @"创建渐变色的colorArray参数的count != 2");
     
     CGSize finalSize = CGSizeEqualToSize(size, CGSizeZero) ? CGSizeMake(100, 100) : size;
-    return [self zz_gradientColorWithSize:finalSize direction:(ZZGradientChangeDirectionVertical) startColor:[UIColor colorWithCSS:colorArray[0]] endColor:[UIColor colorWithCSS:colorArray[1]]];
+    return [self zz_gradientColorWithSize:finalSize direction:(ZZGradientChangeDirectionVertical) startColor:[UIColor zz_colorWithCSS:colorArray[0]] endColor:[UIColor zz_colorWithCSS:colorArray[1]]];
 }
 
 

@@ -32,5 +32,7 @@
 //MARK:- weakSelf
 #define ZZWeakSelf __block __weak __typeof(&*self)weakSelf = self;\
 
+#import "UIView+ZZExtension.h"
+#import "UIColor+ZZExtension.h"
 
 #endif /* ZZPrivateHeader_h */

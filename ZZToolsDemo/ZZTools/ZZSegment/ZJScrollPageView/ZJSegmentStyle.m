@@ -37,13 +37,10 @@
         _titleBigScale = 1.3;
         _normalTitleColor = [UIColor colorWithRed:51.0/255.0 green:53.0/255.0 blue:75/255.0 alpha:1.0];
         _selectedTitleColor = [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:121/255.0 alpha:1.0];
-        
         _segmentHeight = 44.0;
-
     }
     return self;
 }
-
 
 - (void)setSegmentViewComponent:(SegmentViewComponent)segmentViewComponent {
 

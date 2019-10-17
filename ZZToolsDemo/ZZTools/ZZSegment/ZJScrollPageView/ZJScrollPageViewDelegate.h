@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class ZJContentView;
 @class ZJTitleView;
 @class ZJCollectionView;
+
 @protocol ZJScrollPageViewChildVcDelegate <NSObject>
 
 @optional
@@ -25,11 +27,9 @@
 - (void)zz_viewDidAppearForIndex:(NSInteger)index;
 - (void)zz_viewWillDisappearForIndex:(NSInteger)index;
 - (void)zz_viewDidDisappearForIndex:(NSInteger)index;
-
 - (void)zz_viewDidLoadForIndex:(NSInteger)index;
 
 @end
-
 
 @protocol ZJScrollPageViewDelegate <NSObject>
 /** 将要显示的子页面的总数 */
@@ -42,7 +42,6 @@
 - (UIViewController<ZJScrollPageViewChildVcDelegate> *)childViewController:(UIViewController<ZJScrollPageViewChildVcDelegate> *)reuseViewController forIndex:(NSInteger)index;
 
 @optional
-
 
 - (BOOL)scrollPageController:(UIViewController *)scrollPageController contentScrollView:(ZJCollectionView *)scrollView shouldBeginPanGesture:(UIPanGestureRecognizer *)panGesture;
 
@@ -73,5 +72,6 @@
  *  @return 返回最终显示的位置
  */
 - (CGRect)frameOfChildControllerForContainer:(UIView *)containerView;
+
 @end
 

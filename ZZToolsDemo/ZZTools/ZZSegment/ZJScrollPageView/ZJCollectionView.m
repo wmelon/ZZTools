@@ -8,12 +8,13 @@
 
 #import "ZJCollectionView.h"
 
-
 @interface ZJCollectionView ()
-@property (copy, nonatomic) ZJScrollViewShouldBeginPanGestureHandler gestureBeginHandler;
-@end
-@implementation ZJCollectionView
 
+@property (copy, nonatomic) ZJScrollViewShouldBeginPanGestureHandler gestureBeginHandler;
+
+@end
+
+@implementation ZJCollectionView
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (_gestureBeginHandler && gestureRecognizer == self.panGestureRecognizer) {

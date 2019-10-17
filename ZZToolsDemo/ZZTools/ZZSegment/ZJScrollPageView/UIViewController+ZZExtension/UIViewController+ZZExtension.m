@@ -1,18 +1,18 @@
 //
-//  UIViewController+UIViewController_ZJScrollPageController.m
+//  UIViewController+ZZExtension.m
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 16/6/7.
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "UIViewController+ZJScrollPageController.h"
-#import "ZJScrollPageViewDelegate.h"
 #import <objc/runtime.h>
-char ZJIndexKey;
-@implementation UIViewController (ZJScrollPageController)
+#import "ZJScrollPageViewDelegate.h"
+#import "UIViewController+ZZExtension.h"
 
-//@dynamic zz_scrollViewController;
+char ZJIndexKey;
+
+@implementation UIViewController (ZZExtension)
 
 - (UIViewController *)zz_scrollViewController {
     UIViewController *controller = self;
@@ -32,6 +32,5 @@ char ZJIndexKey;
 - (NSInteger)zz_currentIndex {
     return [objc_getAssociatedObject(self, &ZJIndexKey) integerValue];
 }
-
 
 @end

@@ -13,29 +13,26 @@
     BOOL _isLoadFirstView;
     NSInteger _sysVersion;
 }
+
 @property (weak, nonatomic) ZJScrollSegmentView *segmentView;
 
-// 用于处理重用和内容的显示
-@property (strong, nonatomic) ZJCollectionView *collectionView;
-// collectionView的布局
-@property (strong, nonatomic) UICollectionViewFlowLayout *collectionViewLayout;
-// 父类 用于处理添加子控制器  使用weak避免循环引用
+///用于处理重用和内容的显示
+@property (nonatomic, strong) ZJCollectionView *collectionView;
+///collectionView的布局
+@property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewLayout;
+///父类 用于处理添加子控制器  使用weak避免循环引用
 @property (weak, nonatomic) UIViewController *parentViewController;
-// 当这个属性设置为YES的时候 就不用处理 scrollView滚动的计算
-@property (assign, nonatomic) BOOL forbidTouchToAdjustPosition;
-@property (assign, nonatomic) NSInteger itemsCount;
-// 当前控制器
-@property (strong, nonatomic) UIViewController<ZJScrollPageViewChildVcDelegate> *currentChildVc;
-
-/// 如果类似cell缓存一样, 虽然创建的控制器少了, 但是每个页面每次都要重新加载数据, 否则显示的内容就会出错, 貌似还不如每个页面创建一个控制器好
-//@property (strong, nonatomic) NSCache *cacheChildVcs;
-
-@property (assign, nonatomic) NSInteger currentIndex;
-@property (assign, nonatomic) NSInteger oldIndex;
-// 是否需要手动管理生命周期方法的调用
-@property (assign, nonatomic) BOOL needManageLifeCycle;
-// 滚动超过页面(直接设置contentOffSet导致)
-@property (assign, nonatomic) BOOL scrollOverOnePage;
+///当这个属性设置为YES的时候 就不用处理 scrollView滚动的计算
+@property (nonatomic, assign) BOOL forbidTouchToAdjustPosition;
+@property (nonatomic, assign) NSInteger itemsCount;
+///当前控制器
+@property (nonatomic, strong) UIViewController<ZJScrollPageViewChildVcDelegate> *currentChildVc;
+@property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) NSInteger oldIndex;
+///是否需要手动管理生命周期方法的调用
+@property (nonatomic, assign) BOOL needManageLifeCycle;
+///滚动超过页面(直接设置contentOffSet导致)
+@property (nonatomic, assign) BOOL scrollOverOnePage;
 
 @end
 
@@ -285,15 +282,11 @@
         }
         if (_needManageLifeCycle) {
             [controller beginAppearanceTransition:YES animated:NO];
-            
         }
-        
         if (_delegate && [_delegate respondsToSelector:@selector(scrollPageController:childViewControllWillAppear:forIndex:)]) {
             [_delegate scrollPageController:self.parentViewController childViewControllWillAppear:controller forIndex:index];
         }
     }
-    
-    
 }
 
 - (void)didAppearWithIndex:(NSInteger)index {
@@ -306,14 +299,10 @@
             [controller endAppearanceTransition];
             
         }
-        
         if (_delegate && [_delegate respondsToSelector:@selector(scrollPageController:childViewControllDidAppear:forIndex:)]) {
             [_delegate scrollPageController:self.parentViewController childViewControllDidAppear:controller forIndex:index];
         }
     }
-    
-    
-    
 }
 
 - (void)willDisappearWithIndex:(NSInteger)index {
@@ -324,15 +313,14 @@
         }
         if (_needManageLifeCycle) {
             [controller beginAppearanceTransition:NO animated:NO];
-            
         }
-        
         if (_delegate && [_delegate respondsToSelector:@selector(scrollPageController:childViewControllWillDisappear:forIndex:)]) {
             [_delegate scrollPageController:self.parentViewController childViewControllWillDisappear:controller forIndex:index];
         }
     }
     
 }
+
 - (void)didDisappearWithIndex:(NSInteger)index {
     UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
@@ -341,7 +329,6 @@
         }
         if (_needManageLifeCycle) {
             [controller endAppearanceTransition];
-            
         }
         if (_delegate && [_delegate respondsToSelector:@selector(scrollPageController:childViewControllDidDisappear:forIndex:)]) {
             [_delegate scrollPageController:self.parentViewController childViewControllDidDisappear:controller forIndex:index];
@@ -356,7 +343,6 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return _itemsCount;
 }
 
@@ -371,7 +357,6 @@
     
     return cell;
 }
-
 
 - (void)setupChildVcForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     if (_currentIndex != indexPath.row) {
@@ -559,7 +544,6 @@
     
     return _collectionViewLayout;
 }
-
 
 - (NSMutableDictionary<NSString *,UIViewController<ZJScrollPageViewChildVcDelegate> *> *)childVcsDic {
     if (!_childVcsDic) {

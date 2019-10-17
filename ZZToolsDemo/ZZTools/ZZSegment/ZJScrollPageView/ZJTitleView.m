@@ -16,16 +16,16 @@
     CGFloat _imageWidth;
     BOOL _isShowImage;
 }
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UILabel *label;
-@property (strong, nonatomic) UIView *contentView;
-/** 后续添加 */
-// TODO: - 添加badge
-@property (nonatomic) UIView *badgeView;
+
+@property (nonatomic, strong) UIImageView   *imageView;
+@property (nonatomic, strong) UILabel       *label;
+@property (nonatomic, strong) UIView        *contentView;
+@property (nonatomic) UIView                *badgeView;
 
 @end
 
 @implementation ZJTitleView
+
 - (instancetype)init {
     self = [self initWithFrame:CGRectZero];
     return self;
@@ -48,7 +48,6 @@
     _currentTransformSx = currentTransformSx;
     self.transform = CGAffineTransformMakeScale(currentTransformSx, currentTransformSx);
 }
-
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -130,8 +129,6 @@
 
 }
 
-
-
 - (CGFloat)titleViewWidth {
     CGFloat width = 0.0f;
     switch (self.imagePosition) {
@@ -151,7 +148,6 @@
     
     return width;
 }
-
 
 - (void)setNormalImage:(UIImage *)normalImage {
     _normalImage = normalImage;
@@ -212,7 +208,5 @@
     }
     return _contentView;
 }
-
-
 
 @end

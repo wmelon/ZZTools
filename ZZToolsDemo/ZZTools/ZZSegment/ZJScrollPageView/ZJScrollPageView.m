@@ -9,13 +9,13 @@
 #import "ZJScrollPageView.h"
 
 @interface ZJScrollPageView ()
-@property (strong, nonatomic) ZJSegmentStyle *segmentStyle;
+@property (nonatomic, strong) ZJSegmentStyle *segmentStyle;
 @property (weak, nonatomic) ZJScrollSegmentView *segmentView;
 @property (weak, nonatomic) ZJContentView *contentView;
 
 @property (weak, nonatomic) UIViewController *parentViewController;
-@property (strong, nonatomic) NSArray *childVcs;
-@property (strong, nonatomic) NSArray *titlesArray;
+@property (nonatomic, strong) NSArray *childVcs;
+@property (nonatomic, strong) NSArray *titlesArray;
 
 //LY新增
 @property (nonatomic,assign)CGRect segmentViewFrame;

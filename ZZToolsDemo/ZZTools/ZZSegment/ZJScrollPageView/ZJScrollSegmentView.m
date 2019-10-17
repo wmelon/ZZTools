@@ -17,26 +17,27 @@
     NSUInteger _oldIndex;
 //    BOOL _isScroll;
 }
+
 // 滚动条
-@property (strong, nonatomic) UIView *scrollLine;
+@property (nonatomic, strong) UIView *scrollLine;
 // 遮盖
-@property (strong, nonatomic) UIView *coverLayer;
+@property (nonatomic, strong) UIView *coverLayer;
 
 //遮盖渐变层
-@property (strong, nonatomic) CAGradientLayer *gradient;
+@property (nonatomic, strong) CAGradientLayer *gradient;
 
 // 滚动scrollView
-@property (strong, nonatomic) UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 // 背景ImageView
-@property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 // 附加的按钮
-@property (strong, nonatomic) UIButton *extraBtn;
-
+@property (nonatomic, strong) UIButton *extraBtn;
 
 // 用于懒加载计算文字的rgba差值, 用于颜色渐变的时候设置
-@property (strong, nonatomic) NSArray *deltaRGBA;
-@property (strong, nonatomic) NSArray *selectedColorRGBA;
-@property (strong, nonatomic) NSArray *normalColorRGBA;
+@property (nonatomic, strong) NSArray *deltaRGBA;
+@property (nonatomic, strong) NSArray *selectedColorRGBA;
+@property (nonatomic, strong) NSArray *normalColorRGBA;
+
 /** 缓存所有标题label */
 @property (nonatomic, strong) NSMutableArray *titleViews;
 // 缓存计算出来的每个标题的宽度
@@ -58,7 +59,7 @@
 @implementation ZJScrollSegmentView
 
 static CGFloat const xGap = 5.0;
-static CGFloat const wGap = 2*xGap;
+static CGFloat const wGap = 2 * xGap;
 static CGFloat const contentSizeXOff = 20.0;
 
 #pragma mark - life cycle
@@ -92,7 +93,6 @@ static CGFloat const contentSizeXOff = 20.0;
     return self;
 }
 
-
 - (instancetype)initWithFrame:(CGRect )frame bottomLineWidth:(CGFloat)bottomLineWidth segmentStyle:(ZJSegmentStyle *)segmentStyle delegate:(id<ZJScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick{
     if (self = [super initWithFrame:frame]) {
         self.segmentStyle = segmentStyle;
@@ -122,7 +122,6 @@ static CGFloat const contentSizeXOff = 20.0;
     
     return self;
 }
-
 
 - (void)setupSubviews {
     
@@ -174,7 +173,6 @@ static CGFloat const contentSizeXOff = 20.0;
         self.extraBtnOnClick(extraBtn);
     }
 }
-
 
 #pragma mark - private helper
 
@@ -363,7 +361,6 @@ static CGFloat const contentSizeXOff = 20.0;
     }
         
 }
-
 
 #pragma mark - public helper
 
@@ -878,7 +875,4 @@ static CGFloat const contentSizeXOff = 20.0;
     
 }
 
-
 @end
-
-

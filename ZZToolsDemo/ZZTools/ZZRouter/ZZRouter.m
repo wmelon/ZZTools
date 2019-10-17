@@ -11,7 +11,7 @@
 
 @interface ZZRouter ()
 
-@property (strong, nonatomic) NSMutableDictionary *routes;
+@property (nonatomic, strong) NSMutableDictionary *routes;
 
 @end
 

@@ -1,14 +1,13 @@
 //
 //  ZJScrollSegmentView.m
-//  ZJScrollPageView
+//  ZZToolsDemo
 //
-//  Created by jasnig on 16/5/6.
-//  Copyright © 2016年 ZeroJ. All rights reserved.
+//  Created by 刘猛 on 19/5/6.
+//  Copyright © 2016年 刘猛. All rights reserved.
 //
 
 #import "ZJTitleView.h"
 #import <SDAutoLayout.h>
-#import "UIView+ZJFrame.h"
 #import "ZZPrivateHeader.h"
 #import "ZJScrollSegmentView.h"
 
@@ -241,10 +240,10 @@ static CGFloat const contentSizeXOff = 20.0;
     //    if (maxX < _currentWidth) {
     //        scrollW = maxX;
     //    }
-    self.scrollView.frame = CGRectMake(0.0, 0.0, scrollW, self.zj_height);
+    self.scrollView.frame = CGRectMake(0.0, 0.0, scrollW, self.zz_height);
 
     if (self.extraBtn) {
-        self.extraBtn.frame = CGRectMake(scrollW , extraBtnY, extraBtnW, self.zj_height - 2*extraBtnY);
+        self.extraBtn.frame = CGRectMake(scrollW , extraBtnY, extraBtnW, self.zz_height - 2*extraBtnY);
     }
 }
 
@@ -252,7 +251,7 @@ static CGFloat const contentSizeXOff = 20.0;
     CGFloat titleX = 0.0;
     CGFloat titleY = 0.0;
     CGFloat titleW = 0.0;
-    CGFloat titleH = self.zj_height - self.segmentStyle.scrollLineHeight;
+    CGFloat titleH = self.zz_height - self.segmentStyle.scrollLineHeight;
     
     if (!self.segmentStyle.isScrollTitle) {// 标题不能滚动, 平分宽度
         titleW = self.scrollView.bounds.size.width / self.titles.count;
@@ -320,23 +319,23 @@ static CGFloat const contentSizeXOff = 20.0;
 - (void)setupScrollLineAndCover {
     
     ZJTitleView *firstLabel = (ZJTitleView *)self.titleViews[0];
-    CGFloat coverX = firstLabel.zj_x;
-    CGFloat coverW = firstLabel.zj_width;
+    CGFloat coverX = firstLabel.zz_x;
+    CGFloat coverW = firstLabel.zz_width;
     CGFloat coverH = self.segmentStyle.coverHeight;
     CGFloat coverY = (self.bounds.size.height - coverH) * 0.5;
     
     if (self.scrollLine) {
         
         if (self.segmentStyle.isScrollTitle) {
-            self.scrollLine.frame = CGRectMake(coverX , self.zj_height - self.segmentStyle.scrollLineHeight - self.scrollLineUpOffset - self.segmentStyle.scrollLineBottomMargin, coverW , self.segmentStyle.scrollLineHeight);
+            self.scrollLine.frame = CGRectMake(coverX , self.zz_height - self.segmentStyle.scrollLineHeight - self.scrollLineUpOffset - self.segmentStyle.scrollLineBottomMargin, coverW , self.segmentStyle.scrollLineHeight);
 
         } else {
             if (self.segmentStyle.isAdjustCoverOrLineWidth) {
                 coverW = [self.titleWidths[_currentIndex] floatValue] + wGap;
-                coverX = (firstLabel.zj_width - coverW) * 0.5;
+                coverX = (firstLabel.zz_width - coverW) * 0.5;
             }
 
-            self.scrollLine.frame = CGRectMake(coverX , self.zj_height - self.segmentStyle.scrollLineHeight - self.scrollLineUpOffset - self.segmentStyle.scrollLineBottomMargin, coverW , self.segmentStyle.scrollLineHeight);
+            self.scrollLine.frame = CGRectMake(coverX , self.zz_height - self.segmentStyle.scrollLineHeight - self.scrollLineUpOffset - self.segmentStyle.scrollLineBottomMargin, coverW , self.segmentStyle.scrollLineHeight);
 
         }
     }
@@ -351,7 +350,7 @@ static CGFloat const contentSizeXOff = 20.0;
         } else {
             if (self.segmentStyle.isAdjustCoverOrLineWidth) {
                 coverW = [self.titleWidths[_currentIndex] floatValue] + wGap;
-                coverX = (firstLabel.zj_width - coverW) * 0.5;
+                coverX = (firstLabel.zz_width - coverW) * 0.5;
             }
 
             self.coverLayer.frame = CGRectMake(coverX, coverY, coverW, coverH);
@@ -390,17 +389,17 @@ static CGFloat const contentSizeXOff = 20.0;
         
         if (weakSelf.scrollLine) {
             if (weakSelf.segmentStyle.isScrollTitle) {
-                weakSelf.scrollLine.zj_x = currentTitleView.zj_x;
-                weakSelf.scrollLine.zj_width = currentTitleView.zj_width;
+                weakSelf.scrollLine.zz_x = currentTitleView.zz_x;
+                weakSelf.scrollLine.zz_width = currentTitleView.zz_width;
             } else {
                 if (self.segmentStyle.isAdjustCoverOrLineWidth) {
                     CGFloat scrollLineW = [self.titleWidths[self->_currentIndex] floatValue] + wGap;
-                    CGFloat scrollLineX = currentTitleView.zj_x + (currentTitleView.zj_width - scrollLineW) * 0.5;
-                    weakSelf.scrollLine.zj_x = scrollLineX;
-                    weakSelf.scrollLine.zj_width = scrollLineW;
+                    CGFloat scrollLineX = currentTitleView.zz_x + (currentTitleView.zz_width - scrollLineW) * 0.5;
+                    weakSelf.scrollLine.zz_x = scrollLineX;
+                    weakSelf.scrollLine.zz_width = scrollLineW;
                 } else {
-                    weakSelf.scrollLine.zj_x = currentTitleView.zj_x;
-                    weakSelf.scrollLine.zj_width = currentTitleView.zj_width;
+                    weakSelf.scrollLine.zz_x = currentTitleView.zz_x;
+                    weakSelf.scrollLine.zz_width = currentTitleView.zz_width;
                 }
                 
             }
@@ -409,23 +408,23 @@ static CGFloat const contentSizeXOff = 20.0;
         
         if (weakSelf.coverLayer) {
             if (weakSelf.segmentStyle.isScrollTitle) {
-                weakSelf.coverLayer.zj_x = currentTitleView.zj_x - xGap;
-                weakSelf.coverLayer.zj_width = currentTitleView.zj_width + wGap;
+                weakSelf.coverLayer.zz_x = currentTitleView.zz_x - xGap;
+                weakSelf.coverLayer.zz_width = currentTitleView.zz_width + wGap;
                 if (weakSelf.segmentStyle.showCoverGrade) {
                     [weakSelf.coverView zz_insertGradientLayerWithBounds:weakSelf.coverView.bounds colorArray:weakSelf.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
                 }
             } else {
                 if (self.segmentStyle.isAdjustCoverOrLineWidth) {
                     CGFloat coverW = [self.titleWidths[self -> _currentIndex] floatValue] + wGap;
-                    CGFloat coverX = currentTitleView.zj_x + (currentTitleView.zj_width - coverW) * 0.5;
-                    weakSelf.coverLayer.zj_x = coverX;
-                    weakSelf.coverLayer.zj_width = coverW;
+                    CGFloat coverX = currentTitleView.zz_x + (currentTitleView.zz_width - coverW) * 0.5;
+                    weakSelf.coverLayer.zz_x = coverX;
+                    weakSelf.coverLayer.zz_width = coverW;
                     if (weakSelf.segmentStyle.showCoverGrade) {
                         [weakSelf.coverView zz_insertGradientLayerWithBounds:weakSelf.coverView.bounds colorArray:weakSelf.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
                     }
                 } else {
-                    weakSelf.coverLayer.zj_x = currentTitleView.zj_x;
-                    weakSelf.coverLayer.zj_width = currentTitleView.zj_width;
+                    weakSelf.coverLayer.zz_x = currentTitleView.zz_x;
+                    weakSelf.coverLayer.zz_width = currentTitleView.zz_width;
                     if (weakSelf.segmentStyle.showCoverGrade) {
                         [weakSelf.coverView zz_insertGradientLayerWithBounds:weakSelf.coverView.bounds colorArray:weakSelf.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
                     }
@@ -459,28 +458,28 @@ static CGFloat const contentSizeXOff = 20.0;
     ZJTitleView *currentTitleView = (ZJTitleView *)self.titleViews[currentIndex];
 
     
-    CGFloat xDistance = currentTitleView.zj_x - oldTitleView.zj_x;
-    CGFloat wDistance = currentTitleView.zj_width - oldTitleView.zj_width;
+    CGFloat xDistance = currentTitleView.zz_x - oldTitleView.zz_x;
+    CGFloat wDistance = currentTitleView.zz_width - oldTitleView.zz_width;
     
     if (self.scrollLine) {
         
         if (self.segmentStyle.isScrollTitle) {
-            self.scrollLine.zj_x = oldTitleView.zj_x + xDistance * progress;
-            self.scrollLine.zj_width = oldTitleView.zj_width + wDistance * progress;
+            self.scrollLine.zz_x = oldTitleView.zz_x + xDistance * progress;
+            self.scrollLine.zz_width = oldTitleView.zz_width + wDistance * progress;
         } else {
             if (self.segmentStyle.isAdjustCoverOrLineWidth) {
                 CGFloat oldScrollLineW = [self.titleWidths[oldIndex] floatValue] + wGap;
                 CGFloat currentScrollLineW = [self.titleWidths[currentIndex] floatValue] + wGap;
                 wDistance = currentScrollLineW - oldScrollLineW;
                 
-                CGFloat oldScrollLineX = oldTitleView.zj_x + (oldTitleView.zj_width - oldScrollLineW) * 0.5;
-                CGFloat currentScrollLineX = currentTitleView.zj_x + (currentTitleView.zj_width - currentScrollLineW) * 0.5;
+                CGFloat oldScrollLineX = oldTitleView.zz_x + (oldTitleView.zz_width - oldScrollLineW) * 0.5;
+                CGFloat currentScrollLineX = currentTitleView.zz_x + (currentTitleView.zz_width - currentScrollLineW) * 0.5;
                 xDistance = currentScrollLineX - oldScrollLineX;
-                self.scrollLine.zj_x = oldScrollLineX + xDistance * progress;
-                self.scrollLine.zj_width = oldScrollLineW + wDistance * progress;
+                self.scrollLine.zz_x = oldScrollLineX + xDistance * progress;
+                self.scrollLine.zz_width = oldScrollLineW + wDistance * progress;
             } else {
-                self.scrollLine.zj_x = oldTitleView.zj_x + xDistance * progress;
-                self.scrollLine.zj_width = oldTitleView.zj_width + wDistance * progress;
+                self.scrollLine.zz_x = oldTitleView.zz_x + xDistance * progress;
+                self.scrollLine.zz_width = oldTitleView.zz_width + wDistance * progress;
             }
         }
 
@@ -488,8 +487,8 @@ static CGFloat const contentSizeXOff = 20.0;
     
     if (self.coverLayer) {
         if (self.segmentStyle.isScrollTitle) {
-            self.coverLayer.zj_x = oldTitleView.zj_x + xDistance * progress - xGap;
-            self.coverLayer.zj_width = oldTitleView.zj_width + wDistance * progress + wGap;
+            self.coverLayer.zz_x = oldTitleView.zz_x + xDistance * progress - xGap;
+            self.coverLayer.zz_width = oldTitleView.zz_width + wDistance * progress + wGap;
             if (self.segmentStyle.showCoverGrade) {
                 [self.coverView zz_insertGradientLayerWithBounds:self.coverView.bounds colorArray:self.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
             }
@@ -498,17 +497,17 @@ static CGFloat const contentSizeXOff = 20.0;
                 CGFloat oldCoverW = [self.titleWidths[oldIndex] floatValue] + wGap;
                 CGFloat currentCoverW = [self.titleWidths[currentIndex] floatValue] + wGap;
                 wDistance = currentCoverW - oldCoverW;
-                CGFloat oldCoverX = oldTitleView.zj_x + (oldTitleView.zj_width - oldCoverW) * 0.5;
-                CGFloat currentCoverX = currentTitleView.zj_x + (currentTitleView.zj_width - currentCoverW) * 0.5;
+                CGFloat oldCoverX = oldTitleView.zz_x + (oldTitleView.zz_width - oldCoverW) * 0.5;
+                CGFloat currentCoverX = currentTitleView.zz_x + (currentTitleView.zz_width - currentCoverW) * 0.5;
                 xDistance = currentCoverX - oldCoverX;
-                self.coverLayer.zj_x = oldCoverX + xDistance * progress;
-                self.coverLayer.zj_width = oldCoverW + wDistance * progress;
+                self.coverLayer.zz_x = oldCoverX + xDistance * progress;
+                self.coverLayer.zz_width = oldCoverW + wDistance * progress;
                 if (self.segmentStyle.showCoverGrade) {
                     [self.coverView zz_insertGradientLayerWithBounds:self.coverView.bounds colorArray:self.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
                 }
             } else {
-                self.coverLayer.zj_x = oldTitleView.zj_x + xDistance * progress;
-                self.coverLayer.zj_width = oldTitleView.zj_width + wDistance * progress;
+                self.coverLayer.zz_x = oldTitleView.zz_x + xDistance * progress;
+                self.coverLayer.zz_width = oldTitleView.zz_width + wDistance * progress;
                 if (self.segmentStyle.showCoverGrade) {
                     [self.coverView zz_insertGradientLayerWithBounds:self.coverView.bounds colorArray:self.segmentStyle.gradientColors locations:@[@(0), @(1)] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
                 }
@@ -574,7 +573,7 @@ static CGFloat const contentSizeXOff = 20.0;
             offSetx = 0;
 
         }
-        CGFloat extraBtnW = self.extraBtn ? self.extraBtn.zj_width : 0.0;
+        CGFloat extraBtnW = self.extraBtn ? self.extraBtn.zz_width : 0.0;
         CGFloat maxOffSetX = self.scrollView.contentSize.width - (_currentWidth - extraBtnW);
         
         if (maxOffSetX < 0) {

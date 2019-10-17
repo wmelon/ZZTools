@@ -1,9 +1,9 @@
 //
 //  ZJContentView.m
-//  ZJScrollPageView
+//  ZZToolsDemo
 //
-//  Created by jasnig on 16/5/6.
-//  Copyright © 2016年 ZeroJ. All rights reserved.
+//  Created by 刘猛 on 19/5/6.
+//  Copyright © 2016年 刘猛. All rights reserved.
 //
 
 #import "ZJContentView.h"
@@ -280,8 +280,8 @@
 - (void)willAppearWithIndex:(NSInteger)index {
     UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
-        if ([controller respondsToSelector:@selector(zj_viewWillAppearForIndex:)]) {
-            [controller zj_viewWillAppearForIndex:index];
+        if ([controller respondsToSelector:@selector(zz_viewWillAppearForIndex:)]) {
+            [controller zz_viewWillAppearForIndex:index];
         }
         if (_needManageLifeCycle) {
             [controller beginAppearanceTransition:YES animated:NO];
@@ -299,8 +299,8 @@
 - (void)didAppearWithIndex:(NSInteger)index {
     UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
-        if ([controller respondsToSelector:@selector(zj_viewDidAppearForIndex:)]) {
-            [controller zj_viewDidAppearForIndex:index];
+        if ([controller respondsToSelector:@selector(zz_viewDidAppearForIndex:)]) {
+            [controller zz_viewDidAppearForIndex:index];
         }
         if (_needManageLifeCycle) {
             [controller endAppearanceTransition];
@@ -319,8 +319,8 @@
 - (void)willDisappearWithIndex:(NSInteger)index {
     UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
-        if ([controller respondsToSelector:@selector(zj_viewWillDisappearForIndex:)]) {
-            [controller zj_viewWillDisappearForIndex:index];
+        if ([controller respondsToSelector:@selector(zz_viewWillDisappearForIndex:)]) {
+            [controller zz_viewWillDisappearForIndex:index];
         }
         if (_needManageLifeCycle) {
             [controller beginAppearanceTransition:NO animated:NO];
@@ -336,8 +336,8 @@
 - (void)didDisappearWithIndex:(NSInteger)index {
     UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
-        if ([controller respondsToSelector:@selector(zj_viewDidDisappearForIndex:)]) {
-            [controller zj_viewDidDisappearForIndex:index];
+        if ([controller respondsToSelector:@selector(zz_viewDidDisappearForIndex:)]) {
+            [controller zz_viewDidDisappearForIndex:index];
         }
         if (_needManageLifeCycle) {
             [controller endAppearanceTransition];
@@ -389,7 +389,7 @@
                 NSAssert(NO, @"子控制器必须遵守ZJScrollPageViewChildVcDelegate协议");
             }
             // 设置当前下标
-            _currentChildVc.zj_currentIndex = indexPath.row;
+            _currentChildVc.zz_currentIndex = indexPath.row;
             [self.childVcsDic setValue:_currentChildVc forKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
         } else {
             [_delegate childViewController:_currentChildVc forIndex:indexPath.row];
@@ -401,7 +401,7 @@
     if ([_currentChildVc isKindOfClass:[UINavigationController class]]) {
         NSAssert(NO, @"不要添加UINavigationController包装后的子控制器");
     }
-    if (_currentChildVc.zj_scrollViewController != self.parentViewController) {
+    if (_currentChildVc.zz_scrollViewController != self.parentViewController) {
         [self.parentViewController addChildViewController:_currentChildVc];
     }
     _currentChildVc.view.frame = cell.contentView.bounds;
@@ -414,8 +414,8 @@
         [self willAppearWithIndex:indexPath.row];
         if (isFirstLoaded) {
             // viewDidLoad
-            if ([_currentChildVc respondsToSelector:@selector(zj_viewDidLoadForIndex:)]) {
-                [_currentChildVc zj_viewDidLoadForIndex:indexPath.row];
+            if ([_currentChildVc respondsToSelector:@selector(zz_viewDidLoadForIndex:)]) {
+                [_currentChildVc zz_viewDidLoadForIndex:indexPath.row];
             }
         }
         [self didAppearWithIndex:indexPath.row];
@@ -427,8 +427,8 @@
         [self willAppearWithIndex:indexPath.row];
         if (isFirstLoaded) {
             // viewDidLoad
-            if ([_currentChildVc respondsToSelector:@selector(zj_viewDidLoadForIndex:)]) {
-                [_currentChildVc zj_viewDidLoadForIndex:indexPath.row];
+            if ([_currentChildVc respondsToSelector:@selector(zz_viewDidLoadForIndex:)]) {
+                [_currentChildVc zz_viewDidLoadForIndex:indexPath.row];
             }
         }
         [self willDisappearWithIndex:_oldIndex];

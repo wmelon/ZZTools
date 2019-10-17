@@ -1,9 +1,9 @@
 //
 //  ZJScrollView.m
-//  ZJScrollPageView
+//  ZZToolsDemo
 //
-//  Created by ZeroJ on 16/10/24.
-//  Copyright © 2016年 ZeroJ. All rights reserved.
+//  Created by 刘猛 on 16/10/24.
+//  Copyright © 2016年 刘猛. All rights reserved.
 //
 
 #import "ZJCollectionView.h"

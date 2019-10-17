@@ -23,7 +23,6 @@
 		3AA1BAD121F6C71700833ECA /* ZZCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BACC21F6C71700833ECA /* ZZCollectionHeaderView.m */; };
 		3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E43470642204587A001584C6 /* ZZStarViewVC.m */; };
 		81B52C25235839E50092B165 /* ZZJointTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C24235839E50092B165 /* ZZJointTableView.m */; };
-		81B52C38235839EA0092B165 /* UIView+ZJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C28235839EA0092B165 /* UIView+ZJFrame.m */; };
 		81B52C39235839EA0092B165 /* ZJTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C2D235839EA0092B165 /* ZJTitleView.m */; };
 		81B52C3A235839EA0092B165 /* UIViewController+ZJScrollPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C2E235839EA0092B165 /* UIViewController+ZJScrollPageController.m */; };
 		81B52C3B235839EA0092B165 /* ZJContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C31235839EA0092B165 /* ZJContentView.m */; };
@@ -73,7 +72,6 @@
 		81B52C23235839E50092B165 /* ZZJointTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZJointTableView.h; sourceTree = "<group>"; };
 		81B52C24235839E50092B165 /* ZZJointTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZJointTableView.m; sourceTree = "<group>"; };
 		81B52C27235839EA0092B165 /* ZJContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJContentView.h; sourceTree = "<group>"; };
-		81B52C28235839EA0092B165 /* UIView+ZJFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZJFrame.m"; sourceTree = "<group>"; };
 		81B52C29235839EA0092B165 /* ZJCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCollectionView.h; sourceTree = "<group>"; };
 		81B52C2A235839EA0092B165 /* ZJScrollSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJScrollSegmentView.h; sourceTree = "<group>"; };
 		81B52C2B235839EA0092B165 /* ZJScrollPageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJScrollPageViewDelegate.h; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 		81B52C2D235839EA0092B165 /* ZJTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJTitleView.m; sourceTree = "<group>"; };
 		81B52C2E235839EA0092B165 /* UIViewController+ZJScrollPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZJScrollPageController.m"; sourceTree = "<group>"; };
 		81B52C2F235839EA0092B165 /* ZJScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJScrollPageView.h; sourceTree = "<group>"; };
-		81B52C30235839EA0092B165 /* UIView+ZJFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZJFrame.h"; sourceTree = "<group>"; };
 		81B52C31235839EA0092B165 /* ZJContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJContentView.m; sourceTree = "<group>"; };
 		81B52C32235839EA0092B165 /* ZJCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCollectionView.m; sourceTree = "<group>"; };
 		81B52C33235839EA0092B165 /* ZJSegmentStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSegmentStyle.m; sourceTree = "<group>"; };
@@ -307,8 +304,6 @@
 				81B52C31235839EA0092B165 /* ZJContentView.m */,
 				81B52C2C235839EA0092B165 /* ZJSegmentStyle.h */,
 				81B52C33235839EA0092B165 /* ZJSegmentStyle.m */,
-				81B52C30235839EA0092B165 /* UIView+ZJFrame.h */,
-				81B52C28235839EA0092B165 /* UIView+ZJFrame.m */,
 				81B52C29235839EA0092B165 /* ZJCollectionView.h */,
 				81B52C32235839EA0092B165 /* ZJCollectionView.m */,
 				81B52C2F235839EA0092B165 /* ZJScrollPageView.h */,
@@ -552,7 +547,6 @@
 				81B52C3F235839EA0092B165 /* ZJScrollPageView.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
 				E4F4A899223640E200491E6E /* ZZMixVC.m in Sources */,
-				81B52C38235839EA0092B165 /* UIView+ZJFrame.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
 				81B52C4823583BB40092B165 /* UIView+ZZExtension.m in Sources */,
 				3AA1BACE21F6C71700833ECA /* ZZVerticalVC.m in Sources */,

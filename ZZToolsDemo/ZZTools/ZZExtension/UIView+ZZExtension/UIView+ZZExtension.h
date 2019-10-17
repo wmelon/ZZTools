@@ -14,6 +14,13 @@
 
 # pragma mark- 对外属性
 
+@property (nonatomic, assign) CGFloat               zz_x;
+@property (nonatomic, assign) CGFloat               zz_y;
+@property (nonatomic, assign) CGFloat               zz_width;
+@property (nonatomic, assign) CGFloat               zz_height;
+@property (nonatomic, assign) CGFloat               zz_centerX;
+@property (nonatomic, assign) CGFloat               zz_centerY;
+
 /**被添加的渐变色*/
 @property (nonatomic, strong) CAGradientLayer      *zz_gradientLayer;
 

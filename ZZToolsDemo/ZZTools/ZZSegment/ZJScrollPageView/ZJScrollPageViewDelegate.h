@@ -1,9 +1,9 @@
 //
-//  ZJScrollPageViewDelegate.h
-//  ZJScrollPageView
+//  ZZToolsDemoDelegate.h
+//  ZZToolsDemo
 //
-//  Created by ZeroJ on 16/6/30.
-//  Copyright © 2016年 ZeroJ. All rights reserved.
+//  Created by 刘猛 on 16/6/30.
+//  Copyright © 2016年 刘猛. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -21,12 +21,12 @@
  * 如果你仍然想利用子控制器的生命周期方法, 请使用'ZJScrollPageViewChildVcDelegate'提供的代理方法
  * 或者'ZJScrollPageViewDelegate'提供的代理方法
  */
-- (void)zj_viewWillAppearForIndex:(NSInteger)index;
-- (void)zj_viewDidAppearForIndex:(NSInteger)index;
-- (void)zj_viewWillDisappearForIndex:(NSInteger)index;
-- (void)zj_viewDidDisappearForIndex:(NSInteger)index;
+- (void)zz_viewWillAppearForIndex:(NSInteger)index;
+- (void)zz_viewDidAppearForIndex:(NSInteger)index;
+- (void)zz_viewWillDisappearForIndex:(NSInteger)index;
+- (void)zz_viewDidDisappearForIndex:(NSInteger)index;
 
-- (void)zj_viewDidLoadForIndex:(NSInteger)index;
+- (void)zz_viewDidLoadForIndex:(NSInteger)index;
 
 @end
 

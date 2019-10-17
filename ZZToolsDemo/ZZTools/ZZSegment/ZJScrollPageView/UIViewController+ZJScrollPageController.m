@@ -1,9 +1,9 @@
 //
 //  UIViewController+UIViewController_ZJScrollPageController.m
-//  ZJScrollPageView
+//  ZZToolsDemo
 //
-//  Created by jasnig on 16/6/7.
-//  Copyright © 2016年 ZeroJ. All rights reserved.
+//  Created by 刘猛 on 16/6/7.
+//  Copyright © 2016年 刘猛. All rights reserved.
 //
 
 #import "UIViewController+ZJScrollPageController.h"
@@ -12,9 +12,9 @@
 char ZJIndexKey;
 @implementation UIViewController (ZJScrollPageController)
 
-//@dynamic zj_scrollViewController;
+//@dynamic zz_scrollViewController;
 
-- (UIViewController *)zj_scrollViewController {
+- (UIViewController *)zz_scrollViewController {
     UIViewController *controller = self;
     while (controller) {
         if ([controller conformsToProtocol:@protocol(ZJScrollPageViewDelegate)]) {
@@ -25,11 +25,11 @@ char ZJIndexKey;
     return controller;
 }
 
-- (void)setZj_currentIndex:(NSInteger)zj_currentIndex {
-    objc_setAssociatedObject(self, &ZJIndexKey, [NSNumber numberWithInteger:zj_currentIndex], OBJC_ASSOCIATION_ASSIGN);
+- (void)setZz_currentIndex:(NSInteger)zz_currentIndex {
+    objc_setAssociatedObject(self, &ZJIndexKey, [NSNumber numberWithInteger:zz_currentIndex], OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (NSInteger)zj_currentIndex {
+- (NSInteger)zz_currentIndex {
     return [objc_getAssociatedObject(self, &ZJIndexKey) integerValue];
 }
 

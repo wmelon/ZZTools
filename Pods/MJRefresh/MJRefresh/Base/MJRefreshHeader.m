@@ -15,19 +15,22 @@
 
 @implementation MJRefreshHeader
 #pragma mark - 构造方法
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock {
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
+{
     MJRefreshHeader *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action {
++ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
     MJRefreshHeader *cmp = [[self alloc] init];
     [cmp setRefreshingTarget:target refreshingAction:action];
     return cmp;
 }
 
 #pragma mark - 覆盖父类的方法
-- (void)prepare {
+- (void)prepare
+{
     [super prepare];
     
     // 设置key
@@ -37,14 +40,23 @@
     self.mj_h = MJRefreshHeaderHeight;
 }
 
-- (void)placeSubviews {
+- (void)placeSubviews
+{
     [super placeSubviews];
     
     // 设置y值(当自己的高度发生改变了，肯定要重新调整Y值，所以放到placeSubviews方法中设置y值)
     self.mj_y = - self.mj_h - self.ignoredScrollViewContentInsetTop;
 }
 
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    
+    if (!newWindow && self.isRefreshing) {
+        [self endRefreshing];
+    }
+}
+
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+{
     [super scrollViewContentOffsetDidChange:change];
     
     // 在刷新的refreshing状态
@@ -94,7 +106,8 @@
     }
 }
 
-- (void)setState:(MJRefreshState)state {
+- (void)setState:(MJRefreshState)state
+{
     MJRefreshCheckState
     
     // 根据状态做事情
@@ -138,7 +151,8 @@
 }
 
 #pragma mark - 公共方法
-- (NSDate *)lastUpdatedTime {
+- (NSDate *)lastUpdatedTime
+{
     return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastUpdatedTimeKey];
 }
 

@@ -16,14 +16,16 @@
 @implementation MJRefreshBackFooter
 
 #pragma mark - 初始化
-- (void)willMoveToSuperview:(UIView *)newSuperview {
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
     [super willMoveToSuperview:newSuperview];
     
     [self scrollViewContentSizeDidChange:nil];
 }
 
 #pragma mark - 实现父类的方法
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change {
+- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+{
     [super scrollViewContentOffsetDidChange:change];
     
     // 如果正在刷新，直接返回
@@ -66,7 +68,8 @@
     }
 }
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change {
+- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+{
     [super scrollViewContentSizeDidChange:change];
     
     // 内容的高度
@@ -77,7 +80,8 @@
     self.mj_y = MAX(contentHeight, scrollHeight);
 }
 
-- (void)setState:(MJRefreshState)state {
+- (void)setState:(MJRefreshState)state
+{
     MJRefreshCheckState
     
     // 根据状态来设置属性
@@ -123,13 +127,15 @@
 }
 #pragma mark - 私有方法
 #pragma mark 获得scrollView的内容 超出 view 的高度
-- (CGFloat)heightForContentBreakView {
+- (CGFloat)heightForContentBreakView
+{
     CGFloat h = self.scrollView.frame.size.height - self.scrollViewOriginalInset.bottom - self.scrollViewOriginalInset.top;
     return self.scrollView.contentSize.height - h;
 }
 
 #pragma mark 刚好看到上拉刷新控件时的contentOffset.y
-- (CGFloat)happenOffsetY {
+- (CGFloat)happenOffsetY
+{
     CGFloat deltaH = [self heightForContentBreakView];
     if (deltaH > 0) {
         return deltaH - self.scrollViewOriginalInset.top;

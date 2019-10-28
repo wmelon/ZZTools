@@ -16,7 +16,8 @@
 
 @implementation MJRefreshComponent
 #pragma mark - 初始化
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame
+{
     if (self = [super initWithFrame:frame]) {
         // 准备工作
         [self prepare];
@@ -27,13 +28,15 @@
     return self;
 }
 
-- (void)prepare {
+- (void)prepare
+{
     // 基本属性
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.backgroundColor = [UIColor clearColor];
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
     [self placeSubviews];
     
     [super layoutSubviews];
@@ -41,7 +44,8 @@
 
 - (void)placeSubviews{}
 
-- (void)willMoveToSuperview:(UIView *)newSuperview {
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
     [super willMoveToSuperview:newSuperview];
     
     // 如果不是UIScrollView，不做任何事情
@@ -68,7 +72,8 @@
     }
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     [super drawRect:rect];
     
     if (self.state == MJRefreshStateWillRefresh) {
@@ -78,7 +83,8 @@
 }
 
 #pragma mark - KVO监听
-- (void)addObservers {
+- (void)addObservers
+{
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [self.scrollView addObserver:self forKeyPath:MJRefreshKeyPathContentOffset options:options context:nil];
     [self.scrollView addObserver:self forKeyPath:MJRefreshKeyPathContentSize options:options context:nil];
@@ -86,14 +92,16 @@
     [self.pan addObserver:self forKeyPath:MJRefreshKeyPathPanState options:options context:nil];
 }
 
-- (void)removeObservers {
+- (void)removeObservers
+{
     [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentOffset];
     [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentSize];
     [self.pan removeObserver:self forKeyPath:MJRefreshKeyPathPanState];
     self.pan = nil;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
     // 遇到这些情况就直接返回
     if (!self.userInteractionEnabled) return;
     
@@ -117,12 +125,14 @@
 
 #pragma mark - 公共方法
 #pragma mark 设置回调对象和回调方法
-- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action {
+- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
     self.refreshingTarget = target;
     self.refreshingAction = action;
 }
 
-- (void)setState:(MJRefreshState)state {
+- (void)setState:(MJRefreshState)state
+{
     _state = state;
     
     // 加入主队列的目的是等setState:方法调用完毕、设置完文字后再去布局子控件
@@ -130,7 +140,8 @@
 }
 
 #pragma mark 进入刷新状态
-- (void)beginRefreshing {
+- (void)beginRefreshing
+{
     [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
         self.alpha = 1.0;
     }];
@@ -148,38 +159,45 @@
     }
 }
 
-- (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock {
+- (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock
+{
     self.beginRefreshingCompletionBlock = completionBlock;
     
     [self beginRefreshing];
 }
 
 #pragma mark 结束刷新状态
-- (void)endRefreshing {
+- (void)endRefreshing
+{
     MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateIdle;)
 }
 
-- (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock {
+- (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock
+{
     self.endRefreshingCompletionBlock = completionBlock;
     
     [self endRefreshing];
 }
 
 #pragma mark 是否正在刷新
-- (BOOL)isRefreshing {
+- (BOOL)isRefreshing
+{
     return self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh;
 }
 
 #pragma mark 自动切换透明度
-- (void)setAutoChangeAlpha:(BOOL)autoChangeAlpha {
+- (void)setAutoChangeAlpha:(BOOL)autoChangeAlpha
+{
     self.automaticallyChangeAlpha = autoChangeAlpha;
 }
 
-- (BOOL)isAutoChangeAlpha {
+- (BOOL)isAutoChangeAlpha
+{
     return self.isAutomaticallyChangeAlpha;
 }
 
-- (void)setAutomaticallyChangeAlpha:(BOOL)automaticallyChangeAlpha {
+- (void)setAutomaticallyChangeAlpha:(BOOL)automaticallyChangeAlpha
+{
     _automaticallyChangeAlpha = automaticallyChangeAlpha;
     
     if (self.isRefreshing) return;
@@ -192,7 +210,8 @@
 }
 
 #pragma mark 根据拖拽进度设置透明度
-- (void)setPullingPercent:(CGFloat)pullingPercent {
+- (void)setPullingPercent:(CGFloat)pullingPercent
+{
     _pullingPercent = pullingPercent;
     
     if (self.isRefreshing) return;
@@ -203,7 +222,8 @@
 }
 
 #pragma mark - 内部方法
-- (void)executeRefreshingCallback {
+- (void)executeRefreshingCallback
+{
     MJRefreshDispatchAsyncOnMainQueue({
         if (self.refreshingBlock) {
             self.refreshingBlock();
@@ -219,7 +239,8 @@
 @end
 
 @implementation UILabel(MJRefresh)
-+ (instancetype)mj_label {
++ (instancetype)mj_label
+{
     UILabel *label = [[self alloc] init];
     label.font = MJRefreshLabelFont;
     label.textColor = MJRefreshLabelTextColor;

@@ -8,9 +8,11 @@
 
 #import "NSBundle+MJRefresh.h"
 #import "MJRefreshComponent.h"
+#import "MJRefreshConfig.h"
 
 @implementation NSBundle (MJRefresh)
-+ (instancetype)mj_refreshBundle {
++ (instancetype)mj_refreshBundle
+{
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
         // 这里不使用mainBundle是为了适配pod 1.x和0.x
@@ -19,7 +21,8 @@
     return refreshBundle;
 }
 
-+ (UIImage *)mj_arrowImage {
++ (UIImage *)mj_arrowImage
+{
     static UIImage *arrowImage = nil;
     if (arrowImage == nil) {
         arrowImage = [[UIImage imageWithContentsOfFile:[[self mj_refreshBundle] pathForResource:@"arrow@2x" ofType:@"png"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -27,15 +30,22 @@
     return arrowImage;
 }
 
-+ (NSString *)mj_localizedStringForKey:(NSString *)key {
++ (NSString *)mj_localizedStringForKey:(NSString *)key
+{
     return [self mj_localizedStringForKey:key value:nil];
 }
 
-+ (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value {
++ (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value
+{
     static NSBundle *bundle = nil;
     if (bundle == nil) {
-        // （iOS获取的语言字符串比较不稳定）目前框架只处理en、zh-Hans、zh-Hant三种情况，其他按照系统默认处理
-        NSString *language = [NSLocale preferredLanguages].firstObject;
+        NSString *language = MJRefreshConfig.defaultConfig.languageCode;
+        // 如果配置中没有配置语言
+        if (!language) {
+            // （iOS获取的语言字符串比较不稳定）目前框架只处理en、zh-Hans、zh-Hant三种情况，其他按照系统默认处理
+            language = [NSLocale preferredLanguages].firstObject;
+        }
+        
         if ([language hasPrefix:@"en"]) {
             language = @"en";
         } else if ([language hasPrefix:@"zh"]) {
@@ -44,6 +54,8 @@
             } else { // zh-Hant\zh-HK\zh-TW
                 language = @"zh-Hant"; // 繁體中文
             }
+        } else if ([language hasPrefix:@"ko"]) {
+            language = @"ko";
         } else {
             language = @"en";
         }

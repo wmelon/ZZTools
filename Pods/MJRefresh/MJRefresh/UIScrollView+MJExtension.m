@@ -17,14 +17,16 @@
 
 static BOOL respondsToAdjustedContentInset_;
 
-+ (void)initialize {
++ (void)initialize
+{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         respondsToAdjustedContentInset_ = [self instancesRespondToSelector:@selector(adjustedContentInset)];
     });
 }
 
-- (UIEdgeInsets)mj_inset {
+- (UIEdgeInsets)mj_inset
+{
 #ifdef __IPHONE_11_0
     if (respondsToAdjustedContentInset_) {
         return self.adjustedContentInset;
@@ -33,7 +35,8 @@ static BOOL respondsToAdjustedContentInset_;
     return self.contentInset;
 }
 
-- (void)setMj_insetT:(CGFloat)mj_insetT {
+- (void)setMj_insetT:(CGFloat)mj_insetT
+{
     UIEdgeInsets inset = self.contentInset;
     inset.top = mj_insetT;
 #ifdef __IPHONE_11_0
@@ -44,11 +47,13 @@ static BOOL respondsToAdjustedContentInset_;
     self.contentInset = inset;
 }
 
-- (CGFloat)mj_insetT {
+- (CGFloat)mj_insetT
+{
     return self.mj_inset.top;
 }
 
-- (void)setMj_insetB:(CGFloat)mj_insetB {
+- (void)setMj_insetB:(CGFloat)mj_insetB
+{
     UIEdgeInsets inset = self.contentInset;
     inset.bottom = mj_insetB;
 #ifdef __IPHONE_11_0
@@ -59,11 +64,13 @@ static BOOL respondsToAdjustedContentInset_;
     self.contentInset = inset;
 }
 
-- (CGFloat)mj_insetB {
+- (CGFloat)mj_insetB
+{
     return self.mj_inset.bottom;
 }
 
-- (void)setMj_insetL:(CGFloat)mj_insetL {
+- (void)setMj_insetL:(CGFloat)mj_insetL
+{
     UIEdgeInsets inset = self.contentInset;
     inset.left = mj_insetL;
 #ifdef __IPHONE_11_0
@@ -74,11 +81,13 @@ static BOOL respondsToAdjustedContentInset_;
     self.contentInset = inset;
 }
 
-- (CGFloat)mj_insetL {
+- (CGFloat)mj_insetL
+{
     return self.mj_inset.left;
 }
 
-- (void)setMj_insetR:(CGFloat)mj_insetR {
+- (void)setMj_insetR:(CGFloat)mj_insetR
+{
     UIEdgeInsets inset = self.contentInset;
     inset.right = mj_insetR;
 #ifdef __IPHONE_11_0
@@ -89,47 +98,56 @@ static BOOL respondsToAdjustedContentInset_;
     self.contentInset = inset;
 }
 
-- (CGFloat)mj_insetR {
+- (CGFloat)mj_insetR
+{
     return self.mj_inset.right;
 }
 
-- (void)setMj_offsetX:(CGFloat)mj_offsetX {
+- (void)setMj_offsetX:(CGFloat)mj_offsetX
+{
     CGPoint offset = self.contentOffset;
     offset.x = mj_offsetX;
     self.contentOffset = offset;
 }
 
-- (CGFloat)mj_offsetX {
+- (CGFloat)mj_offsetX
+{
     return self.contentOffset.x;
 }
 
-- (void)setMj_offsetY:(CGFloat)mj_offsetY {
+- (void)setMj_offsetY:(CGFloat)mj_offsetY
+{
     CGPoint offset = self.contentOffset;
     offset.y = mj_offsetY;
     self.contentOffset = offset;
 }
 
-- (CGFloat)mj_offsetY {
+- (CGFloat)mj_offsetY
+{
     return self.contentOffset.y;
 }
 
-- (void)setMj_contentW:(CGFloat)mj_contentW {
+- (void)setMj_contentW:(CGFloat)mj_contentW
+{
     CGSize size = self.contentSize;
     size.width = mj_contentW;
     self.contentSize = size;
 }
 
-- (CGFloat)mj_contentW {
+- (CGFloat)mj_contentW
+{
     return self.contentSize.width;
 }
 
-- (void)setMj_contentH:(CGFloat)mj_contentH {
+- (void)setMj_contentH:(CGFloat)mj_contentH
+{
     CGSize size = self.contentSize;
     size.height = mj_contentH;
     self.contentSize = size;
 }
 
-- (CGFloat)mj_contentH {
+- (CGFloat)mj_contentH
+{
     return self.contentSize.height;
 }
 @end

@@ -9,7 +9,8 @@
 #import "MJRefreshNormalHeader.h"
 #import "NSBundle+MJRefresh.h"
 
-@interface MJRefreshNormalHeader() {
+@interface MJRefreshNormalHeader()
+{
     __unsafe_unretained UIImageView *_arrowView;
 }
 @property (weak, nonatomic) UIActivityIndicatorView *loadingView;
@@ -17,7 +18,8 @@
 
 @implementation MJRefreshNormalHeader
 #pragma mark - 懒加载子控件
-- (UIImageView *)arrowView {
+- (UIImageView *)arrowView
+{
     if (!_arrowView) {
         UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
         [self addSubview:_arrowView = arrowView];
@@ -25,7 +27,8 @@
     return _arrowView;
 }
 
-- (UIActivityIndicatorView *)loadingView {
+- (UIActivityIndicatorView *)loadingView
+{
     if (!_loadingView) {
         UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
         loadingView.hidesWhenStopped = YES;
@@ -35,7 +38,8 @@
 }
 
 #pragma mark - 公共方法
-- (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle {
+- (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
+{
     _activityIndicatorViewStyle = activityIndicatorViewStyle;
     
     self.loadingView = nil;
@@ -43,13 +47,15 @@
 }
 
 #pragma mark - 重写父类的方法
-- (void)prepare {
+- (void)prepare
+{
     [super prepare];
     
     self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 }
 
-- (void)placeSubviews {
+- (void)placeSubviews
+{
     [super placeSubviews];
     
     // 箭头的中心点
@@ -80,7 +86,8 @@
     self.arrowView.tintColor = self.stateLabel.textColor;
 }
 
-- (void)setState:(MJRefreshState)state {
+- (void)setState:(MJRefreshState)state
+{
     MJRefreshCheckState
     
     // 根据状态做事情

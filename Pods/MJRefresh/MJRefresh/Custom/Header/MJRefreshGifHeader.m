@@ -8,7 +8,8 @@
 
 #import "MJRefreshGifHeader.h"
 
-@interface MJRefreshGifHeader() {
+@interface MJRefreshGifHeader()
+{
     __unsafe_unretained UIImageView *_gifView;
 }
 /** 所有状态对应的动画图片 */
@@ -19,7 +20,8 @@
 
 @implementation MJRefreshGifHeader
 #pragma mark - 懒加载
-- (UIImageView *)gifView {
+- (UIImageView *)gifView
+{
     if (!_gifView) { 
         UIImageView *gifView = [[UIImageView alloc] init]; 
         [self addSubview:_gifView = gifView]; 
@@ -27,14 +29,16 @@
     return _gifView; 
 }
 
-- (NSMutableDictionary *)stateImages  { 
+- (NSMutableDictionary *)stateImages 
+{ 
     if (!_stateImages) { 
         self.stateImages = [NSMutableDictionary dictionary]; 
     } 
     return _stateImages; 
 }
 
-- (NSMutableDictionary *)stateDurations  { 
+- (NSMutableDictionary *)stateDurations 
+{ 
     if (!_stateDurations) { 
         self.stateDurations = [NSMutableDictionary dictionary]; 
     } 
@@ -42,7 +46,8 @@
 }
 
 #pragma mark - 公共方法
-- (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state  { 
+- (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state 
+{ 
     if (images == nil) return; 
     
     self.stateImages[@(state)] = images; 
@@ -55,19 +60,22 @@
     } 
 }
 
-- (void)setImages:(NSArray *)images forState:(MJRefreshState)state  { 
+- (void)setImages:(NSArray *)images forState:(MJRefreshState)state 
+{ 
     [self setImages:images duration:images.count * 0.1 forState:state]; 
 }
 
 #pragma mark - 实现父类的方法
-- (void)prepare {
+- (void)prepare
+{
     [super prepare];
     
     // 初始化间距
     self.labelLeftInset = 20;
 }
 
-- (void)setPullingPercent:(CGFloat)pullingPercent {
+- (void)setPullingPercent:(CGFloat)pullingPercent
+{
     [super setPullingPercent:pullingPercent];
     NSArray *images = self.stateImages[@(MJRefreshStateIdle)];
     if (self.state != MJRefreshStateIdle || images.count == 0) return;
@@ -79,7 +87,8 @@
     self.gifView.image = images[index];
 }
 
-- (void)placeSubviews {
+- (void)placeSubviews
+{
     [super placeSubviews];
     
     if (self.gifView.constraints.count) return;
@@ -100,7 +109,8 @@
     }
 }
 
-- (void)setState:(MJRefreshState)state {
+- (void)setState:(MJRefreshState)state
+{
     MJRefreshCheckState
     
     // 根据状态做事情

@@ -1,23 +1,23 @@
 //
-//  ZJContentView.m
+//  ZZContentView.m
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 19/5/6.
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJContentView.h"
+#import "ZZContentView.h"
 
-@interface ZJContentView ()<UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource> {
+@interface ZZContentView ()<UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource> {
     CGFloat   _oldOffSetX;
     BOOL _isLoadFirstView;
     NSInteger _sysVersion;
 }
 
-@property (weak, nonatomic) ZJScrollSegmentView *segmentView;
+@property (weak, nonatomic) ZZScrollSegmentView *segmentView;
 
 ///用于处理重用和内容的显示
-@property (nonatomic, strong) ZJCollectionView *collectionView;
+@property (nonatomic, strong) ZZCollectionView *collectionView;
 ///collectionView的布局
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewLayout;
 ///父类 用于处理添加子控制器  使用weak避免循环引用
@@ -26,7 +26,7 @@
 @property (nonatomic, assign) BOOL forbidTouchToAdjustPosition;
 @property (nonatomic, assign) NSInteger itemsCount;
 ///当前控制器
-@property (nonatomic, strong) UIViewController<ZJScrollPageViewChildVcDelegate> *currentChildVc;
+@property (nonatomic, strong) UIViewController<ZZScrollPageViewChildVcDelegate> *currentChildVc;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) NSInteger oldIndex;
 ///是否需要手动管理生命周期方法的调用
@@ -36,12 +36,12 @@
 
 @end
 
-@implementation ZJContentView
+@implementation ZZContentView
 #define cellID @"cellID"
 
 #pragma mark - life cycle
 
-- (instancetype)initWithFrame:(CGRect)frame segmentView:(ZJScrollSegmentView *)segmentView parentViewController:(UIViewController *)parentViewController delegate:(id<ZJScrollPageViewDelegate>) delegate {
+- (instancetype)initWithFrame:(CGRect)frame segmentView:(ZZScrollSegmentView *)segmentView parentViewController:(UIViewController *)parentViewController delegate:(id<ZZScrollPageViewDelegate>) delegate {
     
     if (self = [super initWithFrame:frame]) {
         self.segmentView = segmentView;
@@ -50,7 +50,7 @@
         _needManageLifeCycle = ![parentViewController shouldAutomaticallyForwardAppearanceMethods];
         if (!_needManageLifeCycle) {
 #if DEBUG
-            //NSLog(@"\n请注意: 如果你希望所有的子控制器的view的系统生命周期方法被正确的调用\n请重写%@的'shouldAutomaticallyForwardAppearanceMethods'方法 并且返回NO\n当然如果你不做这个操作, 子控制器的生命周期方法将不会被正确的调用\n如果你仍然想利用子控制器的生命周期方法, 请使用'ZJScrollPageViewChildVcDelegate'提供的代理方法\n或者'ZJScrollPageViewDelegate'提供的代理方法", [parentViewController class]);
+            //NSLog(@"\n请注意: 如果你希望所有的子控制器的view的系统生命周期方法被正确的调用\n请重写%@的'shouldAutomaticallyForwardAppearanceMethods'方法 并且返回NO\n当然如果你不做这个操作, 子控制器的生命周期方法将不会被正确的调用\n如果你仍然想利用子控制器的生命周期方法, 请使用'ZZScrollPageViewChildVcDelegate'提供的代理方法\n或者'ZZScrollPageViewDelegate'提供的代理方法", [parentViewController class]);
 #endif
         }
         [self commonInit];
@@ -85,7 +85,7 @@
         if (navi.interactivePopGestureRecognizer) {
             
             __weak typeof(self) weakSelf = self;
-            [_collectionView setupScrollViewShouldBeginPanGestureHandler:^BOOL(ZJCollectionView *collectionView, UIPanGestureRecognizer *panGesture) {
+            [_collectionView setupScrollViewShouldBeginPanGestureHandler:^BOOL(ZZCollectionView *collectionView, UIPanGestureRecognizer *panGesture) {
                 
                 CGFloat transionX = [panGesture translationInView:panGesture.view].x;
                 if (collectionView.contentOffset.x == 0 && transionX > 0) {
@@ -112,12 +112,12 @@
 - (void)receiveMemoryWarningHander:(NSNotificationCenter *)noti {
     
     __weak typeof(self) weakSelf = self;
-    [_childVcsDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, UIViewController<ZJScrollPageViewChildVcDelegate> * _Nonnull childVc, BOOL * _Nonnull stop) {
+    [_childVcsDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, UIViewController<ZZScrollPageViewChildVcDelegate> * _Nonnull childVc, BOOL * _Nonnull stop) {
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
             if (childVc != strongSelf.currentChildVc) {
                 [self->_childVcsDic removeObjectForKey:key];
-                [ZJContentView removeChildVc:childVc];
+                [ZZContentView removeChildVc:childVc];
             }
         }
         
@@ -136,7 +136,7 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #if DEBUG
-    //NSLog(@"ZJContentView---销毁");
+    //NSLog(@"ZZContentView---销毁");
 #endif
 }
 
@@ -184,8 +184,8 @@
 /** 给外界刷新视图的方法 */
 - (void)reload {
     
-    [self.childVcsDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, UIViewController<ZJScrollPageViewChildVcDelegate> * _Nonnull childVc, BOOL * _Nonnull stop) {
-        [ZJContentView removeChildVc:childVc];
+    [self.childVcsDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, UIViewController<ZZScrollPageViewChildVcDelegate> * _Nonnull childVc, BOOL * _Nonnull stop) {
+        [ZZContentView removeChildVc:childVc];
         childVc = nil;
         
     }];
@@ -275,7 +275,7 @@
 }
 
 - (void)willAppearWithIndex:(NSInteger)index {
-    UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    UIViewController<ZZScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
         if ([controller respondsToSelector:@selector(zz_viewWillAppearForIndex:)]) {
             [controller zz_viewWillAppearForIndex:index];
@@ -290,7 +290,7 @@
 }
 
 - (void)didAppearWithIndex:(NSInteger)index {
-    UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    UIViewController<ZZScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
         if ([controller respondsToSelector:@selector(zz_viewDidAppearForIndex:)]) {
             [controller zz_viewDidAppearForIndex:index];
@@ -306,7 +306,7 @@
 }
 
 - (void)willDisappearWithIndex:(NSInteger)index {
-    UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    UIViewController<ZZScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
         if ([controller respondsToSelector:@selector(zz_viewWillDisappearForIndex:)]) {
             [controller zz_viewWillDisappearForIndex:index];
@@ -322,7 +322,7 @@
 }
 
 - (void)didDisappearWithIndex:(NSInteger)index {
-    UIViewController<ZJScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
+    UIViewController<ZZScrollPageViewChildVcDelegate> *controller = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)index]];
     if (controller) {
         if ([controller respondsToSelector:@selector(zz_viewDidDisappearForIndex:)]) {
             [controller zz_viewDidDisappearForIndex:index];
@@ -370,8 +370,8 @@
         if (_currentChildVc == nil) {
             _currentChildVc = [_delegate childViewController:nil forIndex:indexPath.row];
             
-            if (!_currentChildVc || ![_currentChildVc conformsToProtocol:@protocol(ZJScrollPageViewChildVcDelegate)]) {
-                NSAssert(NO, @"子控制器必须遵守ZJScrollPageViewChildVcDelegate协议");
+            if (!_currentChildVc || ![_currentChildVc conformsToProtocol:@protocol(ZZScrollPageViewChildVcDelegate)]) {
+                NSAssert(NO, @"子控制器必须遵守ZZScrollPageViewChildVcDelegate协议");
             }
             // 设置当前下标
             _currentChildVc.zz_currentIndex = indexPath.row;
@@ -439,11 +439,11 @@
             
             
             if (_needManageLifeCycle) {
-                UIViewController<ZJScrollPageViewChildVcDelegate> *currentVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)_oldIndex]];
+                UIViewController<ZZScrollPageViewChildVcDelegate> *currentVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)_oldIndex]];
                 // 开始出现
                 [currentVc beginAppearanceTransition:YES animated:NO];
                 
-                UIViewController<ZJScrollPageViewChildVcDelegate> *oldVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+                UIViewController<ZZScrollPageViewChildVcDelegate> *oldVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
                 // 开始消失
                 [oldVc beginAppearanceTransition:NO animated:NO];
                 
@@ -464,11 +464,11 @@
             else {
                 // 滚动没有完成又快速的反向打开了另一页
                 if (_needManageLifeCycle) {
-                    UIViewController<ZJScrollPageViewChildVcDelegate> *currentVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)_oldIndex]];
+                    UIViewController<ZZScrollPageViewChildVcDelegate> *currentVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)_oldIndex]];
                     // 开始出现
                     [currentVc beginAppearanceTransition:YES animated:NO];
                     
-                    UIViewController<ZJScrollPageViewChildVcDelegate> *oldVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+                    UIViewController<ZZScrollPageViewChildVcDelegate> *oldVc = [self.childVcsDic valueForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
                     // 开始消失
                     [oldVc beginAppearanceTransition:NO animated:NO];
                     // 消失
@@ -513,9 +513,9 @@
     }
 }
 
-- (ZJCollectionView *)collectionView {
+- (ZZCollectionView *)collectionView {
     if (_collectionView == nil) {
-        ZJCollectionView *collectionView = [[ZJCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.collectionViewLayout];
+        ZZCollectionView *collectionView = [[ZZCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.collectionViewLayout];
         [collectionView setBackgroundColor:[UIColor whiteColor]];
         collectionView.pagingEnabled = YES;
         collectionView.scrollsToTop = NO;
@@ -545,7 +545,7 @@
     return _collectionViewLayout;
 }
 
-- (NSMutableDictionary<NSString *,UIViewController<ZJScrollPageViewChildVcDelegate> *> *)childVcsDic {
+- (NSMutableDictionary<NSString *,UIViewController<ZZScrollPageViewChildVcDelegate> *> *)childVcsDic {
     if (!_childVcsDic) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         _childVcsDic = dic;

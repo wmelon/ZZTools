@@ -7,7 +7,7 @@
 //
 
 #import <objc/runtime.h>
-#import "ZJScrollPageViewDelegate.h"
+#import "ZZScrollPageViewDelegate.h"
 #import "UIViewController+ZZExtension.h"
 
 char ZJIndexKey;
@@ -17,7 +17,7 @@ char ZJIndexKey;
 - (UIViewController *)zz_scrollViewController {
     UIViewController *controller = self;
     while (controller) {
-        if ([controller conformsToProtocol:@protocol(ZJScrollPageViewDelegate)]) {
+        if ([controller conformsToProtocol:@protocol(ZZScrollPageViewDelegate)]) {
             break;
         }
         controller = controller.parentViewController;

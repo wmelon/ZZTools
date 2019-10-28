@@ -6,11 +6,11 @@
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJTitleView.h"
+#import "ZZTitleView.h"
 #import "ZZPrivateHeader.h"
 #import "UIView+ZZExtension.h"
 
-@interface ZJTitleView() {
+@interface ZZTitleView() {
     CGSize _titleSize;
     CGFloat _imageHeight;
     CGFloat _imageWidth;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ZJTitleView
+@implementation ZZTitleView
 
 - (instancetype)init {
     self = [self initWithFrame:CGRectZero];

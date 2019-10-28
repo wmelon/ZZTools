@@ -1,14 +1,14 @@
 //
-//  ZJSegmentStyle.m
+//  ZZSegmentStyle.m
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 19/5/6.
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJSegmentStyle.h"
+#import "ZZSegmentStyle.h"
 
-@implementation ZJSegmentStyle
+@implementation ZZSegmentStyle
 
 - (instancetype)init {
     if(self = [super init]) {

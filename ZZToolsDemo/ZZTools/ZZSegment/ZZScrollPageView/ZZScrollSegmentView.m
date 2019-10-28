@@ -1,17 +1,17 @@
 //
-//  ZJScrollSegmentView.m
+//  ZZScrollSegmentView.m
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 19/5/6.
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJTitleView.h"
+#import "ZZTitleView.h"
 #import "ZZAutoLayout.h"
 #import "ZZPrivateHeader.h"
-#import "ZJScrollSegmentView.h"
+#import "ZZScrollSegmentView.h"
 
-@interface ZJScrollSegmentView ()<UIScrollViewDelegate> {
+@interface ZZScrollSegmentView ()<UIScrollViewDelegate> {
     CGFloat _currentWidth;
     NSUInteger _currentIndex;
     NSUInteger _oldIndex;
@@ -56,14 +56,14 @@
 
 @end
 
-@implementation ZJScrollSegmentView
+@implementation ZZScrollSegmentView
 
 static CGFloat const xGap = 5.0;
 static CGFloat const wGap = 2 * xGap;
 static CGFloat const contentSizeXOff = 20.0;
 
 #pragma mark - life cycle
-- (instancetype)initWithFrame:(CGRect )frame segmentStyle:(ZJSegmentStyle *)segmentStyle delegate:(id<ZJScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick {
+- (instancetype)initWithFrame:(CGRect )frame segmentStyle:(ZZSegmentStyle *)segmentStyle delegate:(id<ZZScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick {
     if (self = [super initWithFrame:frame]) {
         self.segmentStyle = segmentStyle;
         self.titles = titles;
@@ -93,7 +93,7 @@ static CGFloat const contentSizeXOff = 20.0;
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect )frame bottomLineWidth:(CGFloat)bottomLineWidth segmentStyle:(ZJSegmentStyle *)segmentStyle delegate:(id<ZJScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick{
+- (instancetype)initWithFrame:(CGRect )frame bottomLineWidth:(CGFloat)bottomLineWidth segmentStyle:(ZZSegmentStyle *)segmentStyle delegate:(id<ZZScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick{
     if (self = [super initWithFrame:frame]) {
         self.segmentStyle = segmentStyle;
         self.titles = titles;
@@ -147,7 +147,7 @@ static CGFloat const contentSizeXOff = 20.0;
 
 - (void)dealloc {
 #if DEBUG
-    //NSLog(@"ZJScrollSegmentView ---- 销毁");
+    //NSLog(@"ZZScrollSegmentView ---- 销毁");
     
 #endif
 }
@@ -156,7 +156,7 @@ static CGFloat const contentSizeXOff = 20.0;
 
 - (void)titleLabelOnClick:(UITapGestureRecognizer *)tapGes {
     
-    ZJTitleView *currentLabel = (ZJTitleView *)tapGes.view;
+    ZZTitleView *currentLabel = (ZZTitleView *)tapGes.view;
     
     if (!currentLabel) {
         return;
@@ -183,7 +183,7 @@ static CGFloat const contentSizeXOff = 20.0;
     NSInteger index = 0;
     for (NSString *title in self.titles) {
         
-        ZJTitleView *titleView = [[ZJTitleView alloc] initWithFrame:CGRectZero];
+        ZZTitleView *titleView = [[ZZTitleView alloc] initWithFrame:CGRectZero];
         titleView.tag = index;
         
         titleView.font = self.segmentStyle.titleFont;
@@ -219,7 +219,7 @@ static CGFloat const contentSizeXOff = 20.0;
     [self setupScrollLineAndCover];
     
     if (self.segmentStyle.isScrollTitle) { // 设置滚动区域
-        ZJTitleView *lastTitleView = (ZJTitleView *)self.titleViews.lastObject;
+        ZZTitleView *lastTitleView = (ZZTitleView *)self.titleViews.lastObject;
         
         if (lastTitleView) {
             self.scrollView.contentSize = CGSizeMake(CGRectGetMaxX(lastTitleView.frame) + contentSizeXOff, 0.0);
@@ -255,7 +255,7 @@ static CGFloat const contentSizeXOff = 20.0;
         titleW = self.scrollView.bounds.size.width / self.titles.count;
         
         NSInteger index = 0;
-        for (ZJTitleView *titleView in self.titleViews) {
+        for (ZZTitleView *titleView in self.titleViews) {
             
             titleX = index * titleW;
             
@@ -281,7 +281,7 @@ static CGFloat const contentSizeXOff = 20.0;
             addedMargin = allTitlesWidth < self.scrollView.bounds.size.width ? (self.scrollView.bounds.size.width - allTitlesWidth)/self.titleWidths.count : 0 ;
         }
 
-        for (ZJTitleView *titleView in self.titleViews) {
+        for (ZZTitleView *titleView in self.titleViews) {
             titleW = [self.titleWidths[index] floatValue];
             titleX = lastLableMaxX + addedMargin/2;
 
@@ -297,7 +297,7 @@ static CGFloat const contentSizeXOff = 20.0;
         
     }
     
-    ZJTitleView *currentTitleView = (ZJTitleView *)self.titleViews[_currentIndex];
+    ZZTitleView *currentTitleView = (ZZTitleView *)self.titleViews[_currentIndex];
     currentTitleView.currentTransformSx = 1.0;
     if (currentTitleView) {
         
@@ -316,7 +316,7 @@ static CGFloat const contentSizeXOff = 20.0;
 
 - (void)setupScrollLineAndCover {
     
-    ZJTitleView *firstLabel = (ZJTitleView *)self.titleViews[0];
+    ZZTitleView *firstLabel = (ZZTitleView *)self.titleViews[0];
     CGFloat coverX = firstLabel.zz_x;
     CGFloat coverW = firstLabel.zz_width;
     CGFloat coverH = self.segmentStyle.coverHeight;
@@ -367,8 +367,8 @@ static CGFloat const contentSizeXOff = 20.0;
 - (void)adjustUIWhenBtnOnClickWithAnimate:(BOOL)animated taped:(BOOL)taped {
     if (_currentIndex == _oldIndex && taped) { return; }
     
-    ZJTitleView *oldTitleView = (ZJTitleView *)self.titleViews[_oldIndex];
-    ZJTitleView *currentTitleView = (ZJTitleView *)self.titleViews[_currentIndex];
+    ZZTitleView *oldTitleView = (ZZTitleView *)self.titleViews[_oldIndex];
+    ZZTitleView *currentTitleView = (ZZTitleView *)self.titleViews[_currentIndex];
     
     CGFloat animatedTime = animated ? 0.30 : 0.0;
     
@@ -451,8 +451,8 @@ static CGFloat const contentSizeXOff = 20.0;
     }
     _oldIndex = currentIndex;
     
-    ZJTitleView *oldTitleView = (ZJTitleView *)self.titleViews[oldIndex];
-    ZJTitleView *currentTitleView = (ZJTitleView *)self.titleViews[currentIndex];
+    ZZTitleView *oldTitleView = (ZZTitleView *)self.titleViews[oldIndex];
+    ZZTitleView *currentTitleView = (ZZTitleView *)self.titleViews[currentIndex];
 
     
     CGFloat xDistance = currentTitleView.zz_x - oldTitleView.zz_x;
@@ -544,7 +544,7 @@ static CGFloat const contentSizeXOff = 20.0;
     _oldIndex = currentIndex;
     // 重置渐变/缩放效果附近其他item的缩放和颜色
     int index = 0;
-    for (ZJTitleView *titleView in _titleViews) {
+    for (ZZTitleView *titleView in _titleViews) {
         if (index != currentIndex) {
             titleView.textColor = self.segmentStyle.normalTitleColor;
             titleView.currentTransformSx = 1.0;
@@ -563,7 +563,7 @@ static CGFloat const contentSizeXOff = 20.0;
 //
 
     if (self.scrollView.contentSize.width != self.scrollView.bounds.size.width + contentSizeXOff) {// 需要滚动
-        ZJTitleView *currentTitleView = (ZJTitleView *)_titleViews[currentIndex];
+        ZZTitleView *currentTitleView = (ZZTitleView *)_titleViews[currentIndex];
 
         CGFloat offSetx = currentTitleView.center.x - _currentWidth * 0.5;
         if (offSetx < 0) {
@@ -583,7 +583,7 @@ static CGFloat const contentSizeXOff = 20.0;
         
 //        if (!self.segmentStyle.isGradualChangeTitleColor) {
 //            int index = 0;
-//            for (ZJTitleView *titleView in _titleViews) {
+//            for (ZZTitleView *titleView in _titleViews) {
 //                if (index != currentIndex) {
 //                    titleView.textColor = self.segmentStyle.normalTitleColor;
 //                    titleView.currentTransformSx = 1.0;
@@ -656,7 +656,7 @@ static CGFloat const contentSizeXOff = 20.0;
     self.scrollLine.hidden = imageIsShow;
     if (self.titles.count == 0) return;
     for (int i = 0; i < self.titleViews.count; i ++) {
-        ZJTitleView *titleView = self.titleViews[i];
+        ZZTitleView *titleView = self.titleViews[i];
         titleView.imageView.alpha = alpha;
     }
     

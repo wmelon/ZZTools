@@ -1,5 +1,5 @@
 //
-//  ZJScrollSegmentView.h
+//  ZZScrollSegmentView.h
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 19/5/6.
@@ -7,27 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJSegmentStyle.h"
-#import "ZJScrollPageViewDelegate.h"
+#import "ZZSegmentStyle.h"
+#import "ZZScrollPageViewDelegate.h"
 
-@class ZJTitleView;
-@class ZJSegmentStyle;
+@class ZZTitleView;
+@class ZZSegmentStyle;
 
 typedef void(^ExtraBtnOnClick)(UIButton *extraBtn);
-typedef void(^TitleBtnOnClickBlock)(ZJTitleView *titleView, NSInteger index);
+typedef void(^TitleBtnOnClickBlock)(ZZTitleView *titleView, NSInteger index);
 
-@interface ZJScrollSegmentView : UIView
+@interface ZZScrollSegmentView : UIView
 
 // 所有的标题
 @property (nonatomic, strong) NSArray                       *titles;
-@property (nonatomic, strong) ZJSegmentStyle                *segmentStyle;
+@property (nonatomic, strong) ZZSegmentStyle                *segmentStyle;
 @property (nonatomic,   copy) ExtraBtnOnClick               extraBtnOnClick;
-@property (nonatomic,   weak) id<ZJScrollPageViewDelegate>  delegate;
+@property (nonatomic,   weak) id<ZZScrollPageViewDelegate>  delegate;
 @property (nonatomic, strong) UIImage                       *backgroundImage;
 
-- (instancetype)initWithFrame:(CGRect )frame segmentStyle:(ZJSegmentStyle *)segmentStyle delegate:(id<ZJScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick;
+- (instancetype)initWithFrame:(CGRect )frame segmentStyle:(ZZSegmentStyle *)segmentStyle delegate:(id<ZZScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick;
 
-- (instancetype)initWithFrame:(CGRect )frame bottomLineWidth:(CGFloat)bottomLineWidth segmentStyle:(ZJSegmentStyle *)segmentStyle delegate:(id<ZJScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick;
+- (instancetype)initWithFrame:(CGRect )frame bottomLineWidth:(CGFloat)bottomLineWidth segmentStyle:(ZZSegmentStyle *)segmentStyle delegate:(id<ZZScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleBtnOnClickBlock)titleDidClick;
 
 /** 切换下标的时候根据progress同步设置UI*/
 - (void)adjustUIWithProgress:(CGFloat)progress oldIndex:(NSInteger)oldIndex currentIndex:(NSInteger)currentIndex;

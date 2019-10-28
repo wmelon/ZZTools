@@ -6,12 +6,12 @@
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJScrollPageView.h"
+#import "ZZScrollPageView.h"
 
-@interface ZJScrollPageView ()
-@property (nonatomic, strong) ZJSegmentStyle *segmentStyle;
-@property (weak, nonatomic) ZJScrollSegmentView *segmentView;
-@property (weak, nonatomic) ZJContentView *contentView;
+@interface ZZScrollPageView ()
+@property (nonatomic, strong) ZZSegmentStyle *segmentStyle;
+@property (weak, nonatomic) ZZScrollSegmentView *segmentView;
+@property (weak, nonatomic) ZZContentView *contentView;
 
 @property (weak, nonatomic) UIViewController *parentViewController;
 @property (nonatomic, strong) NSArray *childVcs;
@@ -23,11 +23,11 @@
 
 
 @end
-@implementation ZJScrollPageView
+@implementation ZZScrollPageView
 
 #pragma mark - life cycle
 
-- (instancetype)initWithFrame:(CGRect)frame segmentStyle:(ZJSegmentStyle *)segmentStyle titles:(NSArray<NSString *> *)titles parentViewController:(UIViewController *)parentViewController delegate:(id<ZJScrollPageViewDelegate>) delegate {
+- (instancetype)initWithFrame:(CGRect)frame segmentStyle:(ZZSegmentStyle *)segmentStyle titles:(NSArray<NSString *> *)titles parentViewController:(UIViewController *)parentViewController delegate:(id<ZZScrollPageViewDelegate>) delegate {
     if (self = [super initWithFrame:frame]) {
         self.segmentStyle = segmentStyle;
         self.delegate = delegate;
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame segmentStyle:(ZJSegmentStyle *)segmentStyle titles:(NSArray<NSString *> *)titles segmentViewFrame:(CGRect)segmentViewFrame bottomLineWidth:(CGFloat)bottomLineWidth parentViewController:(UIViewController *)parentViewController delegate:(id<ZJScrollPageViewDelegate>) delegate{
+- (instancetype)initWithFrame:(CGRect)frame segmentStyle:(ZZSegmentStyle *)segmentStyle titles:(NSArray<NSString *> *)titles segmentViewFrame:(CGRect)segmentViewFrame bottomLineWidth:(CGFloat)bottomLineWidth parentViewController:(UIViewController *)parentViewController delegate:(id<ZZScrollPageViewDelegate>) delegate{
     if (self = [super initWithFrame:frame]) {
         self.segmentStyle = segmentStyle;
         self.delegate = delegate;
@@ -59,7 +59,7 @@
 }
 
 - (void)dealloc {
-    //NSLog(@"ZJScrollPageView--销毁");
+    //NSLog(@"ZZScrollPageView--销毁");
 }
 
 #pragma mark - public helper
@@ -82,9 +82,9 @@
 
 #pragma mark - getter ---- setter
 
-- (ZJContentView *)contentView {
+- (ZZContentView *)contentView {
     if (!_contentView) {
-        ZJContentView *content = [[ZJContentView alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.segmentView.frame), self.bounds.size.width, self.bounds.size.height - CGRectGetMaxY(self.segmentView.frame)) segmentView:self.segmentView parentViewController:self.parentViewController delegate:self.delegate];
+        ZZContentView *content = [[ZZContentView alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(self.segmentView.frame), self.bounds.size.width, self.bounds.size.height - CGRectGetMaxY(self.segmentView.frame)) segmentView:self.segmentView parentViewController:self.parentViewController delegate:self.delegate];
         [self addSubview:content];
         _contentView = content;
     }
@@ -93,13 +93,13 @@
 }
 
 
-- (ZJScrollSegmentView *)segmentView {
+- (ZZScrollSegmentView *)segmentView {
     if (!_segmentView) {
         __weak typeof(self) weakSelf = self;
         
         CGRect rect = self.segmentViewFrame.size.width > 0 ? self.segmentViewFrame : CGRectMake(0, 0, self.bounds.size.width, self.segmentStyle.segmentHeight);
         
-        ZJScrollSegmentView *segment = [[ZJScrollSegmentView alloc] initWithFrame:rect bottomLineWidth:_bottomLineWidth segmentStyle:self.segmentStyle delegate:self.delegate titles:self.titlesArray titleDidClick:^(ZJTitleView *titleView, NSInteger index) {
+        ZZScrollSegmentView *segment = [[ZZScrollSegmentView alloc] initWithFrame:rect bottomLineWidth:_bottomLineWidth segmentStyle:self.segmentStyle delegate:self.delegate titles:self.titlesArray titleDidClick:^(ZZTitleView *titleView, NSInteger index) {
             
             [weakSelf.contentView setContentOffSet:CGPointMake(weakSelf.contentView.bounds.size.width * index, 0.0) animated:weakSelf.segmentStyle.isAnimatedContentViewWhenTitleClicked];
             

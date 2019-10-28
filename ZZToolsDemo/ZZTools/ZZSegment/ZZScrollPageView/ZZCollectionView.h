@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZJCollectionView : UICollectionView
+@interface ZZCollectionView : UICollectionView
 
-typedef BOOL(^ZJScrollViewShouldBeginPanGestureHandler)(ZJCollectionView *collectionView, UIPanGestureRecognizer *panGesture);
+typedef BOOL(^ZJScrollViewShouldBeginPanGestureHandler)(ZZCollectionView *collectionView, UIPanGestureRecognizer *panGesture);
 
 - (void)setupScrollViewShouldBeginPanGestureHandler:(ZJScrollViewShouldBeginPanGestureHandler)gestureBeginHandler;
 

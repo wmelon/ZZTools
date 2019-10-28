@@ -1,5 +1,5 @@
 //
-//  ZJSegmentStyle.h
+//  ZZSegmentStyle.h
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 19/5/6.
@@ -28,7 +28,7 @@ typedef NS_OPTIONS(NSInteger, SegmentViewComponent) {
     SegmentViewComponentShowCoverGrade = 1 << 10,
 };
 
-@interface ZJSegmentStyle : NSObject
+@interface ZZSegmentStyle : NSObject
 
 ///是否显示遮盖 默认为NO
 @property (nonatomic, assign, getter=isShowCover) BOOL showCover;
@@ -86,7 +86,7 @@ typedef NS_OPTIONS(NSInteger, SegmentViewComponent) {
 @property (nonatomic, strong) UIColor *normalTitleColor;
 ///标题选中状态的颜色
 @property (nonatomic, strong) UIColor *selectedTitleColor;
-///segmentVIew的高度, 这个属性只在使用ZJScrollPageVIew的时候设置生效
+///segmentVIew的高度, 这个属性只在使用ZZScrollPageView的时候设置生效
 @property (nonatomic, assign) CGFloat segmentHeight;
 ///标题中图片的位置
 @property (nonatomic, assign) TitleImagePosition imagePosition;

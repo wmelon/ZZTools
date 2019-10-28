@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJSegmentStyle.h"
+#import "ZZSegmentStyle.h"
 
-@interface ZJTitleView : UIView
+@interface ZZTitleView : UIView
 
 @property (nonatomic, assign) CGFloat currentTransformSx;
 

@@ -6,15 +6,15 @@
 //  Copyright © 2016年 刘猛. All rights reserved.
 //
 
-#import "ZJCollectionView.h"
+#import "ZZCollectionView.h"
 
-@interface ZJCollectionView ()
+@interface ZZCollectionView ()
 
 @property (copy, nonatomic) ZJScrollViewShouldBeginPanGestureHandler gestureBeginHandler;
 
 @end
 
-@implementation ZJCollectionView
+@implementation ZZCollectionView
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (_gestureBeginHandler && gestureRecognizer == self.panGestureRecognizer) {

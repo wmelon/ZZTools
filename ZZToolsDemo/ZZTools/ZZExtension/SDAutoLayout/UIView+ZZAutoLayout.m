@@ -1,5 +1,5 @@
 //
-//  UIView+SDAutoLayout.m
+//  UIView+ZZAutoLayout.m
 //
 //  Created by gsd on 15/10/6.
 //  Copyright (c) 2015年 gsd. All rights reserved.
@@ -20,8 +20,8 @@
  
  */
 
-#import "UIView+SDAutoLayout.h"
-#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+ZZAutoLayout.h"
+#import "UITableView+ZZAutoTableViewCellHeight.h"
 
 #import <objc/runtime.h>
 
@@ -36,14 +36,14 @@ Class cellContVClass()
     return [tempCell.contentView class];
 }
 
-@interface SDAutoLayoutModel ()
+@interface ZZAutoLayoutModel ()
 
-@property (nonatomic, strong) SDAutoLayoutModelItem *width;
-@property (nonatomic, strong) SDAutoLayoutModelItem *height;
-@property (nonatomic, strong) SDAutoLayoutModelItem *left;
-@property (nonatomic, strong) SDAutoLayoutModelItem *top;
-@property (nonatomic, strong) SDAutoLayoutModelItem *right;
-@property (nonatomic, strong) SDAutoLayoutModelItem *bottom;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *width;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *height;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *left;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *top;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *right;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *bottom;
 @property (nonatomic, strong) NSNumber *centerX;
 @property (nonatomic, strong) NSNumber *centerY;
 
@@ -52,28 +52,28 @@ Class cellContVClass()
 @property (nonatomic, strong) NSNumber *minWidth;
 @property (nonatomic, strong) NSNumber *minHeight;
 
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_width;
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_height;
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_left;
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_top;
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_right;
-@property (nonatomic, strong) SDAutoLayoutModelItem *ratio_bottom;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_width;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_height;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_left;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_top;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_right;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *ratio_bottom;
 
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalLeft;
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalRight;
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalTop;
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalBottom;
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalCenterX;
-@property (nonatomic, strong) SDAutoLayoutModelItem *equalCenterY;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalLeft;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalRight;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalTop;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalBottom;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalCenterX;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *equalCenterY;
 
-@property (nonatomic, strong) SDAutoLayoutModelItem *widthEqualHeight;
-@property (nonatomic, strong) SDAutoLayoutModelItem *heightEqualWidth;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *widthEqualHeight;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *heightEqualWidth;
 
-@property (nonatomic, strong) SDAutoLayoutModelItem *lastModelItem;
+@property (nonatomic, strong) ZZAutoLayoutModelItem *lastModelItem;
 
 @end
 
-@implementation SDAutoLayoutModel
+@implementation ZZAutoLayoutModel
 
 @synthesize leftSpaceToView = _leftSpaceToView;
 @synthesize rightSpaceToView = _rightSpaceToView;
@@ -141,7 +141,7 @@ Class cellContVClass()
 {
     __weak typeof(self) weakSelf = self;
     return ^(id viewOrViewsArray, CGFloat value) {
-        SDAutoLayoutModelItem *item = [SDAutoLayoutModelItem new];
+        ZZAutoLayoutModelItem *item = [ZZAutoLayoutModelItem new];
         item.value = @(value);
         if ([viewOrViewsArray isKindOfClass:[UIView class]]) {
             item.refView = viewOrViewsArray;
@@ -159,7 +159,7 @@ Class cellContVClass()
         __weak typeof(self) weakSelf = self;
         _widthIs = ^(CGFloat value) {
             weakSelf.needsAutoResizeView.fixedWidth = @(value);
-            SDAutoLayoutModelItem *widthItem = [SDAutoLayoutModelItem new];
+            ZZAutoLayoutModelItem *widthItem = [ZZAutoLayoutModelItem new];
             widthItem.value = @(value);
             weakSelf.width = widthItem;
             return weakSelf;
@@ -174,7 +174,7 @@ Class cellContVClass()
         __weak typeof(self) weakSelf = self;
         _heightIs = ^(CGFloat value) {
             weakSelf.needsAutoResizeView.fixedHeight = @(value);
-            SDAutoLayoutModelItem *heightItem = [SDAutoLayoutModelItem new];
+            ZZAutoLayoutModelItem *heightItem = [ZZAutoLayoutModelItem new];
             heightItem.value = @(value);
             weakSelf.height = heightItem;
             return weakSelf;
@@ -188,7 +188,7 @@ Class cellContVClass()
     if (!_widthRatioToView) {
         __weak typeof(self) weakSelf = self;
         _widthRatioToView = ^(UIView *view, CGFloat value) {
-            weakSelf.ratio_width = [SDAutoLayoutModelItem new];
+            weakSelf.ratio_width = [ZZAutoLayoutModelItem new];
             weakSelf.ratio_width.value = @(value);
             weakSelf.ratio_width.refView = view;
             return weakSelf;
@@ -202,7 +202,7 @@ Class cellContVClass()
     if (!_heightRatioToView) {
         __weak typeof(self) weakSelf = self;
         _heightRatioToView = ^(UIView *view, CGFloat value) {
-            weakSelf.ratio_height = [SDAutoLayoutModelItem new];
+            weakSelf.ratio_height = [ZZAutoLayoutModelItem new];
             weakSelf.ratio_height.refView = view;
             weakSelf.ratio_height.value = @(value);
             return weakSelf;
@@ -261,7 +261,7 @@ Class cellContVClass()
     __weak typeof(self) weakSelf = self;
     
     return ^(UIView *view) {
-        SDAutoLayoutModelItem *item = [SDAutoLayoutModelItem new];
+        ZZAutoLayoutModelItem *item = [ZZAutoLayoutModelItem new];
         item.refView = view;
         [weakSelf setValue:item forKey:key];
         weakSelf.lastModelItem = item;
@@ -424,7 +424,7 @@ Class cellContVClass()
     
     if (!_widthEqualToHeight) {
         _widthEqualToHeight = ^() {
-            weakSelf.widthEqualHeight = [SDAutoLayoutModelItem new];
+            weakSelf.widthEqualHeight = [ZZAutoLayoutModelItem new];
             weakSelf.lastModelItem = weakSelf.widthEqualHeight;
             // 主动触发一次赋值操作
             weakSelf.needsAutoResizeView.height_sd = weakSelf.needsAutoResizeView.height_sd;
@@ -440,7 +440,7 @@ Class cellContVClass()
     
     if (!_heightEqualToWidth) {
         _heightEqualToWidth = ^() {
-            weakSelf.heightEqualWidth = [SDAutoLayoutModelItem new];
+            weakSelf.heightEqualWidth = [ZZAutoLayoutModelItem new];
             weakSelf.lastModelItem = weakSelf.heightEqualWidth;
             // 主动触发一次赋值操作
             weakSelf.needsAutoResizeView.width_sd = weakSelf.needsAutoResizeView.width_sd;
@@ -450,7 +450,7 @@ Class cellContVClass()
     return _heightEqualToWidth;
 }
 
-- (SDAutoLayoutModel *(^)(CGFloat))offset
+- (ZZAutoLayoutModel *(^)(CGFloat))offset
 {
     __weak typeof(self) weakSelf = self;
     if (!_offset) {
@@ -799,7 +799,7 @@ Class cellContVClass()
 @end
 
 
-@implementation SDAutoLayoutModelItem
+@implementation ZZAutoLayoutModelItem
 
 - (instancetype)init
 {
@@ -812,7 +812,7 @@ Class cellContVClass()
 @end
 
 
-@implementation UIView (SDAutoLayout)
+@implementation UIView (ZZAutoLayout)
 
 + (void)load
 {
@@ -931,17 +931,17 @@ Class cellContVClass()
     self.sd_categoryManager.sd_indexPath = sd_indexPath;
 }
 
-- (SDAutoLayoutModel *)ownLayoutModel
+- (ZZAutoLayoutModel *)ownLayoutModel
 {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setOwnLayoutModel:(SDAutoLayoutModel *)ownLayoutModel
+- (void)setOwnLayoutModel:(ZZAutoLayoutModel *)ownLayoutModel
 {
     objc_setAssociatedObject(self, @selector(ownLayoutModel), ownLayoutModel, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (SDAutoLayoutModel *)sd_layout
+- (ZZAutoLayoutModel *)sd_layout
 {
     
 #ifdef SDDebugWithAssert
@@ -956,9 +956,9 @@ Class cellContVClass()
     
 #endif
     
-    SDAutoLayoutModel *model = [self ownLayoutModel];
+    ZZAutoLayoutModel *model = [self ownLayoutModel];
     if (!model) {
-        model = [SDAutoLayoutModel new];
+        model = [ZZAutoLayoutModel new];
         model.needsAutoResizeView = self;
         [self setOwnLayoutModel:model];
         [self.superview.autoLayoutModelsArray addObject:model];
@@ -967,7 +967,7 @@ Class cellContVClass()
     return model;
 }
 
-- (SDAutoLayoutModel *)sd_resetLayout
+- (ZZAutoLayoutModel *)sd_resetLayout
 {
     /*
      * 方案待定
@@ -975,8 +975,8 @@ Class cellContVClass()
      return [self sd_layout];
      */
     
-    SDAutoLayoutModel *model = [self ownLayoutModel];
-    SDAutoLayoutModel *newModel = [SDAutoLayoutModel new];
+    ZZAutoLayoutModel *model = [self ownLayoutModel];
+    ZZAutoLayoutModel *newModel = [ZZAutoLayoutModel new];
     newModel.needsAutoResizeView = self;
     [self sd_clearViewFrameCache];
     NSInteger index = 0;
@@ -991,7 +991,7 @@ Class cellContVClass()
     return newModel;
 }
 
-- (SDAutoLayoutModel *)sd_resetNewLayout
+- (ZZAutoLayoutModel *)sd_resetNewLayout
 {
     [self sd_clearAutoLayoutSettings];
     [self sd_clearExtraAutoLayoutItems];
@@ -1016,7 +1016,7 @@ Class cellContVClass()
 
 - (void)sd_clearAutoLayoutSettings
 {
-    SDAutoLayoutModel *model = [self ownLayoutModel];
+    ZZAutoLayoutModel *model = [self ownLayoutModel];
     if (model) {
         [self.superview.autoLayoutModelsArray removeObject:model];
         [self setOwnLayoutModel:nil];
@@ -1047,7 +1047,7 @@ Class cellContVClass()
     
     if (self.autoLayoutModelsArray.count == 0) return;
     
-    [self.autoLayoutModelsArray enumerateObjectsUsingBlock:^(SDAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
+    [self.autoLayoutModelsArray enumerateObjectsUsingBlock:^(ZZAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
         model.needsAutoResizeView.frame = CGRectZero;
     }];
 }
@@ -1065,7 +1065,7 @@ Class cellContVClass()
     if (self.sd_equalWidthSubviews.count) {
         __block CGFloat totalMargin = 0;
         [self.sd_equalWidthSubviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-            SDAutoLayoutModel *model = view.sd_layout;
+            ZZAutoLayoutModel *model = view.sd_layout;
             CGFloat left = model.left ? [model.left.value floatValue] : model.needsAutoResizeView.left_sd;
             totalMargin += (left + [model.right.value floatValue]);
         }];
@@ -1131,7 +1131,7 @@ Class cellContVClass()
             caches = [self.sd_tableView.cellAutoHeightManager subviewFrameCachesWithIndexPath:self.sd_indexPath];
         }
         
-        [self.autoLayoutModelsArray enumerateObjectsUsingBlock:^(SDAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
+        [self.autoLayoutModelsArray enumerateObjectsUsingBlock:^(ZZAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
             if (idx < caches.count) {
                 CGRect originalFrame = model.needsAutoResizeView.frame;
                 CGRect newFrame = [[caches objectAtIndex:idx] CGRectValue];
@@ -1214,7 +1214,7 @@ Class cellContVClass()
             }
         }
         
-        SDAutoLayoutModel *model = self.ownLayoutModel;
+        ZZAutoLayoutModel *model = self.ownLayoutModel;
         
         if (![self isKindOfClass:[UIScrollView class]] && self.sd_rightViewsArray.count && (model.right || model.equalRight || model.centerX || model.equalCenterX)) {
             self.fixedWidth = @(self.width);
@@ -1242,7 +1242,7 @@ Class cellContVClass()
     }
 }
 
-- (void)sd_resizeWithModel:(SDAutoLayoutModel *)model
+- (void)sd_resizeWithModel:(ZZAutoLayoutModel *)model
 {
     UIView *view = model.needsAutoResizeView;
     
@@ -1326,7 +1326,7 @@ Class cellContVClass()
     [self setupCornerRadiusWithView:view model:model];
 }
 
-- (void)layoutAutoHeightWidthView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutAutoHeightWidthView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if ([view.autoHeightRatioValue floatValue] > 0) {
         view.height_sd = view.width_sd * [view.autoHeightRatioValue floatValue];
@@ -1353,7 +1353,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutAutoWidthWidthView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutAutoWidthWidthView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
@@ -1378,7 +1378,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutWidthWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutWidthWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.width) {
         view.width_sd = [model.width.value floatValue];
@@ -1389,7 +1389,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutHeightWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutHeightWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.height) {
         view.height_sd = [model.height.value floatValue];
@@ -1400,7 +1400,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutLeftWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutLeftWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.left) {
         if (view.superview == model.left.refView) {
@@ -1448,7 +1448,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutRightWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutRightWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.right) {
         if (view.superview == model.right.refView) {
@@ -1479,7 +1479,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutTopWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutTopWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.top) {
         if (view.superview == model.top.refView) {
@@ -1525,7 +1525,7 @@ Class cellContVClass()
     }
 }
 
-- (void)layoutBottomWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)layoutBottomWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     if (model.bottom) {
         if (view.superview == model.bottom.refView) {
@@ -1559,7 +1559,7 @@ Class cellContVClass()
 }
 
 
-- (void)setupCornerRadiusWithView:(UIView *)view model:(SDAutoLayoutModel *)model
+- (void)setupCornerRadiusWithView:(UIView *)view model:(ZZAutoLayoutModel *)model
 {
     CGFloat cornerRadius = view.layer.cornerRadius;
     CGFloat newCornerRadius = 0;
@@ -1578,14 +1578,14 @@ Class cellContVClass()
     }
 }
 
-- (void)addAutoLayoutModel:(SDAutoLayoutModel *)model
+- (void)addAutoLayoutModel:(ZZAutoLayoutModel *)model
 {
     [self.autoLayoutModelsArray addObject:model];
 }
 
 @end
 
-@implementation UIButton (SDAutoLayoutButton)
+@implementation UIButton (ZZAutoLayoutButton)
 
 + (void)load
 {

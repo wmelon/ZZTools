@@ -1,6 +1,6 @@
 //
-//  UITableView+SDAutoTableViewCellHeight.m
-//  SDAutoLayout 测试 Demo
+//  UITableView+ZZAutoTableViewCellHeight.m
+//  ZZAutoLayout 测试 Demo
 //
 //  Created by aier on 15/11/1.
 //  Copyright © 2015年 gsd. All rights reserved.
@@ -21,7 +21,7 @@
  
  */
 
-#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UITableView+ZZAutoTableViewCellHeight.h"
 #import <objc/runtime.h>
 
 @interface SDCellAutoHeightManager ()
@@ -291,7 +291,7 @@
                 self.modelCell.contentView.height_sd = self.modelCell.autoHeight;
                 [self.modelCell.contentView layoutSubviews];
             }
-            [self.modelCell.contentView.autoLayoutModelsArray enumerateObjectsUsingBlock:^(SDAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
+            [self.modelCell.contentView.autoLayoutModelsArray enumerateObjectsUsingBlock:^(ZZAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
                 [self.modelTableview.cellAutoHeightManager setSubviewFrameCache:model.needsAutoResizeView.frame WithIndexPath:self.modelCell.sd_indexPath];
             }];
         }

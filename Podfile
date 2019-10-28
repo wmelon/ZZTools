@@ -9,6 +9,6 @@ target 'ZZToolsDemo' do
   pod 'MBProgressHUD'
   
   #框架中引用的三方库
-  #pod 'SDAutoLayout'
+  #pod 'ZZAutoLayout'
   
 end

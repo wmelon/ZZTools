@@ -1,5 +1,5 @@
 //
-//  UIView+SDAutoLayout.h
+//  UIView+ZZAutoLayout.h
 //
 //  Created by gsd on 15/10/6.
 //  Copyright (c) 2015年 gsd. All rights reserved.
@@ -41,12 +41,12 @@
  * 新浪微博:GSD_iOS
  *
  * 视频教程：http://www.letv.com/ptv/vplay/24038772.html
- * 用法示例：https://github.com/gsdios/SDAutoLayout/blob/master/README.md
+ * 用法示例：https://github.com/gsdios/ZZAutoLayout/blob/master/README.md
  *
  *********************************************************************************
  
  
- SDAutoLayout
+ ZZAutoLayout
  版本：2.1.7
  发布：2016.08.12
  
@@ -59,19 +59,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class SDAutoLayoutModel, SDUIViewCategoryManager;
+@class ZZAutoLayoutModel, SDUIViewCategoryManager;
 
-typedef SDAutoLayoutModel * _Nonnull (^MarginToView)(id _Nonnull viewOrViewsArray, CGFloat value);
-typedef SDAutoLayoutModel * _Nonnull (^Margin)(CGFloat value);
-typedef SDAutoLayoutModel * _Nonnull (^MarginEqualToView)(UIView * _Nonnull toView);
-typedef SDAutoLayoutModel * _Nonnull (^WidthHeight)(CGFloat value);
-typedef SDAutoLayoutModel * _Nonnull (^WidthHeightEqualToView)(UIView * _Nonnull toView, CGFloat ratioValue);
-typedef SDAutoLayoutModel * _Nonnull (^AutoHeightWidth)(CGFloat ratioValue);
-typedef SDAutoLayoutModel * _Nonnull (^SameWidthHeight)(void);
-typedef SDAutoLayoutModel * _Nonnull (^Offset)(CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^MarginToView)(id _Nonnull viewOrViewsArray, CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^Margin)(CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^MarginEqualToView)(UIView * _Nonnull toView);
+typedef ZZAutoLayoutModel * _Nonnull (^WidthHeight)(CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^WidthHeightEqualToView)(UIView * _Nonnull toView, CGFloat ratioValue);
+typedef ZZAutoLayoutModel * _Nonnull (^AutoHeightWidth)(CGFloat ratioValue);
+typedef ZZAutoLayoutModel * _Nonnull (^SameWidthHeight)(void);
+typedef ZZAutoLayoutModel * _Nonnull (^Offset)(CGFloat value);
 typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
-@interface SDAutoLayoutModel : NSObject
+@interface ZZAutoLayoutModel : NSObject
 
 /*
  *************************说明************************
@@ -279,16 +279,16 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIView 设置约束、更新约束、清空约束、从父view移除并清空约束、开启cell的frame缓存等相关方法
 
-@interface UIView (SDAutoLayout)
+@interface UIView (ZZAutoLayout)
 
 /** 开始自动布局  */
-- (nonnull SDAutoLayoutModel *)sd_layout;
+- (nonnull ZZAutoLayoutModel *)sd_layout;
 
 /** 清空之前的自动布局设置，重新开始自动布局(重新生成布局约束并使其在父view的布局序列数组中位置保持不变)  */
-- (nonnull SDAutoLayoutModel *)sd_resetLayout;
+- (nonnull ZZAutoLayoutModel *)sd_resetLayout;
 
 /** 清空之前的自动布局设置，重新开始自动布局(重新生成布局约束并添加到父view布局序列数组中的最后一个位置)  */
-- (nonnull SDAutoLayoutModel *)sd_resetNewLayout;
+- (nonnull ZZAutoLayoutModel *)sd_resetNewLayout;
 
 /** 是否关闭自动布局  */
 @property (nonatomic, getter = sd_isClosingAutoLayout) BOOL sd_closeAutoLayout;
@@ -321,8 +321,8 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 @property (nonatomic) NSIndexPath * _Nullable sd_indexPath;
 
 - (NSMutableArray *_Nullable)autoLayoutModelsArray;
-- (void)addAutoLayoutModel:(SDAutoLayoutModel *_Nullable)model;
-@property (nonatomic) SDAutoLayoutModel * _Nullable ownLayoutModel;
+- (void)addAutoLayoutModel:(ZZAutoLayoutModel *_Nullable)model;
+@property (nonatomic) ZZAutoLayoutModel * _Nullable ownLayoutModel;
 @property (nonatomic, strong) NSNumber * _Nullable sd_maxWidth;
 @property (nonatomic, strong) NSNumber * _Nullable autoHeightRatioValue;
 @property (nonatomic, strong) NSNumber * _Nullable autoWidthRatioValue;
@@ -403,7 +403,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - 其他方法（如果有需要可以自己利用以下接口拓展更多功能）
 
-@interface SDAutoLayoutModelItem : NSObject
+@interface ZZAutoLayoutModelItem : NSObject
 
 @property (nonatomic, strong) NSNumber * _Nullable value;
 @property (nonatomic, weak) UIView * _Nullable refView;

@@ -1,6 +1,6 @@
 //
-//  UITableView+SDAutoTableViewCellHeight.h
-//  SDAutoLayout 测试 Demo
+//  UITableView+ZZAutoTableViewCellHeight.h
+//  ZZAutoLayout 测试 Demo
 //
 //  Created by aier on 15/11/1.
 //  Copyright © 2015年 gsd. All rights reserved.
@@ -30,7 +30,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UIView+SDAutoLayout.h"
+#import "UIView+ZZAutoLayout.h"
 
 @class SDCellAutoHeightManager;
 

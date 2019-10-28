@@ -31,8 +31,6 @@
 		81B52C3F235839EA0092B165 /* ZZScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C35235839EA0092B165 /* ZZScrollPageView.m */; };
 		81B52C4823583BB40092B165 /* UIView+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C4323583BB40092B165 /* UIView+ZZExtension.m */; };
 		81B52C4A23583BB40092B165 /* UIColor+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C4623583BB40092B165 /* UIColor+ZZExtension.m */; };
-		81D88C832366965A00FC5233 /* UIView+ZZAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D88C7E2366965A00FC5233 /* UIView+ZZAutoLayout.m */; };
-		81D88C842366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D88C812366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m */; };
 		E42827D92206BB7200BF7657 /* ZZCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827D82206BB7200BF7657 /* ZZCollectionViewCell.m */; };
 		E42827DD2206BD2900BF7657 /* ZZModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DC2206BD2900BF7657 /* ZZModel.m */; };
 		E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E42827DF2206D61D00BF7657 /* ZZCollectionFooterView.m */; };
@@ -89,11 +87,6 @@
 		81B52C4323583BB40092B165 /* UIView+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZExtension.m"; sourceTree = "<group>"; };
 		81B52C4623583BB40092B165 /* UIColor+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZZExtension.m"; sourceTree = "<group>"; };
 		81B52C4723583BB40092B165 /* UIColor+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZZExtension.h"; sourceTree = "<group>"; };
-		81D88C7E2366965A00FC5233 /* UIView+ZZAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZAutoLayout.m"; sourceTree = "<group>"; };
-		81D88C7F2366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+ZZAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
-		81D88C802366965A00FC5233 /* ZZAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZAutoLayout.h; sourceTree = "<group>"; };
-		81D88C812366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ZZAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
-		81D88C822366965A00FC5233 /* UIView+ZZAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZAutoLayout.h"; sourceTree = "<group>"; };
 		E42827D72206BB7200BF7657 /* ZZCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZCollectionViewCell.h; sourceTree = "<group>"; };
 		E42827D82206BB7200BF7657 /* ZZCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZCollectionViewCell.m; sourceTree = "<group>"; };
 		E42827DB2206BD2900BF7657 /* ZZModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZModel.h; sourceTree = "<group>"; };
@@ -138,7 +131,6 @@
 		3A09E55A22A15A4600F462EC /* ZZExtension */ = {
 			isa = PBXGroup;
 			children = (
-				81D88C7D2366965A00FC5233 /* ZZAutoLayout */,
 				81B52C4023583BB40092B165 /* UIView+ZZExtension */,
 				81B52C4523583BB40092B165 /* UIColor+ZZExtension */,
 				81B52C4C23583BC90092B165 /* UIScrollView+ZZExtension */,
@@ -356,18 +348,6 @@
 			path = "UIViewController+ZZExtension";
 			sourceTree = "<group>";
 		};
-		81D88C7D2366965A00FC5233 /* ZZAutoLayout */ = {
-			isa = PBXGroup;
-			children = (
-				81D88C802366965A00FC5233 /* ZZAutoLayout.h */,
-				81D88C822366965A00FC5233 /* UIView+ZZAutoLayout.h */,
-				81D88C7E2366965A00FC5233 /* UIView+ZZAutoLayout.m */,
-				81D88C7F2366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.h */,
-				81D88C812366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m */,
-			);
-			path = ZZAutoLayout;
-			sourceTree = "<group>";
-		};
 		E42827DA2206BD1C00BF7657 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,7 +539,6 @@
 				E45ED2DA22115F92009D9A8C /* ZZRouter.m in Sources */,
 				81B52C3C235839EA0092B165 /* ZZCollectionView.m in Sources */,
 				81B52C3D235839EA0092B165 /* ZZSegmentStyle.m in Sources */,
-				81D88C842366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m in Sources */,
 				81B52C3F235839EA0092B165 /* ZZScrollPageView.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
 				E4F4A899223640E200491E6E /* ZZMixVC.m in Sources */,
@@ -571,7 +550,6 @@
 				3AD20664220484050056D3F2 /* ZZStarViewVC.m in Sources */,
 				3A09E56022A15C1200F462EC /* UIScrollView+ZZExtension.m in Sources */,
 				81B52C3B235839EA0092B165 /* ZZContentView.m in Sources */,
-				81D88C832366965A00FC5233 /* UIView+ZZAutoLayout.m in Sources */,
 				81B52C3A235839EA0092B165 /* UIViewController+ZZExtension.m in Sources */,
 				81B52C4A23583BB40092B165 /* UIColor+ZZExtension.m in Sources */,
 				81B52C39235839EA0092B165 /* ZZTitleView.m in Sources */,

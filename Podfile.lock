@@ -1,16 +1,20 @@
 PODS:
   - MJRefresh (3.2.0)
+  - SDAutoLayout (2.2.1)
 
 DEPENDENCIES:
   - MJRefresh
+  - SDAutoLayout
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - MJRefresh
+    - SDAutoLayout
 
 SPEC CHECKSUMS:
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
 
-PODFILE CHECKSUM: 751cf428ab666bc2caf1035514f37c9afcb5fa29
+PODFILE CHECKSUM: 137a13d5b8f754f1604f78dc533ee4d94c7ffafa
 
 COCOAPODS: 1.7.5

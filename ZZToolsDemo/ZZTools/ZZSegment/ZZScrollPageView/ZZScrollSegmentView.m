@@ -7,7 +7,7 @@
 //
 
 #import "ZZTitleView.h"
-#import "ZZAutoLayout.h"
+#import <SDAutoLayout.h>
 #import "ZZPrivateHeader.h"
 #import "ZZScrollSegmentView.h"
 
@@ -685,10 +685,10 @@ static CGFloat const contentSizeXOff = 20.0;
         [self addSubview:_bottomShadowLabel];
         _bottomShadowLabel.backgroundColor = [UIColor zz_colorWithCSS:@"000000"];
         _bottomShadowLabel.alpha = 0.11;
-        _bottomShadowLabel.zz_layout.leftEqualToView(self)
+        _bottomShadowLabel.sd_layout.leftEqualToView(self)
         .rightEqualToView(self)
         .bottomEqualToView(self)
-        .zz_heightIs(1);
+        .heightIs(1);
     }
     return _bottomShadowLabel;
 }
@@ -705,16 +705,16 @@ static CGFloat const contentSizeXOff = 20.0;
         [lineView addSubview:ly_lineView];//这里
 
         if (_scrollLineTrueShowWidth > 0) {
-            ly_lineView.zz_layout.zz_centerXEqualToView(lineView).zz_widthIs(_scrollLineTrueShowWidth)
+            ly_lineView.sd_layout.centerXEqualToView(lineView).widthIs(_scrollLineTrueShowWidth)
              .topEqualToView(lineView).bottomEqualToView(lineView);
-            ly_lineView.zz_cornerRadius = @(0.5);
+            ly_lineView.sd_cornerRadius = @(0.5);
         }else{
-            ly_lineView.zz_layout.leftEqualToView(lineView).rightEqualToView(lineView)
+            ly_lineView.sd_layout.leftEqualToView(lineView).rightEqualToView(lineView)
             .topEqualToView(lineView).bottomEqualToView(lineView);
-            ly_lineView.zz_cornerRadius = @(0.5);
+            ly_lineView.sd_cornerRadius = @(0.5);
             
 //            ly_lineView.frame = CGRectMake(lineView.frame.origin.x-15, lineView.frame.origin.y, lineView.frame.size.width + 60, 2);
-//            ly_lineView.zz_cornerRadius = @(0.5);
+//            ly_lineView.cornerRadius = @(0.5);
             
             
         }

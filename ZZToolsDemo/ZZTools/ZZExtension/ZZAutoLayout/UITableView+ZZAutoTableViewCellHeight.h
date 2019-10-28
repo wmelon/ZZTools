@@ -34,9 +34,9 @@
 
 @class ZZCellAutoHeightManager;
 
-typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
+typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
-#define kSDModelCellTag 199206
+#define kZZModelCellTag 199206
 
 
 
@@ -62,7 +62,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
  * contentViewWidth   : cell的contentView的宽度
  * cellDataSetting    : 设置cell数据的block
  */
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellClass:(Class _Nonnull )cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(AutoCellHeightDataSettingBlock _Nonnull )cellDataSetting;
+- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellClass:(Class _Nonnull )cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock _Nonnull )cellDataSetting;
 
 /** 刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新 */
 - (void)reloadDataWithExistedHeightCache;
@@ -80,7 +80,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 /** 返回所有cell的高度总和  */
 - (CGFloat)cellsTotalHeight;
 
-@property (nonatomic, copy) AutoCellHeightDataSettingBlock _Nonnull cellDataSetting;
+@property (nonatomic, copy) ZZAutoCellHeightDataSettingBlock _Nonnull cellDataSetting;
 
 @end
 
@@ -89,7 +89,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
 #pragma mark - UITableViewController 方法，返回自动计算出的cell高度
 
-@interface UITableViewController (SDTableViewControllerAutoCellHeight)
+@interface UITableViewController (ZZTableViewControllerAutoCellHeight)
 
 /** (UITableViewController方法)升级版！一行代码（一步设置）搞定tableview的cell高度自适应,同时适用于单cell和多cell,性能比普通版稍微差一些,不建议在数据量大的tableview中使用  */
 - (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width;
@@ -141,7 +141,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
 @property (nonatomic, strong, readonly) NSDictionary * _Nullable heightCacheDict;
 
-@property (nonatomic, copy) AutoCellHeightDataSettingBlock _Nullable cellDataSetting;
+@property (nonatomic, copy) ZZAutoCellHeightDataSettingBlock _Nullable cellDataSetting;
 
 - (void)clearHeightCache;
 

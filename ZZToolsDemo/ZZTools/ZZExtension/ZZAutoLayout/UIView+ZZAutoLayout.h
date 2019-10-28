@@ -55,21 +55,21 @@
 
 // 如果需要用“断言”调试程序请打开此宏
 
-//#define SDDebugWithAssert
+//#define ZZDebugWithAssert
 
 #import <UIKit/UIKit.h>
 
 @class ZZAutoLayoutModel, ZZUIViewCategoryManager;
 
-typedef ZZAutoLayoutModel * _Nonnull (^MarginToView)(id _Nonnull viewOrViewsArray, CGFloat value);
-typedef ZZAutoLayoutModel * _Nonnull (^Margin)(CGFloat value);
-typedef ZZAutoLayoutModel * _Nonnull (^MarginEqualToView)(UIView * _Nonnull toView);
-typedef ZZAutoLayoutModel * _Nonnull (^WidthHeight)(CGFloat value);
-typedef ZZAutoLayoutModel * _Nonnull (^WidthHeightEqualToView)(UIView * _Nonnull toView, CGFloat ratioValue);
-typedef ZZAutoLayoutModel * _Nonnull (^AutoHeightWidth)(CGFloat ratioValue);
-typedef ZZAutoLayoutModel * _Nonnull (^SameWidthHeight)(void);
-typedef ZZAutoLayoutModel * _Nonnull (^Offset)(CGFloat value);
-typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZMarginToView)(id _Nonnull viewOrViewsArray, CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZMargin)(CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZMarginEqualToView)(UIView * _Nonnull toView);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZWidthHeight)(CGFloat value);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZWidthHeightEqualToView)(UIView * _Nonnull toView, CGFloat ratioValue);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZAutoHeightWidth)(CGFloat ratioValue);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZSameWidthHeight)(void);
+typedef ZZAutoLayoutModel * _Nonnull (^ZZOffset)(CGFloat value);
+typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 
 @interface ZZAutoLayoutModel : NSObject
 
@@ -88,88 +88,88 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 /* 设置距离其它view的间距 */
 
 /** 左边到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
-@property (nonatomic, copy, readonly) MarginToView _Nonnull leftSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull leftSpaceToView;
 /** 右边到其参照view之间的间距，参数为“(View, CGFloat)”  */
-@property (nonatomic, copy, readonly) MarginToView _Nonnull rightSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull rightSpaceToView;
 /** 顶部到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
-@property (nonatomic, copy, readonly) MarginToView _Nonnull topSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull topSpaceToView;
 /** 底部到其参照view之间的间距，参数为“(View, CGFloat)”  */
-@property (nonatomic, copy, readonly) MarginToView _Nonnull bottomSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull bottomSpaceToView;
 
 
 
 /* 设置x、y、width、height、centerX、centerY 值 */
 
 /** x值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) Margin _Nonnull xIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull xIs;
 /** y值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) Margin _Nonnull yIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull yIs;
 /** centerX值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) Margin _Nonnull centerXIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull centerXIs;
 /** centerY值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) Margin _Nonnull centerYIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull centerYIs;
 /** 宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull widthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull widthIs;
 /** 高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull heightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull heightIs;
 
 
 
 /* 设置最大宽度和高度、最小宽度和高度 */
 
 /** 最大宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull maxWidthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxWidthIs;
 /** 最大高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull maxHeightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxHeightIs;
 /** 最小宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull minWidthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minWidthIs;
 /** 最小高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) WidthHeight _Nonnull minHeightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minHeightIs;
 
 
 
 /* 设置和某个参照view的边距相同 */
 
 /** 左间距与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull leftEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull leftEqualToView;
 /** 右间距与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull rightEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull rightEqualToView;
 /** 顶部间距与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull topEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull topEqualToView;
 /** 底部间距与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull bottomEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull bottomEqualToView;
 /** centerX与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull centerXEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull centerXEqualToView;
 /** centerY与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) MarginEqualToView _Nonnull centerYEqualToView;
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull centerYEqualToView;
 
 
 
 /*  设置宽度或者高度等于参照view的多少倍 */
 
 /** 宽度是参照view宽度的多少倍，参数为“(View, CGFloat)” */
-@property (nonatomic, copy, readonly) WidthHeightEqualToView _Nonnull widthRatioToView;
+@property (nonatomic, copy, readonly) ZZWidthHeightEqualToView _Nonnull widthRatioToView;
 /** 高度是参照view高度的多少倍，参数为“(View, CGFloat)” */
-@property (nonatomic, copy, readonly) WidthHeightEqualToView _Nonnull heightRatioToView;
+@property (nonatomic, copy, readonly) ZZWidthHeightEqualToView _Nonnull heightRatioToView;
 /** 设置一个view的宽度和它的高度相同，参数为空“()” */
-@property (nonatomic, copy, readonly) SameWidthHeight _Nonnull widthEqualToHeight;
+@property (nonatomic, copy, readonly) ZZSameWidthHeight _Nonnull widthEqualToHeight;
 /** 设置一个view的高度和它的宽度相同，参数为空“()” */
-@property (nonatomic, copy, readonly) SameWidthHeight _Nonnull heightEqualToWidth;
+@property (nonatomic, copy, readonly) ZZSameWidthHeight _Nonnull heightEqualToWidth;
 /** 自适应高度，传入高宽比值，label可以传0实现文字高度自适应 */
-@property (nonatomic, copy, readonly) AutoHeightWidth _Nonnull autoHeightRatio;
+@property (nonatomic, copy, readonly) ZZAutoHeightWidth _Nonnull autoHeightRatio;
 
 /** 自适应宽度，参数为宽高比值 */
-@property (nonatomic, copy, readonly) AutoHeightWidth _Nonnull autoWidthRatio;
+@property (nonatomic, copy, readonly) ZZAutoHeightWidth _Nonnull autoWidthRatio;
 
 
 
 /* 填充父view(快捷方法) */
 
 /** 传入UIEdgeInsetsMake(top, left, bottom, right)，可以快捷设置view到其父view上左下右的间距  */
-@property (nonatomic, copy, readonly) SpaceToSuperView _Nonnull spaceToSuperView;
+@property (nonatomic, copy, readonly) ZZSpaceToSuperView _Nonnull spaceToSuperView;
 
 /** 设置偏移量，参数为“(CGFloat value)，目前只有带有equalToView的方法可以设置offset” */
-@property (nonatomic, copy, readonly) Offset _Nonnull offset;
+@property (nonatomic, copy, readonly) ZZOffset _Nonnull offset;
 
 @property (nonatomic, weak) UIView * _Nullable needsAutoResizeView;
 

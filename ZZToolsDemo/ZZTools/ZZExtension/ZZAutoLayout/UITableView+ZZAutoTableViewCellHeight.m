@@ -98,8 +98,8 @@
 
 - (UITableViewCell *)modelCell
 {
-    if (_modelCell.contentView.tag != kSDModelCellTag) {
-        _modelCell.contentView.tag = kSDModelCellTag;
+    if (_modelCell.contentView.tag != kZZModelCellTag) {
+        _modelCell.contentView.tag = kZZModelCellTag;
     }
     return _modelCell;
 }
@@ -270,7 +270,7 @@
         }
         
         
-#ifdef SDDebugWithAssert
+#ifdef ZZDebugWithAssert
         /*
          如果程序卡在了这里说明你的cell还没有调用“setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改。例：
          
@@ -309,7 +309,7 @@
         if (!self.modelCell) {
             [self registerCellWithCellClass:cellClass];
         }
-        _modelCell.contentView.tag = kSDModelCellTag;
+        _modelCell.contentView.tag = kZZModelCellTag;
     }
     if (self.modelCell.contentView.width_sd != self.contentViewWidth) {
         _modelCell.contentView.width_sd = self.contentViewWidth;
@@ -426,7 +426,7 @@
     return [self.cellAutoHeightManager cellHeightForIndexPath:indexPath model:model keyPath:keyPath cellClass:cellClass];
 }
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellClass:(__unsafe_unretained Class)cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(AutoCellHeightDataSettingBlock)cellDataSetting
+- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellClass:(__unsafe_unretained Class)cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
 
     self.cellDataSetting = cellDataSetting;
@@ -491,12 +491,12 @@
     objc_setAssociatedObject(self, @selector(cellAutoHeightManager), cellAutoHeightManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setCellDataSetting:(AutoCellHeightDataSettingBlock)cellDataSetting
+- (void)setCellDataSetting:(ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
     self.cellAutoHeightManager.cellDataSetting = cellDataSetting;
 }
 
-- (AutoCellHeightDataSettingBlock)cellDataSetting
+- (ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
     return self.cellAutoHeightManager.cellDataSetting;
 }
@@ -504,7 +504,7 @@
 @end
 
 
-@implementation UITableViewController (SDTableViewControllerAutoCellHeight)
+@implementation UITableViewController (ZZTableViewControllerAutoCellHeight)
 
 - (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width
 {

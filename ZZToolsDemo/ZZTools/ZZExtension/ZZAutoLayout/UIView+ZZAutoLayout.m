@@ -105,7 +105,7 @@ Class cellContVClass()
 @synthesize offset = _offset;
 
 
-- (MarginToView)leftSpaceToView
+- (ZZMarginToView)leftSpaceToView
 {
     if (!_leftSpaceToView) {
         _leftSpaceToView = [self marginToViewblockWithKey:@"left"];
@@ -113,7 +113,7 @@ Class cellContVClass()
     return _leftSpaceToView;
 }
 
-- (MarginToView)rightSpaceToView
+- (ZZMarginToView)rightSpaceToView
 {
     if (!_rightSpaceToView) {
         _rightSpaceToView = [self marginToViewblockWithKey:@"right"];
@@ -121,7 +121,7 @@ Class cellContVClass()
     return _rightSpaceToView;
 }
 
-- (MarginToView)topSpaceToView
+- (ZZMarginToView)topSpaceToView
 {
     if (!_topSpaceToView) {
         _topSpaceToView = [self marginToViewblockWithKey:@"top"];
@@ -129,7 +129,7 @@ Class cellContVClass()
     return _topSpaceToView;
 }
 
-- (MarginToView)bottomSpaceToView
+- (ZZMarginToView)bottomSpaceToView
 {
     if (!_bottomSpaceToView) {
         _bottomSpaceToView = [self marginToViewblockWithKey:@"bottom"];
@@ -137,7 +137,7 @@ Class cellContVClass()
     return _bottomSpaceToView;
 }
 
-- (MarginToView)marginToViewblockWithKey:(NSString *)key
+- (ZZMarginToView)marginToViewblockWithKey:(NSString *)key
 {
     __weak typeof(self) weakSelf = self;
     return ^(id viewOrViewsArray, CGFloat value) {
@@ -153,7 +153,7 @@ Class cellContVClass()
     };
 }
 
-- (WidthHeight)widthIs
+- (ZZWidthHeight)widthIs
 {
     if (!_widthIs) {
         __weak typeof(self) weakSelf = self;
@@ -168,7 +168,7 @@ Class cellContVClass()
     return _widthIs;
 }
 
-- (WidthHeight)heightIs
+- (ZZWidthHeight)heightIs
 {
     if (!_heightIs) {
         __weak typeof(self) weakSelf = self;
@@ -183,7 +183,7 @@ Class cellContVClass()
     return _heightIs;
 }
 
-- (WidthHeightEqualToView)widthRatioToView
+- (ZZWidthHeightEqualToView)widthRatioToView
 {
     if (!_widthRatioToView) {
         __weak typeof(self) weakSelf = self;
@@ -197,7 +197,7 @@ Class cellContVClass()
     return _widthRatioToView;
 }
 
-- (WidthHeightEqualToView)heightRatioToView
+- (ZZWidthHeightEqualToView)heightRatioToView
 {
     if (!_heightRatioToView) {
         __weak typeof(self) weakSelf = self;
@@ -211,7 +211,7 @@ Class cellContVClass()
     return _heightRatioToView;
 }
 
-- (WidthHeight)maxWidthIs
+- (ZZWidthHeight)maxWidthIs
 {
     if (!_maxWidthIs) {
         _maxWidthIs = [self limitingWidthHeightWithKey:@"maxWidth"];
@@ -219,7 +219,7 @@ Class cellContVClass()
     return _maxWidthIs;
 }
 
-- (WidthHeight)maxHeightIs
+- (ZZWidthHeight)maxHeightIs
 {
     if (!_maxHeightIs) {
         _maxHeightIs = [self limitingWidthHeightWithKey:@"maxHeight"];
@@ -227,7 +227,7 @@ Class cellContVClass()
     return _maxHeightIs;
 }
 
-- (WidthHeight)minWidthIs
+- (ZZWidthHeight)minWidthIs
 {
     if (!_minWidthIs) {
         _minWidthIs = [self limitingWidthHeightWithKey:@"minWidth"];
@@ -235,7 +235,7 @@ Class cellContVClass()
     return _minWidthIs;
 }
 
-- (WidthHeight)minHeightIs
+- (ZZWidthHeight)minHeightIs
 {
     if (!_minHeightIs) {
         _minHeightIs = [self limitingWidthHeightWithKey:@"minHeight"];
@@ -244,7 +244,7 @@ Class cellContVClass()
 }
 
 
-- (WidthHeight)limitingWidthHeightWithKey:(NSString *)key
+- (ZZWidthHeight)limitingWidthHeightWithKey:(NSString *)key
 {
     __weak typeof(self) weakSelf = self;
     
@@ -256,7 +256,7 @@ Class cellContVClass()
 }
 
 
-- (MarginEqualToView)marginEqualToViewBlockWithKey:(NSString *)key
+- (ZZMarginEqualToView)marginEqualToViewBlockWithKey:(NSString *)key
 {
     __weak typeof(self) weakSelf = self;
     
@@ -272,7 +272,7 @@ Class cellContVClass()
     };
 }
 
-- (MarginEqualToView)leftEqualToView
+- (ZZMarginEqualToView)leftEqualToView
 {
     if (!_leftEqualToView) {
         _leftEqualToView = [self marginEqualToViewBlockWithKey:@"equalLeft"];
@@ -280,7 +280,7 @@ Class cellContVClass()
     return _leftEqualToView;
 }
 
-- (MarginEqualToView)rightEqualToView
+- (ZZMarginEqualToView)rightEqualToView
 {
     if (!_rightEqualToView) {
         _rightEqualToView = [self marginEqualToViewBlockWithKey:@"equalRight"];
@@ -288,7 +288,7 @@ Class cellContVClass()
     return _rightEqualToView;
 }
 
-- (MarginEqualToView)topEqualToView
+- (ZZMarginEqualToView)topEqualToView
 {
     if (!_topEqualToView) {
         _topEqualToView = [self marginEqualToViewBlockWithKey:@"equalTop"];
@@ -296,7 +296,7 @@ Class cellContVClass()
     return _topEqualToView;
 }
 
-- (MarginEqualToView)bottomEqualToView
+- (ZZMarginEqualToView)bottomEqualToView
 {
     if (!_bottomEqualToView) {
         _bottomEqualToView = [self marginEqualToViewBlockWithKey:@"equalBottom"];
@@ -304,7 +304,7 @@ Class cellContVClass()
     return _bottomEqualToView;
 }
 
-- (MarginEqualToView)centerXEqualToView
+- (ZZMarginEqualToView)centerXEqualToView
 {
     if (!_centerXEqualToView) {
         _centerXEqualToView = [self marginEqualToViewBlockWithKey:@"equalCenterX"];
@@ -312,7 +312,7 @@ Class cellContVClass()
     return _centerXEqualToView;
 }
 
-- (MarginEqualToView)centerYEqualToView
+- (ZZMarginEqualToView)centerYEqualToView
 {
     if (!_centerYEqualToView) {
         _centerYEqualToView = [self marginEqualToViewBlockWithKey:@"equalCenterY"];
@@ -321,7 +321,7 @@ Class cellContVClass()
 }
 
 
-- (Margin)marginBlockWithKey:(NSString *)key
+- (ZZMargin)marginBlockWithKey:(NSString *)key
 {
     __weak typeof(self) weakSelf = self;
     
@@ -341,7 +341,7 @@ Class cellContVClass()
     };
 }
 
-- (Margin)xIs
+- (ZZMargin)xIs
 {
     if (!_xIs) {
         _xIs = [self marginBlockWithKey:@"x"];
@@ -349,7 +349,7 @@ Class cellContVClass()
     return _xIs;
 }
 
-- (Margin)yIs
+- (ZZMargin)yIs
 {
     if (!_yIs) {
         _yIs = [self marginBlockWithKey:@"y"];
@@ -357,7 +357,7 @@ Class cellContVClass()
     return _yIs;
 }
 
-- (Margin)centerXIs
+- (ZZMargin)centerXIs
 {
     if (!_centerXIs) {
         _centerXIs = [self marginBlockWithKey:@"centerX"];
@@ -365,7 +365,7 @@ Class cellContVClass()
     return _centerXIs;
 }
 
-- (Margin)centerYIs
+- (ZZMargin)centerYIs
 {
     if (!_centerYIs) {
         _centerYIs = [self marginBlockWithKey:@"centerY"];
@@ -373,7 +373,7 @@ Class cellContVClass()
     return _centerYIs;
 }
 
-- (AutoHeightWidth)autoHeightRatio
+- (ZZAutoHeightWidth)autoHeightRatio
 {
     __weak typeof(self) weakSelf = self;
     
@@ -386,7 +386,7 @@ Class cellContVClass()
     return _autoHeightRatio;
 }
 
-- (AutoHeightWidth)autoWidthRatio
+- (ZZAutoHeightWidth)autoWidthRatio
 {
     __weak typeof(self) weakSelf = self;
     
@@ -399,7 +399,7 @@ Class cellContVClass()
     return _autoWidthRatio;
 }
 
-- (SpaceToSuperView)spaceToSuperView
+- (ZZSpaceToSuperView)spaceToSuperView
 {
     __weak typeof(self) weakSelf = self;
     
@@ -418,7 +418,7 @@ Class cellContVClass()
     return _spaceToSuperView;
 }
 
-- (SameWidthHeight)widthEqualToHeight
+- (ZZSameWidthHeight)widthEqualToHeight
 {
     __weak typeof(self) weakSelf = self;
     
@@ -434,7 +434,7 @@ Class cellContVClass()
     return _widthEqualToHeight;
 }
 
-- (SameWidthHeight)heightEqualToWidth
+- (ZZSameWidthHeight)heightEqualToWidth
 {
     __weak typeof(self) weakSelf = self;
     
@@ -944,7 +944,7 @@ Class cellContVClass()
 - (ZZAutoLayoutModel *)sd_layout
 {
     
-#ifdef SDDebugWithAssert
+#ifdef ZZDebugWithAssert
     /*
      卡在这里说明你的要自动布局的view在没有添加到父view的情况下就开始设置布局,你需要这样：
      1.  UIView *view = [UIView new];
@@ -1151,7 +1151,7 @@ Class cellContVClass()
         }];
     }
     
-    if (self.tag == kSDModelCellTag && [self isKindOfClass:cellContVClass()]) {
+    if (self.tag == kZZModelCellTag && [self isKindOfClass:cellContVClass()]) {
         UITableViewCell *cell = (UITableViewCell *)(self.superview);
         
         while (cell && ![cell isKindOfClass:[UITableViewCell class]]) {

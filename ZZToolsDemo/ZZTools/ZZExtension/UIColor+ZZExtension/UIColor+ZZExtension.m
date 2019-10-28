@@ -25,7 +25,7 @@
 
 @implementation UIColor (Hex)
 
-+ (UIColor*)zz_colorWithCSS: (NSString*)css {
++ (UIColor*)zz_colorWithCSS:(NSString*)css {
 	if (css.length == 0)
 		return [UIColor blackColor];
 
@@ -108,7 +108,7 @@
 						   alpha: av / 255.f];
 }
 
-+ (UIColor*)zz_colorWithHex: (NSUInteger)hex {
++ (UIColor*)zz_colorWithHex:(NSUInteger)hex {
 	CGFloat red, green, blue, alpha;
 
 	red = ((CGFloat)((hex >> 16) & 0xFF)) / ((CGFloat)0xFF);
@@ -148,10 +148,7 @@
 }
 
 // 渐变色
-+ (UIColor *)zz_gradientColorWithSize:(CGSize)size
-                               direction:(ZZGradientChangeDirection)direction
-                              startColor:(UIColor *)startcolor
-                                endColor:(UIColor *)endColor {
++ (UIColor *)zz_gradientColorWithSize:(CGSize)size direction:(ZZGradientChangeDirection)direction startColor:(UIColor *)startcolor endColor:(UIColor *)endColor {
     
     if (CGSizeEqualToSize(size, CGSizeZero) || !startcolor || !endColor) {
         return nil;
@@ -202,6 +199,5 @@
     CGSize finalSize = CGSizeEqualToSize(size, CGSizeZero) ? CGSizeMake(100, 100) : size;
     return [self zz_gradientColorWithSize:finalSize direction:(ZZGradientChangeDirectionVertical) startColor:[UIColor zz_colorWithCSS:colorArray[0]] endColor:[UIColor zz_colorWithCSS:colorArray[1]]];
 }
-
 
 @end

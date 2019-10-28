@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "ZJContentView.h"
 
-
 @interface ZJScrollPageView : UIView
 typedef void(^ExtraBtnOnClick)(UIButton *extraBtn);
 

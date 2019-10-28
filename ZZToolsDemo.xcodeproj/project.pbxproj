@@ -284,8 +284,9 @@
 		8166F7F92356BBF700EF8F4B /* ZZSegment */ = {
 			isa = PBXGroup;
 			children = (
-				81B52C26235839EA0092B165 /* ZZScrollPageView */,
 				81B52C22235839E50092B165 /* ZZJointTableView */,
+				81B52C26235839EA0092B165 /* ZZScrollPageView */,
+				81B52C4D235846880092B165 /* UIViewController+ZZExtension */,
 			);
 			path = ZZSegment;
 			sourceTree = "<group>";
@@ -315,7 +316,6 @@
 				81B52C2A235839EA0092B165 /* ZZScrollSegmentView.h */,
 				81B52C34235839EA0092B165 /* ZZScrollSegmentView.m */,
 				81B52C2B235839EA0092B165 /* ZZScrollPageViewDelegate.h */,
-				81B52C4D235846880092B165 /* UIViewController+ZZExtension */,
 			);
 			path = ZZScrollPageView;
 			sourceTree = "<group>";

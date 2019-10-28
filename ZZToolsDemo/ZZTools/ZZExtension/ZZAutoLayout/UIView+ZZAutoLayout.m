@@ -465,13 +465,13 @@ Class cellContVClass()
 @end
 
 
-@implementation UIView (SDAutoHeightWidth)
+@implementation UIView (ZZAutoHeightWidth)
 
-- (SDUIViewCategoryManager *)sd_categoryManager
+- (ZZUIViewCategoryManager *)sd_categoryManager
 {
-    SDUIViewCategoryManager *manager = objc_getAssociatedObject(self, _cmd);
+    ZZUIViewCategoryManager *manager = objc_getAssociatedObject(self, _cmd);
     if (!manager) {
-        objc_setAssociatedObject(self, _cmd, [SDUIViewCategoryManager new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, _cmd, [ZZUIViewCategoryManager new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return objc_getAssociatedObject(self, _cmd);
 }
@@ -575,7 +575,7 @@ Class cellContVClass()
 
 @end
 
-@implementation UIView (SDLayoutExtention)
+@implementation UIView (ZZLayoutExtention)
 
 - (void (^)(CGRect))didFinishAutoLayoutBlock
 {
@@ -640,7 +640,7 @@ Class cellContVClass()
 
 @end
 
-@implementation UIView (SDAutoFlowItems)
+@implementation UIView (ZZAutoFlowItems)
 
 - (void)setupAutoWidthFlowItems:(NSArray *)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount verticalMargin:(CGFloat)verticalMargin horizontalMargin:(CGFloat)horizontalMagin verticalEdgeInset:(CGFloat)vInset horizontalEdgeInset:(CGFloat)hInset
 {
@@ -699,7 +699,7 @@ Class cellContVClass()
 
 @end
 
-@implementation UIScrollView (SDAutoContentSize)
+@implementation UIScrollView (ZZAutoContentSize)
 
 - (void)setupAutoContentSizeWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin
 {
@@ -716,7 +716,7 @@ Class cellContVClass()
 
 @end
 
-@implementation UILabel (SDLabelAutoResize)
+@implementation UILabel (ZZLabelAutoResize)
 
 + (void)load
 {
@@ -781,7 +781,7 @@ Class cellContVClass()
 
 @end
 
-@implementation UIButton (SDExtention)
+@implementation UIButton (ZZExtention)
 
 - (void)setupAutoSizeWithHorizontalPadding:(CGFloat)hPadding buttonHeight:(CGFloat)buttonHeight
 {
@@ -1612,7 +1612,7 @@ Class cellContVClass()
 @end
 
 
-@implementation UIView (SDChangeFrame)
+@implementation UIView (ZZChangeFrame)
 
 - (BOOL)shouldReadjustFrameBeforeStoreCache
 {
@@ -1838,7 +1838,7 @@ Class cellContVClass()
 
 @end
 
-@implementation SDUIViewCategoryManager
+@implementation ZZUIViewCategoryManager
 
 @end
 

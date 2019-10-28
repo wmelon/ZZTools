@@ -59,7 +59,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZZAutoLayoutModel, SDUIViewCategoryManager;
+@class ZZAutoLayoutModel, ZZUIViewCategoryManager;
 
 typedef ZZAutoLayoutModel * _Nonnull (^MarginToView)(id _Nonnull viewOrViewsArray, CGFloat value);
 typedef ZZAutoLayoutModel * _Nonnull (^Margin)(CGFloat value);
@@ -179,7 +179,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIView 高度、宽度自适应相关方法
 
-@interface UIView (SDAutoHeightWidth)
+@interface UIView (ZZAutoHeightWidth)
 
 /** 设置Cell的高度自适应，也可用于设置普通view内容高度自适应 */
 - (void)setupAutoHeightWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
@@ -204,7 +204,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 @property (nonatomic) CGFloat autoHeight;
 
-@property (nonatomic, readonly) SDUIViewCategoryManager * _Nullable sd_categoryManager;
+@property (nonatomic, readonly) ZZUIViewCategoryManager * _Nullable sd_categoryManager;
 
 @property (nonatomic, readonly) NSMutableArray * _Nullable sd_bottomViewsArray;
 @property (nonatomic) CGFloat sd_bottomViewBottomMargin;
@@ -218,7 +218,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIView 设置圆角半径、自动布局回调block等相关方法
 
-@interface UIView (SDLayoutExtention)
+@interface UIView (ZZLayoutExtention)
 
 /** 自动布局完成后的回调block，可以在这里获取到view的真实frame  */
 @property (nonatomic) void (^ _Nullable didFinishAutoLayoutBlock)(CGRect frame);
@@ -244,7 +244,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIView 九宫格浮动布局效果
 
-@interface UIView (SDAutoFlowItems)
+@interface UIView (ZZAutoFlowItems)
 
 /** 
  * 设置类似collectionView效果的固定间距自动宽度浮动子view 
@@ -333,7 +333,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIScrollView 内容竖向自适应、内容横向自适应方法
 
-@interface UIScrollView (SDAutoContentSize)
+@interface UIScrollView (ZZAutoContentSize)
 
 /** 设置scrollview内容竖向自适应 */
 - (void)setupAutoContentSizeWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
@@ -347,7 +347,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UILabel 开启富文本布局、设置单行文本label宽度自适应、 设置label最多可以显示的行数
 
-@interface UILabel (SDLabelAutoResize)
+@interface UILabel (ZZLabelAutoResize)
 
 /** 是否是attributedString */
 @property (nonatomic) BOOL isAttributedContent;
@@ -364,7 +364,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - UIButton 设置button根据单行文字自适应
 
-@interface UIButton (SDExtention)
+@interface UIButton (ZZExtention)
 
 /*
  * 设置button根据单行文字自适应
@@ -413,7 +413,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 @end
 
 
-@interface UIView (SDChangeFrame)
+@interface UIView (ZZChangeFrame)
 
 @property (nonatomic) BOOL shouldReadjustFrameBeforeStoreCache;
 
@@ -447,7 +447,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 @end
 
 
-@interface SDUIViewCategoryManager : NSObject
+@interface ZZUIViewCategoryManager : NSObject
 
 @property (nonatomic, strong) NSArray * _Nullable rightViewsArray;
 @property (nonatomic, assign) CGFloat rightViewRightMargin;

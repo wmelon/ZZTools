@@ -32,7 +32,7 @@
 
 #import "UIView+ZZAutoLayout.h"
 
-@class SDCellAutoHeightManager;
+@class ZZCellAutoHeightManager;
 
 typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
@@ -42,9 +42,9 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
 #pragma mark - UITableView 方法，返回自动计算出的cell高度
 
-@interface UITableView (SDAutoTableViewCellHeight)
+@interface UITableView (ZZAutoTableViewCellHeight)
 
-@property (nonatomic, strong) SDCellAutoHeightManager * _Nullable cellAutoHeightManager;
+@property (nonatomic, strong) ZZCellAutoHeightManager * _Nullable cellAutoHeightManager;
 
 
 /**
@@ -100,7 +100,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
 #pragma mark - NSObject 方法，返回自动计算出的cell高度
 
-@interface NSObject (SDAnyObjectAutoCellHeight)
+@interface NSObject (ZZAnyObjectAutoCellHeight)
 
 /** (NSObject方法)升级版！一行代码（一步设置）搞定tableview的cell高度自适应,同时适用于单cell和多cell,性能比普通版稍微差一些,不建议在数据量大的tableview中使用  */
 - (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *_Nonnull)tableView;
@@ -125,7 +125,7 @@ typedef void (^AutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
 // ------------------------------- 以下为库内部使用无须了解 --------------------
 
-@interface SDCellAutoHeightManager : NSObject
+@interface ZZCellAutoHeightManager : NSObject
 
 @property (nonatomic, assign) BOOL shouldKeepHeightCacheWhenReloadingData;
 

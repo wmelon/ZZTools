@@ -5,7 +5,9 @@
 //  Created by gsd on 16/6/27.
 //  Copyright © 2016年 gsd. All rights reserved.
 //
-
+//  为了使ZZTools不引用其他工具, ZZAutoLayout为复制的SDAutoLayout源码并修改类名方法名属性名.
+//  项目地址: https://github.com/gsdios/SDAutoLayout
+//
 
 /*
  

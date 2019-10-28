@@ -24,13 +24,13 @@
 #import "UITableView+ZZAutoTableViewCellHeight.h"
 #import <objc/runtime.h>
 
-@interface SDCellAutoHeightManager ()
+@interface ZZCellAutoHeightManager ()
 
 @property (nonatomic, weak) UITableView *modelTableview;
 
 @end
 
-@implementation SDCellAutoHeightManager
+@implementation ZZCellAutoHeightManager
 {
     NSMutableDictionary *_cacheDictionary;
     NSMutableDictionary *_modelCellsDict;
@@ -92,7 +92,7 @@
 
 + (instancetype)managerWithCellClass:(Class)cellClass tableView:(UITableView *)tableView
 {
-    SDCellAutoHeightManager *manager = [[self alloc] initWithCellClass:cellClass tableView:tableView];
+    ZZCellAutoHeightManager *manager = [[self alloc] initWithCellClass:cellClass tableView:tableView];
     return manager;
 }
 
@@ -359,7 +359,7 @@
 @end
 
 
-@implementation UITableView (SDAutoTableViewCellHeight)
+@implementation UITableView (ZZAutoTableViewCellHeight)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -471,14 +471,14 @@
     return h;
 }
 
-- (SDCellAutoHeightManager *)cellAutoHeightManager
+- (ZZCellAutoHeightManager *)cellAutoHeightManager
 {
     
-    SDCellAutoHeightManager *cellAutoHeightManager = objc_getAssociatedObject(self, _cmd);
+    ZZCellAutoHeightManager *cellAutoHeightManager = objc_getAssociatedObject(self, _cmd);
     
     if (!cellAutoHeightManager) {
         
-        cellAutoHeightManager = [[SDCellAutoHeightManager alloc] init];
+        cellAutoHeightManager = [[ZZCellAutoHeightManager alloc] init];
         
         [self setCellAutoHeightManager:cellAutoHeightManager];
     }
@@ -486,7 +486,7 @@
     return cellAutoHeightManager;
 }
 
-- (void)setCellAutoHeightManager:(SDCellAutoHeightManager *)cellAutoHeightManager
+- (void)setCellAutoHeightManager:(ZZCellAutoHeightManager *)cellAutoHeightManager
 {
     objc_setAssociatedObject(self, @selector(cellAutoHeightManager), cellAutoHeightManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -513,7 +513,7 @@
 
 @end
 
-@implementation NSObject (SDAnyObjectAutoCellHeight)
+@implementation NSObject (ZZAnyObjectAutoCellHeight)
 
 - (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *)tableView
 {

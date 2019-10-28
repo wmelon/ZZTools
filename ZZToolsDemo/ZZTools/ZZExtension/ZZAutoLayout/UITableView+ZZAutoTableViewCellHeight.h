@@ -15,7 +15,7 @@
  * QQ    : 2689718696(gsdios)                                                      *
  * Email : gsdios@126.com                                                          *
  * GitHub: https://github.com/gsdios                                               *
- * 新浪微博:GSD_iOS                                                                 *
+ * 新浪微博:Gzz_iOS                                                                 *
  *                                                                                *
  *********************************************************************************
  
@@ -25,14 +25,14 @@
 
 
 /*
- PS:cell高度自适应前提>>应该调用cell的“- (void)setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法进行cell的自动高度设置
+ PS:cell高度自适应前提>>应该调用cell的“- (void)zz_setupzz_autoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法进行cell的自动高度设置
  */
 
 #import <UIKit/UIKit.h>
 
 #import "UIView+ZZAutoLayout.h"
 
-@class ZZCellAutoHeightManager;
+@class ZZCellzz_autoHeightManager;
 
 typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell);
 
@@ -44,7 +44,7 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
 
 @interface UITableView (ZZAutoTableViewCellHeight)
 
-@property (nonatomic, strong) ZZCellAutoHeightManager * _Nullable cellAutoHeightManager;
+@property (nonatomic, strong) ZZCellzz_autoHeightManager * _Nullable cellzz_autoHeightManager;
 
 
 /**
@@ -54,7 +54,7 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
  * cellClass          : 当前的indexPath对应的cell的class
  * contentViewWidth   : cell的contentView的宽度
  */
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nullable )model keyPath:(NSString *_Nullable)keyPath cellClass:(Class _Nullable )cellClass contentViewWidth:(CGFloat)contentViewWidth;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nullable )model keyPath:(NSString *_Nullable)keyPath cellClass:(Class _Nullable )cellClass contentViewWidth:(CGFloat)contentViewWidth;
 
 /**
  * 返回计算出的cell高度（普通简化版方法，同样只需一步设置即可完成）(用法：见DemoVC14)
@@ -62,10 +62,10 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
  * contentViewWidth   : cell的contentView的宽度
  * cellDataSetting    : 设置cell数据的block
  */
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellClass:(Class _Nonnull )cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock _Nonnull )cellDataSetting;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellClass:(Class _Nonnull )cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock _Nonnull )cellDataSetting;
 
 /** 刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新 */
-- (void)reloadDataWithExistedHeightCache;
+- (void)reloadDataWithEzz_xIstedHeightCache;
 
 /** 刷新tableView同时调整已经计算好的高度缓存，用于直接将新数据插在旧数据前面的tableView的刷新 */
 - (void)reloadDataWithInsertingDataAtTheBeginingOfSection:(NSInteger)section newDataCount:(NSInteger)count;
@@ -92,7 +92,7 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
 @interface UITableViewController (ZZTableViewControllerAutoCellHeight)
 
 /** (UITableViewController方法)升级版！一行代码（一步设置）搞定tableview的cell高度自适应,同时适用于单cell和多cell,性能比普通版稍微差一些,不建议在数据量大的tableview中使用  */
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width;
 
 @end
 
@@ -103,7 +103,7 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
 @interface NSObject (ZZAnyObjectAutoCellHeight)
 
 /** (NSObject方法)升级版！一行代码（一步设置）搞定tableview的cell高度自适应,同时适用于单cell和多cell,性能比普通版稍微差一些,不建议在数据量大的tableview中使用  */
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *_Nonnull)tableView;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *_Nonnull)tableView;
 
 @end
 
@@ -125,7 +125,7 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
 
 // ------------------------------- 以下为库内部使用无须了解 --------------------
 
-@interface ZZCellAutoHeightManager : NSObject
+@interface ZZCellzz_autoHeightManager : NSObject
 
 @property (nonatomic, assign) BOOL shouldKeepHeightCacheWhenReloadingData;
 
@@ -155,9 +155,9 @@ typedef void (^ZZAutoCellHeightDataSettingBlock)(UITableViewCell * _Nonnull cell
 
 - (NSNumber *_Nonnull)heightCacheForIndexPath:(NSIndexPath *_Nonnull)indexPath;
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nullable )model keyPath:(NSString *_Nullable)keyPath;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nullable )model keyPath:(NSString *_Nullable)keyPath;
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nonnull )model keyPath:(NSString *_Nonnull)keyPath cellClass:(Class _Nonnull )cellClass;
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *_Nonnull)indexPath model:(id _Nonnull )model keyPath:(NSString *_Nonnull)keyPath cellClass:(Class _Nonnull )cellClass;
 
 
 - (NSMutableArray *_Nullable)subviewFrameCachesWithIndexPath:(NSIndexPath *_Nonnull)indexPath;;

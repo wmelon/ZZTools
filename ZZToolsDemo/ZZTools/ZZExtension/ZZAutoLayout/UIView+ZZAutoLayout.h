@@ -14,15 +14,15 @@
  
  MODE 1. >>>>>>>>>>>>>>> You can use it in this way:
  
- Demo.sd_layout
- .topSpaceToView(v1, 100)
- .bottomSpaceToView(v3, 100)
- .leftSpaceToView(v0, 150)
- .rightSpaceToView(v2, 150);
+ Demo.zz_layout
+ .topSpace2View(v1, 100)
+ .bottomSpace2View(v3, 100)
+ .leftSpace2View(v0, 150)
+ .rightSpace2View(v2, 150);
  
  MODE 2. >>>>>>>>>>>>>>> You can also use it in this way that is more brevity:
  
- Demo.sd_layout.topSpaceToView(v1, 100).bottomSpaceToView(v3, 100).leftSpaceToView(v0, 150).rightSpaceToView(v2, 150);
+ Demo.zz_layout.topSpace2View(v1, 100).bottomSpace2View(v3, 100).leftSpace2View(v0, 150).rightSpace2View(v2, 150);
  
  
  *************************************************************************
@@ -38,7 +38,7 @@
  * QQ    : 2689718696(gsdios)
  * Email : gsdios@126.com
  * GitHub: https://github.com/gsdios
- * 新浪微博:GSD_iOS
+ * 新浪微博:Gzz_iOS
  *
  * 视频教程：http://www.letv.com/ptv/vplay/24038772.html
  * 用法示例：https://github.com/gsdios/ZZAutoLayout/blob/master/README.md
@@ -76,7 +76,7 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 /*
  *************************说明************************
  
- 方法名中带有“SpaceToView”的需要传递2个参数：（UIView）参照view 和 （CGFloat）间距数值
+ 方法名中带有“Space2View”的需要传递2个参数：（UIView）参照view 和 （CGFloat）间距数值
  方法名中带有“RatioToView”的需要传递2个参数：（UIView）参照view 和 （CGFloat）倍数
  方法名中带有“EqualToView”的需要传递1个参数：（UIView）参照view
  方法名中带有“Is”的需要传递1个参数：（CGFloat）数值
@@ -88,43 +88,43 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 /* 设置距离其它view的间距 */
 
 /** 左边到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull leftSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull leftSpace2View;
 /** 右边到其参照view之间的间距，参数为“(View, CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull rightSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull rightSpace2View;
 /** 顶部到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull topSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull topSpace2View;
 /** 底部到其参照view之间的间距，参数为“(View, CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull bottomSpaceToView;
+@property (nonatomic, copy, readonly) ZZMarginToView _Nonnull bottomSpace2View;
 
 
 
-/* 设置x、y、width、height、centerX、centerY 值 */
+/* 设置x、y、width、height、zz_centerX、zz_centerY 值 */
 
 /** x值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMargin _Nonnull xIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull zz_xIs;
 /** y值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMargin _Nonnull yIs;
-/** centerX值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMargin _Nonnull centerXIs;
-/** centerY值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZMargin _Nonnull centerYIs;
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull zz_yIs;
+/** zz_centerX值，参数为“(CGFloat)”  */
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull zz_centerzz_xIs;
+/** zz_centerY值，参数为“(CGFloat)”  */
+@property (nonatomic, copy, readonly) ZZMargin _Nonnull zz_centerzz_yIs;
 /** 宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull widthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull zz_widthIs;
 /** 高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull heightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull zz_heightIs;
 
 
 
 /* 设置最大宽度和高度、最小宽度和高度 */
 
 /** 最大宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxWidthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxzz_widthIs;
 /** 最大高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxHeightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull maxzz_heightIs;
 /** 最小宽度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minWidthIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minzz_widthIs;
 /** 最小高度值，参数为“(CGFloat)”  */
-@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minHeightIs;
+@property (nonatomic, copy, readonly) ZZWidthHeight _Nonnull minzz_heightIs;
 
 
 
@@ -138,10 +138,10 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull topEqualToView;
 /** 底部间距与参照view相同，参数为“(View)”  */
 @property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull bottomEqualToView;
-/** centerX与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull centerXEqualToView;
-/** centerY与参照view相同，参数为“(View)”  */
-@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull centerYEqualToView;
+/** zz_centerX与参照view相同，参数为“(View)”  */
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull zz_centerXEqualToView;
+/** zz_centerY与参照view相同，参数为“(View)”  */
+@property (nonatomic, copy, readonly) ZZMarginEqualToView _Nonnull zz_centerYEqualToView;
 
 
 
@@ -156,7 +156,7 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 /** 设置一个view的高度和它的宽度相同，参数为空“()” */
 @property (nonatomic, copy, readonly) ZZSameWidthHeight _Nonnull heightEqualToWidth;
 /** 自适应高度，传入高宽比值，label可以传0实现文字高度自适应 */
-@property (nonatomic, copy, readonly) ZZAutoHeightWidth _Nonnull autoHeightRatio;
+@property (nonatomic, copy, readonly) ZZAutoHeightWidth _Nonnull zz_autoHeightRatio;
 
 /** 自适应宽度，参数为宽高比值 */
 @property (nonatomic, copy, readonly) ZZAutoHeightWidth _Nonnull autoWidthRatio;
@@ -182,35 +182,35 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @interface UIView (ZZAutoHeightWidth)
 
 /** 设置Cell的高度自适应，也可用于设置普通view内容高度自适应 */
-- (void)setupAutoHeightWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
+- (void)zz_setupAutoHeightWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
 
 /** 用于设置普通view内容宽度自适应 */
-- (void)setupAutoWidthWithRightView:(UIView *_Nonnull)rightView rightMargin:(CGFloat)rightMargin;
+- (void)zz_setupAutoWidthWithRightView:(UIView *_Nonnull)rightView rightMargin:(CGFloat)rightMargin;
 
 /** 设置Cell的高度自适应，也可用于设置普通view内容自适应（应用于当你不确定哪个view在自动布局之后会排布在最下方最为bottomView的时候可以调用次方法将所有可能在最下方的view都传过去） */
-- (void)setupAutoHeightWithBottomViewsArray:(NSArray *_Nonnull)bottomViewsArray bottomMargin:(CGFloat)bottomMargin;
+- (void)zz_setupAutoHeightWithBottomViewsArray:(NSArray *_Nonnull)bottomViewsArray bottomMargin:(CGFloat)bottomMargin;
 
 /** 更新布局（主动刷新布局，如果你需要设置完布局代码就获得view的frame请调用此方法） */
-- (void)updateLayout;
+- (void)zz_updateLayout;
 
 /** 更新cell内部的控件的布局（cell内部控件专属的更新约束方法,如果启用了cell frame缓存则会自动清除缓存再更新约束） */
-- (void)updateLayoutWithCellContentView:(UIView *_Nonnull)cellContentView;
+- (void)zz_updateLayoutWithCellContentView:(UIView *_Nonnull)cellContentView;
 
 /** 清空高度自适应设置  */
-- (void)clearAutoHeigtSettings;
+- (void)zz_clearAutoHeigtSettings;
 
 /** 清空宽度自适应设置  */
-- (void)clearAutoWidthSettings;
+- (void)zz_clearAutoWidthSettings;
 
-@property (nonatomic) CGFloat autoHeight;
+@property (nonatomic) CGFloat zz_autoHeight;
 
-@property (nonatomic, readonly) ZZUIViewCategoryManager * _Nullable sd_categoryManager;
+@property (nonatomic, readonly) ZZUIViewCategoryManager * _Nullable zz_categoryManager;
 
-@property (nonatomic, readonly) NSMutableArray * _Nullable sd_bottomViewsArray;
-@property (nonatomic) CGFloat sd_bottomViewBottomMargin;
+@property (nonatomic, readonly) NSMutableArray * _Nullable zz_bottomViewsArray;
+@property (nonatomic) CGFloat zz_bottomViewBottomMargin;
 
-@property (nonatomic) NSArray * _Nullable sd_rightViewsArray;
-@property (nonatomic) CGFloat sd_rightViewRightMargin;
+@property (nonatomic) NSArray * _Nullable zz_rightViewsArray;
+@property (nonatomic) CGFloat zz_rightViewRightMargin;
 
 @end
 
@@ -221,22 +221,22 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @interface UIView (ZZLayoutExtention)
 
 /** 自动布局完成后的回调block，可以在这里获取到view的真实frame  */
-@property (nonatomic) void (^ _Nullable didFinishAutoLayoutBlock)(CGRect frame);
+@property (nonatomic) void (^ _Nullable zz_didFinishAutoLayoutBlock)(CGRect frame);
 
 /** 添加一组子view  */
-- (void)sd_addSubviews:(NSArray *_Nullable)subviews;
+- (void)zz_addSubviews:(NSArray *_Nullable)subviews;
 
 /* 设置圆角 */
 
 /** 设置圆角半径值  */
-@property (nonatomic, strong) NSNumber * _Nullable sd_cornerRadius;
+@property (nonatomic, strong) NSNumber * _Nullable zz_cornerRadius;
 /** 设置圆角半径值为view宽度的多少倍  */
-@property (nonatomic, strong) NSNumber * _Nullable sd_cornerRadiusFromWidthRatio;
+@property (nonatomic, strong) NSNumber * _Nullable zz_cornerRadiusFromWidthRatio;
 /** 设置圆角半径值为view高度的多少倍  */
-@property (nonatomic, strong) NSNumber * _Nullable sd_cornerRadiusFromHeightRatio;
+@property (nonatomic, strong) NSNumber * _Nullable zz_cornerRadiusFromHeightRatio;
 
 /** 设置等宽子view（子view需要在同一水平方向） */
-@property (nonatomic, strong) NSArray * _Nullable sd_equalWidthSubviews;
+@property (nonatomic, strong) NSArray * _Nullable zz_equalWidthSubviews;
 
 @end
 
@@ -255,10 +255,10 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
  * vInset           : 上下缩进值
  * hInset           : 左右缩进值
  */
-- (void)setupAutoWidthFlowItems:(NSArray *_Nullable)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount verticalMargin:(CGFloat)verticalMargin horizontalMargin:(CGFloat)horizontalMagin verticalEdgeInset:(CGFloat)vInset horizontalEdgeInset:(CGFloat)hInset;
+- (void)zz_setupAutoWidthFlowItems:(NSArray *_Nullable)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount verticalMargin:(CGFloat)verticalMargin horizontalMargin:(CGFloat)horizontalMagin zz_verticalEdgeInset:(CGFloat)vInset zz_horizontalEdgeInset:(CGFloat)hInset;
 
 /** 清除固定间距自动宽度浮动子view设置 */
-- (void)clearAutoWidthFlowItemsSettings;
+- (void)zz_clearAutoWidthFlowItemsSettings;
 
 /** 
  * 设置类似collectionView效果的固定宽带自动间距浮动子view 
@@ -268,10 +268,10 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
  * vInset           : 上下缩进值
  * hInset           : 左右缩进值
  */
-- (void)setupAutoMarginFlowItems:(NSArray *_Nullable)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount itemWidth:(CGFloat)itemWidth verticalMargin:(CGFloat)verticalMargin verticalEdgeInset:(CGFloat)vInset horizontalEdgeInset:(CGFloat)hInset;
+- (void)zz_setupAutoMarginFlowItems:(NSArray *_Nullable)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount itemWidth:(CGFloat)itemWidth verticalMargin:(CGFloat)verticalMargin zz_verticalEdgeInset:(CGFloat)vInset zz_horizontalEdgeInset:(CGFloat)hInset;
 
 /** 清除固定宽带自动间距浮动子view设置 */
-- (void)clearAutoMarginFlowItemsSettings;
+- (void)zz_clearAutoMarginFlowItemsSettings;
 
 @end
 
@@ -282,28 +282,28 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @interface UIView (ZZAutoLayout)
 
 /** 开始自动布局  */
-- (nonnull ZZAutoLayoutModel *)sd_layout;
+- (nonnull ZZAutoLayoutModel *)zz_layout;
 
 /** 清空之前的自动布局设置，重新开始自动布局(重新生成布局约束并使其在父view的布局序列数组中位置保持不变)  */
-- (nonnull ZZAutoLayoutModel *)sd_resetLayout;
+- (nonnull ZZAutoLayoutModel *)zz_resetLayout;
 
 /** 清空之前的自动布局设置，重新开始自动布局(重新生成布局约束并添加到父view布局序列数组中的最后一个位置)  */
-- (nonnull ZZAutoLayoutModel *)sd_resetNewLayout;
+- (nonnull ZZAutoLayoutModel *)zz_resetNewLayout;
 
 /** 是否关闭自动布局  */
-@property (nonatomic, getter = sd_isClosingAutoLayout) BOOL sd_closeAutoLayout;
+@property (nonatomic, getter = zz_isClosingAutoLayout) BOOL zz_closeAutoLayout;
 
 /** 从父view移除并清空约束  */
-- (void)removeFromSuperviewAndClearAutoLayoutSettings;
+- (void)zz_removeFromSuperviewAndClearAutoLayoutSettings;
 
 /** 清空之前的自动布局设置  */
-- (void)sd_clearAutoLayoutSettings;
+- (void)zz_clearAutoLayoutSettings;
 
 /** 将自身frame清零（一般在cell内部控件重用前调用）  */
-- (void)sd_clearViewFrameCache;
+- (void)zz_clearViewFrameCache;
 
 /** 将自己的需要自动布局的subviews的frame(或者frame缓存)清零  */
-- (void)sd_clearSubviewsAutoLayoutFrameCaches;
+- (void)zz_clearSubviewsAutoLayoutFrameCaches;
 
 /** 设置固定宽度保证宽度不在自动布局过程再做中调整  */
 @property (nonatomic, strong) NSNumber * _Nullable fixedWidth;
@@ -312,20 +312,20 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @property (nonatomic, strong) NSNumber * _Nullable fixedHeight;
 
 /** 启用cell frame缓存（可以提高cell滚动的流畅度, 目前为cell专用方法，后期会扩展到其他view） */
-- (void)useCellFrameCacheWithIndexPath:(NSIndexPath *_Nonnull)indexPath tableView:(UITableView *_Nonnull)tableview;
+- (void)zz_useCellFrameCacheWithIndexPath:(NSIndexPath *_Nonnull)indexPath tableView:(UITableView *_Nonnull)tableview;
 
 /** 所属tableview（目前为cell专用属性，后期会扩展到其他view） */
-@property (nonatomic) UITableView * _Nullable sd_tableView;
+@property (nonatomic) UITableView * _Nullable zz_tableView;
 
 /** cell的indexPath（目前为cell专用属性，后期会扩展到cell的其他子view） */
-@property (nonatomic) NSIndexPath * _Nullable sd_indexPath;
+@property (nonatomic) NSIndexPath * _Nullable zz_indexPath;
 
 - (NSMutableArray *_Nullable)autoLayoutModelsArray;
 - (void)addAutoLayoutModel:(ZZAutoLayoutModel *_Nullable)model;
 @property (nonatomic) ZZAutoLayoutModel * _Nullable ownLayoutModel;
-@property (nonatomic, strong) NSNumber * _Nullable sd_maxWidth;
-@property (nonatomic, strong) NSNumber * _Nullable autoHeightRatioValue;
-@property (nonatomic, strong) NSNumber * _Nullable autoWidthRatioValue;
+@property (nonatomic, strong) NSNumber * _Nullable zz_maxWidth;
+@property (nonatomic, strong) NSNumber * _Nullable zz_autoHeightRatioValue;
+@property (nonatomic, strong) NSNumber * _Nullable zz_autoWidthRatioValue;
 
 @end
 
@@ -336,10 +336,10 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @interface UIScrollView (ZZAutoContentSize)
 
 /** 设置scrollview内容竖向自适应 */
-- (void)setupAutoContentSizeWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
+- (void)zz_setupAutoContentSizeWithBottomView:(UIView *_Nonnull)bottomView bottomMargin:(CGFloat)bottomMargin;
 
 /** 设置scrollview内容横向自适应 */
-- (void)setupAutoContentSizeWithRightView:(UIView *_Nonnull)rightView rightMargin:(CGFloat)rightMargin;
+- (void)zz_setupAutoContentSizeWithRightView:(UIView *_Nonnull)rightView rightMargin:(CGFloat)rightMargin;
 
 @end
 
@@ -370,79 +370,35 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
  * 设置button根据单行文字自适应
  * hPadding：左右边距
  */
-- (void)setupAutoSizeWithHorizontalPadding:(CGFloat)hPadding buttonHeight:(CGFloat)buttonHeight;
+- (void)zz_setupAutoSizeWithHorizontalPadding:(CGFloat)hPadding buttonHeight:(CGFloat)buttonHeight;
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #pragma mark - 其他方法（如果有需要可以自己利用以下接口拓展更多功能）
 
 @interface ZZAutoLayoutModelItem : NSObject
 
 @property (nonatomic, strong) NSNumber * _Nullable value;
-@property (nonatomic, weak) UIView * _Nullable refView;
+@property (nonatomic,   weak) UIView * _Nullable refView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) NSArray * _Nullable refViewsArray;
 
 @end
 
-
 @interface UIView (ZZChangeFrame)
 
-@property (nonatomic) BOOL shouldReadjustFrameBeforeStoreCache;
+@property (nonatomic) BOOL      zz_shouldReadjustFrameBeforeStoreCache;
 
-@property (nonatomic) CGFloat left_sd;
-@property (nonatomic) CGFloat top_sd;
-@property (nonatomic) CGFloat right_sd;
-@property (nonatomic) CGFloat bottom_sd;
-@property (nonatomic) CGFloat centerX_sd;
-@property (nonatomic) CGFloat centerY_sd;
-
-@property (nonatomic) CGFloat width_sd;
-@property (nonatomic) CGFloat height_sd;
-
-
-@property (nonatomic) CGPoint origin_sd;
-@property (nonatomic) CGSize size_sd;
-
-
-// 兼容旧版本
-@property (nonatomic) CGFloat left;
-@property (nonatomic) CGFloat top;
-@property (nonatomic) CGFloat right;
-@property (nonatomic) CGFloat bottom;
-@property (nonatomic) CGFloat centerX;
-@property (nonatomic) CGFloat centerY;
-@property (nonatomic) CGFloat width;
-@property (nonatomic) CGFloat height;
-@property (nonatomic) CGPoint origin;
-@property (nonatomic) CGSize size;
+@property (nonatomic) CGFloat   left_zz;
+@property (nonatomic) CGFloat   top_zz;
+@property (nonatomic) CGFloat   right_zz;
+@property (nonatomic) CGFloat   bottom_zz;
+@property (nonatomic) CGFloat   centerX_zz;
+@property (nonatomic) CGFloat   centerY_zz;
+@property (nonatomic) CGFloat   width_zz;
+@property (nonatomic) CGFloat   height_zz;
+@property (nonatomic) CGPoint   origin_zz;
+@property (nonatomic) CGSize    size_zz;
 
 @end
 
@@ -452,14 +408,14 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @property (nonatomic, strong) NSArray * _Nullable rightViewsArray;
 @property (nonatomic, assign) CGFloat rightViewRightMargin;
 
-@property (nonatomic, weak) UITableView * _Nullable sd_tableView;
-@property (nonatomic, strong) NSIndexPath * _Nullable sd_indexPath;
+@property (nonatomic, weak) UITableView * _Nullable zz_tableView;
+@property (nonatomic, strong) NSIndexPath * _Nullable zz_indexPath;
 
 @property (nonatomic, assign) BOOL hasSetFrameWithCache;
 
-@property (nonatomic) BOOL shouldReadjustFrameBeforeStoreCache;
+@property (nonatomic) BOOL zz_shouldReadjustFrameBeforeStoreCache;
 
-@property (nonatomic, assign, getter = sd_isClosingAutoLayout) BOOL sd_closeAutoLayout;
+@property (nonatomic, assign, getter = zz_isClosingAutoLayout) BOOL zz_closeAutoLayout;
 
 
 /** 设置类似collectionView效果的固定间距自动宽度浮动子view */
@@ -477,8 +433,8 @@ typedef void (^ZZSpaceToSuperView)(UIEdgeInsets insets);
 @property (nonatomic, assign) BOOL shouldShowAsAutoMarginViews;
 
 
-@property (nonatomic) CGFloat horizontalEdgeInset;
-@property (nonatomic) CGFloat verticalEdgeInset;
+@property (nonatomic) CGFloat zz_horizontalEdgeInset;
+@property (nonatomic) CGFloat zz_verticalEdgeInset;
 
 @end
 

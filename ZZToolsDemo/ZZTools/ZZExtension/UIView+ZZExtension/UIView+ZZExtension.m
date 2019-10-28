@@ -71,10 +71,10 @@ static char GLAYER;
 - (void)zz_addTopSplit:(NSString *)color height:(CGFloat)height alpha:(CGFloat)alpha leftMargin:(CGFloat)leftMargin rightMargin:(CGFloat)rightMargin {
     
     UIView *bottomLine = [[UIView alloc] init];[self addSubview:bottomLine];
-    bottomLine.sd_layout.topEqualToView(self)
-    .leftSpaceToView(self, leftMargin)
-    .rightSpaceToView(self, rightMargin)
-    .heightIs(height);
+    bottomLine.zz_layout.topEqualToView(self)
+    .leftSpace2View(self, leftMargin)
+    .rightSpace2View(self, rightMargin)
+    .zz_heightIs(height);
     bottomLine.backgroundColor = [UIColor zz_colorWithCSS:color];
     bottomLine.alpha = alpha;
     
@@ -84,10 +84,10 @@ static char GLAYER;
 - (void)zz_addBottomSplit:(NSString *)color height:(CGFloat)height alpha:(CGFloat)alpha leftMargin:(CGFloat)leftMargin rightMargin:(CGFloat)rightMargin {
     
     UIView *bottomLine = [[UIView alloc] init];[self addSubview:bottomLine];
-    bottomLine.sd_layout.bottomEqualToView(self)
-    .rightSpaceToView(self, rightMargin)
-    .leftSpaceToView(self, leftMargin)
-    .heightIs(height);
+    bottomLine.zz_layout.bottomEqualToView(self)
+    .rightSpace2View(self, rightMargin)
+    .leftSpace2View(self, leftMargin)
+    .zz_heightIs(height);
     bottomLine.backgroundColor = [UIColor zz_colorWithCSS:color];
     bottomLine.alpha = alpha;
     

@@ -15,7 +15,7 @@
  * QQ    : 2689718696(gsdios)                                                      *
  * Email : gsdios@126.com                                                          *
  * GitHub: https://github.com/gsdios                                               *
- * 新浪微博:GSD_iOS                                                                 *
+ * 新浪微博:Gzz_iOS                                                                 *
  *                                                                                *
  *********************************************************************************
  
@@ -24,13 +24,13 @@
 #import "UITableView+ZZAutoTableViewCellHeight.h"
 #import <objc/runtime.h>
 
-@interface ZZCellAutoHeightManager ()
+@interface ZZCellzz_autoHeightManager ()
 
 @property (nonatomic, weak) UITableView *modelTableview;
 
 @end
 
-@implementation ZZCellAutoHeightManager
+@implementation ZZCellzz_autoHeightManager
 {
     NSMutableDictionary *_cacheDictionary;
     NSMutableDictionary *_modelCellsDict;
@@ -92,7 +92,7 @@
 
 + (instancetype)managerWithCellClass:(Class)cellClass tableView:(UITableView *)tableView
 {
-    ZZCellAutoHeightManager *manager = [[self alloc] initWithCellClass:cellClass tableView:tableView];
+    ZZCellzz_autoHeightManager *manager = [[self alloc] initWithCellClass:cellClass tableView:tableView];
     return manager;
 }
 
@@ -247,7 +247,7 @@
     return (NSNumber *)[_cacheDictionary objectForKey:cacheKey];
 }
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath
 {
     
     NSNumber *cacheHeight = [self heightCacheForIndexPath:indexPath];
@@ -258,10 +258,10 @@
             return 0;
         }
         
-        if (self.modelTableview && self.modelTableview != self.modelCell.sd_tableView) {
-            self.modelCell.sd_tableView = self.modelTableview;
+        if (self.modelTableview && self.modelTableview != self.modelCell.zz_tableView) {
+            self.modelCell.zz_tableView = self.modelTableview;
         }
-        self.modelCell.sd_indexPath = indexPath;
+        self.modelCell.zz_indexPath = indexPath;
         
         if (model && keyPath) {
             [self.modelCell setValue:model forKey:keyPath];
@@ -272,36 +272,36 @@
         
 #ifdef ZZDebugWithAssert
         /*
-         如果程序卡在了这里说明你的cell还没有调用“setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改。例：
+         如果程序卡在了这里说明你的cell还没有调用“zz_setupzz_autoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改。例：
          
          //注意：bottomView不能为nil
-         [cell setupAutoHeightWithBottomView:bottomView bottomMargin:bottomMargin];
+         [cell zz_setupzz_autoHeightWithBottomView:bottomView bottomMargin:bottomMargin];
          */
-        NSAssert(self.modelCell.sd_bottomViewsArray.count, @">>>>>> 你的cell还没有调用“setupAutoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改");
+        NSAssert(self.modelCell.zz_bottomViewsArray.count, @">>>>>> 你的cell还没有调用“zz_setupzz_autoHeightWithBottomView:(UIView *)bottomView bottomMargin:(CGFloat)bottomMargin”方法或者你传递的bottomView为nil，请检查并修改");
         
 #endif
         
         [self.modelCell.contentView layoutSubviews];
         NSString *cacheKey = [self cacheKeyForIndexPath:indexPath];
-        [_cacheDictionary setObject:@(self.modelCell.autoHeight) forKey:cacheKey];
+        [_cacheDictionary setObject:@(self.modelCell.zz_autoHeight) forKey:cacheKey];
         
         
-        if (self.modelCell.sd_indexPath && self.modelCell.sd_tableView) {
-            if (self.modelCell.contentView.shouldReadjustFrameBeforeStoreCache) {
-                self.modelCell.contentView.height_sd = self.modelCell.autoHeight;
+        if (self.modelCell.zz_indexPath && self.modelCell.zz_tableView) {
+            if (self.modelCell.contentView.zz_shouldReadjustFrameBeforeStoreCache) {
+                self.modelCell.contentView.height_zz = self.modelCell.zz_autoHeight;
                 [self.modelCell.contentView layoutSubviews];
             }
             [self.modelCell.contentView.autoLayoutModelsArray enumerateObjectsUsingBlock:^(ZZAutoLayoutModel *model, NSUInteger idx, BOOL *stop) {
-                [self.modelTableview.cellAutoHeightManager setSubviewFrameCache:model.needsAutoResizeView.frame WithIndexPath:self.modelCell.sd_indexPath];
+                [self.modelTableview.cellzz_autoHeightManager setSubviewFrameCache:model.needsAutoResizeView.frame WithIndexPath:self.modelCell.zz_indexPath];
             }];
         }
         
         
-        return self.modelCell.autoHeight;
+        return self.modelCell.zz_autoHeight;
     }
 }
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath cellClass:(Class)cellClass
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath cellClass:(Class)cellClass
 {
     if (![self.modelCell isKindOfClass:cellClass]) {
         self.modelCell = nil;
@@ -311,10 +311,10 @@
         }
         _modelCell.contentView.tag = kZZModelCellTag;
     }
-    if (self.modelCell.contentView.width_sd != self.contentViewWidth) {
-        _modelCell.contentView.width_sd = self.contentViewWidth;
+    if (self.modelCell.contentView.width_zz != self.contentViewWidth) {
+        _modelCell.contentView.width_zz = self.contentViewWidth;
     }
-    return [self cellHeightForIndexPath:indexPath model:model keyPath:keyPath];
+    return [self zz_cellHeightForIndexPath:indexPath model:model keyPath:keyPath];
 }
 
 - (void)setContentViewWidth:(CGFloat)contentViewWidth
@@ -324,7 +324,7 @@
     CGFloat lastContentViewWidth = _contentViewWidth;
     _contentViewWidth = contentViewWidth;
     
-    self.modelCell.contentView.width_sd = self.contentViewWidth;
+    self.modelCell.contentView.width_zz = self.contentViewWidth;
     
     if (lastContentViewWidth > 0) {
         [_subviewFrameCacheDict removeAllObjects];
@@ -368,7 +368,7 @@
         NSArray *selStringsArray = @[@"reloadData", @"reloadRowsAtIndexPaths:withRowAnimation:", @"deleteRowsAtIndexPaths:withRowAnimation:", @"insertRowsAtIndexPaths:withRowAnimation:"];
         
         [selStringsArray enumerateObjectsUsingBlock:^(NSString *selString, NSUInteger idx, BOOL *stop) {
-            NSString *mySelString = [@"sd_" stringByAppendingString:selString];
+            NSString *mySelString = [@"zz_" stringByAppendingString:selString];
             
             Method originalMethod = class_getInstanceMethod(self, NSSelectorFromString(selString));
             Method myMethod = class_getInstanceMethod(self, NSSelectorFromString(mySelString));
@@ -377,83 +377,83 @@
     });
 }
 
-- (void)sd_reloadData
+- (void)zz_reloadData
 {
-    if (!self.cellAutoHeightManager.shouldKeepHeightCacheWhenReloadingData) {
-        [self.cellAutoHeightManager clearHeightCache];
+    if (!self.cellzz_autoHeightManager.shouldKeepHeightCacheWhenReloadingData) {
+        [self.cellzz_autoHeightManager clearHeightCache];
     }
-    [self sd_reloadData];
-    self.cellAutoHeightManager.shouldKeepHeightCacheWhenReloadingData = NO;
+    [self zz_reloadData];
+    self.cellzz_autoHeightManager.shouldKeepHeightCacheWhenReloadingData = NO;
 }
 
-- (void)sd_reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+- (void)zz_reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
 {
-    [self.cellAutoHeightManager clearHeightCacheOfIndexPaths:indexPaths];
-    [self sd_reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    [self.cellzz_autoHeightManager clearHeightCacheOfIndexPaths:indexPaths];
+    [self zz_reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
-- (void)sd_deleteRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+- (void)zz_deleteRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
 {
     for (NSIndexPath *indexPath in indexPaths) {
-        [self.cellAutoHeightManager deleteThenResetHeightCache:indexPath];
+        [self.cellzz_autoHeightManager deleteThenResetHeightCache:indexPath];
     }
-    [self sd_deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    [self zz_deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
 
-- (void)sd_insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+- (void)zz_insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
 {
-    [self.cellAutoHeightManager insertNewDataAtIndexPaths:indexPaths];
-    [self sd_insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    [self.cellzz_autoHeightManager insertNewDataAtIndexPaths:indexPaths];
+    [self zz_insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
 /*
  * 下一步即将实现的功能
  
- - (void)sd_moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath
+ - (void)zz_moveRowAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath
  {
- [self sd_moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+ [self zz_moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
  }
  
  */
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath cellClass:(Class)cellClass contentViewWidth:(CGFloat)contentViewWidth
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath model:(id)model keyPath:(NSString *)keyPath cellClass:(Class)cellClass contentViewWidth:(CGFloat)contentViewWidth
 {
-    self.cellAutoHeightManager.modelTableview = self;
+    self.cellzz_autoHeightManager.modelTableview = self;
     
-    self.cellAutoHeightManager.contentViewWidth = contentViewWidth;
+    self.cellzz_autoHeightManager.contentViewWidth = contentViewWidth;
     
-    return [self.cellAutoHeightManager cellHeightForIndexPath:indexPath model:model keyPath:keyPath cellClass:cellClass];
+    return [self.cellzz_autoHeightManager zz_cellHeightForIndexPath:indexPath model:model keyPath:keyPath cellClass:cellClass];
 }
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellClass:(__unsafe_unretained Class)cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock)cellDataSetting
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath cellClass:(__unsafe_unretained Class)cellClass cellContentViewWidth:(CGFloat)width cellDataSetting:(ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
 
     self.cellDataSetting = cellDataSetting;
 
-    return [self cellHeightForIndexPath:indexPath model:nil keyPath:nil cellClass:cellClass contentViewWidth:width];
+    return [self zz_cellHeightForIndexPath:indexPath model:nil keyPath:nil cellClass:cellClass contentViewWidth:width];
 }
 
-- (void)reloadDataWithExistedHeightCache
+- (void)reloadDataWithEzz_xIstedHeightCache
 {
-    self.cellAutoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
+    self.cellzz_autoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
     [self reloadData];
 }
 
 - (void)reloadDataWithInsertingDataAtTheBeginingOfSection:(NSInteger)section newDataCount:(NSInteger)count
 {
-    self.cellAutoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
-    [self.cellAutoHeightManager insertNewDataAtTheBeginingOfSection:section newDataCount:count];
+    self.cellzz_autoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
+    [self.cellzz_autoHeightManager insertNewDataAtTheBeginingOfSection:section newDataCount:count];
     [self reloadData];
 }
 
 - (void)reloadDataWithInsertingDataAtTheBeginingOfSections:(NSArray *)sectionNumsArray newDataCounts:(NSArray *)dataCountsArray
 {
-    self.cellAutoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
+    self.cellzz_autoHeightManager.shouldKeepHeightCacheWhenReloadingData = YES;
     [sectionNumsArray enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
         int section = [num intValue];
         int dataCountForSection = [dataCountsArray[idx] intValue];
-        [self.cellAutoHeightManager insertNewDataAtTheBeginingOfSection:section newDataCount:dataCountForSection];
+        [self.cellzz_autoHeightManager insertNewDataAtTheBeginingOfSection:section newDataCount:dataCountForSection];
     }];
     [self reloadData];
 }
@@ -461,44 +461,44 @@
 - (CGFloat)cellsTotalHeight
 {
     CGFloat h = 0;
-    if (!self.cellAutoHeightManager.heightCacheDict.count) {
+    if (!self.cellzz_autoHeightManager.heightCacheDict.count) {
         [self reloadData];
     }
-    NSArray *values = [self.cellAutoHeightManager.heightCacheDict allValues];
+    NSArray *values = [self.cellzz_autoHeightManager.heightCacheDict allValues];
     for (NSNumber *number in values) {
         h += [number floatValue];
     }
     return h;
 }
 
-- (ZZCellAutoHeightManager *)cellAutoHeightManager
+- (ZZCellzz_autoHeightManager *)cellzz_autoHeightManager
 {
     
-    ZZCellAutoHeightManager *cellAutoHeightManager = objc_getAssociatedObject(self, _cmd);
+    ZZCellzz_autoHeightManager *cellzz_autoHeightManager = objc_getAssociatedObject(self, _cmd);
     
-    if (!cellAutoHeightManager) {
+    if (!cellzz_autoHeightManager) {
         
-        cellAutoHeightManager = [[ZZCellAutoHeightManager alloc] init];
+        cellzz_autoHeightManager = [[ZZCellzz_autoHeightManager alloc] init];
         
-        [self setCellAutoHeightManager:cellAutoHeightManager];
+        [self setCellzz_autoHeightManager:cellzz_autoHeightManager];
     }
     
-    return cellAutoHeightManager;
+    return cellzz_autoHeightManager;
 }
 
-- (void)setCellAutoHeightManager:(ZZCellAutoHeightManager *)cellAutoHeightManager
+- (void)setCellzz_autoHeightManager:(ZZCellzz_autoHeightManager *)cellzz_autoHeightManager
 {
-    objc_setAssociatedObject(self, @selector(cellAutoHeightManager), cellAutoHeightManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(cellzz_autoHeightManager), cellzz_autoHeightManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setCellDataSetting:(ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
-    self.cellAutoHeightManager.cellDataSetting = cellDataSetting;
+    self.cellzz_autoHeightManager.cellDataSetting = cellDataSetting;
 }
 
 - (ZZAutoCellHeightDataSettingBlock)cellDataSetting
 {
-    return self.cellAutoHeightManager.cellDataSetting;
+    return self.cellzz_autoHeightManager.cellDataSetting;
 }
 
 @end
@@ -506,31 +506,31 @@
 
 @implementation UITableViewController (ZZTableViewControllerAutoCellHeight)
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width
 {
-    return [self cellHeightForIndexPath:indexPath cellContentViewWidth:width tableView:self.tableView];
+    return [self zz_cellHeightForIndexPath:indexPath cellContentViewWidth:width tableView:self.tableView];
 }
 
 @end
 
 @implementation NSObject (ZZAnyObjectAutoCellHeight)
 
-- (CGFloat)cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *)tableView
+- (CGFloat)zz_cellHeightForIndexPath:(NSIndexPath *)indexPath cellContentViewWidth:(CGFloat)width tableView:(UITableView *)tableView
 {
-    tableView.cellAutoHeightManager.modelTableview = tableView;
+    tableView.cellzz_autoHeightManager.modelTableview = tableView;
 
-    if (tableView.cellAutoHeightManager.contentViewWidth != width) {
-        tableView.cellAutoHeightManager.contentViewWidth = width;
+    if (tableView.cellzz_autoHeightManager.contentViewWidth != width) {
+        tableView.cellzz_autoHeightManager.contentViewWidth = width;
     }
-    if ([tableView.cellAutoHeightManager heightCacheForIndexPath:indexPath]) {
-        return [[tableView.cellAutoHeightManager heightCacheForIndexPath:indexPath] floatValue];
+    if ([tableView.cellzz_autoHeightManager heightCacheForIndexPath:indexPath]) {
+        return [[tableView.cellzz_autoHeightManager heightCacheForIndexPath:indexPath] floatValue];
     }
     UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-    tableView.cellAutoHeightManager.modelCell = cell;
-    if (cell.contentView.width_sd != width) {
-        cell.contentView.width_sd = width;
+    tableView.cellzz_autoHeightManager.modelCell = cell;
+    if (cell.contentView.width_zz != width) {
+        cell.contentView.width_zz = width;
     }
-    return [[tableView cellAutoHeightManager] cellHeightForIndexPath:indexPath model:nil keyPath:nil];
+    return [[tableView cellzz_autoHeightManager] zz_cellHeightForIndexPath:indexPath model:nil keyPath:nil];
 }
 
 @end

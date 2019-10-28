@@ -6,9 +6,6 @@ target 'ZZToolsDemo' do
   
   #demo中使用的三方库
   pod 'MJRefresh'
-  pod 'MBProgressHUD'
-  
-  #框架中引用的三方库
-  #pod 'ZZAutoLayout'
+  #pod 'MBProgressHUD'
   
 end

@@ -138,7 +138,7 @@
 		3A09E55A22A15A4600F462EC /* ZZExtension */ = {
 			isa = PBXGroup;
 			children = (
-				81D88C7D2366965A00FC5233 /* SDAutoLayout */,
+				81D88C7D2366965A00FC5233 /* ZZAutoLayout */,
 				81B52C4023583BB40092B165 /* UIView+ZZExtension */,
 				81B52C4523583BB40092B165 /* UIColor+ZZExtension */,
 				81B52C4C23583BC90092B165 /* UIScrollView+ZZExtension */,
@@ -356,7 +356,7 @@
 			path = "UIViewController+ZZExtension";
 			sourceTree = "<group>";
 		};
-		81D88C7D2366965A00FC5233 /* SDAutoLayout */ = {
+		81D88C7D2366965A00FC5233 /* ZZAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
 				81D88C802366965A00FC5233 /* ZZAutoLayout.h */,
@@ -365,7 +365,7 @@
 				81D88C7F2366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.h */,
 				81D88C812366965A00FC5233 /* UITableView+ZZAutoTableViewCellHeight.m */,
 			);
-			path = SDAutoLayout;
+			path = ZZAutoLayout;
 			sourceTree = "<group>";
 		};
 		E42827DA2206BD1C00BF7657 /* Model */ = {

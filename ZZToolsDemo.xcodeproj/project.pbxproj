@@ -24,7 +24,7 @@
 		8159F811236803C80069163E /* ZZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F80F236803C70069163E /* ZZStatusView.m */; };
 		8159F815236804EF0069163E /* UILabel+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F813236804EF0069163E /* UILabel+ZZExtension.m */; };
 		8159F836236807F30069163E /* NSURLSession+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F817236807F20069163E /* NSURLSession+ZZExtension.m */; };
-		8159F837236807F30069163E /* UINavigationController+ZZFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F81B236807F20069163E /* UINavigationController+ZZFullscreenPopGesture.m */; };
+		8159F837236807F30069163E /* UINavigationController+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F81B236807F20069163E /* UINavigationController+ZZExtension.m */; };
 		8159F838236807F30069163E /* NSAttributedString+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F81D236807F20069163E /* NSAttributedString+ZZExtension.m */; };
 		8159F839236807F30069163E /* NSDate+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F820236807F30069163E /* NSDate+ZZExtension.m */; };
 		8159F83A236807F30069163E /* UIControl+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F823236807F30069163E /* UIControl+ZZExtension.m */; };
@@ -86,8 +86,8 @@
 		8159F814236804EF0069163E /* UILabel+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZZExtension.h"; sourceTree = "<group>"; };
 		8159F817236807F20069163E /* NSURLSession+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+ZZExtension.m"; sourceTree = "<group>"; };
 		8159F818236807F20069163E /* NSURLSession+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+ZZExtension.h"; sourceTree = "<group>"; };
-		8159F81A236807F20069163E /* UINavigationController+ZZFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZZFullscreenPopGesture.h"; sourceTree = "<group>"; };
-		8159F81B236807F20069163E /* UINavigationController+ZZFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZZFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		8159F81A236807F20069163E /* UINavigationController+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZZExtension.h"; sourceTree = "<group>"; };
+		8159F81B236807F20069163E /* UINavigationController+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZZExtension.m"; sourceTree = "<group>"; };
 		8159F81D236807F20069163E /* NSAttributedString+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+ZZExtension.m"; sourceTree = "<group>"; };
 		8159F81E236807F20069163E /* NSAttributedString+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+ZZExtension.h"; sourceTree = "<group>"; };
 		8159F820236807F30069163E /* NSDate+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ZZExtension.m"; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				81B52C4C23583BC90092B165 /* UIScrollView+ZZExtension */,
 				8159F816236807F20069163E /* NSURLSession+ZZExtension */,
 				8159F81C236807F20069163E /* NSAttributedString+ZZExtension */,
-				8159F819236807F20069163E /* UINavigationController+ZZFullscreenPopGesture */,
+				8159F819236807F20069163E /* UINavigationController+ZZExtension */,
 			);
 			path = ZZExtension;
 			sourceTree = "<group>";
@@ -350,13 +350,13 @@
 			path = "NSURLSession+ZZExtension";
 			sourceTree = "<group>";
 		};
-		8159F819236807F20069163E /* UINavigationController+ZZFullscreenPopGesture */ = {
+		8159F819236807F20069163E /* UINavigationController+ZZExtension */ = {
 			isa = PBXGroup;
 			children = (
-				8159F81A236807F20069163E /* UINavigationController+ZZFullscreenPopGesture.h */,
-				8159F81B236807F20069163E /* UINavigationController+ZZFullscreenPopGesture.m */,
+				8159F81A236807F20069163E /* UINavigationController+ZZExtension.h */,
+				8159F81B236807F20069163E /* UINavigationController+ZZExtension.m */,
 			);
-			path = "UINavigationController+ZZFullscreenPopGesture";
+			path = "UINavigationController+ZZExtension";
 			sourceTree = "<group>";
 		};
 		8159F81C236807F20069163E /* NSAttributedString+ZZExtension */ = {
@@ -710,7 +710,7 @@
 				8159F815236804EF0069163E /* UILabel+ZZExtension.m in Sources */,
 				3A09E56022A15C1200F462EC /* UIScrollView+ZZExtension.m in Sources */,
 				81B52C3B235839EA0092B165 /* ZZContentView.m in Sources */,
-				8159F837236807F30069163E /* UINavigationController+ZZFullscreenPopGesture.m in Sources */,
+				8159F837236807F30069163E /* UINavigationController+ZZExtension.m in Sources */,
 				81B52C3A235839EA0092B165 /* UIViewController+ZZExtension.m in Sources */,
 				8159F847236808620069163E /* UIImage+ZZExtension.m in Sources */,
 				81B52C4A23583BB40092B165 /* UIColor+ZZExtension.m in Sources */,

@@ -9,7 +9,7 @@
 #import "ZZSuperVC.h"
 #import "ZZPrivateHeader.h"
 #import "UIColor+ZZExtension.h"
-#import "UINavigationController+ZZFullscreenPopGesture.h"
+#import "UINavigationController+ZZExtension.h"
 
 @interface ZZSuperVC ()
 

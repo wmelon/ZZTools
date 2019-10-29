@@ -25,6 +25,6 @@
 #import "UIScrollView+ZZExtension.h"
 #import "NSURLSession+ZZExtension.h"
 #import "NSAttributedString+ZZExtension.h"
-#import "UINavigationController+ZZFullscreenPopGesture.h"
+#import "UINavigationController+ZZExtension.h"
 
 #endif /* ZZExtension_h */

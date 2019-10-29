@@ -23,7 +23,4 @@
 //FPS按钮
 #import "ZZFPSButton.h"
 
-//类别工具
-#import "ZZExtension.h"
-
 #endif /* ZZTools_h */

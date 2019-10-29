@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #import <objc/runtime.h>
-#import "UINavigationController+ZZFullscreenPopGesture.h"
+#import "UINavigationController+ZZExtension.h"
 
 @interface _ZZFullscreenPopGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate>
 

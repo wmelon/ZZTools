@@ -14,6 +14,7 @@
 
 # pragma mark- 对外属性
 
+///ZZSegment专用
 @property (nonatomic, assign) CGFloat               zz_x;
 @property (nonatomic, assign) CGFloat               zz_y;
 @property (nonatomic, assign) CGFloat               zz_width;

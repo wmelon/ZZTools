@@ -9,6 +9,8 @@
 #import "ZZTitleView.h"
 #import <SDAutoLayout.h>
 #import "ZZPrivateHeader.h"
+#import "UIView+ZZExtension.h"
+#import "UIColor+ZZExtension.h"
 #import "ZZScrollSegmentView.h"
 
 @interface ZZScrollSegmentView ()<UIScrollViewDelegate> {

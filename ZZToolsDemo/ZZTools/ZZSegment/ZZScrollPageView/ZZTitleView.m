@@ -9,6 +9,7 @@
 #import "ZZTitleView.h"
 #import "ZZPrivateHeader.h"
 #import "UIView+ZZExtension.h"
+#import "UIColor+ZZExtension.h"
 
 @interface ZZTitleView() {
     CGSize _titleSize;

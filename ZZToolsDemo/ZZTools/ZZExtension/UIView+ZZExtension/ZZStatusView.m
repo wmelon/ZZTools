@@ -1,6 +1,6 @@
 //
 //  ZZStatusView.m
-//  ZZProjectOC
+//  ZZToolsDemo
 //
 //  Created by 刘猛 on 2019/9/28.
 //  Copyright © 2018 刘猛. All rights reserved.
@@ -101,7 +101,7 @@
         
         //        if (style.zz_hideBackButton == NO) {
         //            UIButton *backButton = [[UIButton alloc] initWithTitle:@"" titleColor:@"ffffff" font:kFont(12) image:@"状态页返回" selectImage:@"状态页返回" superView:self];
-        //            backButton.sd_layout.topSpaceToView(self, AfW(6.5) + kSafeAreaTopHeight * 2 + 20)
+        //            backButton.sd_layout.topSpaceToView(self, AfW(6.5) + ZZSafeTopHeight * 2 + 20)
         //            .leftSpaceToView(self, AfW(12))
         //            .widthIs(AfW(30)).heightIs(AfW(30));
         //            [backButton addTarget:self action:@selector(zz_backButtonClick) forControlEvents:(UIControlEventTouchUpInside)];

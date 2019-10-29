@@ -1,6 +1,6 @@
 //
 //  UITextField+LYCommon.m
-//  FanLi
+//  ZZToolsDemo
 //
 //  Created by 刘猛 on 2019/8/29.
 //  Copyright © 2019 nvZhuangWang. All rights reserved.
@@ -9,13 +9,10 @@
 #import "ZZTimer.h"
 #import "SDAutoLayout.h"
 #import <objc/message.h>
+#import "ZZPrivateHeader.h"
 #import "UIColor+ZZExtension.h"
 #import "UIButton+ZZExtension.h"
 #import "UITextField+ZZExtension.h"
-
-#define AfW(x) (x / 375.0 * UIWidth)
-#define UIWidth UIScreen.mainScreen.bounds.size.width
-#define UIHeight UIScreen.mainScreen.bounds.size.height
 
 static char LeftButtonClick;
 static char RightButtonClick;

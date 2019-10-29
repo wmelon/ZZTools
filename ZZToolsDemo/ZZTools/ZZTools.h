@@ -28,20 +28,12 @@
 #import "ZZScrollPageView.h"
 #import "ZZScrollPageViewDelegate.h"
 
+//父类
+#import "ZZSuperVC.h"
+#import "ZZChildVC.h"
+
 //类别工具
-#import "UIView+ZZExtension.h"
-#import "NSDate+ZZExtension.h"
-#import "UIColor+ZZExtension.h"
-#import "UIImage+ZZExtension.h"
-#import "UILabel+ZZExtension.h"
-#import "UIButton+ZZExtension.h"
-#import "NSString+ZZExtension.h"
-#import "UITextField+ZZExtension.h"
-#import "UIImageView+ZZExtension.h"
-#import "UIScrollView+ZZExtension.h"
-#import "NSURLSession+ZZExtension.h"
-#import "NSAttributedString+ZZExtension.h"
-#import "UINavigationController+ZZFullscreenPopGesture.h"
+#import "ZZExtension.h"
 
 
 #endif /* ZZTools_h */

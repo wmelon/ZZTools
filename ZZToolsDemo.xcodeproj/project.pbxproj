@@ -34,6 +34,8 @@
 		8159F840236807F30069163E /* UITextField+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F835236807F30069163E /* UITextField+ZZExtension.m */; };
 		8159F843236808490069163E /* ZZTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F842236808490069163E /* ZZTimer.m */; };
 		8159F847236808620069163E /* UIImage+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F845236808620069163E /* UIImage+ZZExtension.m */; };
+		8159F84D23680BB10069163E /* ZZSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F84B23680BB10069163E /* ZZSuperVC.m */; };
+		8159F84E23680BB10069163E /* ZZChildVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159F84C23680BB10069163E /* ZZChildVC.m */; };
 		81B52C25235839E50092B165 /* ZZJointTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C24235839E50092B165 /* ZZJointTableView.m */; };
 		81B52C39235839EA0092B165 /* ZZTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C2D235839EA0092B165 /* ZZTitleView.m */; };
 		81B52C3A235839EA0092B165 /* UIViewController+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B52C2E235839EA0092B165 /* UIViewController+ZZExtension.m */; };
@@ -104,6 +106,12 @@
 		8159F842236808490069163E /* ZZTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZTimer.m; sourceTree = "<group>"; };
 		8159F845236808620069163E /* UIImage+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZZExtension.m"; sourceTree = "<group>"; };
 		8159F846236808620069163E /* UIImage+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZZExtension.h"; sourceTree = "<group>"; };
+		8159F84923680BB10069163E /* ZZSuperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZSuperVC.h; sourceTree = "<group>"; };
+		8159F84A23680BB10069163E /* ZZChildVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZChildVC.h; sourceTree = "<group>"; };
+		8159F84B23680BB10069163E /* ZZSuperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZSuperVC.m; sourceTree = "<group>"; };
+		8159F84C23680BB10069163E /* ZZChildVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZChildVC.m; sourceTree = "<group>"; };
+		8159F84F23680EFF0069163E /* ZZToolsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZZToolsDemo.entitlements; sourceTree = "<group>"; };
+		8159F851236811280069163E /* ZZExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZExtension.h; sourceTree = "<group>"; };
 		817DC901F7C64119D1FE199A /* Pods-ZZToolsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZZToolsDemo.release.xcconfig"; path = "Target Support Files/Pods-ZZToolsDemo/Pods-ZZToolsDemo.release.xcconfig"; sourceTree = "<group>"; };
 		81B52C23235839E50092B165 /* ZZJointTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZJointTableView.h; sourceTree = "<group>"; };
 		81B52C24235839E50092B165 /* ZZJointTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZJointTableView.m; sourceTree = "<group>"; };
@@ -170,6 +178,9 @@
 		3A09E55A22A15A4600F462EC /* ZZExtension */ = {
 			isa = PBXGroup;
 			children = (
+				8159F851236811280069163E /* ZZExtension.h */,
+				8166F7F92356BBF700EF8F4B /* ZZSegment */,
+				8159F84823680BB10069163E /* ZZSuperClass */,
 				81B52C4023583BB40092B165 /* UIView+ZZExtension */,
 				8159F81F236807F30069163E /* NSDate+ZZExtension */,
 				81B52C4523583BB40092B165 /* UIColor+ZZExtension */,
@@ -207,6 +218,7 @@
 		3AA1BAA321F6C61400833ECA /* ZZToolsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8159F84F23680EFF0069163E /* ZZToolsDemo.entitlements */,
 				3AA1BABB21F6C6C800833ECA /* App */,
 				3AA1BABF21F6C71700833ECA /* Demo */,
 				3AA1BABC21F6C71700833ECA /* ZZTools */,
@@ -233,7 +245,6 @@
 			children = (
 				3AA1BAD321F6C94700833ECA /* ZZTools.h */,
 				E49CEB53222E4CF100AC812D /* ZZPrivateHeader.h */,
-				8166F7F92356BBF700EF8F4B /* ZZSegment */,
 				E4984AA322C3BF8A000448B9 /* ZZFPSButton */,
 				E45ED2D722115EB4009D9A8C /* ZZRouter */,
 				3AA1BAD221F6C85200833ECA /* ZZLayout */,
@@ -406,6 +417,17 @@
 				8159F835236807F30069163E /* UITextField+ZZExtension.m */,
 			);
 			path = "UITextField+ZZExtension";
+			sourceTree = "<group>";
+		};
+		8159F84823680BB10069163E /* ZZSuperClass */ = {
+			isa = PBXGroup;
+			children = (
+				8159F84A23680BB10069163E /* ZZChildVC.h */,
+				8159F84C23680BB10069163E /* ZZChildVC.m */,
+				8159F84923680BB10069163E /* ZZSuperVC.h */,
+				8159F84B23680BB10069163E /* ZZSuperVC.m */,
+			);
+			path = ZZSuperClass;
 			sourceTree = "<group>";
 		};
 		8166F7F92356BBF700EF8F4B /* ZZSegment */ = {
@@ -672,6 +694,7 @@
 				3AA1BAD021F6C71700833ECA /* ZZAutomateFloatVC.m in Sources */,
 				E43DDCFD2205341E00DC41C0 /* ZZStarView.m in Sources */,
 				8159F840236807F30069163E /* UITextField+ZZExtension.m in Sources */,
+				8159F84D23680BB10069163E /* ZZSuperVC.m in Sources */,
 				3AA1BAB421F6C61500833ECA /* main.m in Sources */,
 				81B52C3E235839EA0092B165 /* ZZScrollSegmentView.m in Sources */,
 				8159F83F236807F30069163E /* UIImageView+ZZExtension.m in Sources */,
@@ -682,6 +705,7 @@
 				81B52C3D235839EA0092B165 /* ZZSegmentStyle.m in Sources */,
 				81B52C3F235839EA0092B165 /* ZZScrollPageView.m in Sources */,
 				E42827E02206D61D00BF7657 /* ZZCollectionFooterView.m in Sources */,
+				8159F84E23680BB10069163E /* ZZChildVC.m in Sources */,
 				E4F4A899223640E200491E6E /* ZZMixVC.m in Sources */,
 				8159F838236807F30069163E /* NSAttributedString+ZZExtension.m in Sources */,
 				3AA1BACF21F6C71700833ECA /* ZZHorizontalVC.m in Sources */,
@@ -781,7 +805,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -834,7 +858,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -848,6 +872,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ZZToolsDemo/ZZToolsDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WYH8FX94BX;
 				ENABLE_BITCODE = NO;
@@ -861,6 +886,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = www.zz.com.ZZTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -873,6 +899,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ZZToolsDemo/ZZToolsDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WYH8FX94BX;
 				ENABLE_BITCODE = NO;
@@ -886,6 +913,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = www.zz.com.ZZTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -1,5 +1,5 @@
 //
-//  ZJScrollView.m
+//  ZZScrollView.m
 //  ZZToolsDemo
 //
 //  Created by 刘猛 on 16/10/24.
@@ -10,7 +10,7 @@
 
 @interface ZZCollectionView ()
 
-@property (copy, nonatomic) ZJScrollViewShouldBeginPanGestureHandler gestureBeginHandler;
+@property (copy, nonatomic) ZZScrollViewShouldBeginPanGestureHandler gestureBeginHandler;
 
 @end
 
@@ -25,7 +25,7 @@
     }
 }
 
-- (void)setupScrollViewShouldBeginPanGestureHandler:(ZJScrollViewShouldBeginPanGestureHandler)gestureBeginHandler {
+- (void)setupScrollViewShouldBeginPanGestureHandler:(ZZScrollViewShouldBeginPanGestureHandler)gestureBeginHandler {
     _gestureBeginHandler = [gestureBeginHandler copy];
 }
 

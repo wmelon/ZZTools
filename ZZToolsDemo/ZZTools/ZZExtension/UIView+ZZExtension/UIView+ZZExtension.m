@@ -158,8 +158,6 @@ static char GLAYER;
 }
 
 # pragma mark- set/get方法
-
-
 - (CAGradientLayer *)zz_gradientLayer {
     return objc_getAssociatedObject(self, &GLAYER);
 }
@@ -167,59 +165,7 @@ static char GLAYER;
     objc_setAssociatedObject(self, &GLAYER, zz_gradientLayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)zz_x {
-    return self.frame.origin.x;
-}
-- (void)setZz_x:(CGFloat)zz_x {
-    CGRect frame = self.frame;
-    frame.origin.x = zz_x;
-    self.frame = frame;
-}
 
-- (CGFloat)zz_y {
-    return self.frame.origin.y;
-}
-- (void)setZz_y:(CGFloat)zz_y {
-    CGRect frame = self.frame;
-    frame.origin.y = zz_y;
-    self.frame = frame;
-}
-
-- (CGFloat)zz_centerX {
-    return self.center.x;
-}
-- (void)setZz_centerX:(CGFloat)zz_centerX {
-    CGPoint center = self.center;
-    center.x = zz_centerX;
-    self.center = center;
-}
-
-- (CGFloat)zz_centerY {
-    return self.center.y;
-}
-- (void)setZz_centerY:(CGFloat)zz_centerY {
-    CGPoint center = self.center;
-    center.y = zz_centerY;
-    self.center = center;
-}
-
-- (CGFloat)zz_width {
-    return self.frame.size.width;
-}
-- (void)setZz_width:(CGFloat)zz_width {
-    CGRect frame = self.frame;
-    frame.size.width = zz_width;
-    self.frame = frame;
-}
-
-- (CGFloat)zz_height {
-    return self.frame.size.height;
-}
-- (void)setZz_height:(CGFloat)zz_height {
-    CGRect frame = self.frame;
-    frame.size.height = zz_height;
-    self.frame = frame;
-}
 
 
 @end

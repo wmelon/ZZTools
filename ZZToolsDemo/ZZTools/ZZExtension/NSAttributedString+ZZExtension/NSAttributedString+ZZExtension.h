@@ -1,6 +1,6 @@
 //
 //  NSObject+NSAttributedString.h
-//  ShallBuyLife
+//  ZZToolsDemo
 //
 //  Created by 刘猛 on 2018/12/10.
 //  Copyright © 2018 刘猛. All rights reserved.

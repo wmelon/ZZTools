@@ -1,6 +1,6 @@
 //
 //  UIView+ZZExtension.h
-//  FanLi
+//  ZZToolsDemo
 //
 //  Created by 刘猛 on 2019/8/28.
 //  Copyright © 2019年 刘猛. All rights reserved.
@@ -11,16 +11,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (ZZExtension)
-
-# pragma mark- 对外属性
-
-///ZZSegment专用
-@property (nonatomic, assign) CGFloat               zz_x;
-@property (nonatomic, assign) CGFloat               zz_y;
-@property (nonatomic, assign) CGFloat               zz_width;
-@property (nonatomic, assign) CGFloat               zz_height;
-@property (nonatomic, assign) CGFloat               zz_centerX;
-@property (nonatomic, assign) CGFloat               zz_centerY;
 
 /**被添加的渐变色*/
 @property (nonatomic, strong) CAGradientLayer      *zz_gradientLayer;

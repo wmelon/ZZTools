@@ -12,12 +12,12 @@
 #import "UIView+ZZExtension.h"
 #import "UIColor+ZZExtension.h"
 #import "ZZScrollSegmentView.h"
+#import "UIViewController+ZZExtension.h"
 
 @interface ZZScrollSegmentView ()<UIScrollViewDelegate> {
     CGFloat _currentWidth;
     NSUInteger _currentIndex;
     NSUInteger _oldIndex;
-//    BOOL _isScroll;
 }
 
 // 滚动条

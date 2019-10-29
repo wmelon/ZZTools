@@ -1,6 +1,6 @@
 //
 //  UIImageView+ZZExtension.m
-//  HDStore
+//  ZZToolsDemo
 //
 //  Created by 刘猛 on 2018/2/5.
 //  Copyright © 2018年 刘猛. All rights reserved.

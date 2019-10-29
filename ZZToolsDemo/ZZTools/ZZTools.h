@@ -23,17 +23,7 @@
 //FPS按钮
 #import "ZZFPSButton.h"
 
-//联动个分页控制器相关
-#import "ZZJointTableView.h"
-#import "ZZScrollPageView.h"
-#import "ZZScrollPageViewDelegate.h"
-
-//父类
-#import "ZZSuperVC.h"
-#import "ZZChildVC.h"
-
 //类别工具
 #import "ZZExtension.h"
-
 
 #endif /* ZZTools_h */

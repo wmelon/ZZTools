@@ -6,7 +6,6 @@ target 'ZZToolsDemo' do
   
   #demo中使用的三方库
   pod 'MJRefresh'
-  #pod 'MBProgressHUD'
   
   #工具中使用的三方库
   pod 'SDAutoLayout'

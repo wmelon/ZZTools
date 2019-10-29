@@ -426,6 +426,8 @@
 				8159F84C23680BB10069163E /* ZZChildVC.m */,
 				8159F84923680BB10069163E /* ZZSuperVC.h */,
 				8159F84B23680BB10069163E /* ZZSuperVC.m */,
+				81B52C23235839E50092B165 /* ZZJointTableView.h */,
+				81B52C24235839E50092B165 /* ZZJointTableView.m */,
 			);
 			path = ZZSuperClass;
 			sourceTree = "<group>";
@@ -433,20 +435,10 @@
 		8166F7F92356BBF700EF8F4B /* ZZSegment */ = {
 			isa = PBXGroup;
 			children = (
-				81B52C22235839E50092B165 /* ZZJointTableView */,
 				81B52C26235839EA0092B165 /* ZZScrollPageView */,
 				81B52C4D235846880092B165 /* UIViewController+ZZExtension */,
 			);
 			path = ZZSegment;
-			sourceTree = "<group>";
-		};
-		81B52C22235839E50092B165 /* ZZJointTableView */ = {
-			isa = PBXGroup;
-			children = (
-				81B52C23235839E50092B165 /* ZZJointTableView.h */,
-				81B52C24235839E50092B165 /* ZZJointTableView.m */,
-			);
-			path = ZZJointTableView;
 			sourceTree = "<group>";
 		};
 		81B52C26235839EA0092B165 /* ZZScrollPageView */ = {
